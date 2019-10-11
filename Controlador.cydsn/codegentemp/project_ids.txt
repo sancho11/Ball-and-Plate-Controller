@@ -1,0 +1,6 @@
+E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj|35b4eb2f-c079-4972-80e6-bff47e5010c7
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6d6a65c3-c2e1-4bbe-b9b8-78cc853bb3bb
+C:\Users\emman\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|36226ab8-c95a-475a-8cb9-c297b0501f40
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f96fd845-2d38-4d9f-9ffa-0cc34a997019
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|0029539a-0c76-4871-be7a-e7a2257aaf66
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5e162d4f-abba-47fb-845b-d67f0fa4d3ca

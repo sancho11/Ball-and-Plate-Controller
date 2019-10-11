@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\TopDesign</v>
+<v>PID Controler\Controlador\Controlador.cydwr</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Pins</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Analog</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Clocks</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Interrupts</v>
+<v>PID Controler\Controlador\Controlador.cydwr\DMA</v>
+<v>PID Controler\Controlador\Controlador.cydwr\System</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Directives</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Flash Security</v>
+<v>PID Controler\Controlador\Controlador.cydwr\EEPROM</v>
+<v>PID Controler\Controlador\Header Files</v>
+<v>PID Controler\Controlador\Header Files\cyapicallbacks.h</v>
+<v>PID Controler\Controlador\Source Files</v>
+<v>PID Controler\Controlador\Source Files\main.c</v>
+<v>PID Controler\Controlador\Generated_Source</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\TopDesign</v>
+<v>PID Controler\Controlador\Controlador.cydwr</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Pins</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Analog</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Clocks</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Interrupts</v>
+<v>PID Controler\Controlador\Controlador.cydwr\DMA</v>
+<v>PID Controler\Controlador\Controlador.cydwr\System</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Directives</v>
+<v>PID Controler\Controlador\Controlador.cydwr\Flash Security</v>
+<v>PID Controler\Controlador\Controlador.cydwr\EEPROM</v>
+<v>PID Controler\Controlador\Header Files</v>
+<v>PID Controler\Controlador\Header Files\cyapicallbacks.h</v>
+<v>PID Controler\Controlador\Source Files</v>
+<v>PID Controler\Controlador\Source Files\main.c</v>
+<v>PID Controler\Controlador\Generated_Source</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\ClockServoControl</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cy_boot</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Em_EEPROM_Dynamic</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\LCD</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\LCD_LCDPort</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\PinServoX</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\PinServoY</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\PWM_reset</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\PWM_X</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\PWM_Y</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ADC</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ADC_AMux</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ADC_Ext_CP_Clk</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ADC_IRQ</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ADC_theACLK</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_AMux</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_xm</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_xp</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_ym</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Touch_yp</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\X_interrupcion</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\Y_interrupcion</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cycodeshareexport.ld</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cycodeshareimport.ld</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cycodeshareimport.scat</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cydevice.h</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cydevice_trm.h</v>
+<v>PID Controler\Controlador\Generated_Source\PSoC5\cydevicegnu.inc</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\TopDesign</v>
+<v>PID Controler\Controlador\TopDesign\TopDesign.cysch</v>
+<v>PID Controler\Controlador\TopDesign\TopDesign.cysym</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\TopDesign</v>
+<v>PID Controler\Controlador\TopDesign\TopDesign.cysch</v>
+<v>PID Controler\Controlador\TopDesign\TopDesign.cysym</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PID Controler">
+<ExpandedNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\CortexM3</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\ClockServoControl.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Cm3Start.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cy_em_eeprom.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyDmac.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyFlash.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CyLib.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cymetadata.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyPm.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\CySpc.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\cyutils.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_LCDPort.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\LCD_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\main.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PinServoX.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PinServoY.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_reset.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_reset_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_X.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_X_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Y.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\PWM_Y_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_AMux.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_Ext_CP_Clk.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_INT.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_IRQ.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ADC_theACLK.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_AMux.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_xm.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_xp.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_ym.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Touch_yp.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\X_interrupcion.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Listing Files\Y_interrupcion.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Controlador.elf</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Controlador.hex</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Debug\Controlador.map</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\ClockServoControl.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\Cm3Start.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\cy_em_eeprom.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\CyBootAsmGnu.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\CyDmac.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\cyfitter_cfg.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\CyFlash.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\CyLib.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\cymetadata.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\cyPm.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\CySpc.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\cyutils.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\main.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PinServoX.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PinServoY.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PWM_X.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PWM_X_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PWM_Y.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Listing Files\PWM_Y_PM.lst</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Controlador.elf</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Controlador.hex</v>
+<v>PID Controler\Controlador\CortexM3\ARM_GCC_541\Release\Controlador.map</v>
+<v>PID Controler\Controlador\Controlador.gpdsc</v>
+<v>PID Controler\Controlador\Controlador.rpt</v>
+<v>PID Controler\Controlador\Controlador_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="PID Controler\Controlador">
+<ExpandedNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\PSoC 5LP Architecture TRM</v>
+<v>PID Controler\Controlador\CY8C58LP Family Datasheet</v>
+<v>PID Controler\Controlador\System Reference Guides</v>
+<v>PID Controler\Controlador\System Reference Guides\cy_boot_v5_70</v>
+<v>PID Controler\Controlador\CharLCD_v2_20.pdf</v>
+<v>PID Controler\Controlador\cy_clock_v2_20.pdf</v>
+<v>PID Controler\Controlador\cy_isr_v1_70</v>
+<v>PID Controler\Controlador\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>PID Controler\Controlador\cy_pins_v2_20</v>
+<v>PID Controler\Controlador\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PID Controler\Controlador\CyControlReg_v1_80.pdf</v>
+<v>PID Controler\Controlador\PWM_v3_30</v>
+<v>PID Controler\Controlador\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>PID Controler\Controlador\ResistiveTouch_v2_0.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>PID Controler</v>
+<v>PID Controler\Controlador</v>
+<v>PID Controler\Controlador\PSoC 5LP Architecture TRM</v>
+<v>PID Controler\Controlador\CY8C58LP Family Datasheet</v>
+<v>PID Controler\Controlador\System Reference Guides</v>
+<v>PID Controler\Controlador\System Reference Guides\cy_boot_v5_70</v>
+<v>PID Controler\Controlador\CharLCD_v2_20.pdf</v>
+<v>PID Controler\Controlador\cy_clock_v2_20.pdf</v>
+<v>PID Controler\Controlador\cy_isr_v1_70</v>
+<v>PID Controler\Controlador\cy_isr_v1_70\cy_isr_v1_70.pdf</v>
+<v>PID Controler\Controlador\cy_pins_v2_20</v>
+<v>PID Controler\Controlador\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>PID Controler\Controlador\CyControlReg_v1_80.pdf</v>
+<v>PID Controler\Controlador\PWM_v3_30</v>
+<v>PID Controler\Controlador\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>PID Controler\Controlador\ResistiveTouch_v2_0.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\Controlador.cydsn\TopDesign\TopDesign.cysch" />
+<name v=".\Controlador.cydsn\Controlador.cydwr" />
+<name v=".\Controlador.cydsn\cyapicallbacks.h" />
+<name v=".\Controlador.cydsn\main.c" />
+<name v=".\Controlador.cydsn\Generated_Source\PSoC5\ADC_YAxis.h" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1358, 685" SelectedTabbedMdiWindow="40b971b4-c3fe-42ff-9ec1-65a070c00346"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="de98490d-c02b-4c78-89b2-491d9293fa02" /><DocumentWindow Key="C:\Users\emman\Documents\PSoC Creator\PID Controler\Controlador.cydsn\TopDesign\TopDesign.cysch" Guid="40b971b4-c3fe-42ff-9ec1-65a070c00346" /><DocumentWindow Key="C:\Users\emman\Documents\PSoC Creator\PID Controler\Controlador.cydsn\Controlador.cydwr" Guid="7fc8f6a9-b4f3-417d-8155-230e84659832" /><DocumentWindow Key="C:\Users\emman\Documents\PSoC Creator\PID Controler\Controlador.cydsn\cyapicallbacks.h" Guid="0df4b57c-0df9-4e51-ab64-fe9b2992a3a1" /><DocumentWindow Key="C:\Users\emman\Documents\PSoC Creator\PID Controler\Controlador.cydsn\main.c" Guid="c4b2b8d0-cf98-4198-8ca1-618843571fac" /><DocumentWindow Key="C:\Users\emman\Documents\PSoC Creator\PID Controler\Controlador.cydsn\Generated_Source\PSoC5\ADC_YAxis.h" Guid="f74f3bd1-a6eb-45d6-971b-d6df87717370" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>

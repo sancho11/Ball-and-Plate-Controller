@@ -1,0 +1,2480 @@
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_fcmpgt
+  20              		.global	__aeabi_fcmplt
+  21              		.global	__aeabi_fdiv
+  22              		.global	__aeabi_fmul
+  23              		.global	__aeabi_fadd
+  24              		.global	__aeabi_fsub
+  25              		.global	__aeabi_f2iz
+  26              		.section	.text.mapANGtoTIME,"ax",%progbits
+  27              		.align	1
+  28              		.global	mapANGtoTIME
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	mapANGtoTIME, %function
+  32              	mapANGtoTIME:
+  33              	.LFB64:
+  34              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** 
+  15:main.c        **** const int PWMSERVO_MIN = 544;
+  16:main.c        **** const int PWMSERVO_MAX = 2400;
+  17:main.c        **** const int PWMSERVO_X_CORRECTION = 90-9;
+  18:main.c        **** const int PWMSERVO_Y_CORRECTION = 90+3;
+  19:main.c        **** const float X_Volt_EMPMAX = 4.5;
+  20:main.c        **** const float Y_Volt_EMPMAX = 4.3;
+  21:main.c        **** const float X_Loss = 0.5;
+  22:main.c        **** const float Y_Loss = 0.7;
+  23:main.c        **** float Vddval = 5;
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 2
+
+
+  24:main.c        **** float Vssval = 0;
+  25:main.c        **** 
+  26:main.c        **** 
+  27:main.c        **** //Definiendo funciones que utilizaremos en nuestro sistema de control
+  28:main.c        **** int mapANGtoTIME(float Angulo){ //Esta función mapea apartir de un rango dado a otro rango dado.
+  35              		.loc 1 28 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              	.LVL0:
+  40 0000 10B5     		push	{r4, lr}
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 4, -8
+  43              		.cfi_offset 14, -4
+  29:main.c        ****     if (0<Angulo && Angulo<180){
+  44              		.loc 1 29 0
+  45 0002 0021     		movs	r1, #0
+  28:main.c        ****     if (0<Angulo && Angulo<180){
+  46              		.loc 1 28 0
+  47 0004 0446     		mov	r4, r0
+  48              		.loc 1 29 0
+  49 0006 FFF7FEFF 		bl	__aeabi_fcmpgt
+  50              	.LVL1:
+  51 000a A8B1     		cbz	r0, .L10
+  52              		.loc 1 29 0 is_stmt 0 discriminator 1
+  53 000c 0C49     		ldr	r1, .L12
+  54 000e 2046     		mov	r0, r4
+  55 0010 FFF7FEFF 		bl	__aeabi_fcmplt
+  56              	.LVL2:
+  57 0014 80B1     		cbz	r0, .L10
+  58              	.LVL3:
+  59              	.LBB6:
+  60              	.LBB7:
+  30:main.c        ****         float angrelativo = (Angulo)/180;
+  31:main.c        ****         float timerelative= angrelativo*(PWMSERVO_MAX-PWMSERVO_MIN);
+  32:main.c        ****         return timerelative+PWMSERVO_MIN-1;
+  61              		.loc 1 32 0 is_stmt 1
+  62 0016 0A49     		ldr	r1, .L12
+  63 0018 2046     		mov	r0, r4
+  64 001a FFF7FEFF 		bl	__aeabi_fdiv
+  65              	.LVL4:
+  66 001e 0949     		ldr	r1, .L12+4
+  67 0020 FFF7FEFF 		bl	__aeabi_fmul
+  68              	.LVL5:
+  69 0024 0849     		ldr	r1, .L12+8
+  70 0026 FFF7FEFF 		bl	__aeabi_fadd
+  71              	.LVL6:
+  72 002a 4FF07E51 		mov	r1, #1065353216
+  73 002e FFF7FEFF 		bl	__aeabi_fsub
+  74              	.LVL7:
+  75 0032 FFF7FEFF 		bl	__aeabi_f2iz
+  76              	.LVL8:
+  77 0036 10BD     		pop	{r4, pc}
+  78              	.LVL9:
+  79              	.L10:
+  80              	.LBE7:
+  81              	.LBE6:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 3
+
+
+  33:main.c        ****     }
+  34:main.c        ****     else{
+  35:main.c        ****         return 1472;
+  82              		.loc 1 35 0
+  83 0038 4FF4B860 		mov	r0, #1472
+  36:main.c        ****     }
+  37:main.c        **** }
+  84              		.loc 1 37 0
+  85 003c 10BD     		pop	{r4, pc}
+  86              	.LVL10:
+  87              	.L13:
+  88 003e 00BF     		.align	2
+  89              	.L12:
+  90 0040 00003443 		.word	1127481344
+  91 0044 0000E844 		.word	1156055040
+  92 0048 00000844 		.word	1141374976
+  93              		.cfi_endproc
+  94              	.LFE64:
+  95              		.size	mapANGtoTIME, .-mapANGtoTIME
+  96              		.section	.text.SetServoX,"ax",%progbits
+  97              		.align	1
+  98              		.global	SetServoX
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	SetServoX, %function
+ 102              	SetServoX:
+ 103              	.LFB65:
+  38:main.c        **** void SetServoX(float Angulo){
+ 104              		.loc 1 38 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108              	.LVL11:
+ 109 0000 08B5     		push	{r3, lr}
+ 110              		.cfi_def_cfa_offset 8
+ 111              		.cfi_offset 3, -8
+ 112              		.cfi_offset 14, -4
+  39:main.c        ****     Angulo=(Angulo*-1)+PWMSERVO_X_CORRECTION;
+  40:main.c        ****     PWM_X_WriteCompare(mapANGtoTIME(Angulo)); 
+ 113              		.loc 1 40 0
+ 114 0002 0146     		mov	r1, r0
+ 115 0004 0448     		ldr	r0, .L15
+ 116              	.LVL12:
+ 117 0006 FFF7FEFF 		bl	__aeabi_fsub
+ 118              	.LVL13:
+ 119 000a FFF7FEFF 		bl	mapANGtoTIME
+ 120              	.LVL14:
+  41:main.c        ****     return;
+  42:main.c        **** }
+ 121              		.loc 1 42 0
+ 122 000e BDE80840 		pop	{r3, lr}
+ 123              		.cfi_restore 14
+ 124              		.cfi_restore 3
+ 125              		.cfi_def_cfa_offset 0
+  40:main.c        ****     return;
+ 126              		.loc 1 40 0
+ 127 0012 80B2     		uxth	r0, r0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 4
+
+
+ 128 0014 FFF7FEBF 		b	PWM_X_WriteCompare
+ 129              	.LVL15:
+ 130              	.L16:
+ 131              		.align	2
+ 132              	.L15:
+ 133 0018 0000A242 		.word	1117913088
+ 134              		.cfi_endproc
+ 135              	.LFE65:
+ 136              		.size	SetServoX, .-SetServoX
+ 137              		.section	.text.SetServoY,"ax",%progbits
+ 138              		.align	1
+ 139              		.global	SetServoY
+ 140              		.thumb
+ 141              		.thumb_func
+ 142              		.type	SetServoY, %function
+ 143              	SetServoY:
+ 144              	.LFB66:
+  43:main.c        **** void SetServoY(float Angulo){
+ 145              		.loc 1 43 0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              	.LVL16:
+ 150 0000 08B5     		push	{r3, lr}
+ 151              		.cfi_def_cfa_offset 8
+ 152              		.cfi_offset 3, -8
+ 153              		.cfi_offset 14, -4
+  44:main.c        ****     Angulo=(Angulo*-1)+PWMSERVO_Y_CORRECTION;
+  45:main.c        ****     PWM_Y_WriteCompare(mapANGtoTIME(Angulo));
+ 154              		.loc 1 45 0
+ 155 0002 0146     		mov	r1, r0
+ 156 0004 0448     		ldr	r0, .L18
+ 157              	.LVL17:
+ 158 0006 FFF7FEFF 		bl	__aeabi_fsub
+ 159              	.LVL18:
+ 160 000a FFF7FEFF 		bl	mapANGtoTIME
+ 161              	.LVL19:
+  46:main.c        ****     return;
+  47:main.c        **** }
+ 162              		.loc 1 47 0
+ 163 000e BDE80840 		pop	{r3, lr}
+ 164              		.cfi_restore 14
+ 165              		.cfi_restore 3
+ 166              		.cfi_def_cfa_offset 0
+  45:main.c        ****     return;
+ 167              		.loc 1 45 0
+ 168 0012 80B2     		uxth	r0, r0
+ 169 0014 FFF7FEBF 		b	PWM_Y_WriteCompare
+ 170              	.LVL20:
+ 171              	.L19:
+ 172              		.align	2
+ 173              	.L18:
+ 174 0018 0000BA42 		.word	1119485952
+ 175              		.cfi_endproc
+ 176              	.LFE66:
+ 177              		.size	SetServoY, .-SetServoY
+ 178              		.section	.text.Volt_update,"ax",%progbits
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 5
+
+
+ 179              		.align	1
+ 180              		.global	Volt_update
+ 181              		.thumb
+ 182              		.thumb_func
+ 183              		.type	Volt_update, %function
+ 184              	Volt_update:
+ 185              	.LFB67:
+  48:main.c        **** void Volt_update(void){ //Actualiza el valor del voltaje minimo y maximo que puede leer para ajusta
+ 186              		.loc 1 48 0
+ 187              		.cfi_startproc
+ 188              		@ args = 0, pretend = 0, frame = 0
+ 189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 190 0000 08B5     		push	{r3, lr}
+ 191              		.cfi_def_cfa_offset 8
+ 192              		.cfi_offset 3, -8
+ 193              		.cfi_offset 14, -4
+  49:main.c        ****     AxisSelector_Write(0xFF);   //Seleccionamos el eje X poniendo unos.
+ 194              		.loc 1 49 0
+ 195 0002 FF20     		movs	r0, #255
+ 196 0004 FFF7FEFF 		bl	AxisSelector_Write
+ 197              	.LVL21:
+  50:main.c        ****     CyDelay(1);
+ 198              		.loc 1 50 0
+ 199 0008 0120     		movs	r0, #1
+ 200 000a FFF7FEFF 		bl	CyDelay
+ 201              	.LVL22:
+  51:main.c        ****     Vddval = ADC_YAxis_CountsTo_Volts(ADC_YAxis_GetResult16());
+ 202              		.loc 1 51 0
+ 203 000e FFF7FEFF 		bl	ADC_YAxis_GetResult16
+ 204              	.LVL23:
+ 205 0012 FFF7FEFF 		bl	ADC_YAxis_CountsTo_Volts
+ 206              	.LVL24:
+ 207 0016 074B     		ldr	r3, .L21
+ 208 0018 1860     		str	r0, [r3]	@ float
+  52:main.c        ****     AxisSelector_Write(0x00);   //Seleccionamos el eje Y poniendo ceros.
+ 209              		.loc 1 52 0
+ 210 001a 0020     		movs	r0, #0
+ 211 001c FFF7FEFF 		bl	AxisSelector_Write
+ 212              	.LVL25:
+  53:main.c        ****     CyDelay(1);
+ 213              		.loc 1 53 0
+ 214 0020 0120     		movs	r0, #1
+ 215 0022 FFF7FEFF 		bl	CyDelay
+ 216              	.LVL26:
+  54:main.c        ****     Vssval = ADC_XAxis_CountsTo_Volts(ADC_XAxis_GetResult16());
+ 217              		.loc 1 54 0
+ 218 0026 FFF7FEFF 		bl	ADC_XAxis_GetResult16
+ 219              	.LVL27:
+ 220 002a FFF7FEFF 		bl	ADC_XAxis_CountsTo_Volts
+ 221              	.LVL28:
+ 222 002e 024B     		ldr	r3, .L21+4
+ 223 0030 1860     		str	r0, [r3]	@ float
+ 224 0032 08BD     		pop	{r3, pc}
+ 225              	.L22:
+ 226              		.align	2
+ 227              	.L21:
+ 228 0034 00000000 		.word	.LANCHOR0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 6
+
+
+ 229 0038 00000000 		.word	.LANCHOR1
+ 230              		.cfi_endproc
+ 231              	.LFE67:
+ 232              		.size	Volt_update, .-Volt_update
+ 233              		.section	.text.ReadXAxis,"ax",%progbits
+ 234              		.align	1
+ 235              		.global	ReadXAxis
+ 236              		.thumb
+ 237              		.thumb_func
+ 238              		.type	ReadXAxis, %function
+ 239              	ReadXAxis:
+ 240              	.LFB68:
+  55:main.c        ****     return;
+  56:main.c        **** }
+  57:main.c        **** float ReadXAxis(void){
+ 241              		.loc 1 57 0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245 0000 70B5     		push	{r4, r5, r6, lr}
+ 246              		.cfi_def_cfa_offset 16
+ 247              		.cfi_offset 4, -16
+ 248              		.cfi_offset 5, -12
+ 249              		.cfi_offset 6, -8
+ 250              		.cfi_offset 14, -4
+  58:main.c        ****     float Xvolt = ADC_XAxis_CountsTo_Volts(ADC_XAxis_GetResult16());
+ 251              		.loc 1 58 0
+ 252 0002 FFF7FEFF 		bl	ADC_XAxis_GetResult16
+ 253              	.LVL29:
+ 254 0006 FFF7FEFF 		bl	ADC_XAxis_CountsTo_Volts
+ 255              	.LVL30:
+  59:main.c        ****     float Xpos= (((Xvolt-Vssval)-((Vddval-X_Loss-Vssval)/2))/(Vddval-X_Loss-Vssval))*X_Volt_EMPMAX;
+ 256              		.loc 1 59 0
+ 257 000a 114B     		ldr	r3, .L24
+  58:main.c        ****     float Xvolt = ADC_XAxis_CountsTo_Volts(ADC_XAxis_GetResult16());
+ 258              		.loc 1 58 0
+ 259 000c 0646     		mov	r6, r0
+ 260              	.LVL31:
+ 261              		.loc 1 59 0
+ 262 000e 1D68     		ldr	r5, [r3]	@ float
+ 263 0010 104B     		ldr	r3, .L24+4
+ 264 0012 4FF07C51 		mov	r1, #1056964608
+ 265 0016 1868     		ldr	r0, [r3]	@ float
+ 266              	.LVL32:
+ 267 0018 FFF7FEFF 		bl	__aeabi_fsub
+ 268              	.LVL33:
+ 269 001c 2946     		mov	r1, r5
+ 270 001e FFF7FEFF 		bl	__aeabi_fsub
+ 271              	.LVL34:
+  60:main.c        ****     return Xpos;
+ 272              		.loc 1 60 0
+ 273 0022 2946     		mov	r1, r5
+  59:main.c        ****     float Xpos= (((Xvolt-Vssval)-((Vddval-X_Loss-Vssval)/2))/(Vddval-X_Loss-Vssval))*X_Volt_EMPMAX;
+ 274              		.loc 1 59 0
+ 275 0024 0446     		mov	r4, r0
+ 276              	.LVL35:
+ 277              		.loc 1 60 0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 7
+
+
+ 278 0026 3046     		mov	r0, r6
+ 279              	.LVL36:
+ 280 0028 FFF7FEFF 		bl	__aeabi_fsub
+ 281              	.LVL37:
+ 282 002c 4FF07C51 		mov	r1, #1056964608
+ 283 0030 0546     		mov	r5, r0
+ 284              	.LVL38:
+ 285 0032 2046     		mov	r0, r4
+ 286 0034 FFF7FEFF 		bl	__aeabi_fmul
+ 287              	.LVL39:
+ 288 0038 0146     		mov	r1, r0
+ 289 003a 2846     		mov	r0, r5
+ 290 003c FFF7FEFF 		bl	__aeabi_fsub
+ 291              	.LVL40:
+ 292 0040 2146     		mov	r1, r4
+ 293 0042 FFF7FEFF 		bl	__aeabi_fdiv
+ 294              	.LVL41:
+ 295 0046 0449     		ldr	r1, .L24+8
+ 296 0048 FFF7FEFF 		bl	__aeabi_fmul
+ 297              	.LVL42:
+  61:main.c        ****     AxisSelector_Write(0x00);   //Seleccionamos el eje X poniendo unos.
+  62:main.c        **** }
+ 298              		.loc 1 62 0
+ 299 004c 70BD     		pop	{r4, r5, r6, pc}
+ 300              	.LVL43:
+ 301              	.L25:
+ 302 004e 00BF     		.align	2
+ 303              	.L24:
+ 304 0050 00000000 		.word	.LANCHOR1
+ 305 0054 00000000 		.word	.LANCHOR0
+ 306 0058 00009040 		.word	1083179008
+ 307              		.cfi_endproc
+ 308              	.LFE68:
+ 309              		.size	ReadXAxis, .-ReadXAxis
+ 310              		.section	.text.ReadYAxis,"ax",%progbits
+ 311              		.align	1
+ 312              		.global	ReadYAxis
+ 313              		.thumb
+ 314              		.thumb_func
+ 315              		.type	ReadYAxis, %function
+ 316              	ReadYAxis:
+ 317              	.LFB69:
+  63:main.c        **** float ReadYAxis(void){
+ 318              		.loc 1 63 0
+ 319              		.cfi_startproc
+ 320              		@ args = 0, pretend = 0, frame = 0
+ 321              		@ frame_needed = 0, uses_anonymous_args = 0
+ 322 0000 70B5     		push	{r4, r5, r6, lr}
+ 323              		.cfi_def_cfa_offset 16
+ 324              		.cfi_offset 4, -16
+ 325              		.cfi_offset 5, -12
+ 326              		.cfi_offset 6, -8
+ 327              		.cfi_offset 14, -4
+  64:main.c        ****     float Yvolt = ADC_YAxis_CountsTo_Volts(ADC_YAxis_GetResult16());
+ 328              		.loc 1 64 0
+ 329 0002 FFF7FEFF 		bl	ADC_YAxis_GetResult16
+ 330              	.LVL44:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 8
+
+
+ 331 0006 FFF7FEFF 		bl	ADC_YAxis_CountsTo_Volts
+ 332              	.LVL45:
+  65:main.c        ****     float Ypos= (((Yvolt-Vssval)-((Vddval-Y_Loss-Vssval)/2))/(Vddval-Y_Loss-Vssval))*Y_Volt_EMPMAX;
+ 333              		.loc 1 65 0
+ 334 000a 104B     		ldr	r3, .L27
+  64:main.c        ****     float Yvolt = ADC_YAxis_CountsTo_Volts(ADC_YAxis_GetResult16());
+ 335              		.loc 1 64 0
+ 336 000c 0646     		mov	r6, r0
+ 337              	.LVL46:
+ 338              		.loc 1 65 0
+ 339 000e 1D68     		ldr	r5, [r3]	@ float
+ 340 0010 0F4B     		ldr	r3, .L27+4
+ 341 0012 1049     		ldr	r1, .L27+8
+ 342 0014 1868     		ldr	r0, [r3]	@ float
+ 343              	.LVL47:
+ 344 0016 FFF7FEFF 		bl	__aeabi_fsub
+ 345              	.LVL48:
+ 346 001a 2946     		mov	r1, r5
+ 347 001c FFF7FEFF 		bl	__aeabi_fsub
+ 348              	.LVL49:
+  66:main.c        ****     return Ypos;
+ 349              		.loc 1 66 0
+ 350 0020 2946     		mov	r1, r5
+  65:main.c        ****     float Ypos= (((Yvolt-Vssval)-((Vddval-Y_Loss-Vssval)/2))/(Vddval-Y_Loss-Vssval))*Y_Volt_EMPMAX;
+ 351              		.loc 1 65 0
+ 352 0022 0446     		mov	r4, r0
+ 353              	.LVL50:
+ 354              		.loc 1 66 0
+ 355 0024 3046     		mov	r0, r6
+ 356              	.LVL51:
+ 357 0026 FFF7FEFF 		bl	__aeabi_fsub
+ 358              	.LVL52:
+ 359 002a 4FF07C51 		mov	r1, #1056964608
+ 360 002e 0546     		mov	r5, r0
+ 361              	.LVL53:
+ 362 0030 2046     		mov	r0, r4
+ 363 0032 FFF7FEFF 		bl	__aeabi_fmul
+ 364              	.LVL54:
+ 365 0036 0146     		mov	r1, r0
+ 366 0038 2846     		mov	r0, r5
+ 367 003a FFF7FEFF 		bl	__aeabi_fsub
+ 368              	.LVL55:
+ 369 003e 2146     		mov	r1, r4
+ 370 0040 FFF7FEFF 		bl	__aeabi_fdiv
+ 371              	.LVL56:
+ 372 0044 0449     		ldr	r1, .L27+12
+ 373 0046 FFF7FEFF 		bl	__aeabi_fmul
+ 374              	.LVL57:
+  67:main.c        ****     AxisSelector_Write(0xFF);   //Seleccionamos el eje X poniendo unos.
+  68:main.c        **** }
+ 375              		.loc 1 68 0
+ 376 004a 70BD     		pop	{r4, r5, r6, pc}
+ 377              	.LVL58:
+ 378              	.L28:
+ 379              		.align	2
+ 380              	.L27:
+ 381 004c 00000000 		.word	.LANCHOR1
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 9
+
+
+ 382 0050 00000000 		.word	.LANCHOR0
+ 383 0054 3333333F 		.word	1060320051
+ 384 0058 9A998940 		.word	1082759578
+ 385              		.cfi_endproc
+ 386              	.LFE69:
+ 387              		.size	ReadYAxis, .-ReadYAxis
+ 388              		.global	__aeabi_f2d
+ 389              		.section	.text.startup.main,"ax",%progbits
+ 390              		.align	1
+ 391              		.global	main
+ 392              		.thumb
+ 393              		.thumb_func
+ 394              		.type	main, %function
+ 395              	main:
+ 396              	.LFB70:
+  69:main.c        **** 
+  70:main.c        **** 
+  71:main.c        **** int main(void)
+  72:main.c        **** {   
+ 397              		.loc 1 72 0
+ 398              		.cfi_startproc
+ 399              		@ args = 0, pretend = 0, frame = 0
+ 400              		@ frame_needed = 0, uses_anonymous_args = 0
+ 401 0000 38B5     		push	{r3, r4, r5, lr}
+ 402              		.cfi_def_cfa_offset 16
+ 403              		.cfi_offset 3, -16
+ 404              		.cfi_offset 4, -12
+ 405              		.cfi_offset 5, -8
+ 406              		.cfi_offset 14, -4
+  73:main.c        ****     //Inicializamos los contadores que generaran las señales para los servos
+  74:main.c        ****     PWM_X_Start();
+ 407              		.loc 1 74 0
+ 408 0002 FFF7FEFF 		bl	PWM_X_Start
+ 409              	.LVL59:
+  75:main.c        ****     PWM_Y_Start();
+ 410              		.loc 1 75 0
+ 411 0006 FFF7FEFF 		bl	PWM_Y_Start
+ 412              	.LVL60:
+  76:main.c        ****     ADC_YAxis_Start();
+ 413              		.loc 1 76 0
+ 414 000a FFF7FEFF 		bl	ADC_YAxis_Start
+ 415              	.LVL61:
+  77:main.c        ****     ADC_XAxis_Start();
+ 416              		.loc 1 77 0
+ 417 000e FFF7FEFF 		bl	ADC_XAxis_Start
+ 418              	.LVL62:
+  78:main.c        ****     CyDelay(100);
+ 419              		.loc 1 78 0
+ 420 0012 6420     		movs	r0, #100
+ 421 0014 FFF7FEFF 		bl	CyDelay
+ 422              	.LVL63:
+  79:main.c        ****     Volt_update();
+ 423              		.loc 1 79 0
+ 424 0018 FFF7FEFF 		bl	Volt_update
+ 425              	.LVL64:
+  80:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 426              		.loc 1 80 0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 10
+
+
+ 427              		.syntax unified
+ 428              	@ 80 "main.c" 1
+ 429 001c 62B6     		CPSIE   i
+ 430              	@ 0 "" 2
+ 431              	.LVL65:
+ 432              		.thumb
+ 433              		.syntax unified
+ 434              	.L30:
+  81:main.c        ****     float y = 0;
+  82:main.c        ****     float x = 0;
+  83:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+  84:main.c        ****     
+  85:main.c        ****     for(;;)
+  86:main.c        ****     {
+  87:main.c        ****         /* Place your application code here. */
+  88:main.c        ****         SetServoY(0);
+ 435              		.loc 1 88 0 discriminator 1
+ 436 001e 0020     		movs	r0, #0
+ 437 0020 FFF7FEFF 		bl	SetServoY
+ 438              	.LVL66:
+  89:main.c        ****         CyDelay(10000);
+ 439              		.loc 1 89 0 discriminator 1
+ 440 0024 42F21070 		movw	r0, #10000
+ 441 0028 FFF7FEFF 		bl	CyDelay
+ 442              	.LVL67:
+  90:main.c        ****         SetServoY(15);
+ 443              		.loc 1 90 0 discriminator 1
+ 444 002c 1048     		ldr	r0, .L31
+ 445 002e FFF7FEFF 		bl	SetServoY
+ 446              	.LVL68:
+  91:main.c        ****         CyDelay(10000);
+ 447              		.loc 1 91 0 discriminator 1
+ 448 0032 42F21070 		movw	r0, #10000
+ 449 0036 FFF7FEFF 		bl	CyDelay
+ 450              	.LVL69:
+  92:main.c        ****         x = ReadXAxis();
+ 451              		.loc 1 92 0 discriminator 1
+ 452 003a FFF7FEFF 		bl	ReadXAxis
+ 453              	.LVL70:
+ 454 003e 0546     		mov	r5, r0
+ 455              	.LVL71:
+  93:main.c        ****         CyDelay(10);
+ 456              		.loc 1 93 0 discriminator 1
+ 457 0040 0A20     		movs	r0, #10
+ 458              	.LVL72:
+ 459 0042 FFF7FEFF 		bl	CyDelay
+ 460              	.LVL73:
+  94:main.c        ****         y = ReadYAxis();
+ 461              		.loc 1 94 0 discriminator 1
+ 462 0046 FFF7FEFF 		bl	ReadYAxis
+ 463              	.LVL74:
+ 464 004a 0446     		mov	r4, r0
+ 465              	.LVL75:
+  95:main.c        ****         printf("%.2f", x);
+ 466              		.loc 1 95 0 discriminator 1
+ 467 004c 2846     		mov	r0, r5
+ 468              	.LVL76:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 11
+
+
+ 469 004e FFF7FEFF 		bl	__aeabi_f2d
+ 470              	.LVL77:
+ 471 0052 0246     		mov	r2, r0
+ 472 0054 0B46     		mov	r3, r1
+ 473 0056 0748     		ldr	r0, .L31+4
+ 474 0058 FFF7FEFF 		bl	printf
+ 475              	.LVL78:
+  96:main.c        ****         printf("%.2f", y);
+ 476              		.loc 1 96 0 discriminator 1
+ 477 005c 2046     		mov	r0, r4
+ 478 005e FFF7FEFF 		bl	__aeabi_f2d
+ 479              	.LVL79:
+ 480 0062 0246     		mov	r2, r0
+ 481 0064 0B46     		mov	r3, r1
+ 482 0066 0348     		ldr	r0, .L31+4
+ 483 0068 FFF7FEFF 		bl	printf
+ 484              	.LVL80:
+ 485 006c D7E7     		b	.L30
+ 486              	.L32:
+ 487 006e 00BF     		.align	2
+ 488              	.L31:
+ 489 0070 00007041 		.word	1097859072
+ 490 0074 00000000 		.word	.LC0
+ 491              		.cfi_endproc
+ 492              	.LFE70:
+ 493              		.size	main, .-main
+ 494              		.global	Vssval
+ 495              		.global	Vddval
+ 496              		.global	Y_Loss
+ 497              		.global	X_Loss
+ 498              		.global	Y_Volt_EMPMAX
+ 499              		.global	X_Volt_EMPMAX
+ 500              		.global	PWMSERVO_Y_CORRECTION
+ 501              		.global	PWMSERVO_X_CORRECTION
+ 502              		.global	PWMSERVO_MAX
+ 503              		.global	PWMSERVO_MIN
+ 504              		.section	.rodata
+ 505              		.align	2
+ 506              		.type	Y_Loss, %object
+ 507              		.size	Y_Loss, 4
+ 508              	Y_Loss:
+ 509 0000 3333333F 		.word	1060320051
+ 510              		.type	X_Loss, %object
+ 511              		.size	X_Loss, 4
+ 512              	X_Loss:
+ 513 0004 0000003F 		.word	1056964608
+ 514              		.type	Y_Volt_EMPMAX, %object
+ 515              		.size	Y_Volt_EMPMAX, 4
+ 516              	Y_Volt_EMPMAX:
+ 517 0008 9A998940 		.word	1082759578
+ 518              		.type	X_Volt_EMPMAX, %object
+ 519              		.size	X_Volt_EMPMAX, 4
+ 520              	X_Volt_EMPMAX:
+ 521 000c 00009040 		.word	1083179008
+ 522              		.type	PWMSERVO_Y_CORRECTION, %object
+ 523              		.size	PWMSERVO_Y_CORRECTION, 4
+ 524              	PWMSERVO_Y_CORRECTION:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 12
+
+
+ 525 0010 5D000000 		.word	93
+ 526              		.type	PWMSERVO_X_CORRECTION, %object
+ 527              		.size	PWMSERVO_X_CORRECTION, 4
+ 528              	PWMSERVO_X_CORRECTION:
+ 529 0014 51000000 		.word	81
+ 530              		.type	PWMSERVO_MAX, %object
+ 531              		.size	PWMSERVO_MAX, 4
+ 532              	PWMSERVO_MAX:
+ 533 0018 60090000 		.word	2400
+ 534              		.type	PWMSERVO_MIN, %object
+ 535              		.size	PWMSERVO_MIN, 4
+ 536              	PWMSERVO_MIN:
+ 537 001c 20020000 		.word	544
+ 538              		.section	.rodata.str1.1,"aMS",%progbits,1
+ 539              	.LC0:
+ 540 0000 252E3266 		.ascii	"%.2f\000"
+ 540      00
+ 541              		.data
+ 542              		.align	2
+ 543              		.set	.LANCHOR0,. + 0
+ 544              		.type	Vddval, %object
+ 545              		.size	Vddval, 4
+ 546              	Vddval:
+ 547 0000 0000A040 		.word	1084227584
+ 548              		.bss
+ 549              		.align	2
+ 550              		.set	.LANCHOR1,. + 0
+ 551              		.type	Vssval, %object
+ 552              		.size	Vssval, 4
+ 553              	Vssval:
+ 554 0000 00000000 		.space	4
+ 555              		.text
+ 556              	.Letext0:
+ 557              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 558              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 559              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 560              		.file 5 "Generated_Source\\PSoC5/PWM_X.h"
+ 561              		.file 6 "Generated_Source\\PSoC5/PWM_Y.h"
+ 562              		.file 7 "Generated_Source\\PSoC5/AxisSelector.h"
+ 563              		.file 8 "Generated_Source\\PSoC5/CyLib.h"
+ 564              		.file 9 "Generated_Source\\PSoC5/ADC_YAxis.h"
+ 565              		.file 10 "Generated_Source\\PSoC5/ADC_XAxis.h"
+ 566              		.file 11 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4
+ 567              		.section	.debug_info,"",%progbits
+ 568              	.Ldebug_info0:
+ 569 0000 FE040000 		.4byte	0x4fe
+ 570 0004 0400     		.2byte	0x4
+ 571 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 572 000a 04       		.byte	0x4
+ 573 000b 01       		.uleb128 0x1
+ 574 000c 88020000 		.4byte	.LASF52
+ 575 0010 0C       		.byte	0xc
+ 576 0011 03020000 		.4byte	.LASF53
+ 577 0015 37030000 		.4byte	.LASF54
+ 578 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 579 001d 00000000 		.4byte	0
+ 580 0021 00000000 		.4byte	.Ldebug_line0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 13
+
+
+ 581 0025 02       		.uleb128 0x2
+ 582 0026 04       		.byte	0x4
+ 583 0027 04       		.byte	0x4
+ 584 0028 26000000 		.4byte	.LASF0
+ 585 002c 02       		.uleb128 0x2
+ 586 002d 01       		.byte	0x1
+ 587 002e 06       		.byte	0x6
+ 588 002f 23030000 		.4byte	.LASF1
+ 589 0033 02       		.uleb128 0x2
+ 590 0034 01       		.byte	0x1
+ 591 0035 08       		.byte	0x8
+ 592 0036 1D010000 		.4byte	.LASF2
+ 593 003a 02       		.uleb128 0x2
+ 594 003b 02       		.byte	0x2
+ 595 003c 05       		.byte	0x5
+ 596 003d 30020000 		.4byte	.LASF3
+ 597 0041 02       		.uleb128 0x2
+ 598 0042 02       		.byte	0x2
+ 599 0043 07       		.byte	0x7
+ 600 0044 BD000000 		.4byte	.LASF4
+ 601 0048 03       		.uleb128 0x3
+ 602 0049 33000000 		.4byte	.LASF10
+ 603 004d 02       		.byte	0x2
+ 604 004e 3F       		.byte	0x3f
+ 605 004f 53000000 		.4byte	0x53
+ 606 0053 02       		.uleb128 0x2
+ 607 0054 04       		.byte	0x4
+ 608 0055 05       		.byte	0x5
+ 609 0056 78020000 		.4byte	.LASF5
+ 610 005a 02       		.uleb128 0x2
+ 611 005b 04       		.byte	0x4
+ 612 005c 07       		.byte	0x7
+ 613 005d AB000000 		.4byte	.LASF6
+ 614 0061 02       		.uleb128 0x2
+ 615 0062 08       		.byte	0x8
+ 616 0063 05       		.byte	0x5
+ 617 0064 F5010000 		.4byte	.LASF7
+ 618 0068 02       		.uleb128 0x2
+ 619 0069 08       		.byte	0x8
+ 620 006a 07       		.byte	0x7
+ 621 006b 9C010000 		.4byte	.LASF8
+ 622 006f 04       		.uleb128 0x4
+ 623 0070 04       		.byte	0x4
+ 624 0071 05       		.byte	0x5
+ 625 0072 696E7400 		.ascii	"int\000"
+ 626 0076 02       		.uleb128 0x2
+ 627 0077 04       		.byte	0x4
+ 628 0078 07       		.byte	0x7
+ 629 0079 83010000 		.4byte	.LASF9
+ 630 007d 03       		.uleb128 0x3
+ 631 007e 7C000000 		.4byte	.LASF11
+ 632 0082 03       		.byte	0x3
+ 633 0083 2C       		.byte	0x2c
+ 634 0084 48000000 		.4byte	0x48
+ 635 0088 02       		.uleb128 0x2
+ 636 0089 08       		.byte	0x8
+ 637 008a 04       		.byte	0x4
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 14
+
+
+ 638 008b 3B010000 		.4byte	.LASF12
+ 639 008f 02       		.uleb128 0x2
+ 640 0090 01       		.byte	0x1
+ 641 0091 08       		.byte	0x8
+ 642 0092 0A020000 		.4byte	.LASF13
+ 643 0096 02       		.uleb128 0x2
+ 644 0097 08       		.byte	0x8
+ 645 0098 04       		.byte	0x4
+ 646 0099 E0010000 		.4byte	.LASF14
+ 647 009d 02       		.uleb128 0x2
+ 648 009e 04       		.byte	0x4
+ 649 009f 07       		.byte	0x7
+ 650 00a0 EC010000 		.4byte	.LASF15
+ 651 00a4 05       		.uleb128 0x5
+ 652 00a5 3A020000 		.4byte	.LASF55
+ 653 00a9 01       		.byte	0x1
+ 654 00aa 1C       		.byte	0x1c
+ 655 00ab 6F000000 		.4byte	0x6f
+ 656 00af 01       		.byte	0x1
+ 657 00b0 D8000000 		.4byte	0xd8
+ 658 00b4 06       		.uleb128 0x6
+ 659 00b5 81020000 		.4byte	.LASF20
+ 660 00b9 01       		.byte	0x1
+ 661 00ba 1C       		.byte	0x1c
+ 662 00bb 25000000 		.4byte	0x25
+ 663 00bf 07       		.uleb128 0x7
+ 664 00c0 08       		.uleb128 0x8
+ 665 00c1 84000000 		.4byte	.LASF16
+ 666 00c5 01       		.byte	0x1
+ 667 00c6 1E       		.byte	0x1e
+ 668 00c7 25000000 		.4byte	0x25
+ 669 00cb 08       		.uleb128 0x8
+ 670 00cc 76010000 		.4byte	.LASF17
+ 671 00d0 01       		.byte	0x1
+ 672 00d1 1F       		.byte	0x1f
+ 673 00d2 25000000 		.4byte	0x25
+ 674 00d6 00       		.byte	0
+ 675 00d7 00       		.byte	0
+ 676 00d8 09       		.uleb128 0x9
+ 677 00d9 A4000000 		.4byte	0xa4
+ 678 00dd 00000000 		.4byte	.LFB64
+ 679 00e1 4C000000 		.4byte	.LFE64-.LFB64
+ 680 00e5 01       		.uleb128 0x1
+ 681 00e6 9C       		.byte	0x9c
+ 682 00e7 24010000 		.4byte	0x124
+ 683 00eb 0A       		.uleb128 0xa
+ 684 00ec B4000000 		.4byte	0xb4
+ 685 00f0 00000000 		.4byte	.LLST0
+ 686 00f4 0B       		.uleb128 0xb
+ 687 00f5 16000000 		.4byte	.LBB6
+ 688 00f9 22000000 		.4byte	.LBE6-.LBB6
+ 689 00fd 0A       		.uleb128 0xa
+ 690 00fe B4000000 		.4byte	0xb4
+ 691 0102 2E000000 		.4byte	.LLST1
+ 692 0106 0B       		.uleb128 0xb
+ 693 0107 16000000 		.4byte	.LBB7
+ 694 010b 22000000 		.4byte	.LBE7-.LBB7
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 15
+
+
+ 695 010f 0C       		.uleb128 0xc
+ 696 0110 C0000000 		.4byte	0xc0
+ 697 0114 41000000 		.4byte	.LLST2
+ 698 0118 0C       		.uleb128 0xc
+ 699 0119 CB000000 		.4byte	0xcb
+ 700 011d 5F000000 		.4byte	.LLST3
+ 701 0121 00       		.byte	0
+ 702 0122 00       		.byte	0
+ 703 0123 00       		.byte	0
+ 704 0124 0D       		.uleb128 0xd
+ 705 0125 97000000 		.4byte	.LASF18
+ 706 0129 01       		.byte	0x1
+ 707 012a 26       		.byte	0x26
+ 708 012b 00000000 		.4byte	.LFB65
+ 709 012f 1C000000 		.4byte	.LFE65-.LFB65
+ 710 0133 01       		.uleb128 0x1
+ 711 0134 9C       		.byte	0x9c
+ 712 0135 5B010000 		.4byte	0x15b
+ 713 0139 0E       		.uleb128 0xe
+ 714 013a 81020000 		.4byte	.LASF20
+ 715 013e 01       		.byte	0x1
+ 716 013f 26       		.byte	0x26
+ 717 0140 25000000 		.4byte	0x25
+ 718 0144 85000000 		.4byte	.LLST4
+ 719 0148 0F       		.uleb128 0xf
+ 720 0149 0E000000 		.4byte	.LVL14
+ 721 014d A4000000 		.4byte	0xa4
+ 722 0151 10       		.uleb128 0x10
+ 723 0152 18000000 		.4byte	.LVL15
+ 724 0156 72040000 		.4byte	0x472
+ 725 015a 00       		.byte	0
+ 726 015b 0D       		.uleb128 0xd
+ 727 015c A1000000 		.4byte	.LASF19
+ 728 0160 01       		.byte	0x1
+ 729 0161 2B       		.byte	0x2b
+ 730 0162 00000000 		.4byte	.LFB66
+ 731 0166 1C000000 		.4byte	.LFE66-.LFB66
+ 732 016a 01       		.uleb128 0x1
+ 733 016b 9C       		.byte	0x9c
+ 734 016c 92010000 		.4byte	0x192
+ 735 0170 0E       		.uleb128 0xe
+ 736 0171 81020000 		.4byte	.LASF20
+ 737 0175 01       		.byte	0x1
+ 738 0176 2B       		.byte	0x2b
+ 739 0177 25000000 		.4byte	0x25
+ 740 017b DC000000 		.4byte	.LLST5
+ 741 017f 0F       		.uleb128 0xf
+ 742 0180 0E000000 		.4byte	.LVL19
+ 743 0184 A4000000 		.4byte	0xa4
+ 744 0188 10       		.uleb128 0x10
+ 745 0189 18000000 		.4byte	.LVL20
+ 746 018d 7D040000 		.4byte	0x47d
+ 747 0191 00       		.byte	0
+ 748 0192 11       		.uleb128 0x11
+ 749 0193 42010000 		.4byte	.LASF21
+ 750 0197 01       		.byte	0x1
+ 751 0198 30       		.byte	0x30
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 16
+
+
+ 752 0199 00000000 		.4byte	.LFB67
+ 753 019d 3C000000 		.4byte	.LFE67-.LFB67
+ 754 01a1 01       		.uleb128 0x1
+ 755 01a2 9C       		.byte	0x9c
+ 756 01a3 19020000 		.4byte	0x219
+ 757 01a7 12       		.uleb128 0x12
+ 758 01a8 08000000 		.4byte	.LVL21
+ 759 01ac 88040000 		.4byte	0x488
+ 760 01b0 BB010000 		.4byte	0x1bb
+ 761 01b4 13       		.uleb128 0x13
+ 762 01b5 01       		.uleb128 0x1
+ 763 01b6 50       		.byte	0x50
+ 764 01b7 02       		.uleb128 0x2
+ 765 01b8 09       		.byte	0x9
+ 766 01b9 FF       		.byte	0xff
+ 767 01ba 00       		.byte	0
+ 768 01bb 12       		.uleb128 0x12
+ 769 01bc 0E000000 		.4byte	.LVL22
+ 770 01c0 93040000 		.4byte	0x493
+ 771 01c4 CE010000 		.4byte	0x1ce
+ 772 01c8 13       		.uleb128 0x13
+ 773 01c9 01       		.uleb128 0x1
+ 774 01ca 50       		.byte	0x50
+ 775 01cb 01       		.uleb128 0x1
+ 776 01cc 31       		.byte	0x31
+ 777 01cd 00       		.byte	0
+ 778 01ce 0F       		.uleb128 0xf
+ 779 01cf 12000000 		.4byte	.LVL23
+ 780 01d3 9E040000 		.4byte	0x49e
+ 781 01d7 0F       		.uleb128 0xf
+ 782 01d8 16000000 		.4byte	.LVL24
+ 783 01dc A9040000 		.4byte	0x4a9
+ 784 01e0 12       		.uleb128 0x12
+ 785 01e1 20000000 		.4byte	.LVL25
+ 786 01e5 88040000 		.4byte	0x488
+ 787 01e9 F3010000 		.4byte	0x1f3
+ 788 01ed 13       		.uleb128 0x13
+ 789 01ee 01       		.uleb128 0x1
+ 790 01ef 50       		.byte	0x50
+ 791 01f0 01       		.uleb128 0x1
+ 792 01f1 30       		.byte	0x30
+ 793 01f2 00       		.byte	0
+ 794 01f3 12       		.uleb128 0x12
+ 795 01f4 26000000 		.4byte	.LVL26
+ 796 01f8 93040000 		.4byte	0x493
+ 797 01fc 06020000 		.4byte	0x206
+ 798 0200 13       		.uleb128 0x13
+ 799 0201 01       		.uleb128 0x1
+ 800 0202 50       		.byte	0x50
+ 801 0203 01       		.uleb128 0x1
+ 802 0204 31       		.byte	0x31
+ 803 0205 00       		.byte	0
+ 804 0206 0F       		.uleb128 0xf
+ 805 0207 2A000000 		.4byte	.LVL27
+ 806 020b B4040000 		.4byte	0x4b4
+ 807 020f 0F       		.uleb128 0xf
+ 808 0210 2E000000 		.4byte	.LVL28
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 17
+
+
+ 809 0214 BF040000 		.4byte	0x4bf
+ 810 0218 00       		.byte	0
+ 811 0219 14       		.uleb128 0x14
+ 812 021a 26020000 		.4byte	.LASF24
+ 813 021e 01       		.byte	0x1
+ 814 021f 39       		.byte	0x39
+ 815 0220 25000000 		.4byte	0x25
+ 816 0224 00000000 		.4byte	.LFB68
+ 817 0228 5C000000 		.4byte	.LFE68-.LFB68
+ 818 022c 01       		.uleb128 0x1
+ 819 022d 9C       		.byte	0x9c
+ 820 022e 63020000 		.4byte	0x263
+ 821 0232 15       		.uleb128 0x15
+ 822 0233 20020000 		.4byte	.LASF22
+ 823 0237 01       		.byte	0x1
+ 824 0238 3A       		.byte	0x3a
+ 825 0239 25000000 		.4byte	0x25
+ 826 023d 33010000 		.4byte	.LLST6
+ 827 0241 15       		.uleb128 0x15
+ 828 0242 18010000 		.4byte	.LASF23
+ 829 0246 01       		.byte	0x1
+ 830 0247 3B       		.byte	0x3b
+ 831 0248 25000000 		.4byte	0x25
+ 832 024c 51010000 		.4byte	.LLST7
+ 833 0250 0F       		.uleb128 0xf
+ 834 0251 06000000 		.4byte	.LVL29
+ 835 0255 B4040000 		.4byte	0x4b4
+ 836 0259 0F       		.uleb128 0xf
+ 837 025a 0A000000 		.4byte	.LVL30
+ 838 025e BF040000 		.4byte	0x4bf
+ 839 0262 00       		.byte	0
+ 840 0263 14       		.uleb128 0x14
+ 841 0264 0F020000 		.4byte	.LASF25
+ 842 0268 01       		.byte	0x1
+ 843 0269 3F       		.byte	0x3f
+ 844 026a 25000000 		.4byte	0x25
+ 845 026e 00000000 		.4byte	.LFB69
+ 846 0272 5C000000 		.4byte	.LFE69-.LFB69
+ 847 0276 01       		.uleb128 0x1
+ 848 0277 9C       		.byte	0x9c
+ 849 0278 AD020000 		.4byte	0x2ad
+ 850 027c 15       		.uleb128 0x15
+ 851 027d 07000000 		.4byte	.LASF26
+ 852 0281 01       		.byte	0x1
+ 853 0282 40       		.byte	0x40
+ 854 0283 25000000 		.4byte	0x25
+ 855 0287 D7010000 		.4byte	.LLST8
+ 856 028b 15       		.uleb128 0x15
+ 857 028c C8010000 		.4byte	.LASF27
+ 858 0290 01       		.byte	0x1
+ 859 0291 41       		.byte	0x41
+ 860 0292 25000000 		.4byte	0x25
+ 861 0296 F5010000 		.4byte	.LLST9
+ 862 029a 0F       		.uleb128 0xf
+ 863 029b 06000000 		.4byte	.LVL44
+ 864 029f 9E040000 		.4byte	0x49e
+ 865 02a3 0F       		.uleb128 0xf
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 18
+
+
+ 866 02a4 0A000000 		.4byte	.LVL45
+ 867 02a8 A9040000 		.4byte	0x4a9
+ 868 02ac 00       		.byte	0
+ 869 02ad 16       		.uleb128 0x16
+ 870 02ae 4E010000 		.4byte	.LASF56
+ 871 02b2 01       		.byte	0x1
+ 872 02b3 47       		.byte	0x47
+ 873 02b4 6F000000 		.4byte	0x6f
+ 874 02b8 00000000 		.4byte	.LFB70
+ 875 02bc 78000000 		.4byte	.LFE70-.LFB70
+ 876 02c0 01       		.uleb128 0x1
+ 877 02c1 9C       		.byte	0x9c
+ 878 02c2 AD030000 		.4byte	0x3ad
+ 879 02c6 17       		.uleb128 0x17
+ 880 02c7 7900     		.ascii	"y\000"
+ 881 02c9 01       		.byte	0x1
+ 882 02ca 51       		.byte	0x51
+ 883 02cb 25000000 		.4byte	0x25
+ 884 02cf 7B020000 		.4byte	.LLST10
+ 885 02d3 17       		.uleb128 0x17
+ 886 02d4 7800     		.ascii	"x\000"
+ 887 02d6 01       		.byte	0x1
+ 888 02d7 52       		.byte	0x52
+ 889 02d8 25000000 		.4byte	0x25
+ 890 02dc 99020000 		.4byte	.LLST11
+ 891 02e0 0F       		.uleb128 0xf
+ 892 02e1 06000000 		.4byte	.LVL59
+ 893 02e5 CA040000 		.4byte	0x4ca
+ 894 02e9 0F       		.uleb128 0xf
+ 895 02ea 0A000000 		.4byte	.LVL60
+ 896 02ee D5040000 		.4byte	0x4d5
+ 897 02f2 0F       		.uleb128 0xf
+ 898 02f3 0E000000 		.4byte	.LVL61
+ 899 02f7 E0040000 		.4byte	0x4e0
+ 900 02fb 0F       		.uleb128 0xf
+ 901 02fc 12000000 		.4byte	.LVL62
+ 902 0300 EB040000 		.4byte	0x4eb
+ 903 0304 12       		.uleb128 0x12
+ 904 0305 18000000 		.4byte	.LVL63
+ 905 0309 93040000 		.4byte	0x493
+ 906 030d 18030000 		.4byte	0x318
+ 907 0311 13       		.uleb128 0x13
+ 908 0312 01       		.uleb128 0x1
+ 909 0313 50       		.byte	0x50
+ 910 0314 02       		.uleb128 0x2
+ 911 0315 08       		.byte	0x8
+ 912 0316 64       		.byte	0x64
+ 913 0317 00       		.byte	0
+ 914 0318 0F       		.uleb128 0xf
+ 915 0319 1C000000 		.4byte	.LVL64
+ 916 031d 92010000 		.4byte	0x192
+ 917 0321 0F       		.uleb128 0xf
+ 918 0322 24000000 		.4byte	.LVL66
+ 919 0326 5B010000 		.4byte	0x15b
+ 920 032a 12       		.uleb128 0x12
+ 921 032b 2C000000 		.4byte	.LVL67
+ 922 032f 93040000 		.4byte	0x493
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 19
+
+
+ 923 0333 3F030000 		.4byte	0x33f
+ 924 0337 13       		.uleb128 0x13
+ 925 0338 01       		.uleb128 0x1
+ 926 0339 50       		.byte	0x50
+ 927 033a 03       		.uleb128 0x3
+ 928 033b 0A       		.byte	0xa
+ 929 033c 1027     		.2byte	0x2710
+ 930 033e 00       		.byte	0
+ 931 033f 0F       		.uleb128 0xf
+ 932 0340 32000000 		.4byte	.LVL68
+ 933 0344 5B010000 		.4byte	0x15b
+ 934 0348 12       		.uleb128 0x12
+ 935 0349 3A000000 		.4byte	.LVL69
+ 936 034d 93040000 		.4byte	0x493
+ 937 0351 5D030000 		.4byte	0x35d
+ 938 0355 13       		.uleb128 0x13
+ 939 0356 01       		.uleb128 0x1
+ 940 0357 50       		.byte	0x50
+ 941 0358 03       		.uleb128 0x3
+ 942 0359 0A       		.byte	0xa
+ 943 035a 1027     		.2byte	0x2710
+ 944 035c 00       		.byte	0
+ 945 035d 0F       		.uleb128 0xf
+ 946 035e 3E000000 		.4byte	.LVL70
+ 947 0362 19020000 		.4byte	0x219
+ 948 0366 12       		.uleb128 0x12
+ 949 0367 46000000 		.4byte	.LVL73
+ 950 036b 93040000 		.4byte	0x493
+ 951 036f 79030000 		.4byte	0x379
+ 952 0373 13       		.uleb128 0x13
+ 953 0374 01       		.uleb128 0x1
+ 954 0375 50       		.byte	0x50
+ 955 0376 01       		.uleb128 0x1
+ 956 0377 3A       		.byte	0x3a
+ 957 0378 00       		.byte	0
+ 958 0379 0F       		.uleb128 0xf
+ 959 037a 4A000000 		.4byte	.LVL74
+ 960 037e 63020000 		.4byte	0x263
+ 961 0382 12       		.uleb128 0x12
+ 962 0383 5C000000 		.4byte	.LVL78
+ 963 0387 F6040000 		.4byte	0x4f6
+ 964 038b 99030000 		.4byte	0x399
+ 965 038f 13       		.uleb128 0x13
+ 966 0390 01       		.uleb128 0x1
+ 967 0391 50       		.byte	0x50
+ 968 0392 05       		.uleb128 0x5
+ 969 0393 03       		.byte	0x3
+ 970 0394 00000000 		.4byte	.LC0
+ 971 0398 00       		.byte	0
+ 972 0399 18       		.uleb128 0x18
+ 973 039a 6C000000 		.4byte	.LVL80
+ 974 039e F6040000 		.4byte	0x4f6
+ 975 03a2 13       		.uleb128 0x13
+ 976 03a3 01       		.uleb128 0x1
+ 977 03a4 50       		.byte	0x50
+ 978 03a5 05       		.uleb128 0x5
+ 979 03a6 03       		.byte	0x3
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 20
+
+
+ 980 03a7 00000000 		.4byte	.LC0
+ 981 03ab 00       		.byte	0
+ 982 03ac 00       		.byte	0
+ 983 03ad 19       		.uleb128 0x19
+ 984 03ae 69010000 		.4byte	.LASF28
+ 985 03b2 04       		.byte	0x4
+ 986 03b3 1207     		.2byte	0x712
+ 987 03b5 B9030000 		.4byte	0x3b9
+ 988 03b9 1A       		.uleb128 0x1a
+ 989 03ba 7D000000 		.4byte	0x7d
+ 990 03be 1B       		.uleb128 0x1b
+ 991 03bf 19000000 		.4byte	.LASF29
+ 992 03c3 01       		.byte	0x1
+ 993 03c4 0F       		.byte	0xf
+ 994 03c5 CF030000 		.4byte	0x3cf
+ 995 03c9 05       		.uleb128 0x5
+ 996 03ca 03       		.byte	0x3
+ 997 03cb 00000000 		.4byte	PWMSERVO_MIN
+ 998 03cf 1C       		.uleb128 0x1c
+ 999 03d0 6F000000 		.4byte	0x6f
+ 1000 03d4 1B       		.uleb128 0x1b
+ 1001 03d5 16030000 		.4byte	.LASF30
+ 1002 03d9 01       		.byte	0x1
+ 1003 03da 10       		.byte	0x10
+ 1004 03db CF030000 		.4byte	0x3cf
+ 1005 03df 05       		.uleb128 0x5
+ 1006 03e0 03       		.byte	0x3
+ 1007 03e1 00000000 		.4byte	PWMSERVO_MAX
+ 1008 03e5 1B       		.uleb128 0x1b
+ 1009 03e6 66000000 		.4byte	.LASF31
+ 1010 03ea 01       		.byte	0x1
+ 1011 03eb 11       		.byte	0x11
+ 1012 03ec CF030000 		.4byte	0x3cf
+ 1013 03f0 05       		.uleb128 0x5
+ 1014 03f1 03       		.byte	0x3
+ 1015 03f2 00000000 		.4byte	PWMSERVO_X_CORRECTION
+ 1016 03f6 1B       		.uleb128 0x1b
+ 1017 03f7 53010000 		.4byte	.LASF32
+ 1018 03fb 01       		.byte	0x1
+ 1019 03fc 12       		.byte	0x12
+ 1020 03fd CF030000 		.4byte	0x3cf
+ 1021 0401 05       		.uleb128 0x5
+ 1022 0402 03       		.byte	0x3
+ 1023 0403 00000000 		.4byte	PWMSERVO_Y_CORRECTION
+ 1024 0407 1B       		.uleb128 0x1b
+ 1025 0408 47020000 		.4byte	.LASF33
+ 1026 040c 01       		.byte	0x1
+ 1027 040d 13       		.byte	0x13
+ 1028 040e 18040000 		.4byte	0x418
+ 1029 0412 05       		.uleb128 0x5
+ 1030 0413 03       		.byte	0x3
+ 1031 0414 00000000 		.4byte	X_Volt_EMPMAX
+ 1032 0418 1C       		.uleb128 0x1c
+ 1033 0419 25000000 		.4byte	0x25
+ 1034 041d 1B       		.uleb128 0x1b
+ 1035 041e BA010000 		.4byte	.LASF34
+ 1036 0422 01       		.byte	0x1
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 21
+
+
+ 1037 0423 14       		.byte	0x14
+ 1038 0424 18040000 		.4byte	0x418
+ 1039 0428 05       		.uleb128 0x5
+ 1040 0429 03       		.byte	0x3
+ 1041 042a 00000000 		.4byte	Y_Volt_EMPMAX
+ 1042 042e 1B       		.uleb128 0x1b
+ 1043 042f 90000000 		.4byte	.LASF35
+ 1044 0433 01       		.byte	0x1
+ 1045 0434 15       		.byte	0x15
+ 1046 0435 18040000 		.4byte	0x418
+ 1047 0439 05       		.uleb128 0x5
+ 1048 043a 03       		.byte	0x3
+ 1049 043b 00000000 		.4byte	X_Loss
+ 1050 043f 1B       		.uleb128 0x1b
+ 1051 0440 00000000 		.4byte	.LASF36
+ 1052 0444 01       		.byte	0x1
+ 1053 0445 16       		.byte	0x16
+ 1054 0446 18040000 		.4byte	0x418
+ 1055 044a 05       		.uleb128 0x5
+ 1056 044b 03       		.byte	0x3
+ 1057 044c 00000000 		.4byte	Y_Loss
+ 1058 0450 1B       		.uleb128 0x1b
+ 1059 0451 2C000000 		.4byte	.LASF37
+ 1060 0455 01       		.byte	0x1
+ 1061 0456 17       		.byte	0x17
+ 1062 0457 25000000 		.4byte	0x25
+ 1063 045b 05       		.uleb128 0x5
+ 1064 045c 03       		.byte	0x3
+ 1065 045d 00000000 		.4byte	Vddval
+ 1066 0461 1B       		.uleb128 0x1b
+ 1067 0462 B3010000 		.4byte	.LASF38
+ 1068 0466 01       		.byte	0x1
+ 1069 0467 18       		.byte	0x18
+ 1070 0468 25000000 		.4byte	0x25
+ 1071 046c 05       		.uleb128 0x5
+ 1072 046d 03       		.byte	0x3
+ 1073 046e 00000000 		.4byte	Vssval
+ 1074 0472 1D       		.uleb128 0x1d
+ 1075 0473 CD010000 		.4byte	.LASF39
+ 1076 0477 CD010000 		.4byte	.LASF39
+ 1077 047b 05       		.byte	0x5
+ 1078 047c C3       		.byte	0xc3
+ 1079 047d 1D       		.uleb128 0x1d
+ 1080 047e 53000000 		.4byte	.LASF40
+ 1081 0482 53000000 		.4byte	.LASF40
+ 1082 0486 06       		.byte	0x6
+ 1083 0487 C3       		.byte	0xc3
+ 1084 0488 1D       		.uleb128 0x1d
+ 1085 0489 55020000 		.4byte	.LASF41
+ 1086 048d 55020000 		.4byte	.LASF41
+ 1087 0491 07       		.byte	0x7
+ 1088 0492 2F       		.byte	0x2f
+ 1089 0493 1D       		.uleb128 0x1d
+ 1090 0494 2F030000 		.4byte	.LASF42
+ 1091 0498 2F030000 		.4byte	.LASF42
+ 1092 049c 08       		.byte	0x8
+ 1093 049d 76       		.byte	0x76
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 22
+
+
+ 1094 049e 1D       		.uleb128 0x1d
+ 1095 049f 3D000000 		.4byte	.LASF43
+ 1096 04a3 3D000000 		.4byte	.LASF43
+ 1097 04a7 09       		.byte	0x9
+ 1098 04a8 3B       		.byte	0x3b
+ 1099 04a9 1D       		.uleb128 0x1d
+ 1100 04aa FF000000 		.4byte	.LASF44
+ 1101 04ae FF000000 		.4byte	.LASF44
+ 1102 04b2 09       		.byte	0x9
+ 1103 04b3 41       		.byte	0x41
+ 1104 04b4 1D       		.uleb128 0x1d
+ 1105 04b5 E9000000 		.4byte	.LASF45
+ 1106 04b9 E9000000 		.4byte	.LASF45
+ 1107 04bd 0A       		.byte	0xa
+ 1108 04be 3B       		.byte	0x3b
+ 1109 04bf 1D       		.uleb128 0x1d
+ 1110 04c0 D0000000 		.4byte	.LASF46
+ 1111 04c4 D0000000 		.4byte	.LASF46
+ 1112 04c8 0A       		.byte	0xa
+ 1113 04c9 41       		.byte	0x41
+ 1114 04ca 1D       		.uleb128 0x1d
+ 1115 04cb 0D000000 		.4byte	.LASF47
+ 1116 04cf 0D000000 		.4byte	.LASF47
+ 1117 04d3 05       		.byte	0x5
+ 1118 04d4 92       		.byte	0x92
+ 1119 04d5 1D       		.uleb128 0x1d
+ 1120 04d6 90010000 		.4byte	.LASF48
+ 1121 04da 90010000 		.4byte	.LASF48
+ 1122 04de 06       		.byte	0x6
+ 1123 04df 92       		.byte	0x92
+ 1124 04e0 1D       		.uleb128 0x1d
+ 1125 04e1 2B010000 		.4byte	.LASF49
+ 1126 04e5 2B010000 		.4byte	.LASF49
+ 1127 04e9 09       		.byte	0x9
+ 1128 04ea 34       		.byte	0x34
+ 1129 04eb 1D       		.uleb128 0x1d
+ 1130 04ec 68020000 		.4byte	.LASF50
+ 1131 04f0 68020000 		.4byte	.LASF50
+ 1132 04f4 0A       		.byte	0xa
+ 1133 04f5 34       		.byte	0x34
+ 1134 04f6 1D       		.uleb128 0x1d
+ 1135 04f7 19020000 		.4byte	.LASF51
+ 1136 04fb 19020000 		.4byte	.LASF51
+ 1137 04ff 0B       		.byte	0xb
+ 1138 0500 BB       		.byte	0xbb
+ 1139 0501 00       		.byte	0
+ 1140              		.section	.debug_abbrev,"",%progbits
+ 1141              	.Ldebug_abbrev0:
+ 1142 0000 01       		.uleb128 0x1
+ 1143 0001 11       		.uleb128 0x11
+ 1144 0002 01       		.byte	0x1
+ 1145 0003 25       		.uleb128 0x25
+ 1146 0004 0E       		.uleb128 0xe
+ 1147 0005 13       		.uleb128 0x13
+ 1148 0006 0B       		.uleb128 0xb
+ 1149 0007 03       		.uleb128 0x3
+ 1150 0008 0E       		.uleb128 0xe
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 23
+
+
+ 1151 0009 1B       		.uleb128 0x1b
+ 1152 000a 0E       		.uleb128 0xe
+ 1153 000b 55       		.uleb128 0x55
+ 1154 000c 17       		.uleb128 0x17
+ 1155 000d 11       		.uleb128 0x11
+ 1156 000e 01       		.uleb128 0x1
+ 1157 000f 10       		.uleb128 0x10
+ 1158 0010 17       		.uleb128 0x17
+ 1159 0011 00       		.byte	0
+ 1160 0012 00       		.byte	0
+ 1161 0013 02       		.uleb128 0x2
+ 1162 0014 24       		.uleb128 0x24
+ 1163 0015 00       		.byte	0
+ 1164 0016 0B       		.uleb128 0xb
+ 1165 0017 0B       		.uleb128 0xb
+ 1166 0018 3E       		.uleb128 0x3e
+ 1167 0019 0B       		.uleb128 0xb
+ 1168 001a 03       		.uleb128 0x3
+ 1169 001b 0E       		.uleb128 0xe
+ 1170 001c 00       		.byte	0
+ 1171 001d 00       		.byte	0
+ 1172 001e 03       		.uleb128 0x3
+ 1173 001f 16       		.uleb128 0x16
+ 1174 0020 00       		.byte	0
+ 1175 0021 03       		.uleb128 0x3
+ 1176 0022 0E       		.uleb128 0xe
+ 1177 0023 3A       		.uleb128 0x3a
+ 1178 0024 0B       		.uleb128 0xb
+ 1179 0025 3B       		.uleb128 0x3b
+ 1180 0026 0B       		.uleb128 0xb
+ 1181 0027 49       		.uleb128 0x49
+ 1182 0028 13       		.uleb128 0x13
+ 1183 0029 00       		.byte	0
+ 1184 002a 00       		.byte	0
+ 1185 002b 04       		.uleb128 0x4
+ 1186 002c 24       		.uleb128 0x24
+ 1187 002d 00       		.byte	0
+ 1188 002e 0B       		.uleb128 0xb
+ 1189 002f 0B       		.uleb128 0xb
+ 1190 0030 3E       		.uleb128 0x3e
+ 1191 0031 0B       		.uleb128 0xb
+ 1192 0032 03       		.uleb128 0x3
+ 1193 0033 08       		.uleb128 0x8
+ 1194 0034 00       		.byte	0
+ 1195 0035 00       		.byte	0
+ 1196 0036 05       		.uleb128 0x5
+ 1197 0037 2E       		.uleb128 0x2e
+ 1198 0038 01       		.byte	0x1
+ 1199 0039 3F       		.uleb128 0x3f
+ 1200 003a 19       		.uleb128 0x19
+ 1201 003b 03       		.uleb128 0x3
+ 1202 003c 0E       		.uleb128 0xe
+ 1203 003d 3A       		.uleb128 0x3a
+ 1204 003e 0B       		.uleb128 0xb
+ 1205 003f 3B       		.uleb128 0x3b
+ 1206 0040 0B       		.uleb128 0xb
+ 1207 0041 27       		.uleb128 0x27
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 24
+
+
+ 1208 0042 19       		.uleb128 0x19
+ 1209 0043 49       		.uleb128 0x49
+ 1210 0044 13       		.uleb128 0x13
+ 1211 0045 20       		.uleb128 0x20
+ 1212 0046 0B       		.uleb128 0xb
+ 1213 0047 01       		.uleb128 0x1
+ 1214 0048 13       		.uleb128 0x13
+ 1215 0049 00       		.byte	0
+ 1216 004a 00       		.byte	0
+ 1217 004b 06       		.uleb128 0x6
+ 1218 004c 05       		.uleb128 0x5
+ 1219 004d 00       		.byte	0
+ 1220 004e 03       		.uleb128 0x3
+ 1221 004f 0E       		.uleb128 0xe
+ 1222 0050 3A       		.uleb128 0x3a
+ 1223 0051 0B       		.uleb128 0xb
+ 1224 0052 3B       		.uleb128 0x3b
+ 1225 0053 0B       		.uleb128 0xb
+ 1226 0054 49       		.uleb128 0x49
+ 1227 0055 13       		.uleb128 0x13
+ 1228 0056 00       		.byte	0
+ 1229 0057 00       		.byte	0
+ 1230 0058 07       		.uleb128 0x7
+ 1231 0059 0B       		.uleb128 0xb
+ 1232 005a 01       		.byte	0x1
+ 1233 005b 00       		.byte	0
+ 1234 005c 00       		.byte	0
+ 1235 005d 08       		.uleb128 0x8
+ 1236 005e 34       		.uleb128 0x34
+ 1237 005f 00       		.byte	0
+ 1238 0060 03       		.uleb128 0x3
+ 1239 0061 0E       		.uleb128 0xe
+ 1240 0062 3A       		.uleb128 0x3a
+ 1241 0063 0B       		.uleb128 0xb
+ 1242 0064 3B       		.uleb128 0x3b
+ 1243 0065 0B       		.uleb128 0xb
+ 1244 0066 49       		.uleb128 0x49
+ 1245 0067 13       		.uleb128 0x13
+ 1246 0068 00       		.byte	0
+ 1247 0069 00       		.byte	0
+ 1248 006a 09       		.uleb128 0x9
+ 1249 006b 2E       		.uleb128 0x2e
+ 1250 006c 01       		.byte	0x1
+ 1251 006d 31       		.uleb128 0x31
+ 1252 006e 13       		.uleb128 0x13
+ 1253 006f 11       		.uleb128 0x11
+ 1254 0070 01       		.uleb128 0x1
+ 1255 0071 12       		.uleb128 0x12
+ 1256 0072 06       		.uleb128 0x6
+ 1257 0073 40       		.uleb128 0x40
+ 1258 0074 18       		.uleb128 0x18
+ 1259 0075 9642     		.uleb128 0x2116
+ 1260 0077 19       		.uleb128 0x19
+ 1261 0078 01       		.uleb128 0x1
+ 1262 0079 13       		.uleb128 0x13
+ 1263 007a 00       		.byte	0
+ 1264 007b 00       		.byte	0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 25
+
+
+ 1265 007c 0A       		.uleb128 0xa
+ 1266 007d 05       		.uleb128 0x5
+ 1267 007e 00       		.byte	0
+ 1268 007f 31       		.uleb128 0x31
+ 1269 0080 13       		.uleb128 0x13
+ 1270 0081 02       		.uleb128 0x2
+ 1271 0082 17       		.uleb128 0x17
+ 1272 0083 00       		.byte	0
+ 1273 0084 00       		.byte	0
+ 1274 0085 0B       		.uleb128 0xb
+ 1275 0086 0B       		.uleb128 0xb
+ 1276 0087 01       		.byte	0x1
+ 1277 0088 11       		.uleb128 0x11
+ 1278 0089 01       		.uleb128 0x1
+ 1279 008a 12       		.uleb128 0x12
+ 1280 008b 06       		.uleb128 0x6
+ 1281 008c 00       		.byte	0
+ 1282 008d 00       		.byte	0
+ 1283 008e 0C       		.uleb128 0xc
+ 1284 008f 34       		.uleb128 0x34
+ 1285 0090 00       		.byte	0
+ 1286 0091 31       		.uleb128 0x31
+ 1287 0092 13       		.uleb128 0x13
+ 1288 0093 02       		.uleb128 0x2
+ 1289 0094 17       		.uleb128 0x17
+ 1290 0095 00       		.byte	0
+ 1291 0096 00       		.byte	0
+ 1292 0097 0D       		.uleb128 0xd
+ 1293 0098 2E       		.uleb128 0x2e
+ 1294 0099 01       		.byte	0x1
+ 1295 009a 3F       		.uleb128 0x3f
+ 1296 009b 19       		.uleb128 0x19
+ 1297 009c 03       		.uleb128 0x3
+ 1298 009d 0E       		.uleb128 0xe
+ 1299 009e 3A       		.uleb128 0x3a
+ 1300 009f 0B       		.uleb128 0xb
+ 1301 00a0 3B       		.uleb128 0x3b
+ 1302 00a1 0B       		.uleb128 0xb
+ 1303 00a2 27       		.uleb128 0x27
+ 1304 00a3 19       		.uleb128 0x19
+ 1305 00a4 11       		.uleb128 0x11
+ 1306 00a5 01       		.uleb128 0x1
+ 1307 00a6 12       		.uleb128 0x12
+ 1308 00a7 06       		.uleb128 0x6
+ 1309 00a8 40       		.uleb128 0x40
+ 1310 00a9 18       		.uleb128 0x18
+ 1311 00aa 9642     		.uleb128 0x2116
+ 1312 00ac 19       		.uleb128 0x19
+ 1313 00ad 01       		.uleb128 0x1
+ 1314 00ae 13       		.uleb128 0x13
+ 1315 00af 00       		.byte	0
+ 1316 00b0 00       		.byte	0
+ 1317 00b1 0E       		.uleb128 0xe
+ 1318 00b2 05       		.uleb128 0x5
+ 1319 00b3 00       		.byte	0
+ 1320 00b4 03       		.uleb128 0x3
+ 1321 00b5 0E       		.uleb128 0xe
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 26
+
+
+ 1322 00b6 3A       		.uleb128 0x3a
+ 1323 00b7 0B       		.uleb128 0xb
+ 1324 00b8 3B       		.uleb128 0x3b
+ 1325 00b9 0B       		.uleb128 0xb
+ 1326 00ba 49       		.uleb128 0x49
+ 1327 00bb 13       		.uleb128 0x13
+ 1328 00bc 02       		.uleb128 0x2
+ 1329 00bd 17       		.uleb128 0x17
+ 1330 00be 00       		.byte	0
+ 1331 00bf 00       		.byte	0
+ 1332 00c0 0F       		.uleb128 0xf
+ 1333 00c1 898201   		.uleb128 0x4109
+ 1334 00c4 00       		.byte	0
+ 1335 00c5 11       		.uleb128 0x11
+ 1336 00c6 01       		.uleb128 0x1
+ 1337 00c7 31       		.uleb128 0x31
+ 1338 00c8 13       		.uleb128 0x13
+ 1339 00c9 00       		.byte	0
+ 1340 00ca 00       		.byte	0
+ 1341 00cb 10       		.uleb128 0x10
+ 1342 00cc 898201   		.uleb128 0x4109
+ 1343 00cf 00       		.byte	0
+ 1344 00d0 11       		.uleb128 0x11
+ 1345 00d1 01       		.uleb128 0x1
+ 1346 00d2 9542     		.uleb128 0x2115
+ 1347 00d4 19       		.uleb128 0x19
+ 1348 00d5 31       		.uleb128 0x31
+ 1349 00d6 13       		.uleb128 0x13
+ 1350 00d7 00       		.byte	0
+ 1351 00d8 00       		.byte	0
+ 1352 00d9 11       		.uleb128 0x11
+ 1353 00da 2E       		.uleb128 0x2e
+ 1354 00db 01       		.byte	0x1
+ 1355 00dc 3F       		.uleb128 0x3f
+ 1356 00dd 19       		.uleb128 0x19
+ 1357 00de 03       		.uleb128 0x3
+ 1358 00df 0E       		.uleb128 0xe
+ 1359 00e0 3A       		.uleb128 0x3a
+ 1360 00e1 0B       		.uleb128 0xb
+ 1361 00e2 3B       		.uleb128 0x3b
+ 1362 00e3 0B       		.uleb128 0xb
+ 1363 00e4 27       		.uleb128 0x27
+ 1364 00e5 19       		.uleb128 0x19
+ 1365 00e6 11       		.uleb128 0x11
+ 1366 00e7 01       		.uleb128 0x1
+ 1367 00e8 12       		.uleb128 0x12
+ 1368 00e9 06       		.uleb128 0x6
+ 1369 00ea 40       		.uleb128 0x40
+ 1370 00eb 18       		.uleb128 0x18
+ 1371 00ec 9742     		.uleb128 0x2117
+ 1372 00ee 19       		.uleb128 0x19
+ 1373 00ef 01       		.uleb128 0x1
+ 1374 00f0 13       		.uleb128 0x13
+ 1375 00f1 00       		.byte	0
+ 1376 00f2 00       		.byte	0
+ 1377 00f3 12       		.uleb128 0x12
+ 1378 00f4 898201   		.uleb128 0x4109
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 27
+
+
+ 1379 00f7 01       		.byte	0x1
+ 1380 00f8 11       		.uleb128 0x11
+ 1381 00f9 01       		.uleb128 0x1
+ 1382 00fa 31       		.uleb128 0x31
+ 1383 00fb 13       		.uleb128 0x13
+ 1384 00fc 01       		.uleb128 0x1
+ 1385 00fd 13       		.uleb128 0x13
+ 1386 00fe 00       		.byte	0
+ 1387 00ff 00       		.byte	0
+ 1388 0100 13       		.uleb128 0x13
+ 1389 0101 8A8201   		.uleb128 0x410a
+ 1390 0104 00       		.byte	0
+ 1391 0105 02       		.uleb128 0x2
+ 1392 0106 18       		.uleb128 0x18
+ 1393 0107 9142     		.uleb128 0x2111
+ 1394 0109 18       		.uleb128 0x18
+ 1395 010a 00       		.byte	0
+ 1396 010b 00       		.byte	0
+ 1397 010c 14       		.uleb128 0x14
+ 1398 010d 2E       		.uleb128 0x2e
+ 1399 010e 01       		.byte	0x1
+ 1400 010f 3F       		.uleb128 0x3f
+ 1401 0110 19       		.uleb128 0x19
+ 1402 0111 03       		.uleb128 0x3
+ 1403 0112 0E       		.uleb128 0xe
+ 1404 0113 3A       		.uleb128 0x3a
+ 1405 0114 0B       		.uleb128 0xb
+ 1406 0115 3B       		.uleb128 0x3b
+ 1407 0116 0B       		.uleb128 0xb
+ 1408 0117 27       		.uleb128 0x27
+ 1409 0118 19       		.uleb128 0x19
+ 1410 0119 49       		.uleb128 0x49
+ 1411 011a 13       		.uleb128 0x13
+ 1412 011b 11       		.uleb128 0x11
+ 1413 011c 01       		.uleb128 0x1
+ 1414 011d 12       		.uleb128 0x12
+ 1415 011e 06       		.uleb128 0x6
+ 1416 011f 40       		.uleb128 0x40
+ 1417 0120 18       		.uleb128 0x18
+ 1418 0121 9642     		.uleb128 0x2116
+ 1419 0123 19       		.uleb128 0x19
+ 1420 0124 01       		.uleb128 0x1
+ 1421 0125 13       		.uleb128 0x13
+ 1422 0126 00       		.byte	0
+ 1423 0127 00       		.byte	0
+ 1424 0128 15       		.uleb128 0x15
+ 1425 0129 34       		.uleb128 0x34
+ 1426 012a 00       		.byte	0
+ 1427 012b 03       		.uleb128 0x3
+ 1428 012c 0E       		.uleb128 0xe
+ 1429 012d 3A       		.uleb128 0x3a
+ 1430 012e 0B       		.uleb128 0xb
+ 1431 012f 3B       		.uleb128 0x3b
+ 1432 0130 0B       		.uleb128 0xb
+ 1433 0131 49       		.uleb128 0x49
+ 1434 0132 13       		.uleb128 0x13
+ 1435 0133 02       		.uleb128 0x2
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 28
+
+
+ 1436 0134 17       		.uleb128 0x17
+ 1437 0135 00       		.byte	0
+ 1438 0136 00       		.byte	0
+ 1439 0137 16       		.uleb128 0x16
+ 1440 0138 2E       		.uleb128 0x2e
+ 1441 0139 01       		.byte	0x1
+ 1442 013a 3F       		.uleb128 0x3f
+ 1443 013b 19       		.uleb128 0x19
+ 1444 013c 03       		.uleb128 0x3
+ 1445 013d 0E       		.uleb128 0xe
+ 1446 013e 3A       		.uleb128 0x3a
+ 1447 013f 0B       		.uleb128 0xb
+ 1448 0140 3B       		.uleb128 0x3b
+ 1449 0141 0B       		.uleb128 0xb
+ 1450 0142 27       		.uleb128 0x27
+ 1451 0143 19       		.uleb128 0x19
+ 1452 0144 49       		.uleb128 0x49
+ 1453 0145 13       		.uleb128 0x13
+ 1454 0146 8701     		.uleb128 0x87
+ 1455 0148 19       		.uleb128 0x19
+ 1456 0149 11       		.uleb128 0x11
+ 1457 014a 01       		.uleb128 0x1
+ 1458 014b 12       		.uleb128 0x12
+ 1459 014c 06       		.uleb128 0x6
+ 1460 014d 40       		.uleb128 0x40
+ 1461 014e 18       		.uleb128 0x18
+ 1462 014f 9642     		.uleb128 0x2116
+ 1463 0151 19       		.uleb128 0x19
+ 1464 0152 01       		.uleb128 0x1
+ 1465 0153 13       		.uleb128 0x13
+ 1466 0154 00       		.byte	0
+ 1467 0155 00       		.byte	0
+ 1468 0156 17       		.uleb128 0x17
+ 1469 0157 34       		.uleb128 0x34
+ 1470 0158 00       		.byte	0
+ 1471 0159 03       		.uleb128 0x3
+ 1472 015a 08       		.uleb128 0x8
+ 1473 015b 3A       		.uleb128 0x3a
+ 1474 015c 0B       		.uleb128 0xb
+ 1475 015d 3B       		.uleb128 0x3b
+ 1476 015e 0B       		.uleb128 0xb
+ 1477 015f 49       		.uleb128 0x49
+ 1478 0160 13       		.uleb128 0x13
+ 1479 0161 02       		.uleb128 0x2
+ 1480 0162 17       		.uleb128 0x17
+ 1481 0163 00       		.byte	0
+ 1482 0164 00       		.byte	0
+ 1483 0165 18       		.uleb128 0x18
+ 1484 0166 898201   		.uleb128 0x4109
+ 1485 0169 01       		.byte	0x1
+ 1486 016a 11       		.uleb128 0x11
+ 1487 016b 01       		.uleb128 0x1
+ 1488 016c 31       		.uleb128 0x31
+ 1489 016d 13       		.uleb128 0x13
+ 1490 016e 00       		.byte	0
+ 1491 016f 00       		.byte	0
+ 1492 0170 19       		.uleb128 0x19
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 29
+
+
+ 1493 0171 34       		.uleb128 0x34
+ 1494 0172 00       		.byte	0
+ 1495 0173 03       		.uleb128 0x3
+ 1496 0174 0E       		.uleb128 0xe
+ 1497 0175 3A       		.uleb128 0x3a
+ 1498 0176 0B       		.uleb128 0xb
+ 1499 0177 3B       		.uleb128 0x3b
+ 1500 0178 05       		.uleb128 0x5
+ 1501 0179 49       		.uleb128 0x49
+ 1502 017a 13       		.uleb128 0x13
+ 1503 017b 3F       		.uleb128 0x3f
+ 1504 017c 19       		.uleb128 0x19
+ 1505 017d 3C       		.uleb128 0x3c
+ 1506 017e 19       		.uleb128 0x19
+ 1507 017f 00       		.byte	0
+ 1508 0180 00       		.byte	0
+ 1509 0181 1A       		.uleb128 0x1a
+ 1510 0182 35       		.uleb128 0x35
+ 1511 0183 00       		.byte	0
+ 1512 0184 49       		.uleb128 0x49
+ 1513 0185 13       		.uleb128 0x13
+ 1514 0186 00       		.byte	0
+ 1515 0187 00       		.byte	0
+ 1516 0188 1B       		.uleb128 0x1b
+ 1517 0189 34       		.uleb128 0x34
+ 1518 018a 00       		.byte	0
+ 1519 018b 03       		.uleb128 0x3
+ 1520 018c 0E       		.uleb128 0xe
+ 1521 018d 3A       		.uleb128 0x3a
+ 1522 018e 0B       		.uleb128 0xb
+ 1523 018f 3B       		.uleb128 0x3b
+ 1524 0190 0B       		.uleb128 0xb
+ 1525 0191 49       		.uleb128 0x49
+ 1526 0192 13       		.uleb128 0x13
+ 1527 0193 3F       		.uleb128 0x3f
+ 1528 0194 19       		.uleb128 0x19
+ 1529 0195 02       		.uleb128 0x2
+ 1530 0196 18       		.uleb128 0x18
+ 1531 0197 00       		.byte	0
+ 1532 0198 00       		.byte	0
+ 1533 0199 1C       		.uleb128 0x1c
+ 1534 019a 26       		.uleb128 0x26
+ 1535 019b 00       		.byte	0
+ 1536 019c 49       		.uleb128 0x49
+ 1537 019d 13       		.uleb128 0x13
+ 1538 019e 00       		.byte	0
+ 1539 019f 00       		.byte	0
+ 1540 01a0 1D       		.uleb128 0x1d
+ 1541 01a1 2E       		.uleb128 0x2e
+ 1542 01a2 00       		.byte	0
+ 1543 01a3 3F       		.uleb128 0x3f
+ 1544 01a4 19       		.uleb128 0x19
+ 1545 01a5 3C       		.uleb128 0x3c
+ 1546 01a6 19       		.uleb128 0x19
+ 1547 01a7 6E       		.uleb128 0x6e
+ 1548 01a8 0E       		.uleb128 0xe
+ 1549 01a9 03       		.uleb128 0x3
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 30
+
+
+ 1550 01aa 0E       		.uleb128 0xe
+ 1551 01ab 3A       		.uleb128 0x3a
+ 1552 01ac 0B       		.uleb128 0xb
+ 1553 01ad 3B       		.uleb128 0x3b
+ 1554 01ae 0B       		.uleb128 0xb
+ 1555 01af 00       		.byte	0
+ 1556 01b0 00       		.byte	0
+ 1557 01b1 00       		.byte	0
+ 1558              		.section	.debug_loc,"",%progbits
+ 1559              	.Ldebug_loc0:
+ 1560              	.LLST0:
+ 1561 0000 00000000 		.4byte	.LVL0
+ 1562 0004 09000000 		.4byte	.LVL1-1
+ 1563 0008 0100     		.2byte	0x1
+ 1564 000a 50       		.byte	0x50
+ 1565 000b 09000000 		.4byte	.LVL1-1
+ 1566 000f 3E000000 		.4byte	.LVL10
+ 1567 0013 0100     		.2byte	0x1
+ 1568 0015 54       		.byte	0x54
+ 1569 0016 3E000000 		.4byte	.LVL10
+ 1570 001a 4C000000 		.4byte	.LFE64
+ 1571 001e 0600     		.2byte	0x6
+ 1572 0020 F3       		.byte	0xf3
+ 1573 0021 03       		.uleb128 0x3
+ 1574 0022 F5       		.byte	0xf5
+ 1575 0023 00       		.uleb128 0
+ 1576 0024 25       		.uleb128 0x25
+ 1577 0025 9F       		.byte	0x9f
+ 1578 0026 00000000 		.4byte	0
+ 1579 002a 00000000 		.4byte	0
+ 1580              	.LLST1:
+ 1581 002e 16000000 		.4byte	.LVL3
+ 1582 0032 36000000 		.4byte	.LVL8
+ 1583 0036 0100     		.2byte	0x1
+ 1584 0038 54       		.byte	0x54
+ 1585 0039 00000000 		.4byte	0
+ 1586 003d 00000000 		.4byte	0
+ 1587              	.LLST2:
+ 1588 0041 16000000 		.4byte	.LVL3
+ 1589 0045 36000000 		.4byte	.LVL8
+ 1590 0049 0C00     		.2byte	0xc
+ 1591 004b F5       		.byte	0xf5
+ 1592 004c 04       		.uleb128 0x4
+ 1593 004d 25       		.uleb128 0x25
+ 1594 004e F4       		.byte	0xf4
+ 1595 004f 25       		.uleb128 0x25
+ 1596 0050 04       		.byte	0x4
+ 1597 0051 00003443 		.4byte	0x43340000
+ 1598 0055 1B       		.byte	0x1b
+ 1599 0056 9F       		.byte	0x9f
+ 1600 0057 00000000 		.4byte	0
+ 1601 005b 00000000 		.4byte	0
+ 1602              	.LLST3:
+ 1603 005f 16000000 		.4byte	.LVL3
+ 1604 0063 36000000 		.4byte	.LVL8
+ 1605 0067 1400     		.2byte	0x14
+ 1606 0069 F5       		.byte	0xf5
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 31
+
+
+ 1607 006a 04       		.uleb128 0x4
+ 1608 006b 25       		.uleb128 0x25
+ 1609 006c F4       		.byte	0xf4
+ 1610 006d 25       		.uleb128 0x25
+ 1611 006e 04       		.byte	0x4
+ 1612 006f 00003443 		.4byte	0x43340000
+ 1613 0073 1B       		.byte	0x1b
+ 1614 0074 F4       		.byte	0xf4
+ 1615 0075 25       		.uleb128 0x25
+ 1616 0076 04       		.byte	0x4
+ 1617 0077 0000E844 		.4byte	0x44e80000
+ 1618 007b 1E       		.byte	0x1e
+ 1619 007c 9F       		.byte	0x9f
+ 1620 007d 00000000 		.4byte	0
+ 1621 0081 00000000 		.4byte	0
+ 1622              	.LLST4:
+ 1623 0085 00000000 		.4byte	.LVL11
+ 1624 0089 00000000 		.4byte	.LVL11
+ 1625 008d 0100     		.2byte	0x1
+ 1626 008f 50       		.byte	0x50
+ 1627 0090 00000000 		.4byte	.LVL11
+ 1628 0094 06000000 		.4byte	.LVL12
+ 1629 0098 0C00     		.2byte	0xc
+ 1630 009a F4       		.byte	0xf4
+ 1631 009b 25       		.uleb128 0x25
+ 1632 009c 04       		.byte	0x4
+ 1633 009d 0000A242 		.4byte	0x42a20000
+ 1634 00a1 F5       		.byte	0xf5
+ 1635 00a2 00       		.uleb128 0
+ 1636 00a3 25       		.uleb128 0x25
+ 1637 00a4 1C       		.byte	0x1c
+ 1638 00a5 9F       		.byte	0x9f
+ 1639 00a6 06000000 		.4byte	.LVL12
+ 1640 00aa 09000000 		.4byte	.LVL13-1
+ 1641 00ae 0C00     		.2byte	0xc
+ 1642 00b0 F4       		.byte	0xf4
+ 1643 00b1 25       		.uleb128 0x25
+ 1644 00b2 04       		.byte	0x4
+ 1645 00b3 0000A242 		.4byte	0x42a20000
+ 1646 00b7 F5       		.byte	0xf5
+ 1647 00b8 01       		.uleb128 0x1
+ 1648 00b9 25       		.uleb128 0x25
+ 1649 00ba 1C       		.byte	0x1c
+ 1650 00bb 9F       		.byte	0x9f
+ 1651 00bc 09000000 		.4byte	.LVL13-1
+ 1652 00c0 1C000000 		.4byte	.LFE65
+ 1653 00c4 0E00     		.2byte	0xe
+ 1654 00c6 F4       		.byte	0xf4
+ 1655 00c7 25       		.uleb128 0x25
+ 1656 00c8 04       		.byte	0x4
+ 1657 00c9 0000A242 		.4byte	0x42a20000
+ 1658 00cd F3       		.byte	0xf3
+ 1659 00ce 03       		.uleb128 0x3
+ 1660 00cf F5       		.byte	0xf5
+ 1661 00d0 00       		.uleb128 0
+ 1662 00d1 25       		.uleb128 0x25
+ 1663 00d2 1C       		.byte	0x1c
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 32
+
+
+ 1664 00d3 9F       		.byte	0x9f
+ 1665 00d4 00000000 		.4byte	0
+ 1666 00d8 00000000 		.4byte	0
+ 1667              	.LLST5:
+ 1668 00dc 00000000 		.4byte	.LVL16
+ 1669 00e0 00000000 		.4byte	.LVL16
+ 1670 00e4 0100     		.2byte	0x1
+ 1671 00e6 50       		.byte	0x50
+ 1672 00e7 00000000 		.4byte	.LVL16
+ 1673 00eb 06000000 		.4byte	.LVL17
+ 1674 00ef 0C00     		.2byte	0xc
+ 1675 00f1 F4       		.byte	0xf4
+ 1676 00f2 25       		.uleb128 0x25
+ 1677 00f3 04       		.byte	0x4
+ 1678 00f4 0000BA42 		.4byte	0x42ba0000
+ 1679 00f8 F5       		.byte	0xf5
+ 1680 00f9 00       		.uleb128 0
+ 1681 00fa 25       		.uleb128 0x25
+ 1682 00fb 1C       		.byte	0x1c
+ 1683 00fc 9F       		.byte	0x9f
+ 1684 00fd 06000000 		.4byte	.LVL17
+ 1685 0101 09000000 		.4byte	.LVL18-1
+ 1686 0105 0C00     		.2byte	0xc
+ 1687 0107 F4       		.byte	0xf4
+ 1688 0108 25       		.uleb128 0x25
+ 1689 0109 04       		.byte	0x4
+ 1690 010a 0000BA42 		.4byte	0x42ba0000
+ 1691 010e F5       		.byte	0xf5
+ 1692 010f 01       		.uleb128 0x1
+ 1693 0110 25       		.uleb128 0x25
+ 1694 0111 1C       		.byte	0x1c
+ 1695 0112 9F       		.byte	0x9f
+ 1696 0113 09000000 		.4byte	.LVL18-1
+ 1697 0117 1C000000 		.4byte	.LFE66
+ 1698 011b 0E00     		.2byte	0xe
+ 1699 011d F4       		.byte	0xf4
+ 1700 011e 25       		.uleb128 0x25
+ 1701 011f 04       		.byte	0x4
+ 1702 0120 0000BA42 		.4byte	0x42ba0000
+ 1703 0124 F3       		.byte	0xf3
+ 1704 0125 03       		.uleb128 0x3
+ 1705 0126 F5       		.byte	0xf5
+ 1706 0127 00       		.uleb128 0
+ 1707 0128 25       		.uleb128 0x25
+ 1708 0129 1C       		.byte	0x1c
+ 1709 012a 9F       		.byte	0x9f
+ 1710 012b 00000000 		.4byte	0
+ 1711 012f 00000000 		.4byte	0
+ 1712              	.LLST6:
+ 1713 0133 0E000000 		.4byte	.LVL31
+ 1714 0137 18000000 		.4byte	.LVL32
+ 1715 013b 0100     		.2byte	0x1
+ 1716 013d 50       		.byte	0x50
+ 1717 013e 18000000 		.4byte	.LVL32
+ 1718 0142 4E000000 		.4byte	.LVL43
+ 1719 0146 0100     		.2byte	0x1
+ 1720 0148 56       		.byte	0x56
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 33
+
+
+ 1721 0149 00000000 		.4byte	0
+ 1722 014d 00000000 		.4byte	0
+ 1723              	.LLST7:
+ 1724 0151 26000000 		.4byte	.LVL35
+ 1725 0155 28000000 		.4byte	.LVL36
+ 1726 0159 2000     		.2byte	0x20
+ 1727 015b F5       		.byte	0xf5
+ 1728 015c 06       		.uleb128 0x6
+ 1729 015d 25       		.uleb128 0x25
+ 1730 015e F5       		.byte	0xf5
+ 1731 015f 01       		.uleb128 0x1
+ 1732 0160 25       		.uleb128 0x25
+ 1733 0161 1C       		.byte	0x1c
+ 1734 0162 F5       		.byte	0xf5
+ 1735 0163 00       		.uleb128 0
+ 1736 0164 25       		.uleb128 0x25
+ 1737 0165 F4       		.byte	0xf4
+ 1738 0166 25       		.uleb128 0x25
+ 1739 0167 04       		.byte	0x4
+ 1740 0168 0000003F 		.4byte	0x3f000000
+ 1741 016c 1E       		.byte	0x1e
+ 1742 016d 1C       		.byte	0x1c
+ 1743 016e F5       		.byte	0xf5
+ 1744 016f 00       		.uleb128 0
+ 1745 0170 25       		.uleb128 0x25
+ 1746 0171 1B       		.byte	0x1b
+ 1747 0172 F4       		.byte	0xf4
+ 1748 0173 25       		.uleb128 0x25
+ 1749 0174 04       		.byte	0x4
+ 1750 0175 00009040 		.4byte	0x40900000
+ 1751 0179 1E       		.byte	0x1e
+ 1752 017a 9F       		.byte	0x9f
+ 1753 017b 28000000 		.4byte	.LVL36
+ 1754 017f 2B000000 		.4byte	.LVL37-1
+ 1755 0183 2000     		.2byte	0x20
+ 1756 0185 F5       		.byte	0xf5
+ 1757 0186 06       		.uleb128 0x6
+ 1758 0187 25       		.uleb128 0x25
+ 1759 0188 F5       		.byte	0xf5
+ 1760 0189 01       		.uleb128 0x1
+ 1761 018a 25       		.uleb128 0x25
+ 1762 018b 1C       		.byte	0x1c
+ 1763 018c F5       		.byte	0xf5
+ 1764 018d 04       		.uleb128 0x4
+ 1765 018e 25       		.uleb128 0x25
+ 1766 018f F4       		.byte	0xf4
+ 1767 0190 25       		.uleb128 0x25
+ 1768 0191 04       		.byte	0x4
+ 1769 0192 0000003F 		.4byte	0x3f000000
+ 1770 0196 1E       		.byte	0x1e
+ 1771 0197 1C       		.byte	0x1c
+ 1772 0198 F5       		.byte	0xf5
+ 1773 0199 04       		.uleb128 0x4
+ 1774 019a 25       		.uleb128 0x25
+ 1775 019b 1B       		.byte	0x1b
+ 1776 019c F4       		.byte	0xf4
+ 1777 019d 25       		.uleb128 0x25
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 34
+
+
+ 1778 019e 04       		.byte	0x4
+ 1779 019f 00009040 		.4byte	0x40900000
+ 1780 01a3 1E       		.byte	0x1e
+ 1781 01a4 9F       		.byte	0x9f
+ 1782 01a5 2B000000 		.4byte	.LVL37-1
+ 1783 01a9 32000000 		.4byte	.LVL38
+ 1784 01ad 2000     		.2byte	0x20
+ 1785 01af F5       		.byte	0xf5
+ 1786 01b0 06       		.uleb128 0x6
+ 1787 01b1 25       		.uleb128 0x25
+ 1788 01b2 F5       		.byte	0xf5
+ 1789 01b3 05       		.uleb128 0x5
+ 1790 01b4 25       		.uleb128 0x25
+ 1791 01b5 1C       		.byte	0x1c
+ 1792 01b6 F5       		.byte	0xf5
+ 1793 01b7 04       		.uleb128 0x4
+ 1794 01b8 25       		.uleb128 0x25
+ 1795 01b9 F4       		.byte	0xf4
+ 1796 01ba 25       		.uleb128 0x25
+ 1797 01bb 04       		.byte	0x4
+ 1798 01bc 0000003F 		.4byte	0x3f000000
+ 1799 01c0 1E       		.byte	0x1e
+ 1800 01c1 1C       		.byte	0x1c
+ 1801 01c2 F5       		.byte	0xf5
+ 1802 01c3 04       		.uleb128 0x4
+ 1803 01c4 25       		.uleb128 0x25
+ 1804 01c5 1B       		.byte	0x1b
+ 1805 01c6 F4       		.byte	0xf4
+ 1806 01c7 25       		.uleb128 0x25
+ 1807 01c8 04       		.byte	0x4
+ 1808 01c9 00009040 		.4byte	0x40900000
+ 1809 01cd 1E       		.byte	0x1e
+ 1810 01ce 9F       		.byte	0x9f
+ 1811 01cf 00000000 		.4byte	0
+ 1812 01d3 00000000 		.4byte	0
+ 1813              	.LLST8:
+ 1814 01d7 0E000000 		.4byte	.LVL46
+ 1815 01db 16000000 		.4byte	.LVL47
+ 1816 01df 0100     		.2byte	0x1
+ 1817 01e1 50       		.byte	0x50
+ 1818 01e2 16000000 		.4byte	.LVL47
+ 1819 01e6 4C000000 		.4byte	.LVL58
+ 1820 01ea 0100     		.2byte	0x1
+ 1821 01ec 56       		.byte	0x56
+ 1822 01ed 00000000 		.4byte	0
+ 1823 01f1 00000000 		.4byte	0
+ 1824              	.LLST9:
+ 1825 01f5 24000000 		.4byte	.LVL50
+ 1826 01f9 26000000 		.4byte	.LVL51
+ 1827 01fd 2000     		.2byte	0x20
+ 1828 01ff F5       		.byte	0xf5
+ 1829 0200 06       		.uleb128 0x6
+ 1830 0201 25       		.uleb128 0x25
+ 1831 0202 F5       		.byte	0xf5
+ 1832 0203 01       		.uleb128 0x1
+ 1833 0204 25       		.uleb128 0x25
+ 1834 0205 1C       		.byte	0x1c
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 35
+
+
+ 1835 0206 F5       		.byte	0xf5
+ 1836 0207 00       		.uleb128 0
+ 1837 0208 25       		.uleb128 0x25
+ 1838 0209 F4       		.byte	0xf4
+ 1839 020a 25       		.uleb128 0x25
+ 1840 020b 04       		.byte	0x4
+ 1841 020c 0000003F 		.4byte	0x3f000000
+ 1842 0210 1E       		.byte	0x1e
+ 1843 0211 1C       		.byte	0x1c
+ 1844 0212 F5       		.byte	0xf5
+ 1845 0213 00       		.uleb128 0
+ 1846 0214 25       		.uleb128 0x25
+ 1847 0215 1B       		.byte	0x1b
+ 1848 0216 F4       		.byte	0xf4
+ 1849 0217 25       		.uleb128 0x25
+ 1850 0218 04       		.byte	0x4
+ 1851 0219 9A998940 		.4byte	0x4089999a
+ 1852 021d 1E       		.byte	0x1e
+ 1853 021e 9F       		.byte	0x9f
+ 1854 021f 26000000 		.4byte	.LVL51
+ 1855 0223 29000000 		.4byte	.LVL52-1
+ 1856 0227 2000     		.2byte	0x20
+ 1857 0229 F5       		.byte	0xf5
+ 1858 022a 06       		.uleb128 0x6
+ 1859 022b 25       		.uleb128 0x25
+ 1860 022c F5       		.byte	0xf5
+ 1861 022d 01       		.uleb128 0x1
+ 1862 022e 25       		.uleb128 0x25
+ 1863 022f 1C       		.byte	0x1c
+ 1864 0230 F5       		.byte	0xf5
+ 1865 0231 04       		.uleb128 0x4
+ 1866 0232 25       		.uleb128 0x25
+ 1867 0233 F4       		.byte	0xf4
+ 1868 0234 25       		.uleb128 0x25
+ 1869 0235 04       		.byte	0x4
+ 1870 0236 0000003F 		.4byte	0x3f000000
+ 1871 023a 1E       		.byte	0x1e
+ 1872 023b 1C       		.byte	0x1c
+ 1873 023c F5       		.byte	0xf5
+ 1874 023d 04       		.uleb128 0x4
+ 1875 023e 25       		.uleb128 0x25
+ 1876 023f 1B       		.byte	0x1b
+ 1877 0240 F4       		.byte	0xf4
+ 1878 0241 25       		.uleb128 0x25
+ 1879 0242 04       		.byte	0x4
+ 1880 0243 9A998940 		.4byte	0x4089999a
+ 1881 0247 1E       		.byte	0x1e
+ 1882 0248 9F       		.byte	0x9f
+ 1883 0249 29000000 		.4byte	.LVL52-1
+ 1884 024d 30000000 		.4byte	.LVL53
+ 1885 0251 2000     		.2byte	0x20
+ 1886 0253 F5       		.byte	0xf5
+ 1887 0254 06       		.uleb128 0x6
+ 1888 0255 25       		.uleb128 0x25
+ 1889 0256 F5       		.byte	0xf5
+ 1890 0257 05       		.uleb128 0x5
+ 1891 0258 25       		.uleb128 0x25
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 36
+
+
+ 1892 0259 1C       		.byte	0x1c
+ 1893 025a F5       		.byte	0xf5
+ 1894 025b 04       		.uleb128 0x4
+ 1895 025c 25       		.uleb128 0x25
+ 1896 025d F4       		.byte	0xf4
+ 1897 025e 25       		.uleb128 0x25
+ 1898 025f 04       		.byte	0x4
+ 1899 0260 0000003F 		.4byte	0x3f000000
+ 1900 0264 1E       		.byte	0x1e
+ 1901 0265 1C       		.byte	0x1c
+ 1902 0266 F5       		.byte	0xf5
+ 1903 0267 04       		.uleb128 0x4
+ 1904 0268 25       		.uleb128 0x25
+ 1905 0269 1B       		.byte	0x1b
+ 1906 026a F4       		.byte	0xf4
+ 1907 026b 25       		.uleb128 0x25
+ 1908 026c 04       		.byte	0x4
+ 1909 026d 9A998940 		.4byte	0x4089999a
+ 1910 0271 1E       		.byte	0x1e
+ 1911 0272 9F       		.byte	0x9f
+ 1912 0273 00000000 		.4byte	0
+ 1913 0277 00000000 		.4byte	0
+ 1914              	.LLST10:
+ 1915 027b 4C000000 		.4byte	.LVL75
+ 1916 027f 4E000000 		.4byte	.LVL76
+ 1917 0283 0100     		.2byte	0x1
+ 1918 0285 50       		.byte	0x50
+ 1919 0286 4E000000 		.4byte	.LVL76
+ 1920 028a 78000000 		.4byte	.LFE70
+ 1921 028e 0100     		.2byte	0x1
+ 1922 0290 54       		.byte	0x54
+ 1923 0291 00000000 		.4byte	0
+ 1924 0295 00000000 		.4byte	0
+ 1925              	.LLST11:
+ 1926 0299 40000000 		.4byte	.LVL71
+ 1927 029d 42000000 		.4byte	.LVL72
+ 1928 02a1 0100     		.2byte	0x1
+ 1929 02a3 50       		.byte	0x50
+ 1930 02a4 42000000 		.4byte	.LVL72
+ 1931 02a8 78000000 		.4byte	.LFE70
+ 1932 02ac 0100     		.2byte	0x1
+ 1933 02ae 55       		.byte	0x55
+ 1934 02af 00000000 		.4byte	0
+ 1935 02b3 00000000 		.4byte	0
+ 1936              		.section	.debug_aranges,"",%progbits
+ 1937 0000 4C000000 		.4byte	0x4c
+ 1938 0004 0200     		.2byte	0x2
+ 1939 0006 00000000 		.4byte	.Ldebug_info0
+ 1940 000a 04       		.byte	0x4
+ 1941 000b 00       		.byte	0
+ 1942 000c 0000     		.2byte	0
+ 1943 000e 0000     		.2byte	0
+ 1944 0010 00000000 		.4byte	.LFB64
+ 1945 0014 4C000000 		.4byte	.LFE64-.LFB64
+ 1946 0018 00000000 		.4byte	.LFB65
+ 1947 001c 1C000000 		.4byte	.LFE65-.LFB65
+ 1948 0020 00000000 		.4byte	.LFB66
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 37
+
+
+ 1949 0024 1C000000 		.4byte	.LFE66-.LFB66
+ 1950 0028 00000000 		.4byte	.LFB67
+ 1951 002c 3C000000 		.4byte	.LFE67-.LFB67
+ 1952 0030 00000000 		.4byte	.LFB68
+ 1953 0034 5C000000 		.4byte	.LFE68-.LFB68
+ 1954 0038 00000000 		.4byte	.LFB69
+ 1955 003c 5C000000 		.4byte	.LFE69-.LFB69
+ 1956 0040 00000000 		.4byte	.LFB70
+ 1957 0044 78000000 		.4byte	.LFE70-.LFB70
+ 1958 0048 00000000 		.4byte	0
+ 1959 004c 00000000 		.4byte	0
+ 1960              		.section	.debug_ranges,"",%progbits
+ 1961              	.Ldebug_ranges0:
+ 1962 0000 00000000 		.4byte	.LFB64
+ 1963 0004 4C000000 		.4byte	.LFE64
+ 1964 0008 00000000 		.4byte	.LFB65
+ 1965 000c 1C000000 		.4byte	.LFE65
+ 1966 0010 00000000 		.4byte	.LFB66
+ 1967 0014 1C000000 		.4byte	.LFE66
+ 1968 0018 00000000 		.4byte	.LFB67
+ 1969 001c 3C000000 		.4byte	.LFE67
+ 1970 0020 00000000 		.4byte	.LFB68
+ 1971 0024 5C000000 		.4byte	.LFE68
+ 1972 0028 00000000 		.4byte	.LFB69
+ 1973 002c 5C000000 		.4byte	.LFE69
+ 1974 0030 00000000 		.4byte	.LFB70
+ 1975 0034 78000000 		.4byte	.LFE70
+ 1976 0038 00000000 		.4byte	0
+ 1977 003c 00000000 		.4byte	0
+ 1978              		.section	.debug_line,"",%progbits
+ 1979              	.Ldebug_line0:
+ 1980 0000 D3020000 		.section	.debug_str,"MS",%progbits,1
+ 1980      02000302 
+ 1980      00000201 
+ 1980      FB0E0D00 
+ 1980      01010101 
+ 1981              	.LASF36:
+ 1982 0000 595F4C6F 		.ascii	"Y_Loss\000"
+ 1982      737300
+ 1983              	.LASF26:
+ 1984 0007 59766F6C 		.ascii	"Yvolt\000"
+ 1984      7400
+ 1985              	.LASF47:
+ 1986 000d 50574D5F 		.ascii	"PWM_X_Start\000"
+ 1986      585F5374 
+ 1986      61727400 
+ 1987              	.LASF29:
+ 1988 0019 50574D53 		.ascii	"PWMSERVO_MIN\000"
+ 1988      4552564F 
+ 1988      5F4D494E 
+ 1988      00
+ 1989              	.LASF0:
+ 1990 0026 666C6F61 		.ascii	"float\000"
+ 1990      7400
+ 1991              	.LASF37:
+ 1992 002c 56646476 		.ascii	"Vddval\000"
+ 1992      616C00
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 38
+
+
+ 1993              	.LASF10:
+ 1994 0033 5F5F696E 		.ascii	"__int32_t\000"
+ 1994      7433325F 
+ 1994      7400
+ 1995              	.LASF43:
+ 1996 003d 4144435F 		.ascii	"ADC_YAxis_GetResult16\000"
+ 1996      59417869 
+ 1996      735F4765 
+ 1996      74526573 
+ 1996      756C7431 
+ 1997              	.LASF40:
+ 1998 0053 50574D5F 		.ascii	"PWM_Y_WriteCompare\000"
+ 1998      595F5772 
+ 1998      69746543 
+ 1998      6F6D7061 
+ 1998      726500
+ 1999              	.LASF31:
+ 2000 0066 50574D53 		.ascii	"PWMSERVO_X_CORRECTION\000"
+ 2000      4552564F 
+ 2000      5F585F43 
+ 2000      4F525245 
+ 2000      4354494F 
+ 2001              	.LASF11:
+ 2002 007c 696E7433 		.ascii	"int32_t\000"
+ 2002      325F7400 
+ 2003              	.LASF16:
+ 2004 0084 616E6772 		.ascii	"angrelativo\000"
+ 2004      656C6174 
+ 2004      69766F00 
+ 2005              	.LASF35:
+ 2006 0090 585F4C6F 		.ascii	"X_Loss\000"
+ 2006      737300
+ 2007              	.LASF18:
+ 2008 0097 53657453 		.ascii	"SetServoX\000"
+ 2008      6572766F 
+ 2008      5800
+ 2009              	.LASF19:
+ 2010 00a1 53657453 		.ascii	"SetServoY\000"
+ 2010      6572766F 
+ 2010      5900
+ 2011              	.LASF6:
+ 2012 00ab 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2012      20756E73 
+ 2012      69676E65 
+ 2012      6420696E 
+ 2012      7400
+ 2013              	.LASF4:
+ 2014 00bd 73686F72 		.ascii	"short unsigned int\000"
+ 2014      7420756E 
+ 2014      7369676E 
+ 2014      65642069 
+ 2014      6E7400
+ 2015              	.LASF46:
+ 2016 00d0 4144435F 		.ascii	"ADC_XAxis_CountsTo_Volts\000"
+ 2016      58417869 
+ 2016      735F436F 
+ 2016      756E7473 
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 39
+
+
+ 2016      546F5F56 
+ 2017              	.LASF45:
+ 2018 00e9 4144435F 		.ascii	"ADC_XAxis_GetResult16\000"
+ 2018      58417869 
+ 2018      735F4765 
+ 2018      74526573 
+ 2018      756C7431 
+ 2019              	.LASF44:
+ 2020 00ff 4144435F 		.ascii	"ADC_YAxis_CountsTo_Volts\000"
+ 2020      59417869 
+ 2020      735F436F 
+ 2020      756E7473 
+ 2020      546F5F56 
+ 2021              	.LASF23:
+ 2022 0118 58706F73 		.ascii	"Xpos\000"
+ 2022      00
+ 2023              	.LASF2:
+ 2024 011d 756E7369 		.ascii	"unsigned char\000"
+ 2024      676E6564 
+ 2024      20636861 
+ 2024      7200
+ 2025              	.LASF49:
+ 2026 012b 4144435F 		.ascii	"ADC_YAxis_Start\000"
+ 2026      59417869 
+ 2026      735F5374 
+ 2026      61727400 
+ 2027              	.LASF12:
+ 2028 013b 646F7562 		.ascii	"double\000"
+ 2028      6C6500
+ 2029              	.LASF21:
+ 2030 0142 566F6C74 		.ascii	"Volt_update\000"
+ 2030      5F757064 
+ 2030      61746500 
+ 2031              	.LASF56:
+ 2032 014e 6D61696E 		.ascii	"main\000"
+ 2032      00
+ 2033              	.LASF32:
+ 2034 0153 50574D53 		.ascii	"PWMSERVO_Y_CORRECTION\000"
+ 2034      4552564F 
+ 2034      5F595F43 
+ 2034      4F525245 
+ 2034      4354494F 
+ 2035              	.LASF28:
+ 2036 0169 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2036      52784275 
+ 2036      66666572 
+ 2036      00
+ 2037              	.LASF17:
+ 2038 0176 74696D65 		.ascii	"timerelative\000"
+ 2038      72656C61 
+ 2038      74697665 
+ 2038      00
+ 2039              	.LASF9:
+ 2040 0183 756E7369 		.ascii	"unsigned int\000"
+ 2040      676E6564 
+ 2040      20696E74 
+ 2040      00
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 40
+
+
+ 2041              	.LASF48:
+ 2042 0190 50574D5F 		.ascii	"PWM_Y_Start\000"
+ 2042      595F5374 
+ 2042      61727400 
+ 2043              	.LASF8:
+ 2044 019c 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2044      206C6F6E 
+ 2044      6720756E 
+ 2044      7369676E 
+ 2044      65642069 
+ 2045              	.LASF38:
+ 2046 01b3 56737376 		.ascii	"Vssval\000"
+ 2046      616C00
+ 2047              	.LASF34:
+ 2048 01ba 595F566F 		.ascii	"Y_Volt_EMPMAX\000"
+ 2048      6C745F45 
+ 2048      4D504D41 
+ 2048      5800
+ 2049              	.LASF27:
+ 2050 01c8 59706F73 		.ascii	"Ypos\000"
+ 2050      00
+ 2051              	.LASF39:
+ 2052 01cd 50574D5F 		.ascii	"PWM_X_WriteCompare\000"
+ 2052      585F5772 
+ 2052      69746543 
+ 2052      6F6D7061 
+ 2052      726500
+ 2053              	.LASF14:
+ 2054 01e0 6C6F6E67 		.ascii	"long double\000"
+ 2054      20646F75 
+ 2054      626C6500 
+ 2055              	.LASF15:
+ 2056 01ec 73697A65 		.ascii	"sizetype\000"
+ 2056      74797065 
+ 2056      00
+ 2057              	.LASF7:
+ 2058 01f5 6C6F6E67 		.ascii	"long long int\000"
+ 2058      206C6F6E 
+ 2058      6720696E 
+ 2058      7400
+ 2059              	.LASF53:
+ 2060 0203 6D61696E 		.ascii	"main.c\000"
+ 2060      2E6300
+ 2061              	.LASF13:
+ 2062 020a 63686172 		.ascii	"char\000"
+ 2062      00
+ 2063              	.LASF25:
+ 2064 020f 52656164 		.ascii	"ReadYAxis\000"
+ 2064      59417869 
+ 2064      7300
+ 2065              	.LASF51:
+ 2066 0219 7072696E 		.ascii	"printf\000"
+ 2066      746600
+ 2067              	.LASF22:
+ 2068 0220 58766F6C 		.ascii	"Xvolt\000"
+ 2068      7400
+ 2069              	.LASF24:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 41
+
+
+ 2070 0226 52656164 		.ascii	"ReadXAxis\000"
+ 2070      58417869 
+ 2070      7300
+ 2071              	.LASF3:
+ 2072 0230 73686F72 		.ascii	"short int\000"
+ 2072      7420696E 
+ 2072      7400
+ 2073              	.LASF55:
+ 2074 023a 6D617041 		.ascii	"mapANGtoTIME\000"
+ 2074      4E47746F 
+ 2074      54494D45 
+ 2074      00
+ 2075              	.LASF33:
+ 2076 0247 585F566F 		.ascii	"X_Volt_EMPMAX\000"
+ 2076      6C745F45 
+ 2076      4D504D41 
+ 2076      5800
+ 2077              	.LASF41:
+ 2078 0255 41786973 		.ascii	"AxisSelector_Write\000"
+ 2078      53656C65 
+ 2078      63746F72 
+ 2078      5F577269 
+ 2078      746500
+ 2079              	.LASF50:
+ 2080 0268 4144435F 		.ascii	"ADC_XAxis_Start\000"
+ 2080      58417869 
+ 2080      735F5374 
+ 2080      61727400 
+ 2081              	.LASF5:
+ 2082 0278 6C6F6E67 		.ascii	"long int\000"
+ 2082      20696E74 
+ 2082      00
+ 2083              	.LASF20:
+ 2084 0281 416E6775 		.ascii	"Angulo\000"
+ 2084      6C6F00
+ 2085              	.LASF52:
+ 2086 0288 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2086      43313120 
+ 2086      352E342E 
+ 2086      31203230 
+ 2086      31363036 
+ 2087 02bb 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2087      20726576 
+ 2087      6973696F 
+ 2087      6E203233 
+ 2087      37373135 
+ 2088 02ee 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 2088      66756E63 
+ 2088      74696F6E 
+ 2088      2D736563 
+ 2088      74696F6E 
+ 2089              	.LASF30:
+ 2090 0316 50574D53 		.ascii	"PWMSERVO_MAX\000"
+ 2090      4552564F 
+ 2090      5F4D4158 
+ 2090      00
+ 2091              	.LASF1:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc702nrO.s 			page 42
+
+
+ 2092 0323 7369676E 		.ascii	"signed char\000"
+ 2092      65642063 
+ 2092      68617200 
+ 2093              	.LASF42:
+ 2094 032f 43794465 		.ascii	"CyDelay\000"
+ 2094      6C617900 
+ 2095              	.LASF54:
+ 2096 0337 433A5C55 		.ascii	"C:\\Users\\esancho\\Downloads\\PID Controler\\Contr"
+ 2096      73657273 
+ 2096      5C657361 
+ 2096      6E63686F 
+ 2096      5C446F77 
+ 2097 0365 6F6C6164 		.ascii	"olador.cydsn\000"
+ 2097      6F722E63 
+ 2097      7964736E 
+ 2097      00
+ 2098              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

@@ -1,0 +1,1651 @@
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"ResistiveTouch_1.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.ResistiveTouch_1_Init,"ax",%progbits
+  20              		.align	2
+  21              		.global	ResistiveTouch_1_Init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	ResistiveTouch_1_Init, %function
+  25              	ResistiveTouch_1_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\ResistiveTouch_1.c"
+   1:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/ResistiveTouch_1.c **** * File Name: ResistiveTouch_1.c
+   3:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Version 2.0
+   4:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+   5:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Description:
+   6:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  This file provides the API source code for the Resistive Touch component.
+   7:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+   8:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Note:
+   9:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  10:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+  11:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Copyright 2012-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC5/ResistiveTouch_1.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC5/ResistiveTouch_1.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC5/ResistiveTouch_1.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+  16:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  17:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "CyLib.h"
+  18:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "ResistiveTouch_1.h"
+  19:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "ResistiveTouch_1_xm.h"
+  20:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "ResistiveTouch_1_xp.h"
+  21:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "ResistiveTouch_1_ym.h"
+  22:Generated_Source\PSoC5/ResistiveTouch_1.c **** #include "ResistiveTouch_1_yp.h"
+  23:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  24:Generated_Source\PSoC5/ResistiveTouch_1.c **** uint8 ResistiveTouch_1_initVar = 0u;
+  25:Generated_Source\PSoC5/ResistiveTouch_1.c **** static uint8 ResistiveTouch_1_measurementFlag = 0u;
+  26:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  27:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  28:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+  29:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_Init
+  30:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 2
+
+
+  31:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  32:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+  33:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Calls the Init() function of the ADC and AMux components.
+  34:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  35:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+  36:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+  37:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  38:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+  39:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+  40:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  41:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_Init(void) 
+  43:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  44:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_AMux_Init();
+  36              		.loc 1 44 0
+  37 0002 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Init
+  38              	.LVL0:
+  45:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_ADC_Init();
+  39              		.loc 1 45 0
+  40 0006 FFF7FEFF 		bl	ResistiveTouch_1_ADC_Init
+  41              	.LVL1:
+  42 000a 08BD     		pop	{r3, pc}
+  43              		.cfi_endproc
+  44              	.LFE0:
+  45              		.size	ResistiveTouch_1_Init, .-ResistiveTouch_1_Init
+  46              		.section	.text.ResistiveTouch_1_Stop,"ax",%progbits
+  47              		.align	2
+  48              		.global	ResistiveTouch_1_Stop
+  49              		.thumb
+  50              		.thumb_func
+  51              		.type	ResistiveTouch_1_Stop, %function
+  52              	ResistiveTouch_1_Stop:
+  53              	.LFB2:
+  46:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+  47:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  48:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  49:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+  50:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_Start
+  51:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+  52:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  53:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+  54:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Calls Init() if the component has not been initialized before. Calls Enable()
+  55:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  to begin the component operation.
+  56:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  57:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+  58:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+  59:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  60:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+  61:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 3
+
+
+  62:Generated_Source\PSoC5/ResistiveTouch_1.c **** * 
+  63:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Global variables:
+  64:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  ResistiveTouch_1_initVar - Indicates whether the component has been
+  65:Generated_Source\PSoC5/ResistiveTouch_1.c **** *                             initialized.
+  66:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  67:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+  68:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_Start(void)  
+  69:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+  70:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if(ResistiveTouch_1_initVar == 0u)
+  71:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {    
+  72:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_Init();
+  73:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_initVar = 1u;
+  74:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+  75:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_Enable();
+  76:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+  77:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  78:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  79:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+  80:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_Stop
+  81:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+  82:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  83:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+  84:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Stops the ADC and AMux components.
+  85:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  86:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+  87:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+  88:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  89:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+  90:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+  91:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+  92:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+  93:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_Stop(void)  
+  94:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+  54              		.loc 1 94 0
+  55              		.cfi_startproc
+  56              		@ args = 0, pretend = 0, frame = 0
+  57              		@ frame_needed = 0, uses_anonymous_args = 0
+  58 0000 08B5     		push	{r3, lr}
+  59              		.cfi_def_cfa_offset 8
+  60              		.cfi_offset 3, -8
+  61              		.cfi_offset 14, -4
+  95:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_ADC_Stop();
+  62              		.loc 1 95 0
+  63 0002 FFF7FEFF 		bl	ResistiveTouch_1_ADC_Stop
+  64              	.LVL2:
+  96:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_AMux_Stop();
+  65              		.loc 1 96 0
+  66 0006 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Stop
+  67              	.LVL3:
+  68 000a 08BD     		pop	{r3, pc}
+  69              		.cfi_endproc
+  70              	.LFE2:
+  71              		.size	ResistiveTouch_1_Stop, .-ResistiveTouch_1_Stop
+  72              		.section	.text.ResistiveTouch_1_Enable,"ax",%progbits
+  73              		.align	2
+  74              		.global	ResistiveTouch_1_Enable
+  75              		.thumb
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 4
+
+
+  76              		.thumb_func
+  77              		.type	ResistiveTouch_1_Enable, %function
+  78              	ResistiveTouch_1_Enable:
+  79              	.LFB3:
+  97:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+  98:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+  99:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 100:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+ 101:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_Enable
+ 102:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ 103:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 104:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+ 105:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Enables the ADC component.
+ 106:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 107:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+ 108:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 109:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 110:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+ 111:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 112:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 113:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+ 114:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_Enable(void)  
+ 115:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+  80              		.loc 1 115 0
+  81              		.cfi_startproc
+  82              		@ args = 0, pretend = 0, frame = 0
+  83              		@ frame_needed = 0, uses_anonymous_args = 0
+  84 0000 08B5     		push	{r3, lr}
+  85              		.cfi_def_cfa_offset 8
+  86              		.cfi_offset 3, -8
+  87              		.cfi_offset 14, -4
+ 116:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_ADC_Enable();
+  88              		.loc 1 116 0
+  89 0002 FFF7FEFF 		bl	ResistiveTouch_1_ADC_Enable
+  90              	.LVL4:
+  91 0006 08BD     		pop	{r3, pc}
+  92              		.cfi_endproc
+  93              	.LFE3:
+  94              		.size	ResistiveTouch_1_Enable, .-ResistiveTouch_1_Enable
+  95              		.section	.text.ResistiveTouch_1_Start,"ax",%progbits
+  96              		.align	2
+  97              		.global	ResistiveTouch_1_Start
+  98              		.thumb
+  99              		.thumb_func
+ 100              		.type	ResistiveTouch_1_Start, %function
+ 101              	ResistiveTouch_1_Start:
+ 102              	.LFB1:
+  69:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if(ResistiveTouch_1_initVar == 0u)
+ 103              		.loc 1 69 0
+ 104              		.cfi_startproc
+ 105              		@ args = 0, pretend = 0, frame = 0
+ 106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 107 0000 08B5     		push	{r3, lr}
+ 108              		.cfi_def_cfa_offset 8
+ 109              		.cfi_offset 3, -8
+ 110              		.cfi_offset 14, -4
+  70:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {    
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 5
+
+
+ 111              		.loc 1 70 0
+ 112 0002 054B     		ldr	r3, .L10
+ 113 0004 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+ 114 0006 23B9     		cbnz	r3, .L8
+  72:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_initVar = 1u;
+ 115              		.loc 1 72 0
+ 116 0008 FFF7FEFF 		bl	ResistiveTouch_1_Init
+ 117              	.LVL5:
+  73:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 118              		.loc 1 73 0
+ 119 000c 0122     		movs	r2, #1
+ 120 000e 024B     		ldr	r3, .L10
+ 121 0010 1A70     		strb	r2, [r3]
+ 122              	.L8:
+  75:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 123              		.loc 1 75 0
+ 124 0012 FFF7FEFF 		bl	ResistiveTouch_1_Enable
+ 125              	.LVL6:
+ 126 0016 08BD     		pop	{r3, pc}
+ 127              	.L11:
+ 128              		.align	2
+ 129              	.L10:
+ 130 0018 00000000 		.word	.LANCHOR0
+ 131              		.cfi_endproc
+ 132              	.LFE1:
+ 133              		.size	ResistiveTouch_1_Start, .-ResistiveTouch_1_Start
+ 134              		.section	.text.ResistiveTouch_1_ActivateX,"ax",%progbits
+ 135              		.align	2
+ 136              		.global	ResistiveTouch_1_ActivateX
+ 137              		.thumb
+ 138              		.thumb_func
+ 139              		.type	ResistiveTouch_1_ActivateX, %function
+ 140              	ResistiveTouch_1_ActivateX:
+ 141              	.LFB4:
+ 117:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 118:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 119:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 120:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+ 121:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_ActivateX
+ 122:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ 123:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 124:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary: 
+ 125:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Configures the pins to measure the Y-axis.
+ 126:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 127:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+ 128:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 129:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 130:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+ 131:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 132:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 133:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+ 134:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_ActivateX(void) 
+ 135:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+ 142              		.loc 1 135 0
+ 143              		.cfi_startproc
+ 144              		@ args = 0, pretend = 0, frame = 0
+ 145              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 6
+
+
+ 146 0000 08B5     		push	{r3, lr}
+ 147              		.cfi_def_cfa_offset 8
+ 148              		.cfi_offset 3, -8
+ 149              		.cfi_offset 14, -4
+ 136:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Pins configuration to measure Y. */
+ 137:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_ym_0, PIN_DM_STRONG);
+ 150              		.loc 1 137 0
+ 151 0002 0F4A     		ldr	r2, .L15
+ 152 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 153 0006 03F0F103 		and	r3, r3, #241
+ 154 000a 43F00C03 		orr	r3, r3, #12
+ 155 000e 1370     		strb	r3, [r2]
+ 138:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_yp_0, PIN_DM_STRONG);
+ 156              		.loc 1 138 0
+ 157 0010 023A     		subs	r2, r2, #2
+ 158 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 159 0014 03F0F103 		and	r3, r3, #241
+ 160 0018 43F00C03 		orr	r3, r3, #12
+ 161 001c 1370     		strb	r3, [r2]
+ 139:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xp_0, PIN_DM_ALG_HIZ);
+ 162              		.loc 1 139 0
+ 163 001e 0332     		adds	r2, r2, #3
+ 164 0020 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 165 0022 03F0F103 		and	r3, r3, #241
+ 166 0026 1370     		strb	r3, [r2]
+ 140:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xm_0, PIN_DM_ALG_HIZ);
+ 167              		.loc 1 140 0
+ 168 0028 023A     		subs	r2, r2, #2
+ 169 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 170 002c 03F0F103 		and	r3, r3, #241
+ 171 0030 1370     		strb	r3, [r2]
+ 141:Generated_Source\PSoC5/ResistiveTouch_1.c ****     
+ 142:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Switch AMux if channel 0 is not selected. */
+ 143:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if(ResistiveTouch_1_AMux_GetChannel() != ResistiveTouch_1_AMUX_XP_CHAN)
+ 172              		.loc 1 143 0
+ 173 0032 FFF7FEFF 		bl	ResistiveTouch_1_AMux_GetChannel
+ 174              	.LVL7:
+ 175 0036 08B1     		cbz	r0, .L12
+ 144:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 145:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_AMux_Next();
+ 176              		.loc 1 145 0
+ 177 0038 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Next
+ 178              	.LVL8:
+ 179              	.L12:
+ 180 003c 08BD     		pop	{r3, pc}
+ 181              	.L16:
+ 182 003e 00BF     		.align	2
+ 183              	.L15:
+ 184 0040 22500040 		.word	1073762338
+ 185              		.cfi_endproc
+ 186              	.LFE4:
+ 187              		.size	ResistiveTouch_1_ActivateX, .-ResistiveTouch_1_ActivateX
+ 188              		.section	.text.ResistiveTouch_1_ActivateY,"ax",%progbits
+ 189              		.align	2
+ 190              		.global	ResistiveTouch_1_ActivateY
+ 191              		.thumb
+ 192              		.thumb_func
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 7
+
+
+ 193              		.type	ResistiveTouch_1_ActivateY, %function
+ 194              	ResistiveTouch_1_ActivateY:
+ 195              	.LFB5:
+ 146:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 147:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 148:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 149:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 150:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+ 151:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_ActivateY
+ 152:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ 153:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 154:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary: 
+ 155:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Configures the pins to measure X-axis.
+ 156:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 157:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+ 158:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 159:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 160:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+ 161:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 162:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 163:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+ 164:Generated_Source\PSoC5/ResistiveTouch_1.c **** void ResistiveTouch_1_ActivateY(void) 
+ 165:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+ 196              		.loc 1 165 0
+ 197              		.cfi_startproc
+ 198              		@ args = 0, pretend = 0, frame = 0
+ 199              		@ frame_needed = 0, uses_anonymous_args = 0
+ 200 0000 08B5     		push	{r3, lr}
+ 201              		.cfi_def_cfa_offset 8
+ 202              		.cfi_offset 3, -8
+ 203              		.cfi_offset 14, -4
+ 166:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Pins configuration to measure X. */
+ 167:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xm_0, PIN_DM_STRONG);
+ 204              		.loc 1 167 0
+ 205 0002 144A     		ldr	r2, .L21
+ 206 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 207 0006 03F0F103 		and	r3, r3, #241
+ 208 000a 43F00C03 		orr	r3, r3, #12
+ 209 000e 1370     		strb	r3, [r2]
+ 168:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xp_0, PIN_DM_STRONG);
+ 210              		.loc 1 168 0
+ 211 0010 0232     		adds	r2, r2, #2
+ 212 0012 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 213 0014 03F0F103 		and	r3, r3, #241
+ 214 0018 43F00C03 		orr	r3, r3, #12
+ 215 001c 1370     		strb	r3, [r2]
+ 169:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_yp_0, PIN_DM_ALG_HIZ);
+ 216              		.loc 1 169 0
+ 217 001e 033A     		subs	r2, r2, #3
+ 218 0020 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 219 0022 03F0F103 		and	r3, r3, #241
+ 220 0026 1370     		strb	r3, [r2]
+ 170:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_ym_0, PIN_DM_ALG_HIZ);
+ 221              		.loc 1 170 0
+ 222 0028 0232     		adds	r2, r2, #2
+ 223 002a 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 224 002c 03F0F103 		and	r3, r3, #241
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 8
+
+
+ 225 0030 1370     		strb	r3, [r2]
+ 171:Generated_Source\PSoC5/ResistiveTouch_1.c ****     
+ 172:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Switch AMux if channel 1 is not selected. */
+ 173:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if(ResistiveTouch_1_AMux_GetChannel() == ResistiveTouch_1_AMUX_XP_CHAN)
+ 226              		.loc 1 173 0
+ 227 0032 FFF7FEFF 		bl	ResistiveTouch_1_AMux_GetChannel
+ 228              	.LVL9:
+ 229 0036 10B9     		cbnz	r0, .L18
+ 174:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 175:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_AMux_Next();
+ 230              		.loc 1 175 0
+ 231 0038 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Next
+ 232              	.LVL10:
+ 233 003c 08BD     		pop	{r3, pc}
+ 234              	.L18:
+ 176:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 177:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Switch AMux to channel 1 if AMux is disconnected. */
+ 178:Generated_Source\PSoC5/ResistiveTouch_1.c ****     else if(ResistiveTouch_1_AMux_GetChannel() == ResistiveTouch_1_AMUX_NO_CHAN)
+ 235              		.loc 1 178 0
+ 236 003e FFF7FEFF 		bl	ResistiveTouch_1_AMux_GetChannel
+ 237              	.LVL11:
+ 238 0042 B0F1FF3F 		cmp	r0, #-1
+ 239 0046 03D1     		bne	.L17
+ 179:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 180:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_AMux_Next();
+ 240              		.loc 1 180 0
+ 241 0048 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Next
+ 242              	.LVL12:
+ 181:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_AMux_Next();
+ 243              		.loc 1 181 0
+ 244 004c FFF7FEFF 		bl	ResistiveTouch_1_AMux_Next
+ 245              	.LVL13:
+ 246              	.L17:
+ 247 0050 08BD     		pop	{r3, pc}
+ 248              	.L22:
+ 249 0052 00BF     		.align	2
+ 250              	.L21:
+ 251 0054 21500040 		.word	1073762337
+ 252              		.cfi_endproc
+ 253              	.LFE5:
+ 254              		.size	ResistiveTouch_1_ActivateY, .-ResistiveTouch_1_ActivateY
+ 255              		.section	.text.ResistiveTouch_1_Measure,"ax",%progbits
+ 256              		.align	2
+ 257              		.global	ResistiveTouch_1_Measure
+ 258              		.thumb
+ 259              		.thumb_func
+ 260              		.type	ResistiveTouch_1_Measure, %function
+ 261              	ResistiveTouch_1_Measure:
+ 262              	.LFB7:
+ 182:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 183:Generated_Source\PSoC5/ResistiveTouch_1.c ****     else
+ 184:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 185:Generated_Source\PSoC5/ResistiveTouch_1.c ****         /* Channel 1 is already selected. */
+ 186:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 187:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 188:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 189:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 9
+
+
+ 190:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+ 191:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_TouchDetect
+ 192:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ 193:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 194:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+ 195:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Determines if the screen is touched.
+ 196:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 197:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+ 198:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 199:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 200:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+ 201:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  uint8: The touch state.
+ 202:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  0 - untouched
+ 203:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  1 - touched
+ 204:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 205:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+ 206:Generated_Source\PSoC5/ResistiveTouch_1.c **** uint8 ResistiveTouch_1_TouchDetect(void) 
+ 207:Generated_Source\PSoC5/ResistiveTouch_1.c **** {
+ 208:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Configure x+ pin to detect touch. */
+ 209:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xp_0, PIN_DM_STRONG);
+ 210:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 211:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Add delay for signal to stabilize. */
+ 212:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyDelayUs(5u);
+ 213:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 214:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xp_0, PIN_DM_RES_UP);
+ 215:Generated_Source\PSoC5/ResistiveTouch_1.c ****     
+ 216:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Switch AMux if channel 0 is not selected. */
+ 217:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if(ResistiveTouch_1_AMux_GetChannel() != ResistiveTouch_1_AMUX_XP_CHAN)
+ 218:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 219:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_AMux_Next();
+ 220:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 221:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 222:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Configure x-, y+ and y- to detect touch. */
+ 223:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_xm_0, PIN_DM_ALG_HIZ);
+ 224:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_yp_0, PIN_DM_ALG_HIZ);
+ 225:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_ym_0, PIN_DM_STRONG);
+ 226:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 227:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Add delay for signal to stabilize. The delay is dependant on whether
+ 228:Generated_Source\PSoC5/ResistiveTouch_1.c ****     * the measurement has been done before touch detect or not.
+ 229:Generated_Source\PSoC5/ResistiveTouch_1.c ****     */
+ 230:Generated_Source\PSoC5/ResistiveTouch_1.c ****     if (ResistiveTouch_1_measurementFlag == 0u)
+ 231:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 232:Generated_Source\PSoC5/ResistiveTouch_1.c ****         CyDelayUs(20u);
+ 233:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 234:Generated_Source\PSoC5/ResistiveTouch_1.c ****     else
+ 235:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 236:Generated_Source\PSoC5/ResistiveTouch_1.c ****         ResistiveTouch_1_measurementFlag = 0u;
+ 237:Generated_Source\PSoC5/ResistiveTouch_1.c ****         CyDelayUs(8u);        
+ 238:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 239:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* The screen is touched if the measured value is lower than the specified
+ 240:Generated_Source\PSoC5/ResistiveTouch_1.c ****     * threshold.
+ 241:Generated_Source\PSoC5/ResistiveTouch_1.c ****     */
+ 242:Generated_Source\PSoC5/ResistiveTouch_1.c ****     return ((ResistiveTouch_1_Measure() < ResistiveTouch_1_TOUCH_THRESHOLD) ? 1u : 0u);
+ 243:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 244:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 245:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 246:Generated_Source\PSoC5/ResistiveTouch_1.c **** /*******************************************************************************
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 10
+
+
+ 247:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Function Name: ResistiveTouch_1_Measure
+ 248:Generated_Source\PSoC5/ResistiveTouch_1.c **** ********************************************************************************
+ 249:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 250:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Summary:
+ 251:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  Returns the result of the ADC conversion. Does not return until ADC
+ 252:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  conversion is complete.
+ 253:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 254:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Parameters:
+ 255:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  None
+ 256:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 257:Generated_Source\PSoC5/ResistiveTouch_1.c **** * Return:
+ 258:Generated_Source\PSoC5/ResistiveTouch_1.c **** *  int16: the result of the ADC conversion.
+ 259:Generated_Source\PSoC5/ResistiveTouch_1.c **** *
+ 260:Generated_Source\PSoC5/ResistiveTouch_1.c **** *******************************************************************************/
+ 261:Generated_Source\PSoC5/ResistiveTouch_1.c **** int16 ResistiveTouch_1_Measure(void) 
+ 262:Generated_Source\PSoC5/ResistiveTouch_1.c **** {       
+ 263              		.loc 1 262 0
+ 264              		.cfi_startproc
+ 265              		@ args = 0, pretend = 0, frame = 0
+ 266              		@ frame_needed = 0, uses_anonymous_args = 0
+ 267 0000 08B5     		push	{r3, lr}
+ 268              		.cfi_def_cfa_offset 8
+ 269              		.cfi_offset 3, -8
+ 270              		.cfi_offset 14, -4
+ 263:Generated_Source\PSoC5/ResistiveTouch_1.c ****     int16 result;
+ 264:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 265:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Trigger the ADC conversion and wait for results (blocking). */
+ 266:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_ADC_StartConvert();
+ 271              		.loc 1 266 0
+ 272 0002 FFF7FEFF 		bl	ResistiveTouch_1_ADC_StartConvert
+ 273              	.LVL14:
+ 267:Generated_Source\PSoC5/ResistiveTouch_1.c ****     (void)ResistiveTouch_1_ADC_IsEndConversion(ResistiveTouch_1_ADC_WAIT_FOR_RESULT);
+ 274              		.loc 1 267 0
+ 275 0006 0020     		movs	r0, #0
+ 276 0008 FFF7FEFF 		bl	ResistiveTouch_1_ADC_IsEndConversion
+ 277              	.LVL15:
+ 268:Generated_Source\PSoC5/ResistiveTouch_1.c ****     result = ResistiveTouch_1_ADC_GetResult16();
+ 278              		.loc 1 268 0
+ 279 000c FFF7FEFF 		bl	ResistiveTouch_1_ADC_GetResult16
+ 280              	.LVL16:
+ 269:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 270:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Assert a flag indicating that the measurement has been done. */
+ 271:Generated_Source\PSoC5/ResistiveTouch_1.c ****     ResistiveTouch_1_measurementFlag = 1u;
+ 281              		.loc 1 271 0
+ 282 0010 0122     		movs	r2, #1
+ 283 0012 014B     		ldr	r3, .L25
+ 284 0014 5A70     		strb	r2, [r3, #1]
+ 272:Generated_Source\PSoC5/ResistiveTouch_1.c ****     return (result);
+ 273:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 285              		.loc 1 273 0
+ 286 0016 08BD     		pop	{r3, pc}
+ 287              	.L26:
+ 288              		.align	2
+ 289              	.L25:
+ 290 0018 00000000 		.word	.LANCHOR0
+ 291              		.cfi_endproc
+ 292              	.LFE7:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 11
+
+
+ 293              		.size	ResistiveTouch_1_Measure, .-ResistiveTouch_1_Measure
+ 294              		.section	.text.ResistiveTouch_1_TouchDetect,"ax",%progbits
+ 295              		.align	2
+ 296              		.global	ResistiveTouch_1_TouchDetect
+ 297              		.thumb
+ 298              		.thumb_func
+ 299              		.type	ResistiveTouch_1_TouchDetect, %function
+ 300              	ResistiveTouch_1_TouchDetect:
+ 301              	.LFB6:
+ 207:Generated_Source\PSoC5/ResistiveTouch_1.c ****     /* Configure x+ pin to detect touch. */
+ 302              		.loc 1 207 0
+ 303              		.cfi_startproc
+ 304              		@ args = 0, pretend = 0, frame = 0
+ 305              		@ frame_needed = 0, uses_anonymous_args = 0
+ 306 0000 10B5     		push	{r4, lr}
+ 307              		.cfi_def_cfa_offset 8
+ 308              		.cfi_offset 4, -8
+ 309              		.cfi_offset 14, -4
+ 209:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 310              		.loc 1 209 0
+ 311 0002 1E4C     		ldr	r4, .L34
+ 312 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 313 0006 03F0F103 		and	r3, r3, #241
+ 314 000a 43F00C03 		orr	r3, r3, #12
+ 315 000e 2370     		strb	r3, [r4]
+ 212:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 316              		.loc 1 212 0
+ 317 0010 0520     		movs	r0, #5
+ 318 0012 FFF7FEFF 		bl	CyDelayUs
+ 319              	.LVL17:
+ 214:Generated_Source\PSoC5/ResistiveTouch_1.c ****     
+ 320              		.loc 1 214 0
+ 321 0016 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 322 0018 03F0F103 		and	r3, r3, #241
+ 323 001c 43F00403 		orr	r3, r3, #4
+ 324 0020 2370     		strb	r3, [r4]
+ 217:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 325              		.loc 1 217 0
+ 326 0022 FFF7FEFF 		bl	ResistiveTouch_1_AMux_GetChannel
+ 327              	.LVL18:
+ 328 0026 08B1     		cbz	r0, .L28
+ 219:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 329              		.loc 1 219 0
+ 330 0028 FFF7FEFF 		bl	ResistiveTouch_1_AMux_Next
+ 331              	.LVL19:
+ 332              	.L28:
+ 223:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_yp_0, PIN_DM_ALG_HIZ);
+ 333              		.loc 1 223 0
+ 334 002c 144A     		ldr	r2, .L34+4
+ 335 002e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 336 0030 03F0F103 		and	r3, r3, #241
+ 337 0034 1370     		strb	r3, [r2]
+ 224:Generated_Source\PSoC5/ResistiveTouch_1.c ****     CyPins_SetPinDriveMode(ResistiveTouch_1_ym_0, PIN_DM_STRONG);
+ 338              		.loc 1 224 0
+ 339 0036 013A     		subs	r2, r2, #1
+ 340 0038 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 341 003a 03F0F103 		and	r3, r3, #241
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 12
+
+
+ 342 003e 1370     		strb	r3, [r2]
+ 225:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 343              		.loc 1 225 0
+ 344 0040 0232     		adds	r2, r2, #2
+ 345 0042 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 346 0044 03F0F103 		and	r3, r3, #241
+ 347 0048 43F00C03 		orr	r3, r3, #12
+ 348 004c 1370     		strb	r3, [r2]
+ 230:Generated_Source\PSoC5/ResistiveTouch_1.c ****     {
+ 349              		.loc 1 230 0
+ 350 004e 0D4B     		ldr	r3, .L34+8
+ 351 0050 5B78     		ldrb	r3, [r3, #1]	@ zero_extendqisi2
+ 352 0052 1BB9     		cbnz	r3, .L29
+ 232:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 353              		.loc 1 232 0
+ 354 0054 1420     		movs	r0, #20
+ 355 0056 FFF7FEFF 		bl	CyDelayUs
+ 356              	.LVL20:
+ 357 005a 05E0     		b	.L30
+ 358              	.L29:
+ 236:Generated_Source\PSoC5/ResistiveTouch_1.c ****         CyDelayUs(8u);        
+ 359              		.loc 1 236 0
+ 360 005c 0022     		movs	r2, #0
+ 361 005e 094B     		ldr	r3, .L34+8
+ 362 0060 5A70     		strb	r2, [r3, #1]
+ 237:Generated_Source\PSoC5/ResistiveTouch_1.c ****     }
+ 363              		.loc 1 237 0
+ 364 0062 0820     		movs	r0, #8
+ 365 0064 FFF7FEFF 		bl	CyDelayUs
+ 366              	.LVL21:
+ 367              	.L30:
+ 242:Generated_Source\PSoC5/ResistiveTouch_1.c **** }
+ 368              		.loc 1 242 0
+ 369 0068 FFF7FEFF 		bl	ResistiveTouch_1_Measure
+ 370              	.LVL22:
+ 371 006c B0F5EF6F 		cmp	r0, #1912
+ 372 0070 01DA     		bge	.L32
+ 373 0072 0120     		movs	r0, #1
+ 374 0074 10BD     		pop	{r4, pc}
+ 375              	.L32:
+ 376 0076 0020     		movs	r0, #0
+ 243:Generated_Source\PSoC5/ResistiveTouch_1.c **** 
+ 377              		.loc 1 243 0
+ 378 0078 10BD     		pop	{r4, pc}
+ 379              	.L35:
+ 380 007a 00BF     		.align	2
+ 381              	.L34:
+ 382 007c 23500040 		.word	1073762339
+ 383 0080 21500040 		.word	1073762337
+ 384 0084 00000000 		.word	.LANCHOR0
+ 385              		.cfi_endproc
+ 386              	.LFE6:
+ 387              		.size	ResistiveTouch_1_TouchDetect, .-ResistiveTouch_1_TouchDetect
+ 388              		.global	ResistiveTouch_1_initVar
+ 389              		.bss
+ 390              		.set	.LANCHOR0,. + 0
+ 391              		.type	ResistiveTouch_1_initVar, %object
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 13
+
+
+ 392              		.size	ResistiveTouch_1_initVar, 1
+ 393              	ResistiveTouch_1_initVar:
+ 394 0000 00       		.space	1
+ 395              		.type	ResistiveTouch_1_measurementFlag, %object
+ 396              		.size	ResistiveTouch_1_measurementFlag, 1
+ 397              	ResistiveTouch_1_measurementFlag:
+ 398 0001 00       		.space	1
+ 399              		.text
+ 400              	.Letext0:
+ 401              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 402              		.file 3 "Generated_Source\\PSoC5\\ResistiveTouch_1_AMux.h"
+ 403              		.file 4 "Generated_Source\\PSoC5\\ResistiveTouch_1_ADC.h"
+ 404              		.file 5 "Generated_Source\\PSoC5\\cyfitter_cfg.h"
+ 405              		.file 6 "Generated_Source\\PSoC5\\CyLib.h"
+ 406              		.section	.debug_info,"",%progbits
+ 407              	.Ldebug_info0:
+ 408 0000 0D030000 		.4byte	0x30d
+ 409 0004 0400     		.2byte	0x4
+ 410 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 411 000a 04       		.byte	0x4
+ 412 000b 01       		.uleb128 0x1
+ 413 000c 31010000 		.4byte	.LASF38
+ 414 0010 0C       		.byte	0xc
+ 415 0011 36000000 		.4byte	.LASF39
+ 416 0015 B0030000 		.4byte	.LASF40
+ 417 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 418 001d 00000000 		.4byte	0
+ 419 0021 00000000 		.4byte	.Ldebug_line0
+ 420 0025 02       		.uleb128 0x2
+ 421 0026 04       		.byte	0x4
+ 422 0027 05       		.byte	0x5
+ 423 0028 696E7400 		.ascii	"int\000"
+ 424 002c 03       		.uleb128 0x3
+ 425 002d 04       		.byte	0x4
+ 426 002e 07       		.byte	0x7
+ 427 002f AF020000 		.4byte	.LASF0
+ 428 0033 03       		.uleb128 0x3
+ 429 0034 08       		.byte	0x8
+ 430 0035 05       		.byte	0x5
+ 431 0036 51030000 		.4byte	.LASF1
+ 432 003a 03       		.uleb128 0x3
+ 433 003b 08       		.byte	0x8
+ 434 003c 04       		.byte	0x4
+ 435 003d 77030000 		.4byte	.LASF2
+ 436 0041 03       		.uleb128 0x3
+ 437 0042 01       		.byte	0x1
+ 438 0043 06       		.byte	0x6
+ 439 0044 83030000 		.4byte	.LASF3
+ 440 0048 03       		.uleb128 0x3
+ 441 0049 01       		.byte	0x1
+ 442 004a 08       		.byte	0x8
+ 443 004b 23010000 		.4byte	.LASF4
+ 444 004f 03       		.uleb128 0x3
+ 445 0050 02       		.byte	0x2
+ 446 0051 05       		.byte	0x5
+ 447 0052 64030000 		.4byte	.LASF5
+ 448 0056 03       		.uleb128 0x3
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 14
+
+
+ 449 0057 02       		.byte	0x2
+ 450 0058 07       		.byte	0x7
+ 451 0059 76000000 		.4byte	.LASF6
+ 452 005d 03       		.uleb128 0x3
+ 453 005e 04       		.byte	0x4
+ 454 005f 05       		.byte	0x5
+ 455 0060 6E030000 		.4byte	.LASF7
+ 456 0064 03       		.uleb128 0x3
+ 457 0065 04       		.byte	0x4
+ 458 0066 07       		.byte	0x7
+ 459 0067 EA010000 		.4byte	.LASF8
+ 460 006b 03       		.uleb128 0x3
+ 461 006c 08       		.byte	0x8
+ 462 006d 07       		.byte	0x7
+ 463 006e D6020000 		.4byte	.LASF9
+ 464 0072 03       		.uleb128 0x3
+ 465 0073 04       		.byte	0x4
+ 466 0074 07       		.byte	0x7
+ 467 0075 48030000 		.4byte	.LASF10
+ 468 0079 03       		.uleb128 0x3
+ 469 007a 01       		.byte	0x1
+ 470 007b 08       		.byte	0x8
+ 471 007c 5F030000 		.4byte	.LASF11
+ 472 0080 04       		.uleb128 0x4
+ 473 0081 FC010000 		.4byte	.LASF12
+ 474 0085 02       		.byte	0x2
+ 475 0086 E401     		.2byte	0x1e4
+ 476 0088 48000000 		.4byte	0x48
+ 477 008c 04       		.uleb128 0x4
+ 478 008d E4010000 		.4byte	.LASF13
+ 479 0091 02       		.byte	0x2
+ 480 0092 E801     		.2byte	0x1e8
+ 481 0094 4F000000 		.4byte	0x4f
+ 482 0098 03       		.uleb128 0x3
+ 483 0099 04       		.byte	0x4
+ 484 009a 04       		.byte	0x4
+ 485 009b 01010000 		.4byte	.LASF14
+ 486 009f 03       		.uleb128 0x3
+ 487 00a0 08       		.byte	0x8
+ 488 00a1 04       		.byte	0x4
+ 489 00a2 C1000000 		.4byte	.LASF15
+ 490 00a6 04       		.uleb128 0x4
+ 491 00a7 43030000 		.4byte	.LASF16
+ 492 00ab 02       		.byte	0x2
+ 493 00ac 8E02     		.2byte	0x28e
+ 494 00ae B2000000 		.4byte	0xb2
+ 495 00b2 05       		.uleb128 0x5
+ 496 00b3 80000000 		.4byte	0x80
+ 497 00b7 06       		.uleb128 0x6
+ 498 00b8 60000000 		.4byte	.LASF17
+ 499 00bc 01       		.byte	0x1
+ 500 00bd 2A       		.byte	0x2a
+ 501 00be 00000000 		.4byte	.LFB0
+ 502 00c2 0C000000 		.4byte	.LFE0-.LFB0
+ 503 00c6 01       		.uleb128 0x1
+ 504 00c7 9C       		.byte	0x9c
+ 505 00c8 DF000000 		.4byte	0xdf
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 15
+
+
+ 506 00cc 07       		.uleb128 0x7
+ 507 00cd 06000000 		.4byte	.LVL0
+ 508 00d1 97020000 		.4byte	0x297
+ 509 00d5 07       		.uleb128 0x7
+ 510 00d6 0A000000 		.4byte	.LVL1
+ 511 00da A2020000 		.4byte	0x2a2
+ 512 00de 00       		.byte	0
+ 513 00df 06       		.uleb128 0x6
+ 514 00e0 39020000 		.4byte	.LASF18
+ 515 00e4 01       		.byte	0x1
+ 516 00e5 5D       		.byte	0x5d
+ 517 00e6 00000000 		.4byte	.LFB2
+ 518 00ea 0C000000 		.4byte	.LFE2-.LFB2
+ 519 00ee 01       		.uleb128 0x1
+ 520 00ef 9C       		.byte	0x9c
+ 521 00f0 07010000 		.4byte	0x107
+ 522 00f4 07       		.uleb128 0x7
+ 523 00f5 06000000 		.4byte	.LVL2
+ 524 00f9 AD020000 		.4byte	0x2ad
+ 525 00fd 07       		.uleb128 0x7
+ 526 00fe 0A000000 		.4byte	.LVL3
+ 527 0102 B8020000 		.4byte	0x2b8
+ 528 0106 00       		.byte	0
+ 529 0107 06       		.uleb128 0x6
+ 530 0108 E9000000 		.4byte	.LASF19
+ 531 010c 01       		.byte	0x1
+ 532 010d 72       		.byte	0x72
+ 533 010e 00000000 		.4byte	.LFB3
+ 534 0112 08000000 		.4byte	.LFE3-.LFB3
+ 535 0116 01       		.uleb128 0x1
+ 536 0117 9C       		.byte	0x9c
+ 537 0118 26010000 		.4byte	0x126
+ 538 011c 07       		.uleb128 0x7
+ 539 011d 06000000 		.4byte	.LVL4
+ 540 0121 C3020000 		.4byte	0x2c3
+ 541 0125 00       		.byte	0
+ 542 0126 06       		.uleb128 0x6
+ 543 0127 89000000 		.4byte	.LASF20
+ 544 012b 01       		.byte	0x1
+ 545 012c 44       		.byte	0x44
+ 546 012d 00000000 		.4byte	.LFB1
+ 547 0131 1C000000 		.4byte	.LFE1-.LFB1
+ 548 0135 01       		.uleb128 0x1
+ 549 0136 9C       		.byte	0x9c
+ 550 0137 4E010000 		.4byte	0x14e
+ 551 013b 07       		.uleb128 0x7
+ 552 013c 0C000000 		.4byte	.LVL5
+ 553 0140 B7000000 		.4byte	0xb7
+ 554 0144 07       		.uleb128 0x7
+ 555 0145 16000000 		.4byte	.LVL6
+ 556 0149 07010000 		.4byte	0x107
+ 557 014d 00       		.byte	0
+ 558 014e 06       		.uleb128 0x6
+ 559 014f F4020000 		.4byte	.LASF21
+ 560 0153 01       		.byte	0x1
+ 561 0154 86       		.byte	0x86
+ 562 0155 00000000 		.4byte	.LFB4
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 16
+
+
+ 563 0159 44000000 		.4byte	.LFE4-.LFB4
+ 564 015d 01       		.uleb128 0x1
+ 565 015e 9C       		.byte	0x9c
+ 566 015f 76010000 		.4byte	0x176
+ 567 0163 07       		.uleb128 0x7
+ 568 0164 36000000 		.4byte	.LVL7
+ 569 0168 CE020000 		.4byte	0x2ce
+ 570 016c 07       		.uleb128 0x7
+ 571 016d 3C000000 		.4byte	.LVL8
+ 572 0171 D9020000 		.4byte	0x2d9
+ 573 0175 00       		.byte	0
+ 574 0176 06       		.uleb128 0x6
+ 575 0177 0F030000 		.4byte	.LASF22
+ 576 017b 01       		.byte	0x1
+ 577 017c A4       		.byte	0xa4
+ 578 017d 00000000 		.4byte	.LFB5
+ 579 0181 58000000 		.4byte	.LFE5-.LFB5
+ 580 0185 01       		.uleb128 0x1
+ 581 0186 9C       		.byte	0x9c
+ 582 0187 B9010000 		.4byte	0x1b9
+ 583 018b 07       		.uleb128 0x7
+ 584 018c 36000000 		.4byte	.LVL9
+ 585 0190 CE020000 		.4byte	0x2ce
+ 586 0194 07       		.uleb128 0x7
+ 587 0195 3C000000 		.4byte	.LVL10
+ 588 0199 D9020000 		.4byte	0x2d9
+ 589 019d 07       		.uleb128 0x7
+ 590 019e 42000000 		.4byte	.LVL11
+ 591 01a2 CE020000 		.4byte	0x2ce
+ 592 01a6 07       		.uleb128 0x7
+ 593 01a7 4C000000 		.4byte	.LVL12
+ 594 01ab D9020000 		.4byte	0x2d9
+ 595 01af 07       		.uleb128 0x7
+ 596 01b0 50000000 		.4byte	.LVL13
+ 597 01b4 D9020000 		.4byte	0x2d9
+ 598 01b8 00       		.byte	0
+ 599 01b9 08       		.uleb128 0x8
+ 600 01ba 6A020000 		.4byte	.LASF23
+ 601 01be 01       		.byte	0x1
+ 602 01bf 0501     		.2byte	0x105
+ 603 01c1 8C000000 		.4byte	0x8c
+ 604 01c5 00000000 		.4byte	.LFB7
+ 605 01c9 1C000000 		.4byte	.LFE7-.LFB7
+ 606 01cd 01       		.uleb128 0x1
+ 607 01ce 9C       		.byte	0x9c
+ 608 01cf 07020000 		.4byte	0x207
+ 609 01d3 09       		.uleb128 0x9
+ 610 01d4 ED020000 		.4byte	.LASF25
+ 611 01d8 01       		.byte	0x1
+ 612 01d9 0701     		.2byte	0x107
+ 613 01db 8C000000 		.4byte	0x8c
+ 614 01df 01       		.uleb128 0x1
+ 615 01e0 50       		.byte	0x50
+ 616 01e1 07       		.uleb128 0x7
+ 617 01e2 06000000 		.4byte	.LVL14
+ 618 01e6 E4020000 		.4byte	0x2e4
+ 619 01ea 0A       		.uleb128 0xa
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 17
+
+
+ 620 01eb 0C000000 		.4byte	.LVL15
+ 621 01ef EF020000 		.4byte	0x2ef
+ 622 01f3 FD010000 		.4byte	0x1fd
+ 623 01f7 0B       		.uleb128 0xb
+ 624 01f8 01       		.uleb128 0x1
+ 625 01f9 50       		.byte	0x50
+ 626 01fa 01       		.uleb128 0x1
+ 627 01fb 30       		.byte	0x30
+ 628 01fc 00       		.byte	0
+ 629 01fd 07       		.uleb128 0x7
+ 630 01fe 10000000 		.4byte	.LVL16
+ 631 0202 FA020000 		.4byte	0x2fa
+ 632 0206 00       		.byte	0
+ 633 0207 0C       		.uleb128 0xc
+ 634 0208 1C020000 		.4byte	.LASF24
+ 635 020c 01       		.byte	0x1
+ 636 020d CE       		.byte	0xce
+ 637 020e 80000000 		.4byte	0x80
+ 638 0212 00000000 		.4byte	.LFB6
+ 639 0216 88000000 		.4byte	.LFE6-.LFB6
+ 640 021a 01       		.uleb128 0x1
+ 641 021b 9C       		.byte	0x9c
+ 642 021c 75020000 		.4byte	0x275
+ 643 0220 0A       		.uleb128 0xa
+ 644 0221 16000000 		.4byte	.LVL17
+ 645 0225 05030000 		.4byte	0x305
+ 646 0229 33020000 		.4byte	0x233
+ 647 022d 0B       		.uleb128 0xb
+ 648 022e 01       		.uleb128 0x1
+ 649 022f 50       		.byte	0x50
+ 650 0230 01       		.uleb128 0x1
+ 651 0231 35       		.byte	0x35
+ 652 0232 00       		.byte	0
+ 653 0233 07       		.uleb128 0x7
+ 654 0234 26000000 		.4byte	.LVL18
+ 655 0238 CE020000 		.4byte	0x2ce
+ 656 023c 07       		.uleb128 0x7
+ 657 023d 2C000000 		.4byte	.LVL19
+ 658 0241 D9020000 		.4byte	0x2d9
+ 659 0245 0A       		.uleb128 0xa
+ 660 0246 5A000000 		.4byte	.LVL20
+ 661 024a 05030000 		.4byte	0x305
+ 662 024e 58020000 		.4byte	0x258
+ 663 0252 0B       		.uleb128 0xb
+ 664 0253 01       		.uleb128 0x1
+ 665 0254 50       		.byte	0x50
+ 666 0255 01       		.uleb128 0x1
+ 667 0256 44       		.byte	0x44
+ 668 0257 00       		.byte	0
+ 669 0258 0A       		.uleb128 0xa
+ 670 0259 68000000 		.4byte	.LVL21
+ 671 025d 05030000 		.4byte	0x305
+ 672 0261 6B020000 		.4byte	0x26b
+ 673 0265 0B       		.uleb128 0xb
+ 674 0266 01       		.uleb128 0x1
+ 675 0267 50       		.byte	0x50
+ 676 0268 01       		.uleb128 0x1
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 18
+
+
+ 677 0269 38       		.byte	0x38
+ 678 026a 00       		.byte	0
+ 679 026b 07       		.uleb128 0x7
+ 680 026c 6C000000 		.4byte	.LVL22
+ 681 0270 B9010000 		.4byte	0x1b9
+ 682 0274 00       		.byte	0
+ 683 0275 0D       		.uleb128 0xd
+ 684 0276 C8000000 		.4byte	.LASF26
+ 685 027a 01       		.byte	0x1
+ 686 027b 19       		.byte	0x19
+ 687 027c 80000000 		.4byte	0x80
+ 688 0280 05       		.uleb128 0x5
+ 689 0281 03       		.byte	0x3
+ 690 0282 01000000 		.4byte	ResistiveTouch_1_measurementFlag
+ 691 0286 0E       		.uleb128 0xe
+ 692 0287 2A030000 		.4byte	.LASF41
+ 693 028b 01       		.byte	0x1
+ 694 028c 18       		.byte	0x18
+ 695 028d 80000000 		.4byte	0x80
+ 696 0291 05       		.uleb128 0x5
+ 697 0292 03       		.byte	0x3
+ 698 0293 00000000 		.4byte	ResistiveTouch_1_initVar
+ 699 0297 0F       		.uleb128 0xf
+ 700 0298 1B000000 		.4byte	.LASF27
+ 701 029c 1B000000 		.4byte	.LASF27
+ 702 02a0 03       		.byte	0x3
+ 703 02a1 2E       		.byte	0x2e
+ 704 02a2 0F       		.uleb128 0xf
+ 705 02a3 02020000 		.4byte	.LASF28
+ 706 02a7 02020000 		.4byte	.LASF28
+ 707 02ab 04       		.byte	0x4
+ 708 02ac 4C       		.byte	0x4c
+ 709 02ad 0F       		.uleb128 0xf
+ 710 02ae BC020000 		.4byte	.LASF29
+ 711 02b2 BC020000 		.4byte	.LASF29
+ 712 02b6 04       		.byte	0x4
+ 713 02b7 3B       		.byte	0x3b
+ 714 02b8 0F       		.uleb128 0xf
+ 715 02b9 4F020000 		.4byte	.LASF30
+ 716 02bd 4F020000 		.4byte	.LASF30
+ 717 02c1 03       		.byte	0x3
+ 718 02c2 2F       		.byte	0x2f
+ 719 02c3 0F       		.uleb128 0xf
+ 720 02c4 07010000 		.4byte	.LASF31
+ 721 02c8 07010000 		.4byte	.LASF31
+ 722 02cc 04       		.byte	0x4
+ 723 02cd 4D       		.byte	0x4d
+ 724 02ce 0F       		.uleb128 0xf
+ 725 02cf A0000000 		.4byte	.LASF32
+ 726 02d3 A0000000 		.4byte	.LASF32
+ 727 02d7 03       		.byte	0x3
+ 728 02d8 38       		.byte	0x38
+ 729 02d9 0F       		.uleb128 0xf
+ 730 02da 00000000 		.4byte	.LASF33
+ 731 02de 00000000 		.4byte	.LASF33
+ 732 02e2 05       		.byte	0x5
+ 733 02e3 25       		.byte	0x25
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 19
+
+
+ 734 02e4 0F       		.uleb128 0xf
+ 735 02e5 8D020000 		.4byte	.LASF34
+ 736 02e9 8D020000 		.4byte	.LASF34
+ 737 02ed 04       		.byte	0x4
+ 738 02ee 3D       		.byte	0x3d
+ 739 02ef 0F       		.uleb128 0xf
+ 740 02f0 BF010000 		.4byte	.LASF35
+ 741 02f4 BF010000 		.4byte	.LASF35
+ 742 02f8 04       		.byte	0x4
+ 743 02f9 3F       		.byte	0x3f
+ 744 02fa 0F       		.uleb128 0xf
+ 745 02fb 8F030000 		.4byte	.LASF36
+ 746 02ff 8F030000 		.4byte	.LASF36
+ 747 0303 04       		.byte	0x4
+ 748 0304 41       		.byte	0x41
+ 749 0305 0F       		.uleb128 0xf
+ 750 0306 83020000 		.4byte	.LASF37
+ 751 030a 83020000 		.4byte	.LASF37
+ 752 030e 06       		.byte	0x6
+ 753 030f 77       		.byte	0x77
+ 754 0310 00       		.byte	0
+ 755              		.section	.debug_abbrev,"",%progbits
+ 756              	.Ldebug_abbrev0:
+ 757 0000 01       		.uleb128 0x1
+ 758 0001 11       		.uleb128 0x11
+ 759 0002 01       		.byte	0x1
+ 760 0003 25       		.uleb128 0x25
+ 761 0004 0E       		.uleb128 0xe
+ 762 0005 13       		.uleb128 0x13
+ 763 0006 0B       		.uleb128 0xb
+ 764 0007 03       		.uleb128 0x3
+ 765 0008 0E       		.uleb128 0xe
+ 766 0009 1B       		.uleb128 0x1b
+ 767 000a 0E       		.uleb128 0xe
+ 768 000b 55       		.uleb128 0x55
+ 769 000c 17       		.uleb128 0x17
+ 770 000d 11       		.uleb128 0x11
+ 771 000e 01       		.uleb128 0x1
+ 772 000f 10       		.uleb128 0x10
+ 773 0010 17       		.uleb128 0x17
+ 774 0011 00       		.byte	0
+ 775 0012 00       		.byte	0
+ 776 0013 02       		.uleb128 0x2
+ 777 0014 24       		.uleb128 0x24
+ 778 0015 00       		.byte	0
+ 779 0016 0B       		.uleb128 0xb
+ 780 0017 0B       		.uleb128 0xb
+ 781 0018 3E       		.uleb128 0x3e
+ 782 0019 0B       		.uleb128 0xb
+ 783 001a 03       		.uleb128 0x3
+ 784 001b 08       		.uleb128 0x8
+ 785 001c 00       		.byte	0
+ 786 001d 00       		.byte	0
+ 787 001e 03       		.uleb128 0x3
+ 788 001f 24       		.uleb128 0x24
+ 789 0020 00       		.byte	0
+ 790 0021 0B       		.uleb128 0xb
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 20
+
+
+ 791 0022 0B       		.uleb128 0xb
+ 792 0023 3E       		.uleb128 0x3e
+ 793 0024 0B       		.uleb128 0xb
+ 794 0025 03       		.uleb128 0x3
+ 795 0026 0E       		.uleb128 0xe
+ 796 0027 00       		.byte	0
+ 797 0028 00       		.byte	0
+ 798 0029 04       		.uleb128 0x4
+ 799 002a 16       		.uleb128 0x16
+ 800 002b 00       		.byte	0
+ 801 002c 03       		.uleb128 0x3
+ 802 002d 0E       		.uleb128 0xe
+ 803 002e 3A       		.uleb128 0x3a
+ 804 002f 0B       		.uleb128 0xb
+ 805 0030 3B       		.uleb128 0x3b
+ 806 0031 05       		.uleb128 0x5
+ 807 0032 49       		.uleb128 0x49
+ 808 0033 13       		.uleb128 0x13
+ 809 0034 00       		.byte	0
+ 810 0035 00       		.byte	0
+ 811 0036 05       		.uleb128 0x5
+ 812 0037 35       		.uleb128 0x35
+ 813 0038 00       		.byte	0
+ 814 0039 49       		.uleb128 0x49
+ 815 003a 13       		.uleb128 0x13
+ 816 003b 00       		.byte	0
+ 817 003c 00       		.byte	0
+ 818 003d 06       		.uleb128 0x6
+ 819 003e 2E       		.uleb128 0x2e
+ 820 003f 01       		.byte	0x1
+ 821 0040 3F       		.uleb128 0x3f
+ 822 0041 19       		.uleb128 0x19
+ 823 0042 03       		.uleb128 0x3
+ 824 0043 0E       		.uleb128 0xe
+ 825 0044 3A       		.uleb128 0x3a
+ 826 0045 0B       		.uleb128 0xb
+ 827 0046 3B       		.uleb128 0x3b
+ 828 0047 0B       		.uleb128 0xb
+ 829 0048 27       		.uleb128 0x27
+ 830 0049 19       		.uleb128 0x19
+ 831 004a 11       		.uleb128 0x11
+ 832 004b 01       		.uleb128 0x1
+ 833 004c 12       		.uleb128 0x12
+ 834 004d 06       		.uleb128 0x6
+ 835 004e 40       		.uleb128 0x40
+ 836 004f 18       		.uleb128 0x18
+ 837 0050 9742     		.uleb128 0x2117
+ 838 0052 19       		.uleb128 0x19
+ 839 0053 01       		.uleb128 0x1
+ 840 0054 13       		.uleb128 0x13
+ 841 0055 00       		.byte	0
+ 842 0056 00       		.byte	0
+ 843 0057 07       		.uleb128 0x7
+ 844 0058 898201   		.uleb128 0x4109
+ 845 005b 00       		.byte	0
+ 846 005c 11       		.uleb128 0x11
+ 847 005d 01       		.uleb128 0x1
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 21
+
+
+ 848 005e 31       		.uleb128 0x31
+ 849 005f 13       		.uleb128 0x13
+ 850 0060 00       		.byte	0
+ 851 0061 00       		.byte	0
+ 852 0062 08       		.uleb128 0x8
+ 853 0063 2E       		.uleb128 0x2e
+ 854 0064 01       		.byte	0x1
+ 855 0065 3F       		.uleb128 0x3f
+ 856 0066 19       		.uleb128 0x19
+ 857 0067 03       		.uleb128 0x3
+ 858 0068 0E       		.uleb128 0xe
+ 859 0069 3A       		.uleb128 0x3a
+ 860 006a 0B       		.uleb128 0xb
+ 861 006b 3B       		.uleb128 0x3b
+ 862 006c 05       		.uleb128 0x5
+ 863 006d 27       		.uleb128 0x27
+ 864 006e 19       		.uleb128 0x19
+ 865 006f 49       		.uleb128 0x49
+ 866 0070 13       		.uleb128 0x13
+ 867 0071 11       		.uleb128 0x11
+ 868 0072 01       		.uleb128 0x1
+ 869 0073 12       		.uleb128 0x12
+ 870 0074 06       		.uleb128 0x6
+ 871 0075 40       		.uleb128 0x40
+ 872 0076 18       		.uleb128 0x18
+ 873 0077 9742     		.uleb128 0x2117
+ 874 0079 19       		.uleb128 0x19
+ 875 007a 01       		.uleb128 0x1
+ 876 007b 13       		.uleb128 0x13
+ 877 007c 00       		.byte	0
+ 878 007d 00       		.byte	0
+ 879 007e 09       		.uleb128 0x9
+ 880 007f 34       		.uleb128 0x34
+ 881 0080 00       		.byte	0
+ 882 0081 03       		.uleb128 0x3
+ 883 0082 0E       		.uleb128 0xe
+ 884 0083 3A       		.uleb128 0x3a
+ 885 0084 0B       		.uleb128 0xb
+ 886 0085 3B       		.uleb128 0x3b
+ 887 0086 05       		.uleb128 0x5
+ 888 0087 49       		.uleb128 0x49
+ 889 0088 13       		.uleb128 0x13
+ 890 0089 02       		.uleb128 0x2
+ 891 008a 18       		.uleb128 0x18
+ 892 008b 00       		.byte	0
+ 893 008c 00       		.byte	0
+ 894 008d 0A       		.uleb128 0xa
+ 895 008e 898201   		.uleb128 0x4109
+ 896 0091 01       		.byte	0x1
+ 897 0092 11       		.uleb128 0x11
+ 898 0093 01       		.uleb128 0x1
+ 899 0094 31       		.uleb128 0x31
+ 900 0095 13       		.uleb128 0x13
+ 901 0096 01       		.uleb128 0x1
+ 902 0097 13       		.uleb128 0x13
+ 903 0098 00       		.byte	0
+ 904 0099 00       		.byte	0
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 22
+
+
+ 905 009a 0B       		.uleb128 0xb
+ 906 009b 8A8201   		.uleb128 0x410a
+ 907 009e 00       		.byte	0
+ 908 009f 02       		.uleb128 0x2
+ 909 00a0 18       		.uleb128 0x18
+ 910 00a1 9142     		.uleb128 0x2111
+ 911 00a3 18       		.uleb128 0x18
+ 912 00a4 00       		.byte	0
+ 913 00a5 00       		.byte	0
+ 914 00a6 0C       		.uleb128 0xc
+ 915 00a7 2E       		.uleb128 0x2e
+ 916 00a8 01       		.byte	0x1
+ 917 00a9 3F       		.uleb128 0x3f
+ 918 00aa 19       		.uleb128 0x19
+ 919 00ab 03       		.uleb128 0x3
+ 920 00ac 0E       		.uleb128 0xe
+ 921 00ad 3A       		.uleb128 0x3a
+ 922 00ae 0B       		.uleb128 0xb
+ 923 00af 3B       		.uleb128 0x3b
+ 924 00b0 0B       		.uleb128 0xb
+ 925 00b1 27       		.uleb128 0x27
+ 926 00b2 19       		.uleb128 0x19
+ 927 00b3 49       		.uleb128 0x49
+ 928 00b4 13       		.uleb128 0x13
+ 929 00b5 11       		.uleb128 0x11
+ 930 00b6 01       		.uleb128 0x1
+ 931 00b7 12       		.uleb128 0x12
+ 932 00b8 06       		.uleb128 0x6
+ 933 00b9 40       		.uleb128 0x40
+ 934 00ba 18       		.uleb128 0x18
+ 935 00bb 9742     		.uleb128 0x2117
+ 936 00bd 19       		.uleb128 0x19
+ 937 00be 01       		.uleb128 0x1
+ 938 00bf 13       		.uleb128 0x13
+ 939 00c0 00       		.byte	0
+ 940 00c1 00       		.byte	0
+ 941 00c2 0D       		.uleb128 0xd
+ 942 00c3 34       		.uleb128 0x34
+ 943 00c4 00       		.byte	0
+ 944 00c5 03       		.uleb128 0x3
+ 945 00c6 0E       		.uleb128 0xe
+ 946 00c7 3A       		.uleb128 0x3a
+ 947 00c8 0B       		.uleb128 0xb
+ 948 00c9 3B       		.uleb128 0x3b
+ 949 00ca 0B       		.uleb128 0xb
+ 950 00cb 49       		.uleb128 0x49
+ 951 00cc 13       		.uleb128 0x13
+ 952 00cd 02       		.uleb128 0x2
+ 953 00ce 18       		.uleb128 0x18
+ 954 00cf 00       		.byte	0
+ 955 00d0 00       		.byte	0
+ 956 00d1 0E       		.uleb128 0xe
+ 957 00d2 34       		.uleb128 0x34
+ 958 00d3 00       		.byte	0
+ 959 00d4 03       		.uleb128 0x3
+ 960 00d5 0E       		.uleb128 0xe
+ 961 00d6 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 23
+
+
+ 962 00d7 0B       		.uleb128 0xb
+ 963 00d8 3B       		.uleb128 0x3b
+ 964 00d9 0B       		.uleb128 0xb
+ 965 00da 49       		.uleb128 0x49
+ 966 00db 13       		.uleb128 0x13
+ 967 00dc 3F       		.uleb128 0x3f
+ 968 00dd 19       		.uleb128 0x19
+ 969 00de 02       		.uleb128 0x2
+ 970 00df 18       		.uleb128 0x18
+ 971 00e0 00       		.byte	0
+ 972 00e1 00       		.byte	0
+ 973 00e2 0F       		.uleb128 0xf
+ 974 00e3 2E       		.uleb128 0x2e
+ 975 00e4 00       		.byte	0
+ 976 00e5 3F       		.uleb128 0x3f
+ 977 00e6 19       		.uleb128 0x19
+ 978 00e7 3C       		.uleb128 0x3c
+ 979 00e8 19       		.uleb128 0x19
+ 980 00e9 6E       		.uleb128 0x6e
+ 981 00ea 0E       		.uleb128 0xe
+ 982 00eb 03       		.uleb128 0x3
+ 983 00ec 0E       		.uleb128 0xe
+ 984 00ed 3A       		.uleb128 0x3a
+ 985 00ee 0B       		.uleb128 0xb
+ 986 00ef 3B       		.uleb128 0x3b
+ 987 00f0 0B       		.uleb128 0xb
+ 988 00f1 00       		.byte	0
+ 989 00f2 00       		.byte	0
+ 990 00f3 00       		.byte	0
+ 991              		.section	.debug_aranges,"",%progbits
+ 992 0000 54000000 		.4byte	0x54
+ 993 0004 0200     		.2byte	0x2
+ 994 0006 00000000 		.4byte	.Ldebug_info0
+ 995 000a 04       		.byte	0x4
+ 996 000b 00       		.byte	0
+ 997 000c 0000     		.2byte	0
+ 998 000e 0000     		.2byte	0
+ 999 0010 00000000 		.4byte	.LFB0
+ 1000 0014 0C000000 		.4byte	.LFE0-.LFB0
+ 1001 0018 00000000 		.4byte	.LFB2
+ 1002 001c 0C000000 		.4byte	.LFE2-.LFB2
+ 1003 0020 00000000 		.4byte	.LFB3
+ 1004 0024 08000000 		.4byte	.LFE3-.LFB3
+ 1005 0028 00000000 		.4byte	.LFB1
+ 1006 002c 1C000000 		.4byte	.LFE1-.LFB1
+ 1007 0030 00000000 		.4byte	.LFB4
+ 1008 0034 44000000 		.4byte	.LFE4-.LFB4
+ 1009 0038 00000000 		.4byte	.LFB5
+ 1010 003c 58000000 		.4byte	.LFE5-.LFB5
+ 1011 0040 00000000 		.4byte	.LFB7
+ 1012 0044 1C000000 		.4byte	.LFE7-.LFB7
+ 1013 0048 00000000 		.4byte	.LFB6
+ 1014 004c 88000000 		.4byte	.LFE6-.LFB6
+ 1015 0050 00000000 		.4byte	0
+ 1016 0054 00000000 		.4byte	0
+ 1017              		.section	.debug_ranges,"",%progbits
+ 1018              	.Ldebug_ranges0:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 24
+
+
+ 1019 0000 00000000 		.4byte	.LFB0
+ 1020 0004 0C000000 		.4byte	.LFE0
+ 1021 0008 00000000 		.4byte	.LFB2
+ 1022 000c 0C000000 		.4byte	.LFE2
+ 1023 0010 00000000 		.4byte	.LFB3
+ 1024 0014 08000000 		.4byte	.LFE3
+ 1025 0018 00000000 		.4byte	.LFB1
+ 1026 001c 1C000000 		.4byte	.LFE1
+ 1027 0020 00000000 		.4byte	.LFB4
+ 1028 0024 44000000 		.4byte	.LFE4
+ 1029 0028 00000000 		.4byte	.LFB5
+ 1030 002c 58000000 		.4byte	.LFE5
+ 1031 0030 00000000 		.4byte	.LFB7
+ 1032 0034 1C000000 		.4byte	.LFE7
+ 1033 0038 00000000 		.4byte	.LFB6
+ 1034 003c 88000000 		.4byte	.LFE6
+ 1035 0040 00000000 		.4byte	0
+ 1036 0044 00000000 		.4byte	0
+ 1037              		.section	.debug_line,"",%progbits
+ 1038              	.Ldebug_line0:
+ 1039 0000 4F010000 		.section	.debug_str,"MS",%progbits,1
+ 1039      02009F00 
+ 1039      00000201 
+ 1039      FB0E0D00 
+ 1039      01010101 
+ 1040              	.LASF33:
+ 1041 0000 52657369 		.ascii	"ResistiveTouch_1_AMux_Next\000"
+ 1041      73746976 
+ 1041      65546F75 
+ 1041      63685F31 
+ 1041      5F414D75 
+ 1042              	.LASF27:
+ 1043 001b 52657369 		.ascii	"ResistiveTouch_1_AMux_Init\000"
+ 1043      73746976 
+ 1043      65546F75 
+ 1043      63685F31 
+ 1043      5F414D75 
+ 1044              	.LASF39:
+ 1045 0036 47656E65 		.ascii	"Generated_Source\\PSoC5\\ResistiveTouch_1.c\000"
+ 1045      72617465 
+ 1045      645F536F 
+ 1045      75726365 
+ 1045      5C50536F 
+ 1046              	.LASF17:
+ 1047 0060 52657369 		.ascii	"ResistiveTouch_1_Init\000"
+ 1047      73746976 
+ 1047      65546F75 
+ 1047      63685F31 
+ 1047      5F496E69 
+ 1048              	.LASF6:
+ 1049 0076 73686F72 		.ascii	"short unsigned int\000"
+ 1049      7420756E 
+ 1049      7369676E 
+ 1049      65642069 
+ 1049      6E7400
+ 1050              	.LASF20:
+ 1051 0089 52657369 		.ascii	"ResistiveTouch_1_Start\000"
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 25
+
+
+ 1051      73746976 
+ 1051      65546F75 
+ 1051      63685F31 
+ 1051      5F537461 
+ 1052              	.LASF32:
+ 1053 00a0 52657369 		.ascii	"ResistiveTouch_1_AMux_GetChannel\000"
+ 1053      73746976 
+ 1053      65546F75 
+ 1053      63685F31 
+ 1053      5F414D75 
+ 1054              	.LASF15:
+ 1055 00c1 646F7562 		.ascii	"double\000"
+ 1055      6C6500
+ 1056              	.LASF26:
+ 1057 00c8 52657369 		.ascii	"ResistiveTouch_1_measurementFlag\000"
+ 1057      73746976 
+ 1057      65546F75 
+ 1057      63685F31 
+ 1057      5F6D6561 
+ 1058              	.LASF19:
+ 1059 00e9 52657369 		.ascii	"ResistiveTouch_1_Enable\000"
+ 1059      73746976 
+ 1059      65546F75 
+ 1059      63685F31 
+ 1059      5F456E61 
+ 1060              	.LASF14:
+ 1061 0101 666C6F61 		.ascii	"float\000"
+ 1061      7400
+ 1062              	.LASF31:
+ 1063 0107 52657369 		.ascii	"ResistiveTouch_1_ADC_Enable\000"
+ 1063      73746976 
+ 1063      65546F75 
+ 1063      63685F31 
+ 1063      5F414443 
+ 1064              	.LASF4:
+ 1065 0123 756E7369 		.ascii	"unsigned char\000"
+ 1065      676E6564 
+ 1065      20636861 
+ 1065      7200
+ 1066              	.LASF38:
+ 1067 0131 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1067      43313120 
+ 1067      352E342E 
+ 1067      31203230 
+ 1067      31363036 
+ 1068 0164 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1068      20726576 
+ 1068      6973696F 
+ 1068      6E203233 
+ 1068      37373135 
+ 1069 0197 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 1069      66756E63 
+ 1069      74696F6E 
+ 1069      2D736563 
+ 1069      74696F6E 
+ 1070              	.LASF35:
+ 1071 01bf 52657369 		.ascii	"ResistiveTouch_1_ADC_IsEndConversion\000"
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 26
+
+
+ 1071      73746976 
+ 1071      65546F75 
+ 1071      63685F31 
+ 1071      5F414443 
+ 1072              	.LASF13:
+ 1073 01e4 696E7431 		.ascii	"int16\000"
+ 1073      3600
+ 1074              	.LASF8:
+ 1075 01ea 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1075      20756E73 
+ 1075      69676E65 
+ 1075      6420696E 
+ 1075      7400
+ 1076              	.LASF12:
+ 1077 01fc 75696E74 		.ascii	"uint8\000"
+ 1077      3800
+ 1078              	.LASF28:
+ 1079 0202 52657369 		.ascii	"ResistiveTouch_1_ADC_Init\000"
+ 1079      73746976 
+ 1079      65546F75 
+ 1079      63685F31 
+ 1079      5F414443 
+ 1080              	.LASF24:
+ 1081 021c 52657369 		.ascii	"ResistiveTouch_1_TouchDetect\000"
+ 1081      73746976 
+ 1081      65546F75 
+ 1081      63685F31 
+ 1081      5F546F75 
+ 1082              	.LASF18:
+ 1083 0239 52657369 		.ascii	"ResistiveTouch_1_Stop\000"
+ 1083      73746976 
+ 1083      65546F75 
+ 1083      63685F31 
+ 1083      5F53746F 
+ 1084              	.LASF30:
+ 1085 024f 52657369 		.ascii	"ResistiveTouch_1_AMux_Stop\000"
+ 1085      73746976 
+ 1085      65546F75 
+ 1085      63685F31 
+ 1085      5F414D75 
+ 1086              	.LASF23:
+ 1087 026a 52657369 		.ascii	"ResistiveTouch_1_Measure\000"
+ 1087      73746976 
+ 1087      65546F75 
+ 1087      63685F31 
+ 1087      5F4D6561 
+ 1088              	.LASF37:
+ 1089 0283 43794465 		.ascii	"CyDelayUs\000"
+ 1089      6C617955 
+ 1089      7300
+ 1090              	.LASF34:
+ 1091 028d 52657369 		.ascii	"ResistiveTouch_1_ADC_StartConvert\000"
+ 1091      73746976 
+ 1091      65546F75 
+ 1091      63685F31 
+ 1091      5F414443 
+ 1092              	.LASF0:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 27
+
+
+ 1093 02af 756E7369 		.ascii	"unsigned int\000"
+ 1093      676E6564 
+ 1093      20696E74 
+ 1093      00
+ 1094              	.LASF29:
+ 1095 02bc 52657369 		.ascii	"ResistiveTouch_1_ADC_Stop\000"
+ 1095      73746976 
+ 1095      65546F75 
+ 1095      63685F31 
+ 1095      5F414443 
+ 1096              	.LASF9:
+ 1097 02d6 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1097      206C6F6E 
+ 1097      6720756E 
+ 1097      7369676E 
+ 1097      65642069 
+ 1098              	.LASF25:
+ 1099 02ed 72657375 		.ascii	"result\000"
+ 1099      6C7400
+ 1100              	.LASF21:
+ 1101 02f4 52657369 		.ascii	"ResistiveTouch_1_ActivateX\000"
+ 1101      73746976 
+ 1101      65546F75 
+ 1101      63685F31 
+ 1101      5F416374 
+ 1102              	.LASF22:
+ 1103 030f 52657369 		.ascii	"ResistiveTouch_1_ActivateY\000"
+ 1103      73746976 
+ 1103      65546F75 
+ 1103      63685F31 
+ 1103      5F416374 
+ 1104              	.LASF41:
+ 1105 032a 52657369 		.ascii	"ResistiveTouch_1_initVar\000"
+ 1105      73746976 
+ 1105      65546F75 
+ 1105      63685F31 
+ 1105      5F696E69 
+ 1106              	.LASF16:
+ 1107 0343 72656738 		.ascii	"reg8\000"
+ 1107      00
+ 1108              	.LASF10:
+ 1109 0348 73697A65 		.ascii	"sizetype\000"
+ 1109      74797065 
+ 1109      00
+ 1110              	.LASF1:
+ 1111 0351 6C6F6E67 		.ascii	"long long int\000"
+ 1111      206C6F6E 
+ 1111      6720696E 
+ 1111      7400
+ 1112              	.LASF11:
+ 1113 035f 63686172 		.ascii	"char\000"
+ 1113      00
+ 1114              	.LASF5:
+ 1115 0364 73686F72 		.ascii	"short int\000"
+ 1115      7420696E 
+ 1115      7400
+ 1116              	.LASF7:
+ARM GAS  C:\Users\esancho\AppData\Local\Temp\ccHtTF2X.s 			page 28
+
+
+ 1117 036e 6C6F6E67 		.ascii	"long int\000"
+ 1117      20696E74 
+ 1117      00
+ 1118              	.LASF2:
+ 1119 0377 6C6F6E67 		.ascii	"long double\000"
+ 1119      20646F75 
+ 1119      626C6500 
+ 1120              	.LASF3:
+ 1121 0383 7369676E 		.ascii	"signed char\000"
+ 1121      65642063 
+ 1121      68617200 
+ 1122              	.LASF36:
+ 1123 038f 52657369 		.ascii	"ResistiveTouch_1_ADC_GetResult16\000"
+ 1123      73746976 
+ 1123      65546F75 
+ 1123      63685F31 
+ 1123      5F414443 
+ 1124              	.LASF40:
+ 1125 03b0 433A5C55 		.ascii	"C:\\Users\\esancho\\Downloads\\PID Controler\\Contr"
+ 1125      73657273 
+ 1125      5C657361 
+ 1125      6E63686F 
+ 1125      5C446F77 
+ 1126 03de 6F6C6164 		.ascii	"olador.cydsn\000"
+ 1126      6F722E63 
+ 1126      7964736E 
+ 1126      00
+ 1127              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

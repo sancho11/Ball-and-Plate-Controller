@@ -1,0 +1,819 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Touch_AMux.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Touch_AMux_Start,"ax",%progbits
+  20              		.align	2
+  21              		.global	Touch_AMux_Start
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Touch_AMux_Start, %function
+  25              	Touch_AMux_Start:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\Touch_AMux.c"
+   1:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Touch_AMux.c **** * File Name: Touch_AMux.c
+   3:Generated_Source\PSoC5/Touch_AMux.c **** * Version 1.80
+   4:Generated_Source\PSoC5/Touch_AMux.c **** *
+   5:Generated_Source\PSoC5/Touch_AMux.c **** *  Description:
+   6:Generated_Source\PSoC5/Touch_AMux.c **** *    This file contains functions for the AMuxSeq.
+   7:Generated_Source\PSoC5/Touch_AMux.c **** *
+   8:Generated_Source\PSoC5/Touch_AMux.c **** *   Note:
+   9:Generated_Source\PSoC5/Touch_AMux.c **** *
+  10:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************
+  11:Generated_Source\PSoC5/Touch_AMux.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC5/Touch_AMux.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  13:Generated_Source\PSoC5/Touch_AMux.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  14:Generated_Source\PSoC5/Touch_AMux.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************/
+  16:Generated_Source\PSoC5/Touch_AMux.c **** 
+  17:Generated_Source\PSoC5/Touch_AMux.c **** #include "Touch_AMux.h"
+  18:Generated_Source\PSoC5/Touch_AMux.c **** 
+  19:Generated_Source\PSoC5/Touch_AMux.c **** uint8 Touch_AMux_initVar = 0u;
+  20:Generated_Source\PSoC5/Touch_AMux.c **** 
+  21:Generated_Source\PSoC5/Touch_AMux.c **** 
+  22:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+  23:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_Start
+  24:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+  25:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+  26:Generated_Source\PSoC5/Touch_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  27:Generated_Source\PSoC5/Touch_AMux.c **** *  connected.
+  28:Generated_Source\PSoC5/Touch_AMux.c **** *
+  29:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+  30:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 2
+
+
+  31:Generated_Source\PSoC5/Touch_AMux.c **** *
+  32:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+  33:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  34:Generated_Source\PSoC5/Touch_AMux.c **** *
+  35:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+  36:Generated_Source\PSoC5/Touch_AMux.c **** void Touch_AMux_Start(void)
+  37:Generated_Source\PSoC5/Touch_AMux.c **** {
+  28              		.loc 1 37 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  38:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_DisconnectAll();
+  36              		.loc 1 38 0
+  37 0002 FFF7FEFF 		bl	Touch_AMux_DisconnectAll
+  38              	.LVL0:
+  39:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_initVar = 1u;
+  39              		.loc 1 39 0
+  40 0006 0122     		movs	r2, #1
+  41 0008 014B     		ldr	r3, .L3
+  42 000a 1A70     		strb	r2, [r3]
+  43 000c 08BD     		pop	{r3, pc}
+  44              	.L4:
+  45 000e 00BF     		.align	2
+  46              	.L3:
+  47 0010 00000000 		.word	.LANCHOR0
+  48              		.cfi_endproc
+  49              	.LFE0:
+  50              		.size	Touch_AMux_Start, .-Touch_AMux_Start
+  51              		.section	.text.Touch_AMux_Init,"ax",%progbits
+  52              		.align	2
+  53              		.global	Touch_AMux_Init
+  54              		.thumb
+  55              		.thumb_func
+  56              		.type	Touch_AMux_Init, %function
+  57              	Touch_AMux_Init:
+  58              	.LFB1:
+  40:Generated_Source\PSoC5/Touch_AMux.c **** }
+  41:Generated_Source\PSoC5/Touch_AMux.c **** 
+  42:Generated_Source\PSoC5/Touch_AMux.c **** 
+  43:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+  44:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_Init
+  45:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+  46:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+  47:Generated_Source\PSoC5/Touch_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  48:Generated_Source\PSoC5/Touch_AMux.c **** *  connected.
+  49:Generated_Source\PSoC5/Touch_AMux.c **** *
+  50:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+  51:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  52:Generated_Source\PSoC5/Touch_AMux.c **** *
+  53:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+  54:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  55:Generated_Source\PSoC5/Touch_AMux.c **** *
+  56:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 3
+
+
+  57:Generated_Source\PSoC5/Touch_AMux.c **** void Touch_AMux_Init(void)
+  58:Generated_Source\PSoC5/Touch_AMux.c **** {
+  59              		.loc 1 58 0
+  60              		.cfi_startproc
+  61              		@ args = 0, pretend = 0, frame = 0
+  62              		@ frame_needed = 0, uses_anonymous_args = 0
+  63 0000 08B5     		push	{r3, lr}
+  64              		.cfi_def_cfa_offset 8
+  65              		.cfi_offset 3, -8
+  66              		.cfi_offset 14, -4
+  59:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_DisconnectAll();
+  67              		.loc 1 59 0
+  68 0002 FFF7FEFF 		bl	Touch_AMux_DisconnectAll
+  69              	.LVL1:
+  70 0006 08BD     		pop	{r3, pc}
+  71              		.cfi_endproc
+  72              	.LFE1:
+  73              		.size	Touch_AMux_Init, .-Touch_AMux_Init
+  74              		.section	.text.Touch_AMux_Stop,"ax",%progbits
+  75              		.align	2
+  76              		.global	Touch_AMux_Stop
+  77              		.thumb
+  78              		.thumb_func
+  79              		.type	Touch_AMux_Stop, %function
+  80              	Touch_AMux_Stop:
+  81              	.LFB2:
+  60:Generated_Source\PSoC5/Touch_AMux.c **** }
+  61:Generated_Source\PSoC5/Touch_AMux.c **** 
+  62:Generated_Source\PSoC5/Touch_AMux.c **** 
+  63:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+  64:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_Stop
+  65:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+  66:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+  67:Generated_Source\PSoC5/Touch_AMux.c **** *  Disconnect all channels. The next time Next is called, channel 0 will be
+  68:Generated_Source\PSoC5/Touch_AMux.c **** *  connected.
+  69:Generated_Source\PSoC5/Touch_AMux.c **** *
+  70:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+  71:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  72:Generated_Source\PSoC5/Touch_AMux.c **** *
+  73:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+  74:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  75:Generated_Source\PSoC5/Touch_AMux.c **** *
+  76:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+  77:Generated_Source\PSoC5/Touch_AMux.c **** void Touch_AMux_Stop(void)
+  78:Generated_Source\PSoC5/Touch_AMux.c **** {
+  82              		.loc 1 78 0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86 0000 08B5     		push	{r3, lr}
+  87              		.cfi_def_cfa_offset 8
+  88              		.cfi_offset 3, -8
+  89              		.cfi_offset 14, -4
+  79:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_DisconnectAll();
+  90              		.loc 1 79 0
+  91 0002 FFF7FEFF 		bl	Touch_AMux_DisconnectAll
+  92              	.LVL2:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 4
+
+
+  93 0006 08BD     		pop	{r3, pc}
+  94              		.cfi_endproc
+  95              	.LFE2:
+  96              		.size	Touch_AMux_Stop, .-Touch_AMux_Stop
+  97              		.section	.text.Touch_AMux_GetChannel,"ax",%progbits
+  98              		.align	2
+  99              		.global	Touch_AMux_GetChannel
+ 100              		.thumb
+ 101              		.thumb_func
+ 102              		.type	Touch_AMux_GetChannel, %function
+ 103              	Touch_AMux_GetChannel:
+ 104              	.LFB3:
+  80:Generated_Source\PSoC5/Touch_AMux.c **** }
+  81:Generated_Source\PSoC5/Touch_AMux.c **** 
+  82:Generated_Source\PSoC5/Touch_AMux.c **** #if (Touch_AMux_MUXTYPE == Touch_AMux_MUX_DIFF)
+  83:Generated_Source\PSoC5/Touch_AMux.c **** 
+  84:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+  85:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_Next
+  86:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+  87:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+  88:Generated_Source\PSoC5/Touch_AMux.c **** *  Disconnects the previous channel and connects the next one in the sequence.
+  89:Generated_Source\PSoC5/Touch_AMux.c **** *  When Next is called for the first time after Init, Start, Enable, Stop, or
+  90:Generated_Source\PSoC5/Touch_AMux.c **** *  DisconnectAll, it connects channel 0.
+  91:Generated_Source\PSoC5/Touch_AMux.c **** *
+  92:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+  93:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  94:Generated_Source\PSoC5/Touch_AMux.c **** *
+  95:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+  96:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+  97:Generated_Source\PSoC5/Touch_AMux.c **** *
+  98:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+  99:Generated_Source\PSoC5/Touch_AMux.c **** void Touch_AMux_Next(void)
+ 100:Generated_Source\PSoC5/Touch_AMux.c **** {
+ 101:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_CYAMUXSIDE_A_Next();
+ 102:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_CYAMUXSIDE_B_Next();
+ 103:Generated_Source\PSoC5/Touch_AMux.c **** }
+ 104:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 105:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 106:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+ 107:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_DisconnectAll
+ 108:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+ 109:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+ 110:Generated_Source\PSoC5/Touch_AMux.c **** *  This function disconnects all channels. The next time Next is called, channel
+ 111:Generated_Source\PSoC5/Touch_AMux.c **** *  0 will be connected.
+ 112:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 113:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+ 114:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+ 115:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 116:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+ 117:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+ 118:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 119:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+ 120:Generated_Source\PSoC5/Touch_AMux.c **** void Touch_AMux_DisconnectAll(void)
+ 121:Generated_Source\PSoC5/Touch_AMux.c **** {
+ 122:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_CYAMUXSIDE_A_DisconnectAll();
+ 123:Generated_Source\PSoC5/Touch_AMux.c ****     Touch_AMux_CYAMUXSIDE_B_DisconnectAll();
+ 124:Generated_Source\PSoC5/Touch_AMux.c **** }
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 5
+
+
+ 125:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 126:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 127:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+ 128:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_GetChannel
+ 129:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+ 130:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+ 131:Generated_Source\PSoC5/Touch_AMux.c **** *  The currently connected channel is retuned. If no channel is connected
+ 132:Generated_Source\PSoC5/Touch_AMux.c **** *  returns -1.
+ 133:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 134:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+ 135:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+ 136:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 137:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+ 138:Generated_Source\PSoC5/Touch_AMux.c **** *  The current channel or -1.
+ 139:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 140:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+ 141:Generated_Source\PSoC5/Touch_AMux.c **** int8 Touch_AMux_GetChannel(void)
+ 142:Generated_Source\PSoC5/Touch_AMux.c **** {
+ 143:Generated_Source\PSoC5/Touch_AMux.c ****     return Touch_AMux_CYAMUXSIDE_A_curChannel;
+ 144:Generated_Source\PSoC5/Touch_AMux.c **** }
+ 145:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 146:Generated_Source\PSoC5/Touch_AMux.c **** #else
+ 147:Generated_Source\PSoC5/Touch_AMux.c **** 
+ 148:Generated_Source\PSoC5/Touch_AMux.c **** /*******************************************************************************
+ 149:Generated_Source\PSoC5/Touch_AMux.c **** * Function Name: Touch_AMux_GetChannel
+ 150:Generated_Source\PSoC5/Touch_AMux.c **** ********************************************************************************
+ 151:Generated_Source\PSoC5/Touch_AMux.c **** * Summary:
+ 152:Generated_Source\PSoC5/Touch_AMux.c **** *  The currently connected channel is retuned. If no channel is connected
+ 153:Generated_Source\PSoC5/Touch_AMux.c **** *  returns -1.
+ 154:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 155:Generated_Source\PSoC5/Touch_AMux.c **** * Parameters:
+ 156:Generated_Source\PSoC5/Touch_AMux.c **** *  void
+ 157:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 158:Generated_Source\PSoC5/Touch_AMux.c **** * Return:
+ 159:Generated_Source\PSoC5/Touch_AMux.c **** *  The current channel or -1.
+ 160:Generated_Source\PSoC5/Touch_AMux.c **** *
+ 161:Generated_Source\PSoC5/Touch_AMux.c **** *******************************************************************************/
+ 162:Generated_Source\PSoC5/Touch_AMux.c **** int8 Touch_AMux_GetChannel(void)
+ 163:Generated_Source\PSoC5/Touch_AMux.c **** {
+ 105              		.loc 1 163 0
+ 106              		.cfi_startproc
+ 107              		@ args = 0, pretend = 0, frame = 0
+ 108              		@ frame_needed = 0, uses_anonymous_args = 0
+ 109              		@ link register save eliminated.
+ 164:Generated_Source\PSoC5/Touch_AMux.c ****     return Touch_AMux_curChannel;
+ 165:Generated_Source\PSoC5/Touch_AMux.c **** }
+ 110              		.loc 1 165 0
+ 111 0000 014B     		ldr	r3, .L10
+ 112 0002 93F90000 		ldrsb	r0, [r3]
+ 113 0006 7047     		bx	lr
+ 114              	.L11:
+ 115              		.align	2
+ 116              	.L10:
+ 117 0008 00000000 		.word	Touch_AMux_curChannel
+ 118              		.cfi_endproc
+ 119              	.LFE3:
+ 120              		.size	Touch_AMux_GetChannel, .-Touch_AMux_GetChannel
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 6
+
+
+ 121              		.global	Touch_AMux_initVar
+ 122              		.bss
+ 123              		.set	.LANCHOR0,. + 0
+ 124              		.type	Touch_AMux_initVar, %object
+ 125              		.size	Touch_AMux_initVar, 1
+ 126              	Touch_AMux_initVar:
+ 127 0000 00       		.space	1
+ 128              		.text
+ 129              	.Letext0:
+ 130              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 131              		.file 3 "Generated_Source\\PSoC5\\cyfitter_cfg.h"
+ 132              		.section	.debug_info,"",%progbits
+ 133              	.Ldebug_info0:
+ 134 0000 2E010000 		.4byte	0x12e
+ 135 0004 0400     		.2byte	0x4
+ 136 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 137 000a 04       		.byte	0x4
+ 138 000b 01       		.uleb128 0x1
+ 139 000c 43000000 		.4byte	.LASF19
+ 140 0010 0C       		.byte	0xc
+ 141 0011 FA010000 		.4byte	.LASF20
+ 142 0015 36010000 		.4byte	.LASF21
+ 143 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 144 001d 00000000 		.4byte	0
+ 145 0021 00000000 		.4byte	.Ldebug_line0
+ 146 0025 02       		.uleb128 0x2
+ 147 0026 01       		.byte	0x1
+ 148 0027 06       		.byte	0x6
+ 149 0028 27020000 		.4byte	.LASF0
+ 150 002c 02       		.uleb128 0x2
+ 151 002d 01       		.byte	0x1
+ 152 002e 08       		.byte	0x8
+ 153 002f 35000000 		.4byte	.LASF1
+ 154 0033 02       		.uleb128 0x2
+ 155 0034 02       		.byte	0x2
+ 156 0035 05       		.byte	0x5
+ 157 0036 EA010000 		.4byte	.LASF2
+ 158 003a 02       		.uleb128 0x2
+ 159 003b 02       		.byte	0x2
+ 160 003c 07       		.byte	0x7
+ 161 003d F3000000 		.4byte	.LASF3
+ 162 0041 02       		.uleb128 0x2
+ 163 0042 04       		.byte	0x4
+ 164 0043 05       		.byte	0x5
+ 165 0044 1E020000 		.4byte	.LASF4
+ 166 0048 02       		.uleb128 0x2
+ 167 0049 04       		.byte	0x4
+ 168 004a 07       		.byte	0x7
+ 169 004b D1000000 		.4byte	.LASF5
+ 170 004f 02       		.uleb128 0x2
+ 171 0050 08       		.byte	0x8
+ 172 0051 05       		.byte	0x5
+ 173 0052 9D010000 		.4byte	.LASF6
+ 174 0056 02       		.uleb128 0x2
+ 175 0057 08       		.byte	0x8
+ 176 0058 07       		.byte	0x7
+ 177 0059 1F010000 		.4byte	.LASF7
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 7
+
+
+ 178 005d 03       		.uleb128 0x3
+ 179 005e 04       		.byte	0x4
+ 180 005f 05       		.byte	0x5
+ 181 0060 696E7400 		.ascii	"int\000"
+ 182 0064 02       		.uleb128 0x2
+ 183 0065 04       		.byte	0x4
+ 184 0066 07       		.byte	0x7
+ 185 0067 12010000 		.4byte	.LASF8
+ 186 006b 04       		.uleb128 0x4
+ 187 006c F4010000 		.4byte	.LASF9
+ 188 0070 02       		.byte	0x2
+ 189 0071 E401     		.2byte	0x1e4
+ 190 0073 2C000000 		.4byte	0x2c
+ 191 0077 04       		.uleb128 0x4
+ 192 0078 0D010000 		.4byte	.LASF10
+ 193 007c 02       		.byte	0x2
+ 194 007d E701     		.2byte	0x1e7
+ 195 007f 25000000 		.4byte	0x25
+ 196 0083 02       		.uleb128 0x2
+ 197 0084 04       		.byte	0x4
+ 198 0085 04       		.byte	0x4
+ 199 0086 2F000000 		.4byte	.LASF11
+ 200 008a 02       		.uleb128 0x2
+ 201 008b 08       		.byte	0x8
+ 202 008c 04       		.byte	0x4
+ 203 008d 06010000 		.4byte	.LASF12
+ 204 0091 02       		.uleb128 0x2
+ 205 0092 01       		.byte	0x1
+ 206 0093 08       		.byte	0x8
+ 207 0094 AB010000 		.4byte	.LASF13
+ 208 0098 05       		.uleb128 0x5
+ 209 0099 C3010000 		.4byte	.LASF14
+ 210 009d 01       		.byte	0x1
+ 211 009e 24       		.byte	0x24
+ 212 009f 00000000 		.4byte	.LFB0
+ 213 00a3 14000000 		.4byte	.LFE0-.LFB0
+ 214 00a7 01       		.uleb128 0x1
+ 215 00a8 9C       		.byte	0x9c
+ 216 00a9 B7000000 		.4byte	0xb7
+ 217 00ad 06       		.uleb128 0x6
+ 218 00ae 06000000 		.4byte	.LVL0
+ 219 00b2 26010000 		.4byte	0x126
+ 220 00b6 00       		.byte	0
+ 221 00b7 05       		.uleb128 0x5
+ 222 00b8 E3000000 		.4byte	.LASF15
+ 223 00bc 01       		.byte	0x1
+ 224 00bd 39       		.byte	0x39
+ 225 00be 00000000 		.4byte	.LFB1
+ 226 00c2 08000000 		.4byte	.LFE1-.LFB1
+ 227 00c6 01       		.uleb128 0x1
+ 228 00c7 9C       		.byte	0x9c
+ 229 00c8 D6000000 		.4byte	0xd6
+ 230 00cc 06       		.uleb128 0x6
+ 231 00cd 06000000 		.4byte	.LVL1
+ 232 00d1 26010000 		.4byte	0x126
+ 233 00d5 00       		.byte	0
+ 234 00d6 05       		.uleb128 0x5
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 8
+
+
+ 235 00d7 8D010000 		.4byte	.LASF16
+ 236 00db 01       		.byte	0x1
+ 237 00dc 4D       		.byte	0x4d
+ 238 00dd 00000000 		.4byte	.LFB2
+ 239 00e1 08000000 		.4byte	.LFE2-.LFB2
+ 240 00e5 01       		.uleb128 0x1
+ 241 00e6 9C       		.byte	0x9c
+ 242 00e7 F5000000 		.4byte	0xf5
+ 243 00eb 06       		.uleb128 0x6
+ 244 00ec 06000000 		.4byte	.LVL2
+ 245 00f0 26010000 		.4byte	0x126
+ 246 00f4 00       		.byte	0
+ 247 00f5 07       		.uleb128 0x7
+ 248 00f6 19000000 		.4byte	.LASF22
+ 249 00fa 01       		.byte	0x1
+ 250 00fb A2       		.byte	0xa2
+ 251 00fc 77000000 		.4byte	0x77
+ 252 0100 00000000 		.4byte	.LFB3
+ 253 0104 0C000000 		.4byte	.LFE3-.LFB3
+ 254 0108 01       		.uleb128 0x1
+ 255 0109 9C       		.byte	0x9c
+ 256 010a 08       		.uleb128 0x8
+ 257 010b D4010000 		.4byte	.LASF17
+ 258 010f 03       		.byte	0x3
+ 259 0110 26       		.byte	0x26
+ 260 0111 77000000 		.4byte	0x77
+ 261 0115 09       		.uleb128 0x9
+ 262 0116 B0010000 		.4byte	.LASF18
+ 263 011a 01       		.byte	0x1
+ 264 011b 13       		.byte	0x13
+ 265 011c 6B000000 		.4byte	0x6b
+ 266 0120 05       		.uleb128 0x5
+ 267 0121 03       		.byte	0x3
+ 268 0122 00000000 		.4byte	Touch_AMux_initVar
+ 269 0126 0A       		.uleb128 0xa
+ 270 0127 00000000 		.4byte	.LASF23
+ 271 012b 00000000 		.4byte	.LASF23
+ 272 012f 03       		.byte	0x3
+ 273 0130 24       		.byte	0x24
+ 274 0131 00       		.byte	0
+ 275              		.section	.debug_abbrev,"",%progbits
+ 276              	.Ldebug_abbrev0:
+ 277 0000 01       		.uleb128 0x1
+ 278 0001 11       		.uleb128 0x11
+ 279 0002 01       		.byte	0x1
+ 280 0003 25       		.uleb128 0x25
+ 281 0004 0E       		.uleb128 0xe
+ 282 0005 13       		.uleb128 0x13
+ 283 0006 0B       		.uleb128 0xb
+ 284 0007 03       		.uleb128 0x3
+ 285 0008 0E       		.uleb128 0xe
+ 286 0009 1B       		.uleb128 0x1b
+ 287 000a 0E       		.uleb128 0xe
+ 288 000b 55       		.uleb128 0x55
+ 289 000c 17       		.uleb128 0x17
+ 290 000d 11       		.uleb128 0x11
+ 291 000e 01       		.uleb128 0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 9
+
+
+ 292 000f 10       		.uleb128 0x10
+ 293 0010 17       		.uleb128 0x17
+ 294 0011 00       		.byte	0
+ 295 0012 00       		.byte	0
+ 296 0013 02       		.uleb128 0x2
+ 297 0014 24       		.uleb128 0x24
+ 298 0015 00       		.byte	0
+ 299 0016 0B       		.uleb128 0xb
+ 300 0017 0B       		.uleb128 0xb
+ 301 0018 3E       		.uleb128 0x3e
+ 302 0019 0B       		.uleb128 0xb
+ 303 001a 03       		.uleb128 0x3
+ 304 001b 0E       		.uleb128 0xe
+ 305 001c 00       		.byte	0
+ 306 001d 00       		.byte	0
+ 307 001e 03       		.uleb128 0x3
+ 308 001f 24       		.uleb128 0x24
+ 309 0020 00       		.byte	0
+ 310 0021 0B       		.uleb128 0xb
+ 311 0022 0B       		.uleb128 0xb
+ 312 0023 3E       		.uleb128 0x3e
+ 313 0024 0B       		.uleb128 0xb
+ 314 0025 03       		.uleb128 0x3
+ 315 0026 08       		.uleb128 0x8
+ 316 0027 00       		.byte	0
+ 317 0028 00       		.byte	0
+ 318 0029 04       		.uleb128 0x4
+ 319 002a 16       		.uleb128 0x16
+ 320 002b 00       		.byte	0
+ 321 002c 03       		.uleb128 0x3
+ 322 002d 0E       		.uleb128 0xe
+ 323 002e 3A       		.uleb128 0x3a
+ 324 002f 0B       		.uleb128 0xb
+ 325 0030 3B       		.uleb128 0x3b
+ 326 0031 05       		.uleb128 0x5
+ 327 0032 49       		.uleb128 0x49
+ 328 0033 13       		.uleb128 0x13
+ 329 0034 00       		.byte	0
+ 330 0035 00       		.byte	0
+ 331 0036 05       		.uleb128 0x5
+ 332 0037 2E       		.uleb128 0x2e
+ 333 0038 01       		.byte	0x1
+ 334 0039 3F       		.uleb128 0x3f
+ 335 003a 19       		.uleb128 0x19
+ 336 003b 03       		.uleb128 0x3
+ 337 003c 0E       		.uleb128 0xe
+ 338 003d 3A       		.uleb128 0x3a
+ 339 003e 0B       		.uleb128 0xb
+ 340 003f 3B       		.uleb128 0x3b
+ 341 0040 0B       		.uleb128 0xb
+ 342 0041 27       		.uleb128 0x27
+ 343 0042 19       		.uleb128 0x19
+ 344 0043 11       		.uleb128 0x11
+ 345 0044 01       		.uleb128 0x1
+ 346 0045 12       		.uleb128 0x12
+ 347 0046 06       		.uleb128 0x6
+ 348 0047 40       		.uleb128 0x40
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 10
+
+
+ 349 0048 18       		.uleb128 0x18
+ 350 0049 9742     		.uleb128 0x2117
+ 351 004b 19       		.uleb128 0x19
+ 352 004c 01       		.uleb128 0x1
+ 353 004d 13       		.uleb128 0x13
+ 354 004e 00       		.byte	0
+ 355 004f 00       		.byte	0
+ 356 0050 06       		.uleb128 0x6
+ 357 0051 898201   		.uleb128 0x4109
+ 358 0054 00       		.byte	0
+ 359 0055 11       		.uleb128 0x11
+ 360 0056 01       		.uleb128 0x1
+ 361 0057 31       		.uleb128 0x31
+ 362 0058 13       		.uleb128 0x13
+ 363 0059 00       		.byte	0
+ 364 005a 00       		.byte	0
+ 365 005b 07       		.uleb128 0x7
+ 366 005c 2E       		.uleb128 0x2e
+ 367 005d 00       		.byte	0
+ 368 005e 3F       		.uleb128 0x3f
+ 369 005f 19       		.uleb128 0x19
+ 370 0060 03       		.uleb128 0x3
+ 371 0061 0E       		.uleb128 0xe
+ 372 0062 3A       		.uleb128 0x3a
+ 373 0063 0B       		.uleb128 0xb
+ 374 0064 3B       		.uleb128 0x3b
+ 375 0065 0B       		.uleb128 0xb
+ 376 0066 27       		.uleb128 0x27
+ 377 0067 19       		.uleb128 0x19
+ 378 0068 49       		.uleb128 0x49
+ 379 0069 13       		.uleb128 0x13
+ 380 006a 11       		.uleb128 0x11
+ 381 006b 01       		.uleb128 0x1
+ 382 006c 12       		.uleb128 0x12
+ 383 006d 06       		.uleb128 0x6
+ 384 006e 40       		.uleb128 0x40
+ 385 006f 18       		.uleb128 0x18
+ 386 0070 9742     		.uleb128 0x2117
+ 387 0072 19       		.uleb128 0x19
+ 388 0073 00       		.byte	0
+ 389 0074 00       		.byte	0
+ 390 0075 08       		.uleb128 0x8
+ 391 0076 34       		.uleb128 0x34
+ 392 0077 00       		.byte	0
+ 393 0078 03       		.uleb128 0x3
+ 394 0079 0E       		.uleb128 0xe
+ 395 007a 3A       		.uleb128 0x3a
+ 396 007b 0B       		.uleb128 0xb
+ 397 007c 3B       		.uleb128 0x3b
+ 398 007d 0B       		.uleb128 0xb
+ 399 007e 49       		.uleb128 0x49
+ 400 007f 13       		.uleb128 0x13
+ 401 0080 3F       		.uleb128 0x3f
+ 402 0081 19       		.uleb128 0x19
+ 403 0082 3C       		.uleb128 0x3c
+ 404 0083 19       		.uleb128 0x19
+ 405 0084 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 11
+
+
+ 406 0085 00       		.byte	0
+ 407 0086 09       		.uleb128 0x9
+ 408 0087 34       		.uleb128 0x34
+ 409 0088 00       		.byte	0
+ 410 0089 03       		.uleb128 0x3
+ 411 008a 0E       		.uleb128 0xe
+ 412 008b 3A       		.uleb128 0x3a
+ 413 008c 0B       		.uleb128 0xb
+ 414 008d 3B       		.uleb128 0x3b
+ 415 008e 0B       		.uleb128 0xb
+ 416 008f 49       		.uleb128 0x49
+ 417 0090 13       		.uleb128 0x13
+ 418 0091 3F       		.uleb128 0x3f
+ 419 0092 19       		.uleb128 0x19
+ 420 0093 02       		.uleb128 0x2
+ 421 0094 18       		.uleb128 0x18
+ 422 0095 00       		.byte	0
+ 423 0096 00       		.byte	0
+ 424 0097 0A       		.uleb128 0xa
+ 425 0098 2E       		.uleb128 0x2e
+ 426 0099 00       		.byte	0
+ 427 009a 3F       		.uleb128 0x3f
+ 428 009b 19       		.uleb128 0x19
+ 429 009c 3C       		.uleb128 0x3c
+ 430 009d 19       		.uleb128 0x19
+ 431 009e 6E       		.uleb128 0x6e
+ 432 009f 0E       		.uleb128 0xe
+ 433 00a0 03       		.uleb128 0x3
+ 434 00a1 0E       		.uleb128 0xe
+ 435 00a2 3A       		.uleb128 0x3a
+ 436 00a3 0B       		.uleb128 0xb
+ 437 00a4 3B       		.uleb128 0x3b
+ 438 00a5 0B       		.uleb128 0xb
+ 439 00a6 00       		.byte	0
+ 440 00a7 00       		.byte	0
+ 441 00a8 00       		.byte	0
+ 442              		.section	.debug_aranges,"",%progbits
+ 443 0000 34000000 		.4byte	0x34
+ 444 0004 0200     		.2byte	0x2
+ 445 0006 00000000 		.4byte	.Ldebug_info0
+ 446 000a 04       		.byte	0x4
+ 447 000b 00       		.byte	0
+ 448 000c 0000     		.2byte	0
+ 449 000e 0000     		.2byte	0
+ 450 0010 00000000 		.4byte	.LFB0
+ 451 0014 14000000 		.4byte	.LFE0-.LFB0
+ 452 0018 00000000 		.4byte	.LFB1
+ 453 001c 08000000 		.4byte	.LFE1-.LFB1
+ 454 0020 00000000 		.4byte	.LFB2
+ 455 0024 08000000 		.4byte	.LFE2-.LFB2
+ 456 0028 00000000 		.4byte	.LFB3
+ 457 002c 0C000000 		.4byte	.LFE3-.LFB3
+ 458 0030 00000000 		.4byte	0
+ 459 0034 00000000 		.4byte	0
+ 460              		.section	.debug_ranges,"",%progbits
+ 461              	.Ldebug_ranges0:
+ 462 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 12
+
+
+ 463 0004 14000000 		.4byte	.LFE0
+ 464 0008 00000000 		.4byte	.LFB1
+ 465 000c 08000000 		.4byte	.LFE1
+ 466 0010 00000000 		.4byte	.LFB2
+ 467 0014 08000000 		.4byte	.LFE2
+ 468 0018 00000000 		.4byte	.LFB3
+ 469 001c 0C000000 		.4byte	.LFE3
+ 470 0020 00000000 		.4byte	0
+ 471 0024 00000000 		.4byte	0
+ 472              		.section	.debug_line,"",%progbits
+ 473              	.Ldebug_line0:
+ 474 0000 A2000000 		.section	.debug_str,"MS",%progbits,1
+ 474      02005900 
+ 474      00000201 
+ 474      FB0E0D00 
+ 474      01010101 
+ 475              	.LASF23:
+ 476 0000 546F7563 		.ascii	"Touch_AMux_DisconnectAll\000"
+ 476      685F414D 
+ 476      75785F44 
+ 476      6973636F 
+ 476      6E6E6563 
+ 477              	.LASF22:
+ 478 0019 546F7563 		.ascii	"Touch_AMux_GetChannel\000"
+ 478      685F414D 
+ 478      75785F47 
+ 478      65744368 
+ 478      616E6E65 
+ 479              	.LASF11:
+ 480 002f 666C6F61 		.ascii	"float\000"
+ 480      7400
+ 481              	.LASF1:
+ 482 0035 756E7369 		.ascii	"unsigned char\000"
+ 482      676E6564 
+ 482      20636861 
+ 482      7200
+ 483              	.LASF19:
+ 484 0043 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 484      43313120 
+ 484      352E342E 
+ 484      31203230 
+ 484      31363036 
+ 485 0076 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 485      20726576 
+ 485      6973696F 
+ 485      6E203233 
+ 485      37373135 
+ 486 00a9 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 486      66756E63 
+ 486      74696F6E 
+ 486      2D736563 
+ 486      74696F6E 
+ 487              	.LASF5:
+ 488 00d1 6C6F6E67 		.ascii	"long unsigned int\000"
+ 488      20756E73 
+ 488      69676E65 
+ 488      6420696E 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 13
+
+
+ 488      7400
+ 489              	.LASF15:
+ 490 00e3 546F7563 		.ascii	"Touch_AMux_Init\000"
+ 490      685F414D 
+ 490      75785F49 
+ 490      6E697400 
+ 491              	.LASF3:
+ 492 00f3 73686F72 		.ascii	"short unsigned int\000"
+ 492      7420756E 
+ 492      7369676E 
+ 492      65642069 
+ 492      6E7400
+ 493              	.LASF12:
+ 494 0106 646F7562 		.ascii	"double\000"
+ 494      6C6500
+ 495              	.LASF10:
+ 496 010d 696E7438 		.ascii	"int8\000"
+ 496      00
+ 497              	.LASF8:
+ 498 0112 756E7369 		.ascii	"unsigned int\000"
+ 498      676E6564 
+ 498      20696E74 
+ 498      00
+ 499              	.LASF7:
+ 500 011f 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 500      206C6F6E 
+ 500      6720756E 
+ 500      7369676E 
+ 500      65642069 
+ 501              	.LASF21:
+ 502 0136 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 502      5C4C6162 
+ 502      20646520 
+ 502      436F6E74 
+ 502      726F6C5C 
+ 503 0166 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 503      30315C50 
+ 503      49442043 
+ 503      6F6E7472 
+ 503      6F6C6572 
+ 504              	.LASF16:
+ 505 018d 546F7563 		.ascii	"Touch_AMux_Stop\000"
+ 505      685F414D 
+ 505      75785F53 
+ 505      746F7000 
+ 506              	.LASF6:
+ 507 019d 6C6F6E67 		.ascii	"long long int\000"
+ 507      206C6F6E 
+ 507      6720696E 
+ 507      7400
+ 508              	.LASF13:
+ 509 01ab 63686172 		.ascii	"char\000"
+ 509      00
+ 510              	.LASF18:
+ 511 01b0 546F7563 		.ascii	"Touch_AMux_initVar\000"
+ 511      685F414D 
+ 511      75785F69 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc07l0Jm.s 			page 14
+
+
+ 511      6E697456 
+ 511      617200
+ 512              	.LASF14:
+ 513 01c3 546F7563 		.ascii	"Touch_AMux_Start\000"
+ 513      685F414D 
+ 513      75785F53 
+ 513      74617274 
+ 513      00
+ 514              	.LASF17:
+ 515 01d4 546F7563 		.ascii	"Touch_AMux_curChannel\000"
+ 515      685F414D 
+ 515      75785F63 
+ 515      75724368 
+ 515      616E6E65 
+ 516              	.LASF2:
+ 517 01ea 73686F72 		.ascii	"short int\000"
+ 517      7420696E 
+ 517      7400
+ 518              	.LASF9:
+ 519 01f4 75696E74 		.ascii	"uint8\000"
+ 519      3800
+ 520              	.LASF20:
+ 521 01fa 47656E65 		.ascii	"Generated_Source\\PSoC5\\Touch_AMux.c\000"
+ 521      72617465 
+ 521      645F536F 
+ 521      75726365 
+ 521      5C50536F 
+ 522              	.LASF4:
+ 523 021e 6C6F6E67 		.ascii	"long int\000"
+ 523      20696E74 
+ 523      00
+ 524              	.LASF0:
+ 525 0227 7369676E 		.ascii	"signed char\000"
+ 525      65642063 
+ 525      68617200 
+ 526              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

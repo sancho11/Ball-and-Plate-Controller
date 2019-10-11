@@ -1,0 +1,3620 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 1
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.global	__aeabi_fcmpgt
+  20              		.global	__aeabi_fcmplt
+  21              		.global	__aeabi_fdiv
+  22              		.global	__aeabi_fmul
+  23              		.global	__aeabi_fadd
+  24              		.global	__aeabi_fsub
+  25              		.global	__aeabi_f2iz
+  26              		.section	.text.mapANGtoTIME,"ax",%progbits
+  27              		.align	2
+  28              		.global	mapANGtoTIME
+  29              		.thumb
+  30              		.thumb_func
+  31              		.type	mapANGtoTIME, %function
+  32              	mapANGtoTIME:
+  33              	.LFB64:
+  34              		.file 1 "main.c"
+   1:main.c        **** /* ========================================
+   2:main.c        ****  *
+   3:main.c        ****  * Copyright YOUR COMPANY, THE YEAR
+   4:main.c        ****  * All Rights Reserved
+   5:main.c        ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:main.c        ****  *
+   7:main.c        ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:main.c        ****  * WHICH IS THE PROPERTY OF your company.
+   9:main.c        ****  *
+  10:main.c        ****  * ========================================
+  11:main.c        **** */
+  12:main.c        **** #include "project.h"
+  13:main.c        **** #include <stdio.h>
+  14:main.c        **** #include <stdlib.h>
+  15:main.c        **** #include <string.h>
+  16:main.c        **** 
+  17:main.c        **** 
+  18:main.c        **** 
+  19:main.c        **** const int PWMSERVO_MIN = 544;
+  20:main.c        **** const int PWMSERVO_MAX = 2400;
+  21:main.c        **** const int PWMSERVO_X_CORRECTION = 90-9;
+  22:main.c        **** const int PWMSERVO_Y_CORRECTION = 90+3;
+  23:main.c        **** const float X_Volt_EMPMAX = 4.5;
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 2
+
+
+  24:main.c        **** const float Y_Volt_EMPMAX = 4.3;
+  25:main.c        **** const int X_MAX = 3540;
+  26:main.c        **** const int Y_MAX = 3690;
+  27:main.c        **** const int X_MIN = 380;
+  28:main.c        **** const int Y_MIN = 180;
+  29:main.c        **** float Xrel = 0;
+  30:main.c        **** float Yrel = 0;
+  31:main.c        **** float Vddval = 5;
+  32:main.c        **** float Vssval = 0;
+  33:main.c        **** 
+  34:main.c        **** int x_int = 0;
+  35:main.c        **** int y_int = 0;
+  36:main.c        **** float x_float = 0;
+  37:main.c        **** float y_float = 0;
+  38:main.c        **** int x_req = 2000;
+  39:main.c        **** int y_req = 2000;
+  40:main.c        **** float X_Ak=0;
+  41:main.c        **** float Y_Ak=0;
+  42:main.c        **** float X_Akmenos1=0;
+  43:main.c        **** float Y_Akmenos1=0;
+  44:main.c        **** float X_Ek=0;
+  45:main.c        **** float Y_Ek=0;
+  46:main.c        **** float X_Ekmenos1=0;
+  47:main.c        **** float Y_Ekmenos1=0;
+  48:main.c        **** float X_prep=0;
+  49:main.c        **** float Y_prep=0;
+  50:main.c        **** 
+  51:main.c        **** 
+  52:main.c        **** CY_ISR_PROTO(Y_interrupcion_Handler);
+  53:main.c        **** CY_ISR_PROTO(X_interrupcion_Handler);
+  54:main.c        **** 
+  55:main.c        **** //Definiendo funciones que utilizaremos en nuestro sistema de control
+  56:main.c        **** int mapANGtoTIME(float Angulo){ //Esta función mapea apartir de un rango dado a otro rango dado.
+  35              		.loc 1 56 0
+  36              		.cfi_startproc
+  37              		@ args = 0, pretend = 0, frame = 0
+  38              		@ frame_needed = 0, uses_anonymous_args = 0
+  39              	.LVL0:
+  40 0000 10B5     		push	{r4, lr}
+  41              		.cfi_def_cfa_offset 8
+  42              		.cfi_offset 4, -8
+  43              		.cfi_offset 14, -4
+  44 0002 0446     		mov	r4, r0
+  57:main.c        ****     if (0<Angulo && Angulo<180){
+  45              		.loc 1 57 0
+  46 0004 0021     		movs	r1, #0
+  47 0006 FFF7FEFF 		bl	__aeabi_fcmpgt
+  48              	.LVL1:
+  49 000a A8B1     		cbz	r0, .L2
+  50              		.loc 1 57 0 is_stmt 0 discriminator 1
+  51 000c 1049     		ldr	r1, .L13
+  52 000e 2046     		mov	r0, r4
+  53 0010 FFF7FEFF 		bl	__aeabi_fcmplt
+  54              	.LVL2:
+  55 0014 80B1     		cbz	r0, .L2
+  56              	.LBB2:
+  58:main.c        ****         float angrelativo = (Angulo)/180;
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 3
+
+
+  57              		.loc 1 58 0 is_stmt 1
+  58 0016 0E49     		ldr	r1, .L13
+  59 0018 2046     		mov	r0, r4
+  60 001a FFF7FEFF 		bl	__aeabi_fdiv
+  61              	.LVL3:
+  59:main.c        ****         float timerelative= angrelativo*(PWMSERVO_MAX-PWMSERVO_MIN);
+  62              		.loc 1 59 0
+  63 001e 0D49     		ldr	r1, .L13+4
+  64 0020 FFF7FEFF 		bl	__aeabi_fmul
+  65              	.LVL4:
+  60:main.c        ****         return timerelative+PWMSERVO_MIN-1;
+  66              		.loc 1 60 0
+  67 0024 0C49     		ldr	r1, .L13+8
+  68 0026 FFF7FEFF 		bl	__aeabi_fadd
+  69              	.LVL5:
+  70 002a 4FF07E51 		mov	r1, #1065353216
+  71 002e FFF7FEFF 		bl	__aeabi_fsub
+  72              	.LVL6:
+  73 0032 FFF7FEFF 		bl	__aeabi_f2iz
+  74              	.LVL7:
+  75 0036 10BD     		pop	{r4, pc}
+  76              	.LVL8:
+  77              	.L2:
+  78              	.LBE2:
+  61:main.c        ****     }
+  62:main.c        ****     else{
+  63:main.c        ****         if (Angulo>180){
+  79              		.loc 1 63 0
+  80 0038 0549     		ldr	r1, .L13
+  81 003a 2046     		mov	r0, r4
+  82 003c FFF7FEFF 		bl	__aeabi_fcmpgt
+  83              	.LVL9:
+  84 0040 10B1     		cbz	r0, .L11
+  85              	.LBB3:
+  64:main.c        ****             float angrelativo = (180)/180;
+  65:main.c        ****             float timerelative= angrelativo*(PWMSERVO_MAX-PWMSERVO_MIN);
+  66:main.c        ****             return timerelative+PWMSERVO_MIN-1;
+  86              		.loc 1 66 0
+  87 0042 40F65F10 		movw	r0, #2399
+  88 0046 10BD     		pop	{r4, pc}
+  89              	.LVL10:
+  90              	.L11:
+  91              	.LBE3:
+  92              	.LBB4:
+  67:main.c        ****         }
+  68:main.c        ****         else{
+  69:main.c        ****             float angrelativo = (0)/180;
+  70:main.c        ****             float timerelative= angrelativo*(PWMSERVO_MAX-PWMSERVO_MIN);
+  71:main.c        ****             return timerelative+PWMSERVO_MIN-1;
+  93              		.loc 1 71 0
+  94 0048 40F21F20 		movw	r0, #543
+  95              	.LBE4:
+  72:main.c        ****         }
+  73:main.c        ****     }
+  74:main.c        **** }
+  96              		.loc 1 74 0
+  97 004c 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 4
+
+
+  98              	.LVL11:
+  99              	.L14:
+ 100 004e 00BF     		.align	2
+ 101              	.L13:
+ 102 0050 00003443 		.word	1127481344
+ 103 0054 0000E844 		.word	1156055040
+ 104 0058 00000844 		.word	1141374976
+ 105              		.cfi_endproc
+ 106              	.LFE64:
+ 107              		.size	mapANGtoTIME, .-mapANGtoTIME
+ 108              		.section	.text.SetServoX,"ax",%progbits
+ 109              		.align	2
+ 110              		.global	SetServoX
+ 111              		.thumb
+ 112              		.thumb_func
+ 113              		.type	SetServoX, %function
+ 114              	SetServoX:
+ 115              	.LFB65:
+  75:main.c        **** void SetServoX(float Angulo){
+ 116              		.loc 1 75 0
+ 117              		.cfi_startproc
+ 118              		@ args = 0, pretend = 0, frame = 0
+ 119              		@ frame_needed = 0, uses_anonymous_args = 0
+ 120              	.LVL12:
+ 121 0000 08B5     		push	{r3, lr}
+ 122              		.cfi_def_cfa_offset 8
+ 123              		.cfi_offset 3, -8
+ 124              		.cfi_offset 14, -4
+  76:main.c        ****     Angulo=(Angulo*-1)+PWMSERVO_X_CORRECTION;
+ 125              		.loc 1 76 0
+ 126 0002 0146     		mov	r1, r0
+ 127 0004 0448     		ldr	r0, .L17
+ 128              	.LVL13:
+ 129 0006 FFF7FEFF 		bl	__aeabi_fsub
+ 130              	.LVL14:
+  77:main.c        ****     PWM_X_WriteCompare1(mapANGtoTIME(Angulo)); 
+ 131              		.loc 1 77 0
+ 132 000a FFF7FEFF 		bl	mapANGtoTIME
+ 133              	.LVL15:
+ 134 000e 80B2     		uxth	r0, r0
+ 135 0010 FFF7FEFF 		bl	PWM_X_WriteCompare1
+ 136              	.LVL16:
+ 137 0014 08BD     		pop	{r3, pc}
+ 138              	.L18:
+ 139 0016 00BF     		.align	2
+ 140              	.L17:
+ 141 0018 0000A242 		.word	1117913088
+ 142              		.cfi_endproc
+ 143              	.LFE65:
+ 144              		.size	SetServoX, .-SetServoX
+ 145              		.section	.text.SetServoY,"ax",%progbits
+ 146              		.align	2
+ 147              		.global	SetServoY
+ 148              		.thumb
+ 149              		.thumb_func
+ 150              		.type	SetServoY, %function
+ 151              	SetServoY:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 5
+
+
+ 152              	.LFB66:
+  78:main.c        ****     return;
+  79:main.c        **** }
+  80:main.c        **** void SetServoY(float Angulo){
+ 153              		.loc 1 80 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              	.LVL17:
+ 158 0000 08B5     		push	{r3, lr}
+ 159              		.cfi_def_cfa_offset 8
+ 160              		.cfi_offset 3, -8
+ 161              		.cfi_offset 14, -4
+  81:main.c        ****     Angulo=(Angulo*-1)+PWMSERVO_Y_CORRECTION;
+ 162              		.loc 1 81 0
+ 163 0002 0146     		mov	r1, r0
+ 164 0004 0448     		ldr	r0, .L21
+ 165              	.LVL18:
+ 166 0006 FFF7FEFF 		bl	__aeabi_fsub
+ 167              	.LVL19:
+  82:main.c        ****     PWM_Y_WriteCompare1(mapANGtoTIME(Angulo));
+ 168              		.loc 1 82 0
+ 169 000a FFF7FEFF 		bl	mapANGtoTIME
+ 170              	.LVL20:
+ 171 000e 80B2     		uxth	r0, r0
+ 172 0010 FFF7FEFF 		bl	PWM_Y_WriteCompare1
+ 173              	.LVL21:
+ 174 0014 08BD     		pop	{r3, pc}
+ 175              	.L22:
+ 176 0016 00BF     		.align	2
+ 177              	.L21:
+ 178 0018 0000BA42 		.word	1119485952
+ 179              		.cfi_endproc
+ 180              	.LFE66:
+ 181              		.size	SetServoY, .-SetServoY
+ 182              		.section	.text.ReadXAxis,"ax",%progbits
+ 183              		.align	2
+ 184              		.global	ReadXAxis
+ 185              		.thumb
+ 186              		.thumb_func
+ 187              		.type	ReadXAxis, %function
+ 188              	ReadXAxis:
+ 189              	.LFB67:
+  83:main.c        ****     return;
+  84:main.c        **** }
+  85:main.c        **** /*void Volt_update(void){ //Actualiza el valor del voltaje minimo y maximo que puede leer para ajus
+  86:main.c        ****     AxisSelector_Write(0xFF);   //Seleccionamos el eje X poniendo unos.
+  87:main.c        ****     CyDelay(1);
+  88:main.c        ****     Vddval = ADC_YAxis_CountsTo_Volts(ADC_YAxis_GetResult16());
+  89:main.c        ****     AxisSelector_Write(0x00);   //Seleccionamos el eje Y poniendo ceros.
+  90:main.c        ****     CyDelay(1);
+  91:main.c        ****     Vssval = ADC_XAxis_CountsTo_Volts(ADC_XAxis_GetResult16());
+  92:main.c        ****     return;
+  93:main.c        **** }*/
+  94:main.c        **** int ReadXAxis(void){
+ 190              		.loc 1 94 0
+ 191              		.cfi_startproc
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 6
+
+
+ 192              		@ args = 0, pretend = 0, frame = 0
+ 193              		@ frame_needed = 0, uses_anonymous_args = 0
+ 194 0000 10B5     		push	{r4, lr}
+ 195              		.cfi_def_cfa_offset 8
+ 196              		.cfi_offset 4, -8
+ 197              		.cfi_offset 14, -4
+  95:main.c        ****     int value_int = Touch_Measure();
+ 198              		.loc 1 95 0
+ 199 0002 FFF7FEFF 		bl	Touch_Measure
+ 200              	.LVL22:
+ 201 0006 0446     		mov	r4, r0
+ 202              	.LVL23:
+  96:main.c        ****     Touch_ActivateY();
+ 203              		.loc 1 96 0
+ 204 0008 FFF7FEFF 		bl	Touch_ActivateY
+ 205              	.LVL24:
+  97:main.c        ****     return value_int;
+  98:main.c        **** }
+ 206              		.loc 1 98 0
+ 207 000c 2046     		mov	r0, r4
+ 208 000e 10BD     		pop	{r4, pc}
+ 209              		.cfi_endproc
+ 210              	.LFE67:
+ 211              		.size	ReadXAxis, .-ReadXAxis
+ 212              		.section	.text.ReadYAxis,"ax",%progbits
+ 213              		.align	2
+ 214              		.global	ReadYAxis
+ 215              		.thumb
+ 216              		.thumb_func
+ 217              		.type	ReadYAxis, %function
+ 218              	ReadYAxis:
+ 219              	.LFB68:
+  99:main.c        **** 
+ 100:main.c        **** int ReadYAxis(void){
+ 220              		.loc 1 100 0
+ 221              		.cfi_startproc
+ 222              		@ args = 0, pretend = 0, frame = 0
+ 223              		@ frame_needed = 0, uses_anonymous_args = 0
+ 224 0000 10B5     		push	{r4, lr}
+ 225              		.cfi_def_cfa_offset 8
+ 226              		.cfi_offset 4, -8
+ 227              		.cfi_offset 14, -4
+ 101:main.c        ****     int value_int = Touch_Measure();
+ 228              		.loc 1 101 0
+ 229 0002 FFF7FEFF 		bl	Touch_Measure
+ 230              	.LVL25:
+ 231 0006 0446     		mov	r4, r0
+ 232              	.LVL26:
+ 102:main.c        ****     Touch_ActivateX();
+ 233              		.loc 1 102 0
+ 234 0008 FFF7FEFF 		bl	Touch_ActivateX
+ 235              	.LVL27:
+ 103:main.c        ****     return value_int;
+ 104:main.c        **** }
+ 236              		.loc 1 104 0
+ 237 000c 2046     		mov	r0, r4
+ 238 000e 10BD     		pop	{r4, pc}
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 7
+
+
+ 239              		.cfi_endproc
+ 240              	.LFE68:
+ 241              		.size	ReadYAxis, .-ReadYAxis
+ 242              		.global	__aeabi_i2f
+ 243              		.section	.text.PosRealX,"ax",%progbits
+ 244              		.align	2
+ 245              		.global	PosRealX
+ 246              		.thumb
+ 247              		.thumb_func
+ 248              		.type	PosRealX, %function
+ 249              	PosRealX:
+ 250              	.LFB69:
+ 105:main.c        **** 
+ 106:main.c        **** float PosRealX(int PosXint){
+ 251              		.loc 1 106 0
+ 252              		.cfi_startproc
+ 253              		@ args = 0, pretend = 0, frame = 0
+ 254              		@ frame_needed = 0, uses_anonymous_args = 0
+ 255              	.LVL28:
+ 256 0000 08B5     		push	{r3, lr}
+ 257              		.cfi_def_cfa_offset 8
+ 258              		.cfi_offset 3, -8
+ 259              		.cfi_offset 14, -4
+ 107:main.c        ****     float PosVolt=((PosXint-X_MIN)*Xrel);
+ 260              		.loc 1 107 0
+ 261 0002 A0F5BE70 		sub	r0, r0, #380
+ 262              	.LVL29:
+ 263 0006 FFF7FEFF 		bl	__aeabi_i2f
+ 264              	.LVL30:
+ 265 000a 024B     		ldr	r3, .L29
+ 266 000c 1968     		ldr	r1, [r3]	@ float
+ 267 000e FFF7FEFF 		bl	__aeabi_fmul
+ 268              	.LVL31:
+ 108:main.c        ****     return PosVolt;
+ 109:main.c        **** }
+ 269              		.loc 1 109 0
+ 270 0012 08BD     		pop	{r3, pc}
+ 271              	.L30:
+ 272              		.align	2
+ 273              	.L29:
+ 274 0014 00000000 		.word	.LANCHOR0
+ 275              		.cfi_endproc
+ 276              	.LFE69:
+ 277              		.size	PosRealX, .-PosRealX
+ 278              		.section	.text.PosRealY,"ax",%progbits
+ 279              		.align	2
+ 280              		.global	PosRealY
+ 281              		.thumb
+ 282              		.thumb_func
+ 283              		.type	PosRealY, %function
+ 284              	PosRealY:
+ 285              	.LFB70:
+ 110:main.c        **** 
+ 111:main.c        **** float PosRealY(int PosYint){
+ 286              		.loc 1 111 0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 8
+
+
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290              	.LVL32:
+ 291 0000 08B5     		push	{r3, lr}
+ 292              		.cfi_def_cfa_offset 8
+ 293              		.cfi_offset 3, -8
+ 294              		.cfi_offset 14, -4
+ 112:main.c        ****     float PosVolt=((PosYint-Y_MIN)*Yrel);
+ 295              		.loc 1 112 0
+ 296 0002 B438     		subs	r0, r0, #180
+ 297              	.LVL33:
+ 298 0004 FFF7FEFF 		bl	__aeabi_i2f
+ 299              	.LVL34:
+ 300 0008 024B     		ldr	r3, .L33
+ 301 000a 5968     		ldr	r1, [r3, #4]	@ float
+ 302 000c FFF7FEFF 		bl	__aeabi_fmul
+ 303              	.LVL35:
+ 113:main.c        ****     return PosVolt;
+ 114:main.c        **** }
+ 304              		.loc 1 114 0
+ 305 0010 08BD     		pop	{r3, pc}
+ 306              	.L34:
+ 307 0012 00BF     		.align	2
+ 308              	.L33:
+ 309 0014 00000000 		.word	.LANCHOR0
+ 310              		.cfi_endproc
+ 311              	.LFE70:
+ 312              		.size	PosRealY, .-PosRealY
+ 313              		.section	.text.Saturador,"ax",%progbits
+ 314              		.align	2
+ 315              		.global	Saturador
+ 316              		.thumb
+ 317              		.thumb_func
+ 318              		.type	Saturador, %function
+ 319              	Saturador:
+ 320              	.LFB71:
+ 115:main.c        **** 
+ 116:main.c        **** float Saturador(float val, float min, float max){
+ 321              		.loc 1 116 0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325              	.LVL36:
+ 326 0000 70B5     		push	{r4, r5, r6, lr}
+ 327              		.cfi_def_cfa_offset 16
+ 328              		.cfi_offset 4, -16
+ 329              		.cfi_offset 5, -12
+ 330              		.cfi_offset 6, -8
+ 331              		.cfi_offset 14, -4
+ 332 0002 0546     		mov	r5, r0
+ 333 0004 0E46     		mov	r6, r1
+ 334 0006 1446     		mov	r4, r2
+ 117:main.c        ****     if (val>max){
+ 335              		.loc 1 117 0
+ 336 0008 1146     		mov	r1, r2
+ 337              	.LVL37:
+ 338 000a FFF7FEFF 		bl	__aeabi_fcmpgt
+ 339              	.LVL38:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 9
+
+
+ 340 000e 30B9     		cbnz	r0, .L38
+ 118:main.c        ****         return max;
+ 119:main.c        ****     }
+ 120:main.c        ****     else{
+ 121:main.c        ****         if (val<min){
+ 341              		.loc 1 121 0
+ 342 0010 3146     		mov	r1, r6
+ 343 0012 2846     		mov	r0, r5
+ 344 0014 FFF7FEFF 		bl	__aeabi_fcmplt
+ 345              	.LVL39:
+ 346 0018 18B1     		cbz	r0, .L41
+ 122:main.c        ****             return min;
+ 347              		.loc 1 122 0
+ 348 001a 3046     		mov	r0, r6
+ 349 001c 70BD     		pop	{r4, r5, r6, pc}
+ 350              	.LVL40:
+ 351              	.L38:
+ 118:main.c        ****         return max;
+ 352              		.loc 1 118 0
+ 353 001e 2046     		mov	r0, r4
+ 354 0020 70BD     		pop	{r4, r5, r6, pc}
+ 355              	.LVL41:
+ 356              	.L41:
+ 123:main.c        ****         }
+ 124:main.c        ****         else{
+ 125:main.c        ****             return val;
+ 357              		.loc 1 125 0
+ 358 0022 2846     		mov	r0, r5
+ 126:main.c        ****         }
+ 127:main.c        ****     }
+ 128:main.c        ****     
+ 129:main.c        **** }
+ 359              		.loc 1 129 0
+ 360 0024 70BD     		pop	{r4, r5, r6, pc}
+ 361              		.cfi_endproc
+ 362              	.LFE71:
+ 363              		.size	Saturador, .-Saturador
+ 364              		.global	__aeabi_f2d
+ 365              		.global	__aeabi_dmul
+ 366              		.global	__aeabi_dadd
+ 367              		.global	__aeabi_d2f
+ 368 0026 00BF     		.section	.text.Y_interrupcion_Handler,"ax",%progbits
+ 369              		.align	2
+ 370              		.global	Y_interrupcion_Handler
+ 371              		.thumb
+ 372              		.thumb_func
+ 373              		.type	Y_interrupcion_Handler, %function
+ 374              	Y_interrupcion_Handler:
+ 375              	.LFB73:
+ 130:main.c        **** 
+ 131:main.c        **** void printScreen(int Xpos, int Ypos, int Xreq, int Yreq){
+ 132:main.c        ****         char x_to_print[10];
+ 133:main.c        ****         char y_to_print[10];
+ 134:main.c        ****         char x_pos_print[10];
+ 135:main.c        ****         char y_pos_print[10];       
+ 136:main.c        ****         sprintf(x_to_print, "Xrq=%d", Xreq);
+ 137:main.c        ****         sprintf(y_to_print, "Yrq=%d", Yreq);
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 10
+
+
+ 138:main.c        ****         sprintf(x_pos_print, "Xps=%d", Xpos);
+ 139:main.c        ****         sprintf(y_pos_print, "Yps=%d", Ypos);
+ 140:main.c        ****         LCD_ClearDisplay();
+ 141:main.c        ****         LCD_Position(0u, 0u); // first row, first column
+ 142:main.c        ****         LCD_PrintString(x_to_print);   
+ 143:main.c        ****         LCD_Position(1u, 0u); // first row, first column
+ 144:main.c        ****         LCD_PrintString(y_to_print);
+ 145:main.c        ****         LCD_Position(0u, 8u); // first row, first column
+ 146:main.c        ****         LCD_PrintString(x_pos_print);   
+ 147:main.c        ****         LCD_Position(1u, 8u); // first row, first column
+ 148:main.c        ****         LCD_PrintString(y_pos_print);
+ 149:main.c        ****         return;
+ 150:main.c        **** }
+ 151:main.c        **** 
+ 152:main.c        **** CY_ISR(Y_interrupcion_Handler)
+ 153:main.c        **** {
+ 376              		.loc 1 153 0
+ 377              		.cfi_startproc
+ 378              		@ args = 0, pretend = 0, frame = 0
+ 379              		@ frame_needed = 0, uses_anonymous_args = 0
+ 380 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 381              		.cfi_def_cfa_offset 24
+ 382              		.cfi_offset 3, -24
+ 383              		.cfi_offset 4, -20
+ 384              		.cfi_offset 5, -16
+ 385              		.cfi_offset 6, -12
+ 386              		.cfi_offset 7, -8
+ 387              		.cfi_offset 14, -4
+ 154:main.c        ****         y_int = ReadYAxis();
+ 388              		.loc 1 154 0
+ 389 0002 FFF7FEFF 		bl	ReadYAxis
+ 390              	.LVL42:
+ 391 0006 284C     		ldr	r4, .L45+24
+ 392 0008 A060     		str	r0, [r4, #8]
+ 155:main.c        ****         Y_Ek = PosRealY(y_req-y_int);
+ 393              		.loc 1 155 0
+ 394 000a 284B     		ldr	r3, .L45+28
+ 395 000c 1B68     		ldr	r3, [r3]
+ 396 000e 1D1A     		subs	r5, r3, r0
+ 397 0010 2846     		mov	r0, r5
+ 398 0012 FFF7FEFF 		bl	PosRealY
+ 399              	.LVL43:
+ 400 0016 E060     		str	r0, [r4, #12]	@ float
+ 156:main.c        ****         y_int = y_req-y_int;
+ 401              		.loc 1 156 0
+ 402 0018 A560     		str	r5, [r4, #8]
+ 157:main.c        ****         Y_Ak=Y_prep+Y_Ek*(251.59);
+ 403              		.loc 1 157 0
+ 404 001a FFF7FEFF 		bl	__aeabi_f2d
+ 405              	.LVL44:
+ 406 001e 1CA3     		adr	r3, .L45
+ 407 0020 D3E90023 		ldrd	r2, [r3]
+ 408 0024 FFF7FEFF 		bl	__aeabi_dmul
+ 409              	.LVL45:
+ 410 0028 0646     		mov	r6, r0
+ 411 002a 0F46     		mov	r7, r1
+ 412 002c 2069     		ldr	r0, [r4, #16]	@ float
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 11
+
+
+ 413 002e FFF7FEFF 		bl	__aeabi_f2d
+ 414              	.LVL46:
+ 415 0032 3246     		mov	r2, r6
+ 416 0034 3B46     		mov	r3, r7
+ 417 0036 FFF7FEFF 		bl	__aeabi_dadd
+ 418              	.LVL47:
+ 419 003a FFF7FEFF 		bl	__aeabi_d2f
+ 420              	.LVL48:
+ 158:main.c        ****         Y_Ak=Saturador(Y_Ak,-30,30);
+ 421              		.loc 1 158 0
+ 422 003e 1C4A     		ldr	r2, .L45+32
+ 423 0040 1C49     		ldr	r1, .L45+36
+ 424 0042 FFF7FEFF 		bl	Saturador
+ 425              	.LVL49:
+ 426 0046 6061     		str	r0, [r4, #20]	@ float
+ 159:main.c        ****         SetServoY(-Y_Ak);
+ 427              		.loc 1 159 0
+ 428 0048 00F10040 		add	r0, r0, #-2147483648
+ 429 004c FFF7FEFF 		bl	SetServoY
+ 430              	.LVL50:
+ 160:main.c        ****         Y_Akmenos1=Y_Ak;
+ 431              		.loc 1 160 0
+ 432 0050 6069     		ldr	r0, [r4, #20]	@ float
+ 433 0052 A061     		str	r0, [r4, #24]	@ float
+ 161:main.c        ****         Y_Ekmenos1=Y_Ek;
+ 434              		.loc 1 161 0
+ 435 0054 E568     		ldr	r5, [r4, #12]	@ float
+ 436 0056 E561     		str	r5, [r4, #28]	@ float
+ 162:main.c        ****         Y_prep = Y_Akmenos1*0.2632+Y_Ekmenos1*(-242.38);
+ 437              		.loc 1 162 0
+ 438 0058 FFF7FEFF 		bl	__aeabi_f2d
+ 439              	.LVL51:
+ 440 005c 0EA3     		adr	r3, .L45+8
+ 441 005e D3E90023 		ldrd	r2, [r3]
+ 442 0062 FFF7FEFF 		bl	__aeabi_dmul
+ 443              	.LVL52:
+ 444 0066 0646     		mov	r6, r0
+ 445 0068 0F46     		mov	r7, r1
+ 446 006a 2846     		mov	r0, r5
+ 447 006c FFF7FEFF 		bl	__aeabi_f2d
+ 448              	.LVL53:
+ 449 0070 0BA3     		adr	r3, .L45+16
+ 450 0072 D3E90023 		ldrd	r2, [r3]
+ 451 0076 FFF7FEFF 		bl	__aeabi_dmul
+ 452              	.LVL54:
+ 453 007a 0246     		mov	r2, r0
+ 454 007c 0B46     		mov	r3, r1
+ 455 007e 3046     		mov	r0, r6
+ 456 0080 3946     		mov	r1, r7
+ 457 0082 FFF7FEFF 		bl	__aeabi_dadd
+ 458              	.LVL55:
+ 459 0086 FFF7FEFF 		bl	__aeabi_d2f
+ 460              	.LVL56:
+ 461 008a 2061     		str	r0, [r4, #16]	@ float
+ 462 008c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 463              	.L46:
+ 464 008e 00BF     		.align	3
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 12
+
+
+ 465              	.L45:
+ 466 0090 7B14AE47 		.word	1202590843
+ 467 0094 E1726F40 		.word	1081045729
+ 468 0098 2AA913D0 		.word	-804017878
+ 469 009c 44D8D03F 		.word	1070651460
+ 470 00a0 5C8FC2F5 		.word	-171798692
+ 471 00a4 284C6EC0 		.word	-1066513368
+ 472 00a8 00000000 		.word	.LANCHOR0
+ 473 00ac 00000000 		.word	.LANCHOR1
+ 474 00b0 0000F041 		.word	1106247680
+ 475 00b4 0000F0C1 		.word	-1041235968
+ 476              		.cfi_endproc
+ 477              	.LFE73:
+ 478              		.size	Y_interrupcion_Handler, .-Y_interrupcion_Handler
+ 479              		.section	.text.X_interrupcion_Handler,"ax",%progbits
+ 480              		.align	2
+ 481              		.global	X_interrupcion_Handler
+ 482              		.thumb
+ 483              		.thumb_func
+ 484              		.type	X_interrupcion_Handler, %function
+ 485              	X_interrupcion_Handler:
+ 486              	.LFB74:
+ 163:main.c        **** 
+ 164:main.c        **** }
+ 165:main.c        **** 
+ 166:main.c        **** CY_ISR(X_interrupcion_Handler)
+ 167:main.c        **** {
+ 487              		.loc 1 167 0
+ 488              		.cfi_startproc
+ 489              		@ args = 0, pretend = 0, frame = 0
+ 490              		@ frame_needed = 0, uses_anonymous_args = 0
+ 491 0000 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 492              		.cfi_def_cfa_offset 24
+ 493              		.cfi_offset 3, -24
+ 494              		.cfi_offset 4, -20
+ 495              		.cfi_offset 5, -16
+ 496              		.cfi_offset 6, -12
+ 497              		.cfi_offset 7, -8
+ 498              		.cfi_offset 14, -4
+ 168:main.c        ****         x_int = ReadXAxis();
+ 499              		.loc 1 168 0
+ 500 0002 FFF7FEFF 		bl	ReadXAxis
+ 501              	.LVL57:
+ 502 0006 284C     		ldr	r4, .L49+24
+ 503 0008 2062     		str	r0, [r4, #32]
+ 169:main.c        ****         X_Ek = PosRealX(x_req-x_int);
+ 504              		.loc 1 169 0
+ 505 000a 284B     		ldr	r3, .L49+28
+ 506 000c 5B68     		ldr	r3, [r3, #4]
+ 507 000e 1D1A     		subs	r5, r3, r0
+ 508 0010 2846     		mov	r0, r5
+ 509 0012 FFF7FEFF 		bl	PosRealX
+ 510              	.LVL58:
+ 511 0016 6062     		str	r0, [r4, #36]	@ float
+ 170:main.c        ****         x_int = x_req-x_int;
+ 512              		.loc 1 170 0
+ 513 0018 2562     		str	r5, [r4, #32]
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 13
+
+
+ 171:main.c        ****         X_Ak=X_prep+X_Ek*(251.59);
+ 514              		.loc 1 171 0
+ 515 001a FFF7FEFF 		bl	__aeabi_f2d
+ 516              	.LVL59:
+ 517 001e 1CA3     		adr	r3, .L49
+ 518 0020 D3E90023 		ldrd	r2, [r3]
+ 519 0024 FFF7FEFF 		bl	__aeabi_dmul
+ 520              	.LVL60:
+ 521 0028 0646     		mov	r6, r0
+ 522 002a 0F46     		mov	r7, r1
+ 523 002c A06A     		ldr	r0, [r4, #40]	@ float
+ 524 002e FFF7FEFF 		bl	__aeabi_f2d
+ 525              	.LVL61:
+ 526 0032 3246     		mov	r2, r6
+ 527 0034 3B46     		mov	r3, r7
+ 528 0036 FFF7FEFF 		bl	__aeabi_dadd
+ 529              	.LVL62:
+ 530 003a FFF7FEFF 		bl	__aeabi_d2f
+ 531              	.LVL63:
+ 172:main.c        ****         X_Ak=Saturador(X_Ak,-30,30);
+ 532              		.loc 1 172 0
+ 533 003e 1C4A     		ldr	r2, .L49+32
+ 534 0040 1C49     		ldr	r1, .L49+36
+ 535 0042 FFF7FEFF 		bl	Saturador
+ 536              	.LVL64:
+ 537 0046 E062     		str	r0, [r4, #44]	@ float
+ 173:main.c        ****         SetServoX(X_Ak);
+ 538              		.loc 1 173 0
+ 539 0048 FFF7FEFF 		bl	SetServoX
+ 540              	.LVL65:
+ 174:main.c        ****         X_Akmenos1=X_Ak;
+ 541              		.loc 1 174 0
+ 542 004c E06A     		ldr	r0, [r4, #44]	@ float
+ 543 004e 2063     		str	r0, [r4, #48]	@ float
+ 175:main.c        ****         X_Ekmenos1=X_Ek;
+ 544              		.loc 1 175 0
+ 545 0050 656A     		ldr	r5, [r4, #36]	@ float
+ 546 0052 6563     		str	r5, [r4, #52]	@ float
+ 176:main.c        ****         X_prep = X_Akmenos1*0.519211+X_Ekmenos1*(-94.13);
+ 547              		.loc 1 176 0
+ 548 0054 FFF7FEFF 		bl	__aeabi_f2d
+ 549              	.LVL66:
+ 550 0058 0FA3     		adr	r3, .L49+8
+ 551 005a D3E90023 		ldrd	r2, [r3]
+ 552 005e FFF7FEFF 		bl	__aeabi_dmul
+ 553              	.LVL67:
+ 554 0062 0646     		mov	r6, r0
+ 555 0064 0F46     		mov	r7, r1
+ 556 0066 2846     		mov	r0, r5
+ 557 0068 FFF7FEFF 		bl	__aeabi_f2d
+ 558              	.LVL68:
+ 559 006c 0CA3     		adr	r3, .L49+16
+ 560 006e D3E90023 		ldrd	r2, [r3]
+ 561 0072 FFF7FEFF 		bl	__aeabi_dmul
+ 562              	.LVL69:
+ 563 0076 0246     		mov	r2, r0
+ 564 0078 0B46     		mov	r3, r1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 14
+
+
+ 565 007a 3046     		mov	r0, r6
+ 566 007c 3946     		mov	r1, r7
+ 567 007e FFF7FEFF 		bl	__aeabi_dadd
+ 568              	.LVL70:
+ 569 0082 FFF7FEFF 		bl	__aeabi_d2f
+ 570              	.LVL71:
+ 571 0086 A062     		str	r0, [r4, #40]	@ float
+ 572 0088 F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 573              	.L50:
+ 574 008a 00BFAFF3 		.align	3
+ 574      0080
+ 575              	.L49:
+ 576 0090 7B14AE47 		.word	1202590843
+ 577 0094 E1726F40 		.word	1081045729
+ 578 0098 8D261763 		.word	1662461581
+ 579 009c 609DE03F 		.word	1071684960
+ 580 00a0 B81E85EB 		.word	-343597384
+ 581 00a4 518857C0 		.word	-1068005295
+ 582 00a8 00000000 		.word	.LANCHOR0
+ 583 00ac 00000000 		.word	.LANCHOR1
+ 584 00b0 0000F041 		.word	1106247680
+ 585 00b4 0000F0C1 		.word	-1041235968
+ 586              		.cfi_endproc
+ 587              	.LFE74:
+ 588              		.size	X_interrupcion_Handler, .-X_interrupcion_Handler
+ 589              		.section	.text.printScreen,"ax",%progbits
+ 590              		.align	2
+ 591              		.global	printScreen
+ 592              		.thumb
+ 593              		.thumb_func
+ 594              		.type	printScreen, %function
+ 595              	printScreen:
+ 596              	.LFB72:
+ 131:main.c        ****         char x_to_print[10];
+ 597              		.loc 1 131 0
+ 598              		.cfi_startproc
+ 599              		@ args = 0, pretend = 0, frame = 48
+ 600              		@ frame_needed = 0, uses_anonymous_args = 0
+ 601              	.LVL72:
+ 602 0000 70B5     		push	{r4, r5, r6, lr}
+ 603              		.cfi_def_cfa_offset 16
+ 604              		.cfi_offset 4, -16
+ 605              		.cfi_offset 5, -12
+ 606              		.cfi_offset 6, -8
+ 607              		.cfi_offset 14, -4
+ 608 0002 8CB0     		sub	sp, sp, #48
+ 609              		.cfi_def_cfa_offset 64
+ 610 0004 0546     		mov	r5, r0
+ 611 0006 0C46     		mov	r4, r1
+ 612 0008 1E46     		mov	r6, r3
+ 136:main.c        ****         sprintf(y_to_print, "Yrq=%d", Yreq);
+ 613              		.loc 1 136 0
+ 614 000a 1A49     		ldr	r1, .L53
+ 615              	.LVL73:
+ 616 000c 09A8     		add	r0, sp, #36
+ 617              	.LVL74:
+ 618 000e FFF7FEFF 		bl	sprintf
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 15
+
+
+ 619              	.LVL75:
+ 137:main.c        ****         sprintf(x_pos_print, "Xps=%d", Xpos);
+ 620              		.loc 1 137 0
+ 621 0012 3246     		mov	r2, r6
+ 622 0014 1849     		ldr	r1, .L53+4
+ 623 0016 06A8     		add	r0, sp, #24
+ 624 0018 FFF7FEFF 		bl	sprintf
+ 625              	.LVL76:
+ 138:main.c        ****         sprintf(y_pos_print, "Yps=%d", Ypos);
+ 626              		.loc 1 138 0
+ 627 001c 2A46     		mov	r2, r5
+ 628 001e 1749     		ldr	r1, .L53+8
+ 629 0020 03A8     		add	r0, sp, #12
+ 630 0022 FFF7FEFF 		bl	sprintf
+ 631              	.LVL77:
+ 139:main.c        ****         LCD_ClearDisplay();
+ 632              		.loc 1 139 0
+ 633 0026 2246     		mov	r2, r4
+ 634 0028 1549     		ldr	r1, .L53+12
+ 635 002a 6846     		mov	r0, sp
+ 636 002c FFF7FEFF 		bl	sprintf
+ 637              	.LVL78:
+ 140:main.c        ****         LCD_Position(0u, 0u); // first row, first column
+ 638              		.loc 1 140 0
+ 639 0030 0120     		movs	r0, #1
+ 640 0032 FFF7FEFF 		bl	LCD_WriteControl
+ 641              	.LVL79:
+ 141:main.c        ****         LCD_PrintString(x_to_print);   
+ 642              		.loc 1 141 0
+ 643 0036 0021     		movs	r1, #0
+ 644 0038 0846     		mov	r0, r1
+ 645 003a FFF7FEFF 		bl	LCD_Position
+ 646              	.LVL80:
+ 142:main.c        ****         LCD_Position(1u, 0u); // first row, first column
+ 647              		.loc 1 142 0
+ 648 003e 09A8     		add	r0, sp, #36
+ 649 0040 FFF7FEFF 		bl	LCD_PrintString
+ 650              	.LVL81:
+ 143:main.c        ****         LCD_PrintString(y_to_print);
+ 651              		.loc 1 143 0
+ 652 0044 0021     		movs	r1, #0
+ 653 0046 0120     		movs	r0, #1
+ 654 0048 FFF7FEFF 		bl	LCD_Position
+ 655              	.LVL82:
+ 144:main.c        ****         LCD_Position(0u, 8u); // first row, first column
+ 656              		.loc 1 144 0
+ 657 004c 06A8     		add	r0, sp, #24
+ 658 004e FFF7FEFF 		bl	LCD_PrintString
+ 659              	.LVL83:
+ 145:main.c        ****         LCD_PrintString(x_pos_print);   
+ 660              		.loc 1 145 0
+ 661 0052 0821     		movs	r1, #8
+ 662 0054 0020     		movs	r0, #0
+ 663 0056 FFF7FEFF 		bl	LCD_Position
+ 664              	.LVL84:
+ 146:main.c        ****         LCD_Position(1u, 8u); // first row, first column
+ 665              		.loc 1 146 0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 16
+
+
+ 666 005a 03A8     		add	r0, sp, #12
+ 667 005c FFF7FEFF 		bl	LCD_PrintString
+ 668              	.LVL85:
+ 147:main.c        ****         LCD_PrintString(y_pos_print);
+ 669              		.loc 1 147 0
+ 670 0060 0821     		movs	r1, #8
+ 671 0062 0120     		movs	r0, #1
+ 672 0064 FFF7FEFF 		bl	LCD_Position
+ 673              	.LVL86:
+ 148:main.c        ****         return;
+ 674              		.loc 1 148 0
+ 675 0068 6846     		mov	r0, sp
+ 676 006a FFF7FEFF 		bl	LCD_PrintString
+ 677              	.LVL87:
+ 150:main.c        **** 
+ 678              		.loc 1 150 0
+ 679 006e 0CB0     		add	sp, sp, #48
+ 680              		.cfi_def_cfa_offset 16
+ 681              		@ sp needed
+ 682 0070 70BD     		pop	{r4, r5, r6, pc}
+ 683              	.LVL88:
+ 684              	.L54:
+ 685 0072 00BF     		.align	2
+ 686              	.L53:
+ 687 0074 00000000 		.word	.LC0
+ 688 0078 08000000 		.word	.LC1
+ 689 007c 10000000 		.word	.LC2
+ 690 0080 18000000 		.word	.LC3
+ 691              		.cfi_endproc
+ 692              	.LFE72:
+ 693              		.size	printScreen, .-printScreen
+ 694              		.section	.text.main,"ax",%progbits
+ 695              		.align	2
+ 696              		.global	main
+ 697              		.thumb
+ 698              		.thumb_func
+ 699              		.type	main, %function
+ 700              	main:
+ 701              	.LFB75:
+ 177:main.c        **** 
+ 178:main.c        **** }
+ 179:main.c        **** 
+ 180:main.c        **** int main(void)
+ 181:main.c        **** {   
+ 702              		.loc 1 181 0
+ 703              		.cfi_startproc
+ 704              		@ Volatile: function does not return.
+ 705              		@ args = 0, pretend = 0, frame = 0
+ 706              		@ frame_needed = 0, uses_anonymous_args = 0
+ 707 0000 08B5     		push	{r3, lr}
+ 708              		.cfi_def_cfa_offset 8
+ 709              		.cfi_offset 3, -8
+ 710              		.cfi_offset 14, -4
+ 182:main.c        ****     //Inicializamos variables globales
+ 183:main.c        ****     Xrel =(X_Volt_EMPMAX/(X_MAX-X_MIN));
+ 711              		.loc 1 183 0
+ 712 0002 194B     		ldr	r3, .L58
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 17
+
+
+ 713 0004 194A     		ldr	r2, .L58+4
+ 714 0006 1A60     		str	r2, [r3]	@ float
+ 184:main.c        ****     Yrel =(Y_Volt_EMPMAX/(Y_MAX-Y_MIN));
+ 715              		.loc 1 184 0
+ 716 0008 194A     		ldr	r2, .L58+8
+ 717 000a 5A60     		str	r2, [r3, #4]	@ float
+ 185:main.c        ****         
+ 186:main.c        ****     //Inicializamos los contadores que generaran las señales para los servos
+ 187:main.c        ****     PWM_X_Start();
+ 718              		.loc 1 187 0
+ 719 000c FFF7FEFF 		bl	PWM_X_Start
+ 720              	.LVL89:
+ 188:main.c        ****     PWM_Y_Start();
+ 721              		.loc 1 188 0
+ 722 0010 FFF7FEFF 		bl	PWM_Y_Start
+ 723              	.LVL90:
+ 189:main.c        ****     CyDelay(100);
+ 724              		.loc 1 189 0
+ 725 0014 6420     		movs	r0, #100
+ 726 0016 FFF7FEFF 		bl	CyDelay
+ 727              	.LVL91:
+ 190:main.c        ****     
+ 191:main.c        ****     //Separamos los PWM 10 milisegundos entre sí
+ 192:main.c        ****     PWM_reset_Write(0xF);
+ 728              		.loc 1 192 0
+ 729 001a 0F20     		movs	r0, #15
+ 730 001c FFF7FEFF 		bl	PWM_reset_Write
+ 731              	.LVL92:
+ 193:main.c        ****     CyDelay(20);
+ 732              		.loc 1 193 0
+ 733 0020 1420     		movs	r0, #20
+ 734 0022 FFF7FEFF 		bl	CyDelay
+ 735              	.LVL93:
+ 194:main.c        ****     PWM_reset_Write(0x6);
+ 736              		.loc 1 194 0
+ 737 0026 0620     		movs	r0, #6
+ 738 0028 FFF7FEFF 		bl	PWM_reset_Write
+ 739              	.LVL94:
+ 195:main.c        ****     CyDelay(10);
+ 740              		.loc 1 195 0
+ 741 002c 0A20     		movs	r0, #10
+ 742 002e FFF7FEFF 		bl	CyDelay
+ 743              	.LVL95:
+ 196:main.c        ****     PWM_reset_Write(0x0);
+ 744              		.loc 1 196 0
+ 745 0032 0020     		movs	r0, #0
+ 746 0034 FFF7FEFF 		bl	PWM_reset_Write
+ 747              	.LVL96:
+ 197:main.c        ****     Touch_Start();
+ 748              		.loc 1 197 0
+ 749 0038 FFF7FEFF 		bl	Touch_Start
+ 750              	.LVL97:
+ 198:main.c        **** 
+ 199:main.c        ****     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
+ 200:main.c        ****     LCD_Start();
+ 751              		.loc 1 200 0
+ 752 003c FFF7FEFF 		bl	LCD_Start
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 18
+
+
+ 753              	.LVL98:
+ 201:main.c        ****     Y_interrupcion_StartEx(Y_interrupcion_Handler);
+ 754              		.loc 1 201 0
+ 755 0040 0C48     		ldr	r0, .L58+12
+ 756 0042 FFF7FEFF 		bl	Y_interrupcion_StartEx
+ 757              	.LVL99:
+ 202:main.c        ****     X_interrupcion_StartEx(X_interrupcion_Handler);
+ 758              		.loc 1 202 0
+ 759 0046 0C48     		ldr	r0, .L58+16
+ 760 0048 FFF7FEFF 		bl	X_interrupcion_StartEx
+ 761              	.LVL100:
+ 203:main.c        ****     CyGlobalIntEnable; /* Enable global interrupts. */
+ 762              		.loc 1 203 0
+ 763              		.syntax unified
+ 764              	@ 203 "main.c" 1
+ 765 004c 62B6     		CPSIE   i
+ 766              	@ 0 "" 2
+ 767              		.thumb
+ 768              		.syntax unified
+ 769              	.L56:
+ 204:main.c        ****     for(;;)
+ 205:main.c        ****     {
+ 206:main.c        ****         printScreen(x_int, y_int, x_req, y_req);        
+ 770              		.loc 1 206 0 discriminator 1
+ 771 004e 0B4A     		ldr	r2, .L58+20
+ 772 0050 0548     		ldr	r0, .L58
+ 773 0052 1368     		ldr	r3, [r2]
+ 774 0054 5268     		ldr	r2, [r2, #4]
+ 775 0056 8168     		ldr	r1, [r0, #8]
+ 776 0058 006A     		ldr	r0, [r0, #32]
+ 777 005a FFF7FEFF 		bl	printScreen
+ 778              	.LVL101:
+ 207:main.c        ****         CyDelay(100);       
+ 779              		.loc 1 207 0 discriminator 1
+ 780 005e 6420     		movs	r0, #100
+ 781 0060 FFF7FEFF 		bl	CyDelay
+ 782              	.LVL102:
+ 783 0064 F3E7     		b	.L56
+ 784              	.L59:
+ 785 0066 00BF     		.align	2
+ 786              	.L58:
+ 787 0068 00000000 		.word	.LANCHOR0
+ 788 006c 36A7BA3A 		.word	985311030
+ 789 0070 9292A03A 		.word	983601810
+ 790 0074 00000000 		.word	Y_interrupcion_Handler
+ 791 0078 00000000 		.word	X_interrupcion_Handler
+ 792 007c 00000000 		.word	.LANCHOR1
+ 793              		.cfi_endproc
+ 794              	.LFE75:
+ 795              		.size	main, .-main
+ 796              		.global	Y_prep
+ 797              		.global	X_prep
+ 798              		.global	Y_Ekmenos1
+ 799              		.global	X_Ekmenos1
+ 800              		.global	Y_Ek
+ 801              		.global	X_Ek
+ 802              		.global	Y_Akmenos1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 19
+
+
+ 803              		.global	X_Akmenos1
+ 804              		.global	Y_Ak
+ 805              		.global	X_Ak
+ 806              		.global	y_req
+ 807              		.global	x_req
+ 808              		.global	y_float
+ 809              		.global	x_float
+ 810              		.global	y_int
+ 811              		.global	x_int
+ 812              		.global	Vssval
+ 813              		.global	Vddval
+ 814              		.global	Yrel
+ 815              		.global	Xrel
+ 816              		.global	Y_MIN
+ 817              		.global	X_MIN
+ 818              		.global	Y_MAX
+ 819              		.global	X_MAX
+ 820              		.global	Y_Volt_EMPMAX
+ 821              		.global	X_Volt_EMPMAX
+ 822              		.global	PWMSERVO_Y_CORRECTION
+ 823              		.global	PWMSERVO_X_CORRECTION
+ 824              		.global	PWMSERVO_MAX
+ 825              		.global	PWMSERVO_MIN
+ 826              		.section	.rodata
+ 827              		.align	2
+ 828              		.type	Y_MIN, %object
+ 829              		.size	Y_MIN, 4
+ 830              	Y_MIN:
+ 831 0000 B4000000 		.word	180
+ 832              		.type	X_MIN, %object
+ 833              		.size	X_MIN, 4
+ 834              	X_MIN:
+ 835 0004 7C010000 		.word	380
+ 836              		.type	Y_MAX, %object
+ 837              		.size	Y_MAX, 4
+ 838              	Y_MAX:
+ 839 0008 6A0E0000 		.word	3690
+ 840              		.type	X_MAX, %object
+ 841              		.size	X_MAX, 4
+ 842              	X_MAX:
+ 843 000c D40D0000 		.word	3540
+ 844              		.type	Y_Volt_EMPMAX, %object
+ 845              		.size	Y_Volt_EMPMAX, 4
+ 846              	Y_Volt_EMPMAX:
+ 847 0010 9A998940 		.word	1082759578
+ 848              		.type	X_Volt_EMPMAX, %object
+ 849              		.size	X_Volt_EMPMAX, 4
+ 850              	X_Volt_EMPMAX:
+ 851 0014 00009040 		.word	1083179008
+ 852              		.type	PWMSERVO_Y_CORRECTION, %object
+ 853              		.size	PWMSERVO_Y_CORRECTION, 4
+ 854              	PWMSERVO_Y_CORRECTION:
+ 855 0018 5D000000 		.word	93
+ 856              		.type	PWMSERVO_X_CORRECTION, %object
+ 857              		.size	PWMSERVO_X_CORRECTION, 4
+ 858              	PWMSERVO_X_CORRECTION:
+ 859 001c 51000000 		.word	81
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 20
+
+
+ 860              		.type	PWMSERVO_MAX, %object
+ 861              		.size	PWMSERVO_MAX, 4
+ 862              	PWMSERVO_MAX:
+ 863 0020 60090000 		.word	2400
+ 864              		.type	PWMSERVO_MIN, %object
+ 865              		.size	PWMSERVO_MIN, 4
+ 866              	PWMSERVO_MIN:
+ 867 0024 20020000 		.word	544
+ 868              		.data
+ 869              		.align	2
+ 870              		.set	.LANCHOR1,. + 0
+ 871              		.type	y_req, %object
+ 872              		.size	y_req, 4
+ 873              	y_req:
+ 874 0000 D0070000 		.word	2000
+ 875              		.type	x_req, %object
+ 876              		.size	x_req, 4
+ 877              	x_req:
+ 878 0004 D0070000 		.word	2000
+ 879              		.type	Vddval, %object
+ 880              		.size	Vddval, 4
+ 881              	Vddval:
+ 882 0008 0000A040 		.word	1084227584
+ 883              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 884              		.align	2
+ 885              	.LC0:
+ 886 0000 5872713D 		.ascii	"Xrq=%d\000"
+ 886      256400
+ 887 0007 00       		.space	1
+ 888              	.LC1:
+ 889 0008 5972713D 		.ascii	"Yrq=%d\000"
+ 889      256400
+ 890 000f 00       		.space	1
+ 891              	.LC2:
+ 892 0010 5870733D 		.ascii	"Xps=%d\000"
+ 892      256400
+ 893 0017 00       		.space	1
+ 894              	.LC3:
+ 895 0018 5970733D 		.ascii	"Yps=%d\000"
+ 895      256400
+ 896              		.bss
+ 897              		.align	2
+ 898              		.set	.LANCHOR0,. + 0
+ 899              		.type	Xrel, %object
+ 900              		.size	Xrel, 4
+ 901              	Xrel:
+ 902 0000 00000000 		.space	4
+ 903              		.type	Yrel, %object
+ 904              		.size	Yrel, 4
+ 905              	Yrel:
+ 906 0004 00000000 		.space	4
+ 907              		.type	y_int, %object
+ 908              		.size	y_int, 4
+ 909              	y_int:
+ 910 0008 00000000 		.space	4
+ 911              		.type	Y_Ek, %object
+ 912              		.size	Y_Ek, 4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 21
+
+
+ 913              	Y_Ek:
+ 914 000c 00000000 		.space	4
+ 915              		.type	Y_prep, %object
+ 916              		.size	Y_prep, 4
+ 917              	Y_prep:
+ 918 0010 00000000 		.space	4
+ 919              		.type	Y_Ak, %object
+ 920              		.size	Y_Ak, 4
+ 921              	Y_Ak:
+ 922 0014 00000000 		.space	4
+ 923              		.type	Y_Akmenos1, %object
+ 924              		.size	Y_Akmenos1, 4
+ 925              	Y_Akmenos1:
+ 926 0018 00000000 		.space	4
+ 927              		.type	Y_Ekmenos1, %object
+ 928              		.size	Y_Ekmenos1, 4
+ 929              	Y_Ekmenos1:
+ 930 001c 00000000 		.space	4
+ 931              		.type	x_int, %object
+ 932              		.size	x_int, 4
+ 933              	x_int:
+ 934 0020 00000000 		.space	4
+ 935              		.type	X_Ek, %object
+ 936              		.size	X_Ek, 4
+ 937              	X_Ek:
+ 938 0024 00000000 		.space	4
+ 939              		.type	X_prep, %object
+ 940              		.size	X_prep, 4
+ 941              	X_prep:
+ 942 0028 00000000 		.space	4
+ 943              		.type	X_Ak, %object
+ 944              		.size	X_Ak, 4
+ 945              	X_Ak:
+ 946 002c 00000000 		.space	4
+ 947              		.type	X_Akmenos1, %object
+ 948              		.size	X_Akmenos1, 4
+ 949              	X_Akmenos1:
+ 950 0030 00000000 		.space	4
+ 951              		.type	X_Ekmenos1, %object
+ 952              		.size	X_Ekmenos1, 4
+ 953              	X_Ekmenos1:
+ 954 0034 00000000 		.space	4
+ 955              		.type	y_float, %object
+ 956              		.size	y_float, 4
+ 957              	y_float:
+ 958 0038 00000000 		.space	4
+ 959              		.type	x_float, %object
+ 960              		.size	x_float, 4
+ 961              	x_float:
+ 962 003c 00000000 		.space	4
+ 963              		.type	Vssval, %object
+ 964              		.size	Vssval, 4
+ 965              	Vssval:
+ 966 0040 00000000 		.space	4
+ 967              		.text
+ 968              	.Letext0:
+ 969              		.file 2 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 22
+
+
+ 970              		.file 3 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 971              		.file 4 "Generated_Source\\PSoC5/core_cm3.h"
+ 972              		.file 5 "Generated_Source\\PSoC5/PWM_X.h"
+ 973              		.file 6 "Generated_Source\\PSoC5/PWM_Y.h"
+ 974              		.file 7 "Generated_Source\\PSoC5/Touch.h"
+ 975              		.file 8 "c:\\program files (x86)\\cypress\\psoc creator\\4.2\\psoc creator\\import\\gnu\\arm\\5.4.
+ 976              		.file 9 "Generated_Source\\PSoC5/LCD.h"
+ 977              		.file 10 "Generated_Source\\PSoC5/CyLib.h"
+ 978              		.file 11 "Generated_Source\\PSoC5/PWM_reset.h"
+ 979              		.file 12 "Generated_Source\\PSoC5/Y_interrupcion.h"
+ 980              		.file 13 "Generated_Source\\PSoC5/X_interrupcion.h"
+ 981              		.section	.debug_info,"",%progbits
+ 982              	.Ldebug_info0:
+ 983 0000 0D090000 		.4byte	0x90d
+ 984 0004 0400     		.2byte	0x4
+ 985 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 986 000a 04       		.byte	0x4
+ 987 000b 01       		.uleb128 0x1
+ 988 000c EE030000 		.4byte	.LASF90
+ 989 0010 0C       		.byte	0xc
+ 990 0011 2F030000 		.4byte	.LASF91
+ 991 0015 2C010000 		.4byte	.LASF92
+ 992 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 993 001d 00000000 		.4byte	0
+ 994 0021 00000000 		.4byte	.Ldebug_line0
+ 995 0025 02       		.uleb128 0x2
+ 996 0026 04       		.byte	0x4
+ 997 0027 04       		.byte	0x4
+ 998 0028 26010000 		.4byte	.LASF0
+ 999 002c 02       		.uleb128 0x2
+ 1000 002d 01       		.byte	0x1
+ 1001 002e 06       		.byte	0x6
+ 1002 002f 49020000 		.4byte	.LASF1
+ 1003 0033 02       		.uleb128 0x2
+ 1004 0034 01       		.byte	0x1
+ 1005 0035 08       		.byte	0x8
+ 1006 0036 15020000 		.4byte	.LASF2
+ 1007 003a 02       		.uleb128 0x2
+ 1008 003b 02       		.byte	0x2
+ 1009 003c 05       		.byte	0x5
+ 1010 003d 34000000 		.4byte	.LASF3
+ 1011 0041 02       		.uleb128 0x2
+ 1012 0042 02       		.byte	0x2
+ 1013 0043 07       		.byte	0x7
+ 1014 0044 BE020000 		.4byte	.LASF4
+ 1015 0048 03       		.uleb128 0x3
+ 1016 0049 93030000 		.4byte	.LASF10
+ 1017 004d 02       		.byte	0x2
+ 1018 004e 3F       		.byte	0x3f
+ 1019 004f 53000000 		.4byte	0x53
+ 1020 0053 02       		.uleb128 0x2
+ 1021 0054 04       		.byte	0x4
+ 1022 0055 05       		.byte	0x5
+ 1023 0056 AF010000 		.4byte	.LASF5
+ 1024 005a 02       		.uleb128 0x2
+ 1025 005b 04       		.byte	0x4
+ 1026 005c 07       		.byte	0x7
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 23
+
+
+ 1027 005d 95020000 		.4byte	.LASF6
+ 1028 0061 02       		.uleb128 0x2
+ 1029 0062 08       		.byte	0x8
+ 1030 0063 05       		.byte	0x5
+ 1031 0064 92010000 		.4byte	.LASF7
+ 1032 0068 02       		.uleb128 0x2
+ 1033 0069 08       		.byte	0x8
+ 1034 006a 07       		.byte	0x7
+ 1035 006b 61020000 		.4byte	.LASF8
+ 1036 006f 04       		.uleb128 0x4
+ 1037 0070 04       		.byte	0x4
+ 1038 0071 05       		.byte	0x5
+ 1039 0072 696E7400 		.ascii	"int\000"
+ 1040 0076 02       		.uleb128 0x2
+ 1041 0077 04       		.byte	0x4
+ 1042 0078 07       		.byte	0x7
+ 1043 0079 78020000 		.4byte	.LASF9
+ 1044 007d 03       		.uleb128 0x3
+ 1045 007e DB020000 		.4byte	.LASF11
+ 1046 0082 03       		.byte	0x3
+ 1047 0083 2C       		.byte	0x2c
+ 1048 0084 48000000 		.4byte	0x48
+ 1049 0088 02       		.uleb128 0x2
+ 1050 0089 08       		.byte	0x8
+ 1051 008a 04       		.byte	0x4
+ 1052 008b 58030000 		.4byte	.LASF12
+ 1053 008f 02       		.uleb128 0x2
+ 1054 0090 01       		.byte	0x1
+ 1055 0091 08       		.byte	0x8
+ 1056 0092 D1020000 		.4byte	.LASF13
+ 1057 0096 02       		.uleb128 0x2
+ 1058 0097 08       		.byte	0x8
+ 1059 0098 04       		.byte	0x4
+ 1060 0099 03020000 		.4byte	.LASF14
+ 1061 009d 02       		.uleb128 0x2
+ 1062 009e 04       		.byte	0x4
+ 1063 009f 07       		.byte	0x7
+ 1064 00a0 4F000000 		.4byte	.LASF15
+ 1065 00a4 05       		.uleb128 0x5
+ 1066 00a5 9D030000 		.4byte	.LASF21
+ 1067 00a9 01       		.byte	0x1
+ 1068 00aa 38       		.byte	0x38
+ 1069 00ab 6F000000 		.4byte	0x6f
+ 1070 00af 00000000 		.4byte	.LFB64
+ 1071 00b3 5C000000 		.4byte	.LFE64-.LFB64
+ 1072 00b7 01       		.uleb128 0x1
+ 1073 00b8 9C       		.byte	0x9c
+ 1074 00b9 3D010000 		.4byte	0x13d
+ 1075 00bd 06       		.uleb128 0x6
+ 1076 00be D3030000 		.4byte	.LASF18
+ 1077 00c2 01       		.byte	0x1
+ 1078 00c3 38       		.byte	0x38
+ 1079 00c4 25000000 		.4byte	0x25
+ 1080 00c8 00000000 		.4byte	.LLST0
+ 1081 00cc 07       		.uleb128 0x7
+ 1082 00cd 16000000 		.4byte	.LBB2
+ 1083 00d1 22000000 		.4byte	.LBE2-.LBB2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 24
+
+
+ 1084 00d5 F8000000 		.4byte	0xf8
+ 1085 00d9 08       		.uleb128 0x8
+ 1086 00da A9040000 		.4byte	.LASF16
+ 1087 00de 01       		.byte	0x1
+ 1088 00df 3A       		.byte	0x3a
+ 1089 00e0 25000000 		.4byte	0x25
+ 1090 00e4 2E000000 		.4byte	.LLST1
+ 1091 00e8 08       		.uleb128 0x8
+ 1092 00e9 A7020000 		.4byte	.LASF17
+ 1093 00ed 01       		.byte	0x1
+ 1094 00ee 3B       		.byte	0x3b
+ 1095 00ef 25000000 		.4byte	0x25
+ 1096 00f3 41000000 		.4byte	.LLST2
+ 1097 00f7 00       		.byte	0
+ 1098 00f8 07       		.uleb128 0x7
+ 1099 00f9 42000000 		.4byte	.LBB3
+ 1100 00fd 06000000 		.4byte	.LBE3-.LBB3
+ 1101 0101 1C010000 		.4byte	0x11c
+ 1102 0105 09       		.uleb128 0x9
+ 1103 0106 A9040000 		.4byte	.LASF16
+ 1104 010a 01       		.byte	0x1
+ 1105 010b 40       		.byte	0x40
+ 1106 010c 25000000 		.4byte	0x25
+ 1107 0110 09       		.uleb128 0x9
+ 1108 0111 A7020000 		.4byte	.LASF17
+ 1109 0115 01       		.byte	0x1
+ 1110 0116 41       		.byte	0x41
+ 1111 0117 25000000 		.4byte	0x25
+ 1112 011b 00       		.byte	0
+ 1113 011c 0A       		.uleb128 0xa
+ 1114 011d 48000000 		.4byte	.LBB4
+ 1115 0121 04000000 		.4byte	.LBE4-.LBB4
+ 1116 0125 09       		.uleb128 0x9
+ 1117 0126 A9040000 		.4byte	.LASF16
+ 1118 012a 01       		.byte	0x1
+ 1119 012b 45       		.byte	0x45
+ 1120 012c 25000000 		.4byte	0x25
+ 1121 0130 09       		.uleb128 0x9
+ 1122 0131 A7020000 		.4byte	.LASF17
+ 1123 0135 01       		.byte	0x1
+ 1124 0136 46       		.byte	0x46
+ 1125 0137 25000000 		.4byte	0x25
+ 1126 013b 00       		.byte	0
+ 1127 013c 00       		.byte	0
+ 1128 013d 0B       		.uleb128 0xb
+ 1129 013e 95040000 		.4byte	.LASF19
+ 1130 0142 01       		.byte	0x1
+ 1131 0143 4B       		.byte	0x4b
+ 1132 0144 00000000 		.4byte	.LFB65
+ 1133 0148 1C000000 		.4byte	.LFE65-.LFB65
+ 1134 014c 01       		.uleb128 0x1
+ 1135 014d 9C       		.byte	0x9c
+ 1136 014e 74010000 		.4byte	0x174
+ 1137 0152 06       		.uleb128 0x6
+ 1138 0153 D3030000 		.4byte	.LASF18
+ 1139 0157 01       		.byte	0x1
+ 1140 0158 4B       		.byte	0x4b
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 25
+
+
+ 1141 0159 25000000 		.4byte	0x25
+ 1142 015d 54000000 		.4byte	.LLST3
+ 1143 0161 0C       		.uleb128 0xc
+ 1144 0162 0E000000 		.4byte	.LVL15
+ 1145 0166 A4000000 		.4byte	0xa4
+ 1146 016a 0C       		.uleb128 0xc
+ 1147 016b 14000000 		.4byte	.LVL16
+ 1148 016f 55080000 		.4byte	0x855
+ 1149 0173 00       		.byte	0
+ 1150 0174 0B       		.uleb128 0xb
+ 1151 0175 9F040000 		.4byte	.LASF20
+ 1152 0179 01       		.byte	0x1
+ 1153 017a 50       		.byte	0x50
+ 1154 017b 00000000 		.4byte	.LFB66
+ 1155 017f 1C000000 		.4byte	.LFE66-.LFB66
+ 1156 0183 01       		.uleb128 0x1
+ 1157 0184 9C       		.byte	0x9c
+ 1158 0185 AB010000 		.4byte	0x1ab
+ 1159 0189 06       		.uleb128 0x6
+ 1160 018a D3030000 		.4byte	.LASF18
+ 1161 018e 01       		.byte	0x1
+ 1162 018f 50       		.byte	0x50
+ 1163 0190 25000000 		.4byte	0x25
+ 1164 0194 8D000000 		.4byte	.LLST4
+ 1165 0198 0C       		.uleb128 0xc
+ 1166 0199 0E000000 		.4byte	.LVL20
+ 1167 019d A4000000 		.4byte	0xa4
+ 1168 01a1 0C       		.uleb128 0xc
+ 1169 01a2 14000000 		.4byte	.LVL21
+ 1170 01a6 60080000 		.4byte	0x860
+ 1171 01aa 00       		.byte	0
+ 1172 01ab 0D       		.uleb128 0xd
+ 1173 01ac 0C000000 		.4byte	.LASF22
+ 1174 01b0 01       		.byte	0x1
+ 1175 01b1 5E       		.byte	0x5e
+ 1176 01b2 6F000000 		.4byte	0x6f
+ 1177 01b6 00000000 		.4byte	.LFB67
+ 1178 01ba 10000000 		.4byte	.LFE67-.LFB67
+ 1179 01be 01       		.uleb128 0x1
+ 1180 01bf 9C       		.byte	0x9c
+ 1181 01c0 E6010000 		.4byte	0x1e6
+ 1182 01c4 08       		.uleb128 0x8
+ 1183 01c5 83000000 		.4byte	.LASF23
+ 1184 01c9 01       		.byte	0x1
+ 1185 01ca 5F       		.byte	0x5f
+ 1186 01cb 6F000000 		.4byte	0x6f
+ 1187 01cf C6000000 		.4byte	.LLST5
+ 1188 01d3 0C       		.uleb128 0xc
+ 1189 01d4 06000000 		.4byte	.LVL22
+ 1190 01d8 6B080000 		.4byte	0x86b
+ 1191 01dc 0C       		.uleb128 0xc
+ 1192 01dd 0C000000 		.4byte	.LVL24
+ 1193 01e1 76080000 		.4byte	0x876
+ 1194 01e5 00       		.byte	0
+ 1195 01e6 0D       		.uleb128 0xd
+ 1196 01e7 83010000 		.4byte	.LASF24
+ 1197 01eb 01       		.byte	0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 26
+
+
+ 1198 01ec 64       		.byte	0x64
+ 1199 01ed 6F000000 		.4byte	0x6f
+ 1200 01f1 00000000 		.4byte	.LFB68
+ 1201 01f5 10000000 		.4byte	.LFE68-.LFB68
+ 1202 01f9 01       		.uleb128 0x1
+ 1203 01fa 9C       		.byte	0x9c
+ 1204 01fb 21020000 		.4byte	0x221
+ 1205 01ff 08       		.uleb128 0x8
+ 1206 0200 83000000 		.4byte	.LASF23
+ 1207 0204 01       		.byte	0x1
+ 1208 0205 65       		.byte	0x65
+ 1209 0206 6F000000 		.4byte	0x6f
+ 1210 020a E4000000 		.4byte	.LLST6
+ 1211 020e 0C       		.uleb128 0xc
+ 1212 020f 06000000 		.4byte	.LVL25
+ 1213 0213 6B080000 		.4byte	0x86b
+ 1214 0217 0C       		.uleb128 0xc
+ 1215 0218 0C000000 		.4byte	.LVL27
+ 1216 021c 81080000 		.4byte	0x881
+ 1217 0220 00       		.byte	0
+ 1218 0221 05       		.uleb128 0x5
+ 1219 0222 C0040000 		.4byte	.LASF25
+ 1220 0226 01       		.byte	0x1
+ 1221 0227 6A       		.byte	0x6a
+ 1222 0228 25000000 		.4byte	0x25
+ 1223 022c 00000000 		.4byte	.LFB69
+ 1224 0230 18000000 		.4byte	.LFE69-.LFB69
+ 1225 0234 01       		.uleb128 0x1
+ 1226 0235 9C       		.byte	0x9c
+ 1227 0236 57020000 		.4byte	0x257
+ 1228 023a 06       		.uleb128 0x6
+ 1229 023b A0010000 		.4byte	.LASF26
+ 1230 023f 01       		.byte	0x1
+ 1231 0240 6A       		.byte	0x6a
+ 1232 0241 6F000000 		.4byte	0x6f
+ 1233 0245 02010000 		.4byte	.LLST7
+ 1234 0249 0E       		.uleb128 0xe
+ 1235 024a AA000000 		.4byte	.LASF27
+ 1236 024e 01       		.byte	0x1
+ 1237 024f 6B       		.byte	0x6b
+ 1238 0250 25000000 		.4byte	0x25
+ 1239 0254 01       		.uleb128 0x1
+ 1240 0255 50       		.byte	0x50
+ 1241 0256 00       		.byte	0
+ 1242 0257 05       		.uleb128 0x5
+ 1243 0258 C9040000 		.4byte	.LASF28
+ 1244 025c 01       		.byte	0x1
+ 1245 025d 6F       		.byte	0x6f
+ 1246 025e 25000000 		.4byte	0x25
+ 1247 0262 00000000 		.4byte	.LFB70
+ 1248 0266 18000000 		.4byte	.LFE70-.LFB70
+ 1249 026a 01       		.uleb128 0x1
+ 1250 026b 9C       		.byte	0x9c
+ 1251 026c 8D020000 		.4byte	0x28d
+ 1252 0270 06       		.uleb128 0x6
+ 1253 0271 B2000000 		.4byte	.LASF29
+ 1254 0275 01       		.byte	0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 27
+
+
+ 1255 0276 6F       		.byte	0x6f
+ 1256 0277 6F000000 		.4byte	0x6f
+ 1257 027b 31010000 		.4byte	.LLST8
+ 1258 027f 0E       		.uleb128 0xe
+ 1259 0280 AA000000 		.4byte	.LASF27
+ 1260 0284 01       		.byte	0x1
+ 1261 0285 70       		.byte	0x70
+ 1262 0286 25000000 		.4byte	0x25
+ 1263 028a 01       		.uleb128 0x1
+ 1264 028b 50       		.byte	0x50
+ 1265 028c 00       		.byte	0
+ 1266 028d 05       		.uleb128 0x5
+ 1267 028e 89030000 		.4byte	.LASF30
+ 1268 0292 01       		.byte	0x1
+ 1269 0293 74       		.byte	0x74
+ 1270 0294 25000000 		.4byte	0x25
+ 1271 0298 00000000 		.4byte	.LFB71
+ 1272 029c 26000000 		.4byte	.LFE71-.LFB71
+ 1273 02a0 01       		.uleb128 0x1
+ 1274 02a1 9C       		.byte	0x9c
+ 1275 02a2 D4020000 		.4byte	0x2d4
+ 1276 02a6 0F       		.uleb128 0xf
+ 1277 02a7 76616C00 		.ascii	"val\000"
+ 1278 02ab 01       		.byte	0x1
+ 1279 02ac 74       		.byte	0x74
+ 1280 02ad 25000000 		.4byte	0x25
+ 1281 02b1 60010000 		.4byte	.LLST9
+ 1282 02b5 0F       		.uleb128 0xf
+ 1283 02b6 6D696E00 		.ascii	"min\000"
+ 1284 02ba 01       		.byte	0x1
+ 1285 02bb 74       		.byte	0x74
+ 1286 02bc 25000000 		.4byte	0x25
+ 1287 02c0 7E010000 		.4byte	.LLST10
+ 1288 02c4 0F       		.uleb128 0xf
+ 1289 02c5 6D617800 		.ascii	"max\000"
+ 1290 02c9 01       		.byte	0x1
+ 1291 02ca 74       		.byte	0x74
+ 1292 02cb 25000000 		.4byte	0x25
+ 1293 02cf 9C010000 		.4byte	.LLST11
+ 1294 02d3 00       		.byte	0
+ 1295 02d4 0B       		.uleb128 0xb
+ 1296 02d5 AA030000 		.4byte	.LASF31
+ 1297 02d9 01       		.byte	0x1
+ 1298 02da 98       		.byte	0x98
+ 1299 02db 00000000 		.4byte	.LFB73
+ 1300 02df B8000000 		.4byte	.LFE73-.LFB73
+ 1301 02e3 01       		.uleb128 0x1
+ 1302 02e4 9C       		.byte	0x9c
+ 1303 02e5 19030000 		.4byte	0x319
+ 1304 02e9 0C       		.uleb128 0xc
+ 1305 02ea 06000000 		.4byte	.LVL42
+ 1306 02ee E6010000 		.4byte	0x1e6
+ 1307 02f2 10       		.uleb128 0x10
+ 1308 02f3 16000000 		.4byte	.LVL43
+ 1309 02f7 57020000 		.4byte	0x257
+ 1310 02fb 06030000 		.4byte	0x306
+ 1311 02ff 11       		.uleb128 0x11
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 28
+
+
+ 1312 0300 01       		.uleb128 0x1
+ 1313 0301 50       		.byte	0x50
+ 1314 0302 02       		.uleb128 0x2
+ 1315 0303 75       		.byte	0x75
+ 1316 0304 00       		.sleb128 0
+ 1317 0305 00       		.byte	0
+ 1318 0306 0C       		.uleb128 0xc
+ 1319 0307 46000000 		.4byte	.LVL49
+ 1320 030b 8D020000 		.4byte	0x28d
+ 1321 030f 0C       		.uleb128 0xc
+ 1322 0310 50000000 		.4byte	.LVL50
+ 1323 0314 74010000 		.4byte	0x174
+ 1324 0318 00       		.byte	0
+ 1325 0319 0B       		.uleb128 0xb
+ 1326 031a 00030000 		.4byte	.LASF32
+ 1327 031e 01       		.byte	0x1
+ 1328 031f A6       		.byte	0xa6
+ 1329 0320 00000000 		.4byte	.LFB74
+ 1330 0324 B8000000 		.4byte	.LFE74-.LFB74
+ 1331 0328 01       		.uleb128 0x1
+ 1332 0329 9C       		.byte	0x9c
+ 1333 032a 5E030000 		.4byte	0x35e
+ 1334 032e 0C       		.uleb128 0xc
+ 1335 032f 06000000 		.4byte	.LVL57
+ 1336 0333 AB010000 		.4byte	0x1ab
+ 1337 0337 10       		.uleb128 0x10
+ 1338 0338 16000000 		.4byte	.LVL58
+ 1339 033c 21020000 		.4byte	0x221
+ 1340 0340 4B030000 		.4byte	0x34b
+ 1341 0344 11       		.uleb128 0x11
+ 1342 0345 01       		.uleb128 0x1
+ 1343 0346 50       		.byte	0x50
+ 1344 0347 02       		.uleb128 0x2
+ 1345 0348 75       		.byte	0x75
+ 1346 0349 00       		.sleb128 0
+ 1347 034a 00       		.byte	0
+ 1348 034b 0C       		.uleb128 0xc
+ 1349 034c 46000000 		.4byte	.LVL64
+ 1350 0350 8D020000 		.4byte	0x28d
+ 1351 0354 0C       		.uleb128 0xc
+ 1352 0355 4C000000 		.4byte	.LVL65
+ 1353 0359 3D010000 		.4byte	0x13d
+ 1354 035d 00       		.byte	0
+ 1355 035e 12       		.uleb128 0x12
+ 1356 035f 00000000 		.4byte	.LASF33
+ 1357 0363 01       		.byte	0x1
+ 1358 0364 83       		.byte	0x83
+ 1359 0365 00000000 		.4byte	.LFB72
+ 1360 0369 84000000 		.4byte	.LFE72-.LFB72
+ 1361 036d 01       		.uleb128 0x1
+ 1362 036e 9C       		.byte	0x9c
+ 1363 036f 34050000 		.4byte	0x534
+ 1364 0373 06       		.uleb128 0x6
+ 1365 0374 B9020000 		.4byte	.LASF34
+ 1366 0378 01       		.byte	0x1
+ 1367 0379 83       		.byte	0x83
+ 1368 037a 6F000000 		.4byte	0x6f
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 29
+
+
+ 1369 037e BA010000 		.4byte	.LLST12
+ 1370 0382 06       		.uleb128 0x6
+ 1371 0383 CE030000 		.4byte	.LASF35
+ 1372 0387 01       		.byte	0x1
+ 1373 0388 83       		.byte	0x83
+ 1374 0389 6F000000 		.4byte	0x6f
+ 1375 038d E6010000 		.4byte	.LLST13
+ 1376 0391 06       		.uleb128 0x6
+ 1377 0392 FB020000 		.4byte	.LASF36
+ 1378 0396 01       		.byte	0x1
+ 1379 0397 83       		.byte	0x83
+ 1380 0398 6F000000 		.4byte	0x6f
+ 1381 039c 12020000 		.4byte	.LLST14
+ 1382 03a0 06       		.uleb128 0x6
+ 1383 03a1 90040000 		.4byte	.LASF37
+ 1384 03a5 01       		.byte	0x1
+ 1385 03a6 83       		.byte	0x83
+ 1386 03a7 6F000000 		.4byte	0x6f
+ 1387 03ab 33020000 		.4byte	.LLST15
+ 1388 03af 0E       		.uleb128 0xe
+ 1389 03b0 F7000000 		.4byte	.LASF38
+ 1390 03b4 01       		.byte	0x1
+ 1391 03b5 84       		.byte	0x84
+ 1392 03b6 34050000 		.4byte	0x534
+ 1393 03ba 02       		.uleb128 0x2
+ 1394 03bb 91       		.byte	0x91
+ 1395 03bc 64       		.sleb128 -28
+ 1396 03bd 0E       		.uleb128 0xe
+ 1397 03be 78000000 		.4byte	.LASF39
+ 1398 03c2 01       		.byte	0x1
+ 1399 03c3 85       		.byte	0x85
+ 1400 03c4 34050000 		.4byte	0x534
+ 1401 03c8 02       		.uleb128 0x2
+ 1402 03c9 91       		.byte	0x91
+ 1403 03ca 58       		.sleb128 -40
+ 1404 03cb 0E       		.uleb128 0xe
+ 1405 03cc 58000000 		.4byte	.LASF40
+ 1406 03d0 01       		.byte	0x1
+ 1407 03d1 86       		.byte	0x86
+ 1408 03d2 34050000 		.4byte	0x534
+ 1409 03d6 02       		.uleb128 0x2
+ 1410 03d7 91       		.byte	0x91
+ 1411 03d8 4C       		.sleb128 -52
+ 1412 03d9 0E       		.uleb128 0xe
+ 1413 03da 55020000 		.4byte	.LASF41
+ 1414 03de 01       		.byte	0x1
+ 1415 03df 87       		.byte	0x87
+ 1416 03e0 34050000 		.4byte	0x534
+ 1417 03e4 02       		.uleb128 0x2
+ 1418 03e5 91       		.byte	0x91
+ 1419 03e6 40       		.sleb128 -64
+ 1420 03e7 10       		.uleb128 0x10
+ 1421 03e8 12000000 		.4byte	.LVL75
+ 1422 03ec 8C080000 		.4byte	0x88c
+ 1423 03f0 0B040000 		.4byte	0x40b
+ 1424 03f4 11       		.uleb128 0x11
+ 1425 03f5 01       		.uleb128 0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 30
+
+
+ 1426 03f6 50       		.byte	0x50
+ 1427 03f7 02       		.uleb128 0x2
+ 1428 03f8 91       		.byte	0x91
+ 1429 03f9 64       		.sleb128 -28
+ 1430 03fa 11       		.uleb128 0x11
+ 1431 03fb 01       		.uleb128 0x1
+ 1432 03fc 51       		.byte	0x51
+ 1433 03fd 05       		.uleb128 0x5
+ 1434 03fe 03       		.byte	0x3
+ 1435 03ff 00000000 		.4byte	.LC0
+ 1436 0403 11       		.uleb128 0x11
+ 1437 0404 01       		.uleb128 0x1
+ 1438 0405 52       		.byte	0x52
+ 1439 0406 03       		.uleb128 0x3
+ 1440 0407 F3       		.byte	0xf3
+ 1441 0408 01       		.uleb128 0x1
+ 1442 0409 52       		.byte	0x52
+ 1443 040a 00       		.byte	0
+ 1444 040b 10       		.uleb128 0x10
+ 1445 040c 1C000000 		.4byte	.LVL76
+ 1446 0410 8C080000 		.4byte	0x88c
+ 1447 0414 2E040000 		.4byte	0x42e
+ 1448 0418 11       		.uleb128 0x11
+ 1449 0419 01       		.uleb128 0x1
+ 1450 041a 50       		.byte	0x50
+ 1451 041b 02       		.uleb128 0x2
+ 1452 041c 91       		.byte	0x91
+ 1453 041d 58       		.sleb128 -40
+ 1454 041e 11       		.uleb128 0x11
+ 1455 041f 01       		.uleb128 0x1
+ 1456 0420 51       		.byte	0x51
+ 1457 0421 05       		.uleb128 0x5
+ 1458 0422 03       		.byte	0x3
+ 1459 0423 08000000 		.4byte	.LC1
+ 1460 0427 11       		.uleb128 0x11
+ 1461 0428 01       		.uleb128 0x1
+ 1462 0429 52       		.byte	0x52
+ 1463 042a 02       		.uleb128 0x2
+ 1464 042b 76       		.byte	0x76
+ 1465 042c 00       		.sleb128 0
+ 1466 042d 00       		.byte	0
+ 1467 042e 10       		.uleb128 0x10
+ 1468 042f 26000000 		.4byte	.LVL77
+ 1469 0433 8C080000 		.4byte	0x88c
+ 1470 0437 51040000 		.4byte	0x451
+ 1471 043b 11       		.uleb128 0x11
+ 1472 043c 01       		.uleb128 0x1
+ 1473 043d 50       		.byte	0x50
+ 1474 043e 02       		.uleb128 0x2
+ 1475 043f 91       		.byte	0x91
+ 1476 0440 4C       		.sleb128 -52
+ 1477 0441 11       		.uleb128 0x11
+ 1478 0442 01       		.uleb128 0x1
+ 1479 0443 51       		.byte	0x51
+ 1480 0444 05       		.uleb128 0x5
+ 1481 0445 03       		.byte	0x3
+ 1482 0446 10000000 		.4byte	.LC2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 31
+
+
+ 1483 044a 11       		.uleb128 0x11
+ 1484 044b 01       		.uleb128 0x1
+ 1485 044c 52       		.byte	0x52
+ 1486 044d 02       		.uleb128 0x2
+ 1487 044e 75       		.byte	0x75
+ 1488 044f 00       		.sleb128 0
+ 1489 0450 00       		.byte	0
+ 1490 0451 10       		.uleb128 0x10
+ 1491 0452 30000000 		.4byte	.LVL78
+ 1492 0456 8C080000 		.4byte	0x88c
+ 1493 045a 74040000 		.4byte	0x474
+ 1494 045e 11       		.uleb128 0x11
+ 1495 045f 01       		.uleb128 0x1
+ 1496 0460 50       		.byte	0x50
+ 1497 0461 02       		.uleb128 0x2
+ 1498 0462 7D       		.byte	0x7d
+ 1499 0463 00       		.sleb128 0
+ 1500 0464 11       		.uleb128 0x11
+ 1501 0465 01       		.uleb128 0x1
+ 1502 0466 51       		.byte	0x51
+ 1503 0467 05       		.uleb128 0x5
+ 1504 0468 03       		.byte	0x3
+ 1505 0469 18000000 		.4byte	.LC3
+ 1506 046d 11       		.uleb128 0x11
+ 1507 046e 01       		.uleb128 0x1
+ 1508 046f 52       		.byte	0x52
+ 1509 0470 02       		.uleb128 0x2
+ 1510 0471 74       		.byte	0x74
+ 1511 0472 00       		.sleb128 0
+ 1512 0473 00       		.byte	0
+ 1513 0474 10       		.uleb128 0x10
+ 1514 0475 36000000 		.4byte	.LVL79
+ 1515 0479 97080000 		.4byte	0x897
+ 1516 047d 87040000 		.4byte	0x487
+ 1517 0481 11       		.uleb128 0x11
+ 1518 0482 01       		.uleb128 0x1
+ 1519 0483 50       		.byte	0x50
+ 1520 0484 01       		.uleb128 0x1
+ 1521 0485 31       		.byte	0x31
+ 1522 0486 00       		.byte	0
+ 1523 0487 10       		.uleb128 0x10
+ 1524 0488 3E000000 		.4byte	.LVL80
+ 1525 048c A2080000 		.4byte	0x8a2
+ 1526 0490 9F040000 		.4byte	0x49f
+ 1527 0494 11       		.uleb128 0x11
+ 1528 0495 01       		.uleb128 0x1
+ 1529 0496 50       		.byte	0x50
+ 1530 0497 01       		.uleb128 0x1
+ 1531 0498 30       		.byte	0x30
+ 1532 0499 11       		.uleb128 0x11
+ 1533 049a 01       		.uleb128 0x1
+ 1534 049b 51       		.byte	0x51
+ 1535 049c 01       		.uleb128 0x1
+ 1536 049d 30       		.byte	0x30
+ 1537 049e 00       		.byte	0
+ 1538 049f 10       		.uleb128 0x10
+ 1539 04a0 44000000 		.4byte	.LVL81
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 32
+
+
+ 1540 04a4 AD080000 		.4byte	0x8ad
+ 1541 04a8 B3040000 		.4byte	0x4b3
+ 1542 04ac 11       		.uleb128 0x11
+ 1543 04ad 01       		.uleb128 0x1
+ 1544 04ae 50       		.byte	0x50
+ 1545 04af 02       		.uleb128 0x2
+ 1546 04b0 91       		.byte	0x91
+ 1547 04b1 64       		.sleb128 -28
+ 1548 04b2 00       		.byte	0
+ 1549 04b3 10       		.uleb128 0x10
+ 1550 04b4 4C000000 		.4byte	.LVL82
+ 1551 04b8 A2080000 		.4byte	0x8a2
+ 1552 04bc CB040000 		.4byte	0x4cb
+ 1553 04c0 11       		.uleb128 0x11
+ 1554 04c1 01       		.uleb128 0x1
+ 1555 04c2 50       		.byte	0x50
+ 1556 04c3 01       		.uleb128 0x1
+ 1557 04c4 31       		.byte	0x31
+ 1558 04c5 11       		.uleb128 0x11
+ 1559 04c6 01       		.uleb128 0x1
+ 1560 04c7 51       		.byte	0x51
+ 1561 04c8 01       		.uleb128 0x1
+ 1562 04c9 30       		.byte	0x30
+ 1563 04ca 00       		.byte	0
+ 1564 04cb 10       		.uleb128 0x10
+ 1565 04cc 52000000 		.4byte	.LVL83
+ 1566 04d0 AD080000 		.4byte	0x8ad
+ 1567 04d4 DF040000 		.4byte	0x4df
+ 1568 04d8 11       		.uleb128 0x11
+ 1569 04d9 01       		.uleb128 0x1
+ 1570 04da 50       		.byte	0x50
+ 1571 04db 02       		.uleb128 0x2
+ 1572 04dc 91       		.byte	0x91
+ 1573 04dd 58       		.sleb128 -40
+ 1574 04de 00       		.byte	0
+ 1575 04df 10       		.uleb128 0x10
+ 1576 04e0 5A000000 		.4byte	.LVL84
+ 1577 04e4 A2080000 		.4byte	0x8a2
+ 1578 04e8 F7040000 		.4byte	0x4f7
+ 1579 04ec 11       		.uleb128 0x11
+ 1580 04ed 01       		.uleb128 0x1
+ 1581 04ee 50       		.byte	0x50
+ 1582 04ef 01       		.uleb128 0x1
+ 1583 04f0 30       		.byte	0x30
+ 1584 04f1 11       		.uleb128 0x11
+ 1585 04f2 01       		.uleb128 0x1
+ 1586 04f3 51       		.byte	0x51
+ 1587 04f4 01       		.uleb128 0x1
+ 1588 04f5 38       		.byte	0x38
+ 1589 04f6 00       		.byte	0
+ 1590 04f7 10       		.uleb128 0x10
+ 1591 04f8 60000000 		.4byte	.LVL85
+ 1592 04fc AD080000 		.4byte	0x8ad
+ 1593 0500 0B050000 		.4byte	0x50b
+ 1594 0504 11       		.uleb128 0x11
+ 1595 0505 01       		.uleb128 0x1
+ 1596 0506 50       		.byte	0x50
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 33
+
+
+ 1597 0507 02       		.uleb128 0x2
+ 1598 0508 91       		.byte	0x91
+ 1599 0509 4C       		.sleb128 -52
+ 1600 050a 00       		.byte	0
+ 1601 050b 10       		.uleb128 0x10
+ 1602 050c 68000000 		.4byte	.LVL86
+ 1603 0510 A2080000 		.4byte	0x8a2
+ 1604 0514 23050000 		.4byte	0x523
+ 1605 0518 11       		.uleb128 0x11
+ 1606 0519 01       		.uleb128 0x1
+ 1607 051a 50       		.byte	0x50
+ 1608 051b 01       		.uleb128 0x1
+ 1609 051c 31       		.byte	0x31
+ 1610 051d 11       		.uleb128 0x11
+ 1611 051e 01       		.uleb128 0x1
+ 1612 051f 51       		.byte	0x51
+ 1613 0520 01       		.uleb128 0x1
+ 1614 0521 38       		.byte	0x38
+ 1615 0522 00       		.byte	0
+ 1616 0523 13       		.uleb128 0x13
+ 1617 0524 6E000000 		.4byte	.LVL87
+ 1618 0528 AD080000 		.4byte	0x8ad
+ 1619 052c 11       		.uleb128 0x11
+ 1620 052d 01       		.uleb128 0x1
+ 1621 052e 50       		.byte	0x50
+ 1622 052f 02       		.uleb128 0x2
+ 1623 0530 7D       		.byte	0x7d
+ 1624 0531 00       		.sleb128 0
+ 1625 0532 00       		.byte	0
+ 1626 0533 00       		.byte	0
+ 1627 0534 14       		.uleb128 0x14
+ 1628 0535 8F000000 		.4byte	0x8f
+ 1629 0539 44050000 		.4byte	0x544
+ 1630 053d 15       		.uleb128 0x15
+ 1631 053e 9D000000 		.4byte	0x9d
+ 1632 0542 09       		.byte	0x9
+ 1633 0543 00       		.byte	0
+ 1634 0544 16       		.uleb128 0x16
+ 1635 0545 D6020000 		.4byte	.LASF93
+ 1636 0549 01       		.byte	0x1
+ 1637 054a B4       		.byte	0xb4
+ 1638 054b 6F000000 		.4byte	0x6f
+ 1639 054f 00000000 		.4byte	.LFB75
+ 1640 0553 80000000 		.4byte	.LFE75-.LFB75
+ 1641 0557 01       		.uleb128 0x1
+ 1642 0558 9C       		.byte	0x9c
+ 1643 0559 3C060000 		.4byte	0x63c
+ 1644 055d 0C       		.uleb128 0xc
+ 1645 055e 10000000 		.4byte	.LVL89
+ 1646 0562 B8080000 		.4byte	0x8b8
+ 1647 0566 0C       		.uleb128 0xc
+ 1648 0567 14000000 		.4byte	.LVL90
+ 1649 056b C3080000 		.4byte	0x8c3
+ 1650 056f 10       		.uleb128 0x10
+ 1651 0570 1A000000 		.4byte	.LVL91
+ 1652 0574 CE080000 		.4byte	0x8ce
+ 1653 0578 83050000 		.4byte	0x583
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 34
+
+
+ 1654 057c 11       		.uleb128 0x11
+ 1655 057d 01       		.uleb128 0x1
+ 1656 057e 50       		.byte	0x50
+ 1657 057f 02       		.uleb128 0x2
+ 1658 0580 08       		.byte	0x8
+ 1659 0581 64       		.byte	0x64
+ 1660 0582 00       		.byte	0
+ 1661 0583 10       		.uleb128 0x10
+ 1662 0584 20000000 		.4byte	.LVL92
+ 1663 0588 D9080000 		.4byte	0x8d9
+ 1664 058c 96050000 		.4byte	0x596
+ 1665 0590 11       		.uleb128 0x11
+ 1666 0591 01       		.uleb128 0x1
+ 1667 0592 50       		.byte	0x50
+ 1668 0593 01       		.uleb128 0x1
+ 1669 0594 3F       		.byte	0x3f
+ 1670 0595 00       		.byte	0
+ 1671 0596 10       		.uleb128 0x10
+ 1672 0597 26000000 		.4byte	.LVL93
+ 1673 059b CE080000 		.4byte	0x8ce
+ 1674 059f A9050000 		.4byte	0x5a9
+ 1675 05a3 11       		.uleb128 0x11
+ 1676 05a4 01       		.uleb128 0x1
+ 1677 05a5 50       		.byte	0x50
+ 1678 05a6 01       		.uleb128 0x1
+ 1679 05a7 44       		.byte	0x44
+ 1680 05a8 00       		.byte	0
+ 1681 05a9 10       		.uleb128 0x10
+ 1682 05aa 2C000000 		.4byte	.LVL94
+ 1683 05ae D9080000 		.4byte	0x8d9
+ 1684 05b2 BC050000 		.4byte	0x5bc
+ 1685 05b6 11       		.uleb128 0x11
+ 1686 05b7 01       		.uleb128 0x1
+ 1687 05b8 50       		.byte	0x50
+ 1688 05b9 01       		.uleb128 0x1
+ 1689 05ba 36       		.byte	0x36
+ 1690 05bb 00       		.byte	0
+ 1691 05bc 10       		.uleb128 0x10
+ 1692 05bd 32000000 		.4byte	.LVL95
+ 1693 05c1 CE080000 		.4byte	0x8ce
+ 1694 05c5 CF050000 		.4byte	0x5cf
+ 1695 05c9 11       		.uleb128 0x11
+ 1696 05ca 01       		.uleb128 0x1
+ 1697 05cb 50       		.byte	0x50
+ 1698 05cc 01       		.uleb128 0x1
+ 1699 05cd 3A       		.byte	0x3a
+ 1700 05ce 00       		.byte	0
+ 1701 05cf 10       		.uleb128 0x10
+ 1702 05d0 38000000 		.4byte	.LVL96
+ 1703 05d4 D9080000 		.4byte	0x8d9
+ 1704 05d8 E2050000 		.4byte	0x5e2
+ 1705 05dc 11       		.uleb128 0x11
+ 1706 05dd 01       		.uleb128 0x1
+ 1707 05de 50       		.byte	0x50
+ 1708 05df 01       		.uleb128 0x1
+ 1709 05e0 30       		.byte	0x30
+ 1710 05e1 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 35
+
+
+ 1711 05e2 0C       		.uleb128 0xc
+ 1712 05e3 3C000000 		.4byte	.LVL97
+ 1713 05e7 E4080000 		.4byte	0x8e4
+ 1714 05eb 0C       		.uleb128 0xc
+ 1715 05ec 40000000 		.4byte	.LVL98
+ 1716 05f0 EF080000 		.4byte	0x8ef
+ 1717 05f4 10       		.uleb128 0x10
+ 1718 05f5 46000000 		.4byte	.LVL99
+ 1719 05f9 FA080000 		.4byte	0x8fa
+ 1720 05fd 0B060000 		.4byte	0x60b
+ 1721 0601 11       		.uleb128 0x11
+ 1722 0602 01       		.uleb128 0x1
+ 1723 0603 50       		.byte	0x50
+ 1724 0604 05       		.uleb128 0x5
+ 1725 0605 03       		.byte	0x3
+ 1726 0606 00000000 		.4byte	Y_interrupcion_Handler
+ 1727 060a 00       		.byte	0
+ 1728 060b 10       		.uleb128 0x10
+ 1729 060c 4C000000 		.4byte	.LVL100
+ 1730 0610 05090000 		.4byte	0x905
+ 1731 0614 22060000 		.4byte	0x622
+ 1732 0618 11       		.uleb128 0x11
+ 1733 0619 01       		.uleb128 0x1
+ 1734 061a 50       		.byte	0x50
+ 1735 061b 05       		.uleb128 0x5
+ 1736 061c 03       		.byte	0x3
+ 1737 061d 00000000 		.4byte	X_interrupcion_Handler
+ 1738 0621 00       		.byte	0
+ 1739 0622 0C       		.uleb128 0xc
+ 1740 0623 5E000000 		.4byte	.LVL101
+ 1741 0627 5E030000 		.4byte	0x35e
+ 1742 062b 13       		.uleb128 0x13
+ 1743 062c 64000000 		.4byte	.LVL102
+ 1744 0630 CE080000 		.4byte	0x8ce
+ 1745 0634 11       		.uleb128 0x11
+ 1746 0635 01       		.uleb128 0x1
+ 1747 0636 50       		.byte	0x50
+ 1748 0637 02       		.uleb128 0x2
+ 1749 0638 08       		.byte	0x8
+ 1750 0639 64       		.byte	0x64
+ 1751 063a 00       		.byte	0
+ 1752 063b 00       		.byte	0
+ 1753 063c 17       		.uleb128 0x17
+ 1754 063d 66030000 		.4byte	.LASF42
+ 1755 0641 04       		.byte	0x4
+ 1756 0642 1207     		.2byte	0x712
+ 1757 0644 48060000 		.4byte	0x648
+ 1758 0648 18       		.uleb128 0x18
+ 1759 0649 7D000000 		.4byte	0x7d
+ 1760 064d 19       		.uleb128 0x19
+ 1761 064e C1030000 		.4byte	.LASF43
+ 1762 0652 01       		.byte	0x1
+ 1763 0653 13       		.byte	0x13
+ 1764 0654 5E060000 		.4byte	0x65e
+ 1765 0658 05       		.uleb128 0x5
+ 1766 0659 03       		.byte	0x3
+ 1767 065a 00000000 		.4byte	PWMSERVO_MIN
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 36
+
+
+ 1768 065e 1A       		.uleb128 0x1a
+ 1769 065f 6F000000 		.4byte	0x6f
+ 1770 0663 19       		.uleb128 0x19
+ 1771 0664 16000000 		.4byte	.LASF44
+ 1772 0668 01       		.byte	0x1
+ 1773 0669 14       		.byte	0x14
+ 1774 066a 5E060000 		.4byte	0x65e
+ 1775 066e 05       		.uleb128 0x5
+ 1776 066f 03       		.byte	0x3
+ 1777 0670 00000000 		.4byte	PWMSERVO_MAX
+ 1778 0674 19       		.uleb128 0x19
+ 1779 0675 73030000 		.4byte	.LASF45
+ 1780 0679 01       		.byte	0x1
+ 1781 067a 15       		.byte	0x15
+ 1782 067b 5E060000 		.4byte	0x65e
+ 1783 067f 05       		.uleb128 0x5
+ 1784 0680 03       		.byte	0x3
+ 1785 0681 00000000 		.4byte	PWMSERVO_X_CORRECTION
+ 1786 0685 19       		.uleb128 0x19
+ 1787 0686 D9000000 		.4byte	.LASF46
+ 1788 068a 01       		.byte	0x1
+ 1789 068b 16       		.byte	0x16
+ 1790 068c 5E060000 		.4byte	0x65e
+ 1791 0690 05       		.uleb128 0x5
+ 1792 0691 03       		.byte	0x3
+ 1793 0692 00000000 		.4byte	PWMSERVO_Y_CORRECTION
+ 1794 0696 19       		.uleb128 0x19
+ 1795 0697 23020000 		.4byte	.LASF47
+ 1796 069b 01       		.byte	0x1
+ 1797 069c 17       		.byte	0x17
+ 1798 069d A7060000 		.4byte	0x6a7
+ 1799 06a1 05       		.uleb128 0x5
+ 1800 06a2 03       		.byte	0x3
+ 1801 06a3 00000000 		.4byte	X_Volt_EMPMAX
+ 1802 06a7 1A       		.uleb128 0x1a
+ 1803 06a8 25000000 		.4byte	0x25
+ 1804 06ac 19       		.uleb128 0x19
+ 1805 06ad CB000000 		.4byte	.LASF48
+ 1806 06b1 01       		.byte	0x1
+ 1807 06b2 18       		.byte	0x18
+ 1808 06b3 A7060000 		.4byte	0x6a7
+ 1809 06b7 05       		.uleb128 0x5
+ 1810 06b8 03       		.byte	0x3
+ 1811 06b9 00000000 		.4byte	Y_Volt_EMPMAX
+ 1812 06bd 19       		.uleb128 0x19
+ 1813 06be 3E000000 		.4byte	.LASF49
+ 1814 06c2 01       		.byte	0x1
+ 1815 06c3 19       		.byte	0x19
+ 1816 06c4 5E060000 		.4byte	0x65e
+ 1817 06c8 05       		.uleb128 0x5
+ 1818 06c9 03       		.byte	0x3
+ 1819 06ca 00000000 		.4byte	X_MAX
+ 1820 06ce 19       		.uleb128 0x19
+ 1821 06cf E3020000 		.4byte	.LASF50
+ 1822 06d3 01       		.byte	0x1
+ 1823 06d4 1A       		.byte	0x1a
+ 1824 06d5 5E060000 		.4byte	0x65e
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 37
+
+
+ 1825 06d9 05       		.uleb128 0x5
+ 1826 06da 03       		.byte	0x3
+ 1827 06db 00000000 		.4byte	Y_MAX
+ 1828 06df 19       		.uleb128 0x19
+ 1829 06e0 A4000000 		.4byte	.LASF51
+ 1830 06e4 01       		.byte	0x1
+ 1831 06e5 1B       		.byte	0x1b
+ 1832 06e6 5E060000 		.4byte	0x65e
+ 1833 06ea 05       		.uleb128 0x5
+ 1834 06eb 03       		.byte	0x3
+ 1835 06ec 00000000 		.4byte	X_MIN
+ 1836 06f0 19       		.uleb128 0x19
+ 1837 06f1 52030000 		.4byte	.LASF52
+ 1838 06f5 01       		.byte	0x1
+ 1839 06f6 1C       		.byte	0x1c
+ 1840 06f7 5E060000 		.4byte	0x65e
+ 1841 06fb 05       		.uleb128 0x5
+ 1842 06fc 03       		.byte	0x3
+ 1843 06fd 00000000 		.4byte	Y_MIN
+ 1844 0701 19       		.uleb128 0x19
+ 1845 0702 E9020000 		.4byte	.LASF53
+ 1846 0706 01       		.byte	0x1
+ 1847 0707 1D       		.byte	0x1d
+ 1848 0708 25000000 		.4byte	0x25
+ 1849 070c 05       		.uleb128 0x5
+ 1850 070d 03       		.byte	0x3
+ 1851 070e 00000000 		.4byte	Xrel
+ 1852 0712 19       		.uleb128 0x19
+ 1853 0713 7C040000 		.4byte	.LASF54
+ 1854 0717 01       		.byte	0x1
+ 1855 0718 1E       		.byte	0x1e
+ 1856 0719 25000000 		.4byte	0x25
+ 1857 071d 05       		.uleb128 0x5
+ 1858 071e 03       		.byte	0x3
+ 1859 071f 00000000 		.4byte	Yrel
+ 1860 0723 19       		.uleb128 0x19
+ 1861 0724 89040000 		.4byte	.LASF55
+ 1862 0728 01       		.byte	0x1
+ 1863 0729 1F       		.byte	0x1f
+ 1864 072a 25000000 		.4byte	0x25
+ 1865 072e 05       		.uleb128 0x5
+ 1866 072f 03       		.byte	0x3
+ 1867 0730 00000000 		.4byte	Vddval
+ 1868 0734 19       		.uleb128 0x19
+ 1869 0735 08010000 		.4byte	.LASF56
+ 1870 0739 01       		.byte	0x1
+ 1871 073a 20       		.byte	0x20
+ 1872 073b 25000000 		.4byte	0x25
+ 1873 073f 05       		.uleb128 0x5
+ 1874 0740 03       		.byte	0x3
+ 1875 0741 00000000 		.4byte	Vssval
+ 1876 0745 19       		.uleb128 0x19
+ 1877 0746 B8010000 		.4byte	.LASF57
+ 1878 074a 01       		.byte	0x1
+ 1879 074b 22       		.byte	0x22
+ 1880 074c 6F000000 		.4byte	0x6f
+ 1881 0750 05       		.uleb128 0x5
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 38
+
+
+ 1882 0751 03       		.byte	0x3
+ 1883 0752 00000000 		.4byte	x_int
+ 1884 0756 19       		.uleb128 0x19
+ 1885 0757 E8030000 		.4byte	.LASF58
+ 1886 075b 01       		.byte	0x1
+ 1887 075c 23       		.byte	0x23
+ 1888 075d 6F000000 		.4byte	0x6f
+ 1889 0761 05       		.uleb128 0x5
+ 1890 0762 03       		.byte	0x3
+ 1891 0763 00000000 		.4byte	y_int
+ 1892 0767 19       		.uleb128 0x19
+ 1893 0768 27030000 		.4byte	.LASF59
+ 1894 076c 01       		.byte	0x1
+ 1895 076d 24       		.byte	0x24
+ 1896 076e 25000000 		.4byte	0x25
+ 1897 0772 05       		.uleb128 0x5
+ 1898 0773 03       		.byte	0x3
+ 1899 0774 00000000 		.4byte	x_float
+ 1900 0778 19       		.uleb128 0x19
+ 1901 0779 EF000000 		.4byte	.LASF60
+ 1902 077d 01       		.byte	0x1
+ 1903 077e 25       		.byte	0x25
+ 1904 077f 25000000 		.4byte	0x25
+ 1905 0783 05       		.uleb128 0x5
+ 1906 0784 03       		.byte	0x3
+ 1907 0785 00000000 		.4byte	y_float
+ 1908 0789 19       		.uleb128 0x19
+ 1909 078a 0F020000 		.4byte	.LASF61
+ 1910 078e 01       		.byte	0x1
+ 1911 078f 26       		.byte	0x26
+ 1912 0790 6F000000 		.4byte	0x6f
+ 1913 0794 05       		.uleb128 0x5
+ 1914 0795 03       		.byte	0x3
+ 1915 0796 00000000 		.4byte	x_req
+ 1916 079a 19       		.uleb128 0x19
+ 1917 079b 02010000 		.4byte	.LASF62
+ 1918 079f 01       		.byte	0x1
+ 1919 07a0 27       		.byte	0x27
+ 1920 07a1 6F000000 		.4byte	0x6f
+ 1921 07a5 05       		.uleb128 0x5
+ 1922 07a6 03       		.byte	0x3
+ 1923 07a7 00000000 		.4byte	y_req
+ 1924 07ab 19       		.uleb128 0x19
+ 1925 07ac C6000000 		.4byte	.LASF63
+ 1926 07b0 01       		.byte	0x1
+ 1927 07b1 28       		.byte	0x28
+ 1928 07b2 25000000 		.4byte	0x25
+ 1929 07b6 05       		.uleb128 0x5
+ 1930 07b7 03       		.byte	0x3
+ 1931 07b8 00000000 		.4byte	X_Ak
+ 1932 07bc 19       		.uleb128 0x19
+ 1933 07bd 44020000 		.4byte	.LASF64
+ 1934 07c1 01       		.byte	0x1
+ 1935 07c2 29       		.byte	0x29
+ 1936 07c3 25000000 		.4byte	0x25
+ 1937 07c7 05       		.uleb128 0x5
+ 1938 07c8 03       		.byte	0x3
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 39
+
+
+ 1939 07c9 00000000 		.4byte	Y_Ak
+ 1940 07cd 19       		.uleb128 0x19
+ 1941 07ce 44000000 		.4byte	.LASF65
+ 1942 07d2 01       		.byte	0x1
+ 1943 07d3 2A       		.byte	0x2a
+ 1944 07d4 25000000 		.4byte	0x25
+ 1945 07d8 05       		.uleb128 0x5
+ 1946 07d9 03       		.byte	0x3
+ 1947 07da 00000000 		.4byte	X_Akmenos1
+ 1948 07de 19       		.uleb128 0x19
+ 1949 07df 39020000 		.4byte	.LASF66
+ 1950 07e3 01       		.byte	0x1
+ 1951 07e4 2B       		.byte	0x2b
+ 1952 07e5 25000000 		.4byte	0x25
+ 1953 07e9 05       		.uleb128 0x5
+ 1954 07ea 03       		.byte	0x3
+ 1955 07eb 00000000 		.4byte	Y_Akmenos1
+ 1956 07ef 19       		.uleb128 0x19
+ 1957 07f0 8D010000 		.4byte	.LASF67
+ 1958 07f4 01       		.byte	0x1
+ 1959 07f5 2C       		.byte	0x2c
+ 1960 07f6 25000000 		.4byte	0x25
+ 1961 07fa 05       		.uleb128 0x5
+ 1962 07fb 03       		.byte	0x3
+ 1963 07fc 00000000 		.4byte	X_Ek
+ 1964 0800 19       		.uleb128 0x19
+ 1965 0801 B4020000 		.4byte	.LASF68
+ 1966 0805 01       		.byte	0x1
+ 1967 0806 2D       		.byte	0x2d
+ 1968 0807 25000000 		.4byte	0x25
+ 1969 080b 05       		.uleb128 0x5
+ 1970 080c 03       		.byte	0x3
+ 1971 080d 00000000 		.4byte	Y_Ek
+ 1972 0811 19       		.uleb128 0x19
+ 1973 0812 B5040000 		.4byte	.LASF69
+ 1974 0816 01       		.byte	0x1
+ 1975 0817 2E       		.byte	0x2e
+ 1976 0818 25000000 		.4byte	0x25
+ 1977 081c 05       		.uleb128 0x5
+ 1978 081d 03       		.byte	0x3
+ 1979 081e 00000000 		.4byte	X_Ekmenos1
+ 1980 0822 19       		.uleb128 0x19
+ 1981 0823 BE010000 		.4byte	.LASF70
+ 1982 0827 01       		.byte	0x1
+ 1983 0828 2F       		.byte	0x2f
+ 1984 0829 25000000 		.4byte	0x25
+ 1985 082d 05       		.uleb128 0x5
+ 1986 082e 03       		.byte	0x3
+ 1987 082f 00000000 		.4byte	Y_Ekmenos1
+ 1988 0833 19       		.uleb128 0x19
+ 1989 0834 5F030000 		.4byte	.LASF71
+ 1990 0838 01       		.byte	0x1
+ 1991 0839 30       		.byte	0x30
+ 1992 083a 25000000 		.4byte	0x25
+ 1993 083e 05       		.uleb128 0x5
+ 1994 083f 03       		.byte	0x3
+ 1995 0840 00000000 		.4byte	X_prep
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 40
+
+
+ 1996 0844 19       		.uleb128 0x19
+ 1997 0845 A8010000 		.4byte	.LASF72
+ 1998 0849 01       		.byte	0x1
+ 1999 084a 31       		.byte	0x31
+ 2000 084b 25000000 		.4byte	0x25
+ 2001 084f 05       		.uleb128 0x5
+ 2002 0850 03       		.byte	0x3
+ 2003 0851 00000000 		.4byte	Y_prep
+ 2004 0855 1B       		.uleb128 0x1b
+ 2005 0856 C9010000 		.4byte	.LASF73
+ 2006 085a C9010000 		.4byte	.LASF73
+ 2007 085e 05       		.byte	0x5
+ 2008 085f C7       		.byte	0xc7
+ 2009 0860 1B       		.uleb128 0x1b
+ 2010 0861 64000000 		.4byte	.LASF74
+ 2011 0865 64000000 		.4byte	.LASF74
+ 2012 0869 06       		.byte	0x6
+ 2013 086a C7       		.byte	0xc7
+ 2014 086b 1B       		.uleb128 0x1b
+ 2015 086c DA030000 		.4byte	.LASF75
+ 2016 0870 DA030000 		.4byte	.LASF75
+ 2017 0874 07       		.byte	0x7
+ 2018 0875 24       		.byte	0x24
+ 2019 0876 1B       		.uleb128 0x1b
+ 2020 0877 DD010000 		.4byte	.LASF76
+ 2021 087b DD010000 		.4byte	.LASF76
+ 2022 087f 07       		.byte	0x7
+ 2023 0880 23       		.byte	0x23
+ 2024 0881 1B       		.uleb128 0x1b
+ 2025 0882 17030000 		.4byte	.LASF77
+ 2026 0886 17030000 		.4byte	.LASF77
+ 2027 088a 07       		.byte	0x7
+ 2028 088b 22       		.byte	0x22
+ 2029 088c 1B       		.uleb128 0x1b
+ 2030 088d 31020000 		.4byte	.LASF78
+ 2031 0891 31020000 		.4byte	.LASF78
+ 2032 0895 08       		.byte	0x8
+ 2033 0896 E7       		.byte	0xe7
+ 2034 0897 1B       		.uleb128 0x1b
+ 2035 0898 23000000 		.4byte	.LASF79
+ 2036 089c 23000000 		.4byte	.LASF79
+ 2037 08a0 09       		.byte	0x9
+ 2038 08a1 3A       		.byte	0x3a
+ 2039 08a2 1B       		.uleb128 0x1b
+ 2040 08a3 EE020000 		.4byte	.LASF80
+ 2041 08a7 EE020000 		.4byte	.LASF80
+ 2042 08ab 09       		.byte	0x9
+ 2043 08ac 3D       		.byte	0x3d
+ 2044 08ad 1B       		.uleb128 0x1b
+ 2045 08ae 85020000 		.4byte	.LASF81
+ 2046 08b2 85020000 		.4byte	.LASF81
+ 2047 08b6 09       		.byte	0x9
+ 2048 08b7 3C       		.byte	0x3c
+ 2049 08b8 1B       		.uleb128 0x1b
+ 2050 08b9 BA000000 		.4byte	.LASF82
+ 2051 08bd BA000000 		.4byte	.LASF82
+ 2052 08c1 05       		.byte	0x5
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 41
+
+
+ 2053 08c2 92       		.byte	0x92
+ 2054 08c3 1B       		.uleb128 0x1b
+ 2055 08c4 36030000 		.4byte	.LASF83
+ 2056 08c8 36030000 		.4byte	.LASF83
+ 2057 08cc 06       		.byte	0x6
+ 2058 08cd 92       		.byte	0x92
+ 2059 08ce 1B       		.uleb128 0x1b
+ 2060 08cf 81040000 		.4byte	.LASF84
+ 2061 08d3 81040000 		.4byte	.LASF84
+ 2062 08d7 0A       		.byte	0xa
+ 2063 08d8 76       		.byte	0x76
+ 2064 08d9 1B       		.uleb128 0x1b
+ 2065 08da 42030000 		.4byte	.LASF85
+ 2066 08de 42030000 		.4byte	.LASF85
+ 2067 08e2 0B       		.byte	0xb
+ 2068 08e3 2F       		.byte	0x2f
+ 2069 08e4 1B       		.uleb128 0x1b
+ 2070 08e5 F7010000 		.4byte	.LASF86
+ 2071 08e9 F7010000 		.4byte	.LASF86
+ 2072 08ed 07       		.byte	0x7
+ 2073 08ee 1E       		.byte	0x1e
+ 2074 08ef 1B       		.uleb128 0x1b
+ 2075 08f0 ED010000 		.4byte	.LASF87
+ 2076 08f4 ED010000 		.4byte	.LASF87
+ 2077 08f8 09       		.byte	0x9
+ 2078 08f9 38       		.byte	0x38
+ 2079 08fa 1B       		.uleb128 0x1b
+ 2080 08fb 0F010000 		.4byte	.LASF88
+ 2081 08ff 0F010000 		.4byte	.LASF88
+ 2082 0903 0C       		.byte	0xc
+ 2083 0904 18       		.byte	0x18
+ 2084 0905 1B       		.uleb128 0x1b
+ 2085 0906 8D000000 		.4byte	.LASF89
+ 2086 090a 8D000000 		.4byte	.LASF89
+ 2087 090e 0D       		.byte	0xd
+ 2088 090f 18       		.byte	0x18
+ 2089 0910 00       		.byte	0
+ 2090              		.section	.debug_abbrev,"",%progbits
+ 2091              	.Ldebug_abbrev0:
+ 2092 0000 01       		.uleb128 0x1
+ 2093 0001 11       		.uleb128 0x11
+ 2094 0002 01       		.byte	0x1
+ 2095 0003 25       		.uleb128 0x25
+ 2096 0004 0E       		.uleb128 0xe
+ 2097 0005 13       		.uleb128 0x13
+ 2098 0006 0B       		.uleb128 0xb
+ 2099 0007 03       		.uleb128 0x3
+ 2100 0008 0E       		.uleb128 0xe
+ 2101 0009 1B       		.uleb128 0x1b
+ 2102 000a 0E       		.uleb128 0xe
+ 2103 000b 55       		.uleb128 0x55
+ 2104 000c 17       		.uleb128 0x17
+ 2105 000d 11       		.uleb128 0x11
+ 2106 000e 01       		.uleb128 0x1
+ 2107 000f 10       		.uleb128 0x10
+ 2108 0010 17       		.uleb128 0x17
+ 2109 0011 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 42
+
+
+ 2110 0012 00       		.byte	0
+ 2111 0013 02       		.uleb128 0x2
+ 2112 0014 24       		.uleb128 0x24
+ 2113 0015 00       		.byte	0
+ 2114 0016 0B       		.uleb128 0xb
+ 2115 0017 0B       		.uleb128 0xb
+ 2116 0018 3E       		.uleb128 0x3e
+ 2117 0019 0B       		.uleb128 0xb
+ 2118 001a 03       		.uleb128 0x3
+ 2119 001b 0E       		.uleb128 0xe
+ 2120 001c 00       		.byte	0
+ 2121 001d 00       		.byte	0
+ 2122 001e 03       		.uleb128 0x3
+ 2123 001f 16       		.uleb128 0x16
+ 2124 0020 00       		.byte	0
+ 2125 0021 03       		.uleb128 0x3
+ 2126 0022 0E       		.uleb128 0xe
+ 2127 0023 3A       		.uleb128 0x3a
+ 2128 0024 0B       		.uleb128 0xb
+ 2129 0025 3B       		.uleb128 0x3b
+ 2130 0026 0B       		.uleb128 0xb
+ 2131 0027 49       		.uleb128 0x49
+ 2132 0028 13       		.uleb128 0x13
+ 2133 0029 00       		.byte	0
+ 2134 002a 00       		.byte	0
+ 2135 002b 04       		.uleb128 0x4
+ 2136 002c 24       		.uleb128 0x24
+ 2137 002d 00       		.byte	0
+ 2138 002e 0B       		.uleb128 0xb
+ 2139 002f 0B       		.uleb128 0xb
+ 2140 0030 3E       		.uleb128 0x3e
+ 2141 0031 0B       		.uleb128 0xb
+ 2142 0032 03       		.uleb128 0x3
+ 2143 0033 08       		.uleb128 0x8
+ 2144 0034 00       		.byte	0
+ 2145 0035 00       		.byte	0
+ 2146 0036 05       		.uleb128 0x5
+ 2147 0037 2E       		.uleb128 0x2e
+ 2148 0038 01       		.byte	0x1
+ 2149 0039 3F       		.uleb128 0x3f
+ 2150 003a 19       		.uleb128 0x19
+ 2151 003b 03       		.uleb128 0x3
+ 2152 003c 0E       		.uleb128 0xe
+ 2153 003d 3A       		.uleb128 0x3a
+ 2154 003e 0B       		.uleb128 0xb
+ 2155 003f 3B       		.uleb128 0x3b
+ 2156 0040 0B       		.uleb128 0xb
+ 2157 0041 27       		.uleb128 0x27
+ 2158 0042 19       		.uleb128 0x19
+ 2159 0043 49       		.uleb128 0x49
+ 2160 0044 13       		.uleb128 0x13
+ 2161 0045 11       		.uleb128 0x11
+ 2162 0046 01       		.uleb128 0x1
+ 2163 0047 12       		.uleb128 0x12
+ 2164 0048 06       		.uleb128 0x6
+ 2165 0049 40       		.uleb128 0x40
+ 2166 004a 18       		.uleb128 0x18
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 43
+
+
+ 2167 004b 9642     		.uleb128 0x2116
+ 2168 004d 19       		.uleb128 0x19
+ 2169 004e 01       		.uleb128 0x1
+ 2170 004f 13       		.uleb128 0x13
+ 2171 0050 00       		.byte	0
+ 2172 0051 00       		.byte	0
+ 2173 0052 06       		.uleb128 0x6
+ 2174 0053 05       		.uleb128 0x5
+ 2175 0054 00       		.byte	0
+ 2176 0055 03       		.uleb128 0x3
+ 2177 0056 0E       		.uleb128 0xe
+ 2178 0057 3A       		.uleb128 0x3a
+ 2179 0058 0B       		.uleb128 0xb
+ 2180 0059 3B       		.uleb128 0x3b
+ 2181 005a 0B       		.uleb128 0xb
+ 2182 005b 49       		.uleb128 0x49
+ 2183 005c 13       		.uleb128 0x13
+ 2184 005d 02       		.uleb128 0x2
+ 2185 005e 17       		.uleb128 0x17
+ 2186 005f 00       		.byte	0
+ 2187 0060 00       		.byte	0
+ 2188 0061 07       		.uleb128 0x7
+ 2189 0062 0B       		.uleb128 0xb
+ 2190 0063 01       		.byte	0x1
+ 2191 0064 11       		.uleb128 0x11
+ 2192 0065 01       		.uleb128 0x1
+ 2193 0066 12       		.uleb128 0x12
+ 2194 0067 06       		.uleb128 0x6
+ 2195 0068 01       		.uleb128 0x1
+ 2196 0069 13       		.uleb128 0x13
+ 2197 006a 00       		.byte	0
+ 2198 006b 00       		.byte	0
+ 2199 006c 08       		.uleb128 0x8
+ 2200 006d 34       		.uleb128 0x34
+ 2201 006e 00       		.byte	0
+ 2202 006f 03       		.uleb128 0x3
+ 2203 0070 0E       		.uleb128 0xe
+ 2204 0071 3A       		.uleb128 0x3a
+ 2205 0072 0B       		.uleb128 0xb
+ 2206 0073 3B       		.uleb128 0x3b
+ 2207 0074 0B       		.uleb128 0xb
+ 2208 0075 49       		.uleb128 0x49
+ 2209 0076 13       		.uleb128 0x13
+ 2210 0077 02       		.uleb128 0x2
+ 2211 0078 17       		.uleb128 0x17
+ 2212 0079 00       		.byte	0
+ 2213 007a 00       		.byte	0
+ 2214 007b 09       		.uleb128 0x9
+ 2215 007c 34       		.uleb128 0x34
+ 2216 007d 00       		.byte	0
+ 2217 007e 03       		.uleb128 0x3
+ 2218 007f 0E       		.uleb128 0xe
+ 2219 0080 3A       		.uleb128 0x3a
+ 2220 0081 0B       		.uleb128 0xb
+ 2221 0082 3B       		.uleb128 0x3b
+ 2222 0083 0B       		.uleb128 0xb
+ 2223 0084 49       		.uleb128 0x49
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 44
+
+
+ 2224 0085 13       		.uleb128 0x13
+ 2225 0086 00       		.byte	0
+ 2226 0087 00       		.byte	0
+ 2227 0088 0A       		.uleb128 0xa
+ 2228 0089 0B       		.uleb128 0xb
+ 2229 008a 01       		.byte	0x1
+ 2230 008b 11       		.uleb128 0x11
+ 2231 008c 01       		.uleb128 0x1
+ 2232 008d 12       		.uleb128 0x12
+ 2233 008e 06       		.uleb128 0x6
+ 2234 008f 00       		.byte	0
+ 2235 0090 00       		.byte	0
+ 2236 0091 0B       		.uleb128 0xb
+ 2237 0092 2E       		.uleb128 0x2e
+ 2238 0093 01       		.byte	0x1
+ 2239 0094 3F       		.uleb128 0x3f
+ 2240 0095 19       		.uleb128 0x19
+ 2241 0096 03       		.uleb128 0x3
+ 2242 0097 0E       		.uleb128 0xe
+ 2243 0098 3A       		.uleb128 0x3a
+ 2244 0099 0B       		.uleb128 0xb
+ 2245 009a 3B       		.uleb128 0x3b
+ 2246 009b 0B       		.uleb128 0xb
+ 2247 009c 27       		.uleb128 0x27
+ 2248 009d 19       		.uleb128 0x19
+ 2249 009e 11       		.uleb128 0x11
+ 2250 009f 01       		.uleb128 0x1
+ 2251 00a0 12       		.uleb128 0x12
+ 2252 00a1 06       		.uleb128 0x6
+ 2253 00a2 40       		.uleb128 0x40
+ 2254 00a3 18       		.uleb128 0x18
+ 2255 00a4 9642     		.uleb128 0x2116
+ 2256 00a6 19       		.uleb128 0x19
+ 2257 00a7 01       		.uleb128 0x1
+ 2258 00a8 13       		.uleb128 0x13
+ 2259 00a9 00       		.byte	0
+ 2260 00aa 00       		.byte	0
+ 2261 00ab 0C       		.uleb128 0xc
+ 2262 00ac 898201   		.uleb128 0x4109
+ 2263 00af 00       		.byte	0
+ 2264 00b0 11       		.uleb128 0x11
+ 2265 00b1 01       		.uleb128 0x1
+ 2266 00b2 31       		.uleb128 0x31
+ 2267 00b3 13       		.uleb128 0x13
+ 2268 00b4 00       		.byte	0
+ 2269 00b5 00       		.byte	0
+ 2270 00b6 0D       		.uleb128 0xd
+ 2271 00b7 2E       		.uleb128 0x2e
+ 2272 00b8 01       		.byte	0x1
+ 2273 00b9 3F       		.uleb128 0x3f
+ 2274 00ba 19       		.uleb128 0x19
+ 2275 00bb 03       		.uleb128 0x3
+ 2276 00bc 0E       		.uleb128 0xe
+ 2277 00bd 3A       		.uleb128 0x3a
+ 2278 00be 0B       		.uleb128 0xb
+ 2279 00bf 3B       		.uleb128 0x3b
+ 2280 00c0 0B       		.uleb128 0xb
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 45
+
+
+ 2281 00c1 27       		.uleb128 0x27
+ 2282 00c2 19       		.uleb128 0x19
+ 2283 00c3 49       		.uleb128 0x49
+ 2284 00c4 13       		.uleb128 0x13
+ 2285 00c5 11       		.uleb128 0x11
+ 2286 00c6 01       		.uleb128 0x1
+ 2287 00c7 12       		.uleb128 0x12
+ 2288 00c8 06       		.uleb128 0x6
+ 2289 00c9 40       		.uleb128 0x40
+ 2290 00ca 18       		.uleb128 0x18
+ 2291 00cb 9742     		.uleb128 0x2117
+ 2292 00cd 19       		.uleb128 0x19
+ 2293 00ce 01       		.uleb128 0x1
+ 2294 00cf 13       		.uleb128 0x13
+ 2295 00d0 00       		.byte	0
+ 2296 00d1 00       		.byte	0
+ 2297 00d2 0E       		.uleb128 0xe
+ 2298 00d3 34       		.uleb128 0x34
+ 2299 00d4 00       		.byte	0
+ 2300 00d5 03       		.uleb128 0x3
+ 2301 00d6 0E       		.uleb128 0xe
+ 2302 00d7 3A       		.uleb128 0x3a
+ 2303 00d8 0B       		.uleb128 0xb
+ 2304 00d9 3B       		.uleb128 0x3b
+ 2305 00da 0B       		.uleb128 0xb
+ 2306 00db 49       		.uleb128 0x49
+ 2307 00dc 13       		.uleb128 0x13
+ 2308 00dd 02       		.uleb128 0x2
+ 2309 00de 18       		.uleb128 0x18
+ 2310 00df 00       		.byte	0
+ 2311 00e0 00       		.byte	0
+ 2312 00e1 0F       		.uleb128 0xf
+ 2313 00e2 05       		.uleb128 0x5
+ 2314 00e3 00       		.byte	0
+ 2315 00e4 03       		.uleb128 0x3
+ 2316 00e5 08       		.uleb128 0x8
+ 2317 00e6 3A       		.uleb128 0x3a
+ 2318 00e7 0B       		.uleb128 0xb
+ 2319 00e8 3B       		.uleb128 0x3b
+ 2320 00e9 0B       		.uleb128 0xb
+ 2321 00ea 49       		.uleb128 0x49
+ 2322 00eb 13       		.uleb128 0x13
+ 2323 00ec 02       		.uleb128 0x2
+ 2324 00ed 17       		.uleb128 0x17
+ 2325 00ee 00       		.byte	0
+ 2326 00ef 00       		.byte	0
+ 2327 00f0 10       		.uleb128 0x10
+ 2328 00f1 898201   		.uleb128 0x4109
+ 2329 00f4 01       		.byte	0x1
+ 2330 00f5 11       		.uleb128 0x11
+ 2331 00f6 01       		.uleb128 0x1
+ 2332 00f7 31       		.uleb128 0x31
+ 2333 00f8 13       		.uleb128 0x13
+ 2334 00f9 01       		.uleb128 0x1
+ 2335 00fa 13       		.uleb128 0x13
+ 2336 00fb 00       		.byte	0
+ 2337 00fc 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 46
+
+
+ 2338 00fd 11       		.uleb128 0x11
+ 2339 00fe 8A8201   		.uleb128 0x410a
+ 2340 0101 00       		.byte	0
+ 2341 0102 02       		.uleb128 0x2
+ 2342 0103 18       		.uleb128 0x18
+ 2343 0104 9142     		.uleb128 0x2111
+ 2344 0106 18       		.uleb128 0x18
+ 2345 0107 00       		.byte	0
+ 2346 0108 00       		.byte	0
+ 2347 0109 12       		.uleb128 0x12
+ 2348 010a 2E       		.uleb128 0x2e
+ 2349 010b 01       		.byte	0x1
+ 2350 010c 3F       		.uleb128 0x3f
+ 2351 010d 19       		.uleb128 0x19
+ 2352 010e 03       		.uleb128 0x3
+ 2353 010f 0E       		.uleb128 0xe
+ 2354 0110 3A       		.uleb128 0x3a
+ 2355 0111 0B       		.uleb128 0xb
+ 2356 0112 3B       		.uleb128 0x3b
+ 2357 0113 0B       		.uleb128 0xb
+ 2358 0114 27       		.uleb128 0x27
+ 2359 0115 19       		.uleb128 0x19
+ 2360 0116 11       		.uleb128 0x11
+ 2361 0117 01       		.uleb128 0x1
+ 2362 0118 12       		.uleb128 0x12
+ 2363 0119 06       		.uleb128 0x6
+ 2364 011a 40       		.uleb128 0x40
+ 2365 011b 18       		.uleb128 0x18
+ 2366 011c 9742     		.uleb128 0x2117
+ 2367 011e 19       		.uleb128 0x19
+ 2368 011f 01       		.uleb128 0x1
+ 2369 0120 13       		.uleb128 0x13
+ 2370 0121 00       		.byte	0
+ 2371 0122 00       		.byte	0
+ 2372 0123 13       		.uleb128 0x13
+ 2373 0124 898201   		.uleb128 0x4109
+ 2374 0127 01       		.byte	0x1
+ 2375 0128 11       		.uleb128 0x11
+ 2376 0129 01       		.uleb128 0x1
+ 2377 012a 31       		.uleb128 0x31
+ 2378 012b 13       		.uleb128 0x13
+ 2379 012c 00       		.byte	0
+ 2380 012d 00       		.byte	0
+ 2381 012e 14       		.uleb128 0x14
+ 2382 012f 01       		.uleb128 0x1
+ 2383 0130 01       		.byte	0x1
+ 2384 0131 49       		.uleb128 0x49
+ 2385 0132 13       		.uleb128 0x13
+ 2386 0133 01       		.uleb128 0x1
+ 2387 0134 13       		.uleb128 0x13
+ 2388 0135 00       		.byte	0
+ 2389 0136 00       		.byte	0
+ 2390 0137 15       		.uleb128 0x15
+ 2391 0138 21       		.uleb128 0x21
+ 2392 0139 00       		.byte	0
+ 2393 013a 49       		.uleb128 0x49
+ 2394 013b 13       		.uleb128 0x13
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 47
+
+
+ 2395 013c 2F       		.uleb128 0x2f
+ 2396 013d 0B       		.uleb128 0xb
+ 2397 013e 00       		.byte	0
+ 2398 013f 00       		.byte	0
+ 2399 0140 16       		.uleb128 0x16
+ 2400 0141 2E       		.uleb128 0x2e
+ 2401 0142 01       		.byte	0x1
+ 2402 0143 3F       		.uleb128 0x3f
+ 2403 0144 19       		.uleb128 0x19
+ 2404 0145 03       		.uleb128 0x3
+ 2405 0146 0E       		.uleb128 0xe
+ 2406 0147 3A       		.uleb128 0x3a
+ 2407 0148 0B       		.uleb128 0xb
+ 2408 0149 3B       		.uleb128 0x3b
+ 2409 014a 0B       		.uleb128 0xb
+ 2410 014b 27       		.uleb128 0x27
+ 2411 014c 19       		.uleb128 0x19
+ 2412 014d 49       		.uleb128 0x49
+ 2413 014e 13       		.uleb128 0x13
+ 2414 014f 8701     		.uleb128 0x87
+ 2415 0151 19       		.uleb128 0x19
+ 2416 0152 11       		.uleb128 0x11
+ 2417 0153 01       		.uleb128 0x1
+ 2418 0154 12       		.uleb128 0x12
+ 2419 0155 06       		.uleb128 0x6
+ 2420 0156 40       		.uleb128 0x40
+ 2421 0157 18       		.uleb128 0x18
+ 2422 0158 9742     		.uleb128 0x2117
+ 2423 015a 19       		.uleb128 0x19
+ 2424 015b 01       		.uleb128 0x1
+ 2425 015c 13       		.uleb128 0x13
+ 2426 015d 00       		.byte	0
+ 2427 015e 00       		.byte	0
+ 2428 015f 17       		.uleb128 0x17
+ 2429 0160 34       		.uleb128 0x34
+ 2430 0161 00       		.byte	0
+ 2431 0162 03       		.uleb128 0x3
+ 2432 0163 0E       		.uleb128 0xe
+ 2433 0164 3A       		.uleb128 0x3a
+ 2434 0165 0B       		.uleb128 0xb
+ 2435 0166 3B       		.uleb128 0x3b
+ 2436 0167 05       		.uleb128 0x5
+ 2437 0168 49       		.uleb128 0x49
+ 2438 0169 13       		.uleb128 0x13
+ 2439 016a 3F       		.uleb128 0x3f
+ 2440 016b 19       		.uleb128 0x19
+ 2441 016c 3C       		.uleb128 0x3c
+ 2442 016d 19       		.uleb128 0x19
+ 2443 016e 00       		.byte	0
+ 2444 016f 00       		.byte	0
+ 2445 0170 18       		.uleb128 0x18
+ 2446 0171 35       		.uleb128 0x35
+ 2447 0172 00       		.byte	0
+ 2448 0173 49       		.uleb128 0x49
+ 2449 0174 13       		.uleb128 0x13
+ 2450 0175 00       		.byte	0
+ 2451 0176 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 48
+
+
+ 2452 0177 19       		.uleb128 0x19
+ 2453 0178 34       		.uleb128 0x34
+ 2454 0179 00       		.byte	0
+ 2455 017a 03       		.uleb128 0x3
+ 2456 017b 0E       		.uleb128 0xe
+ 2457 017c 3A       		.uleb128 0x3a
+ 2458 017d 0B       		.uleb128 0xb
+ 2459 017e 3B       		.uleb128 0x3b
+ 2460 017f 0B       		.uleb128 0xb
+ 2461 0180 49       		.uleb128 0x49
+ 2462 0181 13       		.uleb128 0x13
+ 2463 0182 3F       		.uleb128 0x3f
+ 2464 0183 19       		.uleb128 0x19
+ 2465 0184 02       		.uleb128 0x2
+ 2466 0185 18       		.uleb128 0x18
+ 2467 0186 00       		.byte	0
+ 2468 0187 00       		.byte	0
+ 2469 0188 1A       		.uleb128 0x1a
+ 2470 0189 26       		.uleb128 0x26
+ 2471 018a 00       		.byte	0
+ 2472 018b 49       		.uleb128 0x49
+ 2473 018c 13       		.uleb128 0x13
+ 2474 018d 00       		.byte	0
+ 2475 018e 00       		.byte	0
+ 2476 018f 1B       		.uleb128 0x1b
+ 2477 0190 2E       		.uleb128 0x2e
+ 2478 0191 00       		.byte	0
+ 2479 0192 3F       		.uleb128 0x3f
+ 2480 0193 19       		.uleb128 0x19
+ 2481 0194 3C       		.uleb128 0x3c
+ 2482 0195 19       		.uleb128 0x19
+ 2483 0196 6E       		.uleb128 0x6e
+ 2484 0197 0E       		.uleb128 0xe
+ 2485 0198 03       		.uleb128 0x3
+ 2486 0199 0E       		.uleb128 0xe
+ 2487 019a 3A       		.uleb128 0x3a
+ 2488 019b 0B       		.uleb128 0xb
+ 2489 019c 3B       		.uleb128 0x3b
+ 2490 019d 0B       		.uleb128 0xb
+ 2491 019e 00       		.byte	0
+ 2492 019f 00       		.byte	0
+ 2493 01a0 00       		.byte	0
+ 2494              		.section	.debug_loc,"",%progbits
+ 2495              	.Ldebug_loc0:
+ 2496              	.LLST0:
+ 2497 0000 00000000 		.4byte	.LVL0
+ 2498 0004 09000000 		.4byte	.LVL1-1
+ 2499 0008 0100     		.2byte	0x1
+ 2500 000a 50       		.byte	0x50
+ 2501 000b 09000000 		.4byte	.LVL1-1
+ 2502 000f 4E000000 		.4byte	.LVL11
+ 2503 0013 0100     		.2byte	0x1
+ 2504 0015 54       		.byte	0x54
+ 2505 0016 4E000000 		.4byte	.LVL11
+ 2506 001a 5C000000 		.4byte	.LFE64
+ 2507 001e 0600     		.2byte	0x6
+ 2508 0020 F3       		.byte	0xf3
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 49
+
+
+ 2509 0021 03       		.uleb128 0x3
+ 2510 0022 F5       		.byte	0xf5
+ 2511 0023 00       		.uleb128 0
+ 2512 0024 25       		.uleb128 0x25
+ 2513 0025 9F       		.byte	0x9f
+ 2514 0026 00000000 		.4byte	0
+ 2515 002a 00000000 		.4byte	0
+ 2516              	.LLST1:
+ 2517 002e 1E000000 		.4byte	.LVL3
+ 2518 0032 23000000 		.4byte	.LVL4-1
+ 2519 0036 0100     		.2byte	0x1
+ 2520 0038 50       		.byte	0x50
+ 2521 0039 00000000 		.4byte	0
+ 2522 003d 00000000 		.4byte	0
+ 2523              	.LLST2:
+ 2524 0041 24000000 		.4byte	.LVL4
+ 2525 0045 29000000 		.4byte	.LVL5-1
+ 2526 0049 0100     		.2byte	0x1
+ 2527 004b 50       		.byte	0x50
+ 2528 004c 00000000 		.4byte	0
+ 2529 0050 00000000 		.4byte	0
+ 2530              	.LLST3:
+ 2531 0054 00000000 		.4byte	.LVL12
+ 2532 0058 06000000 		.4byte	.LVL13
+ 2533 005c 0100     		.2byte	0x1
+ 2534 005e 50       		.byte	0x50
+ 2535 005f 06000000 		.4byte	.LVL13
+ 2536 0063 09000000 		.4byte	.LVL14-1
+ 2537 0067 0100     		.2byte	0x1
+ 2538 0069 51       		.byte	0x51
+ 2539 006a 09000000 		.4byte	.LVL14-1
+ 2540 006e 0A000000 		.4byte	.LVL14
+ 2541 0072 0600     		.2byte	0x6
+ 2542 0074 F3       		.byte	0xf3
+ 2543 0075 03       		.uleb128 0x3
+ 2544 0076 F5       		.byte	0xf5
+ 2545 0077 00       		.uleb128 0
+ 2546 0078 25       		.uleb128 0x25
+ 2547 0079 9F       		.byte	0x9f
+ 2548 007a 0A000000 		.4byte	.LVL14
+ 2549 007e 0D000000 		.4byte	.LVL15-1
+ 2550 0082 0100     		.2byte	0x1
+ 2551 0084 50       		.byte	0x50
+ 2552 0085 00000000 		.4byte	0
+ 2553 0089 00000000 		.4byte	0
+ 2554              	.LLST4:
+ 2555 008d 00000000 		.4byte	.LVL17
+ 2556 0091 06000000 		.4byte	.LVL18
+ 2557 0095 0100     		.2byte	0x1
+ 2558 0097 50       		.byte	0x50
+ 2559 0098 06000000 		.4byte	.LVL18
+ 2560 009c 09000000 		.4byte	.LVL19-1
+ 2561 00a0 0100     		.2byte	0x1
+ 2562 00a2 51       		.byte	0x51
+ 2563 00a3 09000000 		.4byte	.LVL19-1
+ 2564 00a7 0A000000 		.4byte	.LVL19
+ 2565 00ab 0600     		.2byte	0x6
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 50
+
+
+ 2566 00ad F3       		.byte	0xf3
+ 2567 00ae 03       		.uleb128 0x3
+ 2568 00af F5       		.byte	0xf5
+ 2569 00b0 00       		.uleb128 0
+ 2570 00b1 25       		.uleb128 0x25
+ 2571 00b2 9F       		.byte	0x9f
+ 2572 00b3 0A000000 		.4byte	.LVL19
+ 2573 00b7 0D000000 		.4byte	.LVL20-1
+ 2574 00bb 0100     		.2byte	0x1
+ 2575 00bd 50       		.byte	0x50
+ 2576 00be 00000000 		.4byte	0
+ 2577 00c2 00000000 		.4byte	0
+ 2578              	.LLST5:
+ 2579 00c6 08000000 		.4byte	.LVL23
+ 2580 00ca 0B000000 		.4byte	.LVL24-1
+ 2581 00ce 0100     		.2byte	0x1
+ 2582 00d0 50       		.byte	0x50
+ 2583 00d1 0B000000 		.4byte	.LVL24-1
+ 2584 00d5 10000000 		.4byte	.LFE67
+ 2585 00d9 0100     		.2byte	0x1
+ 2586 00db 54       		.byte	0x54
+ 2587 00dc 00000000 		.4byte	0
+ 2588 00e0 00000000 		.4byte	0
+ 2589              	.LLST6:
+ 2590 00e4 08000000 		.4byte	.LVL26
+ 2591 00e8 0B000000 		.4byte	.LVL27-1
+ 2592 00ec 0100     		.2byte	0x1
+ 2593 00ee 50       		.byte	0x50
+ 2594 00ef 0B000000 		.4byte	.LVL27-1
+ 2595 00f3 10000000 		.4byte	.LFE68
+ 2596 00f7 0100     		.2byte	0x1
+ 2597 00f9 54       		.byte	0x54
+ 2598 00fa 00000000 		.4byte	0
+ 2599 00fe 00000000 		.4byte	0
+ 2600              	.LLST7:
+ 2601 0102 00000000 		.4byte	.LVL28
+ 2602 0106 06000000 		.4byte	.LVL29
+ 2603 010a 0100     		.2byte	0x1
+ 2604 010c 50       		.byte	0x50
+ 2605 010d 06000000 		.4byte	.LVL29
+ 2606 0111 09000000 		.4byte	.LVL30-1
+ 2607 0115 0400     		.2byte	0x4
+ 2608 0117 70       		.byte	0x70
+ 2609 0118 FC02     		.sleb128 380
+ 2610 011a 9F       		.byte	0x9f
+ 2611 011b 09000000 		.4byte	.LVL30-1
+ 2612 011f 18000000 		.4byte	.LFE69
+ 2613 0123 0400     		.2byte	0x4
+ 2614 0125 F3       		.byte	0xf3
+ 2615 0126 01       		.uleb128 0x1
+ 2616 0127 50       		.byte	0x50
+ 2617 0128 9F       		.byte	0x9f
+ 2618 0129 00000000 		.4byte	0
+ 2619 012d 00000000 		.4byte	0
+ 2620              	.LLST8:
+ 2621 0131 00000000 		.4byte	.LVL32
+ 2622 0135 04000000 		.4byte	.LVL33
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 51
+
+
+ 2623 0139 0100     		.2byte	0x1
+ 2624 013b 50       		.byte	0x50
+ 2625 013c 04000000 		.4byte	.LVL33
+ 2626 0140 07000000 		.4byte	.LVL34-1
+ 2627 0144 0400     		.2byte	0x4
+ 2628 0146 70       		.byte	0x70
+ 2629 0147 B401     		.sleb128 180
+ 2630 0149 9F       		.byte	0x9f
+ 2631 014a 07000000 		.4byte	.LVL34-1
+ 2632 014e 18000000 		.4byte	.LFE70
+ 2633 0152 0400     		.2byte	0x4
+ 2634 0154 F3       		.byte	0xf3
+ 2635 0155 01       		.uleb128 0x1
+ 2636 0156 50       		.byte	0x50
+ 2637 0157 9F       		.byte	0x9f
+ 2638 0158 00000000 		.4byte	0
+ 2639 015c 00000000 		.4byte	0
+ 2640              	.LLST9:
+ 2641 0160 00000000 		.4byte	.LVL36
+ 2642 0164 0D000000 		.4byte	.LVL38-1
+ 2643 0168 0100     		.2byte	0x1
+ 2644 016a 50       		.byte	0x50
+ 2645 016b 0D000000 		.4byte	.LVL38-1
+ 2646 016f 26000000 		.4byte	.LFE71
+ 2647 0173 0100     		.2byte	0x1
+ 2648 0175 55       		.byte	0x55
+ 2649 0176 00000000 		.4byte	0
+ 2650 017a 00000000 		.4byte	0
+ 2651              	.LLST10:
+ 2652 017e 00000000 		.4byte	.LVL36
+ 2653 0182 0A000000 		.4byte	.LVL37
+ 2654 0186 0100     		.2byte	0x1
+ 2655 0188 51       		.byte	0x51
+ 2656 0189 0A000000 		.4byte	.LVL37
+ 2657 018d 26000000 		.4byte	.LFE71
+ 2658 0191 0100     		.2byte	0x1
+ 2659 0193 56       		.byte	0x56
+ 2660 0194 00000000 		.4byte	0
+ 2661 0198 00000000 		.4byte	0
+ 2662              	.LLST11:
+ 2663 019c 00000000 		.4byte	.LVL36
+ 2664 01a0 0D000000 		.4byte	.LVL38-1
+ 2665 01a4 0100     		.2byte	0x1
+ 2666 01a6 52       		.byte	0x52
+ 2667 01a7 0D000000 		.4byte	.LVL38-1
+ 2668 01ab 26000000 		.4byte	.LFE71
+ 2669 01af 0100     		.2byte	0x1
+ 2670 01b1 54       		.byte	0x54
+ 2671 01b2 00000000 		.4byte	0
+ 2672 01b6 00000000 		.4byte	0
+ 2673              	.LLST12:
+ 2674 01ba 00000000 		.4byte	.LVL72
+ 2675 01be 0E000000 		.4byte	.LVL74
+ 2676 01c2 0100     		.2byte	0x1
+ 2677 01c4 50       		.byte	0x50
+ 2678 01c5 0E000000 		.4byte	.LVL74
+ 2679 01c9 72000000 		.4byte	.LVL88
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 52
+
+
+ 2680 01cd 0100     		.2byte	0x1
+ 2681 01cf 55       		.byte	0x55
+ 2682 01d0 72000000 		.4byte	.LVL88
+ 2683 01d4 84000000 		.4byte	.LFE72
+ 2684 01d8 0400     		.2byte	0x4
+ 2685 01da F3       		.byte	0xf3
+ 2686 01db 01       		.uleb128 0x1
+ 2687 01dc 50       		.byte	0x50
+ 2688 01dd 9F       		.byte	0x9f
+ 2689 01de 00000000 		.4byte	0
+ 2690 01e2 00000000 		.4byte	0
+ 2691              	.LLST13:
+ 2692 01e6 00000000 		.4byte	.LVL72
+ 2693 01ea 0C000000 		.4byte	.LVL73
+ 2694 01ee 0100     		.2byte	0x1
+ 2695 01f0 51       		.byte	0x51
+ 2696 01f1 0C000000 		.4byte	.LVL73
+ 2697 01f5 72000000 		.4byte	.LVL88
+ 2698 01f9 0100     		.2byte	0x1
+ 2699 01fb 54       		.byte	0x54
+ 2700 01fc 72000000 		.4byte	.LVL88
+ 2701 0200 84000000 		.4byte	.LFE72
+ 2702 0204 0400     		.2byte	0x4
+ 2703 0206 F3       		.byte	0xf3
+ 2704 0207 01       		.uleb128 0x1
+ 2705 0208 51       		.byte	0x51
+ 2706 0209 9F       		.byte	0x9f
+ 2707 020a 00000000 		.4byte	0
+ 2708 020e 00000000 		.4byte	0
+ 2709              	.LLST14:
+ 2710 0212 00000000 		.4byte	.LVL72
+ 2711 0216 11000000 		.4byte	.LVL75-1
+ 2712 021a 0100     		.2byte	0x1
+ 2713 021c 52       		.byte	0x52
+ 2714 021d 11000000 		.4byte	.LVL75-1
+ 2715 0221 84000000 		.4byte	.LFE72
+ 2716 0225 0400     		.2byte	0x4
+ 2717 0227 F3       		.byte	0xf3
+ 2718 0228 01       		.uleb128 0x1
+ 2719 0229 52       		.byte	0x52
+ 2720 022a 9F       		.byte	0x9f
+ 2721 022b 00000000 		.4byte	0
+ 2722 022f 00000000 		.4byte	0
+ 2723              	.LLST15:
+ 2724 0233 00000000 		.4byte	.LVL72
+ 2725 0237 11000000 		.4byte	.LVL75-1
+ 2726 023b 0100     		.2byte	0x1
+ 2727 023d 53       		.byte	0x53
+ 2728 023e 11000000 		.4byte	.LVL75-1
+ 2729 0242 72000000 		.4byte	.LVL88
+ 2730 0246 0100     		.2byte	0x1
+ 2731 0248 56       		.byte	0x56
+ 2732 0249 72000000 		.4byte	.LVL88
+ 2733 024d 84000000 		.4byte	.LFE72
+ 2734 0251 0400     		.2byte	0x4
+ 2735 0253 F3       		.byte	0xf3
+ 2736 0254 01       		.uleb128 0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 53
+
+
+ 2737 0255 53       		.byte	0x53
+ 2738 0256 9F       		.byte	0x9f
+ 2739 0257 00000000 		.4byte	0
+ 2740 025b 00000000 		.4byte	0
+ 2741              		.section	.debug_aranges,"",%progbits
+ 2742 0000 74000000 		.4byte	0x74
+ 2743 0004 0200     		.2byte	0x2
+ 2744 0006 00000000 		.4byte	.Ldebug_info0
+ 2745 000a 04       		.byte	0x4
+ 2746 000b 00       		.byte	0
+ 2747 000c 0000     		.2byte	0
+ 2748 000e 0000     		.2byte	0
+ 2749 0010 00000000 		.4byte	.LFB64
+ 2750 0014 5C000000 		.4byte	.LFE64-.LFB64
+ 2751 0018 00000000 		.4byte	.LFB65
+ 2752 001c 1C000000 		.4byte	.LFE65-.LFB65
+ 2753 0020 00000000 		.4byte	.LFB66
+ 2754 0024 1C000000 		.4byte	.LFE66-.LFB66
+ 2755 0028 00000000 		.4byte	.LFB67
+ 2756 002c 10000000 		.4byte	.LFE67-.LFB67
+ 2757 0030 00000000 		.4byte	.LFB68
+ 2758 0034 10000000 		.4byte	.LFE68-.LFB68
+ 2759 0038 00000000 		.4byte	.LFB69
+ 2760 003c 18000000 		.4byte	.LFE69-.LFB69
+ 2761 0040 00000000 		.4byte	.LFB70
+ 2762 0044 18000000 		.4byte	.LFE70-.LFB70
+ 2763 0048 00000000 		.4byte	.LFB71
+ 2764 004c 26000000 		.4byte	.LFE71-.LFB71
+ 2765 0050 00000000 		.4byte	.LFB73
+ 2766 0054 B8000000 		.4byte	.LFE73-.LFB73
+ 2767 0058 00000000 		.4byte	.LFB74
+ 2768 005c B8000000 		.4byte	.LFE74-.LFB74
+ 2769 0060 00000000 		.4byte	.LFB72
+ 2770 0064 84000000 		.4byte	.LFE72-.LFB72
+ 2771 0068 00000000 		.4byte	.LFB75
+ 2772 006c 80000000 		.4byte	.LFE75-.LFB75
+ 2773 0070 00000000 		.4byte	0
+ 2774 0074 00000000 		.4byte	0
+ 2775              		.section	.debug_ranges,"",%progbits
+ 2776              	.Ldebug_ranges0:
+ 2777 0000 00000000 		.4byte	.LFB64
+ 2778 0004 5C000000 		.4byte	.LFE64
+ 2779 0008 00000000 		.4byte	.LFB65
+ 2780 000c 1C000000 		.4byte	.LFE65
+ 2781 0010 00000000 		.4byte	.LFB66
+ 2782 0014 1C000000 		.4byte	.LFE66
+ 2783 0018 00000000 		.4byte	.LFB67
+ 2784 001c 10000000 		.4byte	.LFE67
+ 2785 0020 00000000 		.4byte	.LFB68
+ 2786 0024 10000000 		.4byte	.LFE68
+ 2787 0028 00000000 		.4byte	.LFB69
+ 2788 002c 18000000 		.4byte	.LFE69
+ 2789 0030 00000000 		.4byte	.LFB70
+ 2790 0034 18000000 		.4byte	.LFE70
+ 2791 0038 00000000 		.4byte	.LFB71
+ 2792 003c 26000000 		.4byte	.LFE71
+ 2793 0040 00000000 		.4byte	.LFB73
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 54
+
+
+ 2794 0044 B8000000 		.4byte	.LFE73
+ 2795 0048 00000000 		.4byte	.LFB74
+ 2796 004c B8000000 		.4byte	.LFE74
+ 2797 0050 00000000 		.4byte	.LFB72
+ 2798 0054 84000000 		.4byte	.LFE72
+ 2799 0058 00000000 		.4byte	.LFB75
+ 2800 005c 80000000 		.4byte	.LFE75
+ 2801 0060 00000000 		.4byte	0
+ 2802 0064 00000000 		.4byte	0
+ 2803              		.section	.debug_line,"",%progbits
+ 2804              	.Ldebug_line0:
+ 2805 0000 40030000 		.section	.debug_str,"MS",%progbits,1
+ 2805      02001E02 
+ 2805      00000201 
+ 2805      FB0E0D00 
+ 2805      01010101 
+ 2806              	.LASF33:
+ 2807 0000 7072696E 		.ascii	"printScreen\000"
+ 2807      74536372 
+ 2807      65656E00 
+ 2808              	.LASF22:
+ 2809 000c 52656164 		.ascii	"ReadXAxis\000"
+ 2809      58417869 
+ 2809      7300
+ 2810              	.LASF44:
+ 2811 0016 50574D53 		.ascii	"PWMSERVO_MAX\000"
+ 2811      4552564F 
+ 2811      5F4D4158 
+ 2811      00
+ 2812              	.LASF79:
+ 2813 0023 4C43445F 		.ascii	"LCD_WriteControl\000"
+ 2813      57726974 
+ 2813      65436F6E 
+ 2813      74726F6C 
+ 2813      00
+ 2814              	.LASF3:
+ 2815 0034 73686F72 		.ascii	"short int\000"
+ 2815      7420696E 
+ 2815      7400
+ 2816              	.LASF49:
+ 2817 003e 585F4D41 		.ascii	"X_MAX\000"
+ 2817      5800
+ 2818              	.LASF65:
+ 2819 0044 585F416B 		.ascii	"X_Akmenos1\000"
+ 2819      6D656E6F 
+ 2819      733100
+ 2820              	.LASF15:
+ 2821 004f 73697A65 		.ascii	"sizetype\000"
+ 2821      74797065 
+ 2821      00
+ 2822              	.LASF40:
+ 2823 0058 785F706F 		.ascii	"x_pos_print\000"
+ 2823      735F7072 
+ 2823      696E7400 
+ 2824              	.LASF74:
+ 2825 0064 50574D5F 		.ascii	"PWM_Y_WriteCompare1\000"
+ 2825      595F5772 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 55
+
+
+ 2825      69746543 
+ 2825      6F6D7061 
+ 2825      72653100 
+ 2826              	.LASF39:
+ 2827 0078 795F746F 		.ascii	"y_to_print\000"
+ 2827      5F707269 
+ 2827      6E7400
+ 2828              	.LASF23:
+ 2829 0083 76616C75 		.ascii	"value_int\000"
+ 2829      655F696E 
+ 2829      7400
+ 2830              	.LASF89:
+ 2831 008d 585F696E 		.ascii	"X_interrupcion_StartEx\000"
+ 2831      74657272 
+ 2831      75706369 
+ 2831      6F6E5F53 
+ 2831      74617274 
+ 2832              	.LASF51:
+ 2833 00a4 585F4D49 		.ascii	"X_MIN\000"
+ 2833      4E00
+ 2834              	.LASF27:
+ 2835 00aa 506F7356 		.ascii	"PosVolt\000"
+ 2835      6F6C7400 
+ 2836              	.LASF29:
+ 2837 00b2 506F7359 		.ascii	"PosYint\000"
+ 2837      696E7400 
+ 2838              	.LASF82:
+ 2839 00ba 50574D5F 		.ascii	"PWM_X_Start\000"
+ 2839      585F5374 
+ 2839      61727400 
+ 2840              	.LASF63:
+ 2841 00c6 585F416B 		.ascii	"X_Ak\000"
+ 2841      00
+ 2842              	.LASF48:
+ 2843 00cb 595F566F 		.ascii	"Y_Volt_EMPMAX\000"
+ 2843      6C745F45 
+ 2843      4D504D41 
+ 2843      5800
+ 2844              	.LASF46:
+ 2845 00d9 50574D53 		.ascii	"PWMSERVO_Y_CORRECTION\000"
+ 2845      4552564F 
+ 2845      5F595F43 
+ 2845      4F525245 
+ 2845      4354494F 
+ 2846              	.LASF60:
+ 2847 00ef 795F666C 		.ascii	"y_float\000"
+ 2847      6F617400 
+ 2848              	.LASF38:
+ 2849 00f7 785F746F 		.ascii	"x_to_print\000"
+ 2849      5F707269 
+ 2849      6E7400
+ 2850              	.LASF62:
+ 2851 0102 795F7265 		.ascii	"y_req\000"
+ 2851      7100
+ 2852              	.LASF56:
+ 2853 0108 56737376 		.ascii	"Vssval\000"
+ 2853      616C00
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 56
+
+
+ 2854              	.LASF88:
+ 2855 010f 595F696E 		.ascii	"Y_interrupcion_StartEx\000"
+ 2855      74657272 
+ 2855      75706369 
+ 2855      6F6E5F53 
+ 2855      74617274 
+ 2856              	.LASF0:
+ 2857 0126 666C6F61 		.ascii	"float\000"
+ 2857      7400
+ 2858              	.LASF92:
+ 2859 012c 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 2859      5C4C6162 
+ 2859      20646520 
+ 2859      436F6E74 
+ 2859      726F6C5C 
+ 2860 015c 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 2860      30315C50 
+ 2860      49442043 
+ 2860      6F6E7472 
+ 2860      6F6C6572 
+ 2861              	.LASF24:
+ 2862 0183 52656164 		.ascii	"ReadYAxis\000"
+ 2862      59417869 
+ 2862      7300
+ 2863              	.LASF67:
+ 2864 018d 585F456B 		.ascii	"X_Ek\000"
+ 2864      00
+ 2865              	.LASF7:
+ 2866 0192 6C6F6E67 		.ascii	"long long int\000"
+ 2866      206C6F6E 
+ 2866      6720696E 
+ 2866      7400
+ 2867              	.LASF26:
+ 2868 01a0 506F7358 		.ascii	"PosXint\000"
+ 2868      696E7400 
+ 2869              	.LASF72:
+ 2870 01a8 595F7072 		.ascii	"Y_prep\000"
+ 2870      657000
+ 2871              	.LASF5:
+ 2872 01af 6C6F6E67 		.ascii	"long int\000"
+ 2872      20696E74 
+ 2872      00
+ 2873              	.LASF57:
+ 2874 01b8 785F696E 		.ascii	"x_int\000"
+ 2874      7400
+ 2875              	.LASF70:
+ 2876 01be 595F456B 		.ascii	"Y_Ekmenos1\000"
+ 2876      6D656E6F 
+ 2876      733100
+ 2877              	.LASF73:
+ 2878 01c9 50574D5F 		.ascii	"PWM_X_WriteCompare1\000"
+ 2878      585F5772 
+ 2878      69746543 
+ 2878      6F6D7061 
+ 2878      72653100 
+ 2879              	.LASF76:
+ 2880 01dd 546F7563 		.ascii	"Touch_ActivateY\000"
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 57
+
+
+ 2880      685F4163 
+ 2880      74697661 
+ 2880      74655900 
+ 2881              	.LASF87:
+ 2882 01ed 4C43445F 		.ascii	"LCD_Start\000"
+ 2882      53746172 
+ 2882      7400
+ 2883              	.LASF86:
+ 2884 01f7 546F7563 		.ascii	"Touch_Start\000"
+ 2884      685F5374 
+ 2884      61727400 
+ 2885              	.LASF14:
+ 2886 0203 6C6F6E67 		.ascii	"long double\000"
+ 2886      20646F75 
+ 2886      626C6500 
+ 2887              	.LASF61:
+ 2888 020f 785F7265 		.ascii	"x_req\000"
+ 2888      7100
+ 2889              	.LASF2:
+ 2890 0215 756E7369 		.ascii	"unsigned char\000"
+ 2890      676E6564 
+ 2890      20636861 
+ 2890      7200
+ 2891              	.LASF47:
+ 2892 0223 585F566F 		.ascii	"X_Volt_EMPMAX\000"
+ 2892      6C745F45 
+ 2892      4D504D41 
+ 2892      5800
+ 2893              	.LASF78:
+ 2894 0231 73707269 		.ascii	"sprintf\000"
+ 2894      6E746600 
+ 2895              	.LASF66:
+ 2896 0239 595F416B 		.ascii	"Y_Akmenos1\000"
+ 2896      6D656E6F 
+ 2896      733100
+ 2897              	.LASF64:
+ 2898 0244 595F416B 		.ascii	"Y_Ak\000"
+ 2898      00
+ 2899              	.LASF1:
+ 2900 0249 7369676E 		.ascii	"signed char\000"
+ 2900      65642063 
+ 2900      68617200 
+ 2901              	.LASF41:
+ 2902 0255 795F706F 		.ascii	"y_pos_print\000"
+ 2902      735F7072 
+ 2902      696E7400 
+ 2903              	.LASF8:
+ 2904 0261 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2904      206C6F6E 
+ 2904      6720756E 
+ 2904      7369676E 
+ 2904      65642069 
+ 2905              	.LASF9:
+ 2906 0278 756E7369 		.ascii	"unsigned int\000"
+ 2906      676E6564 
+ 2906      20696E74 
+ 2906      00
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 58
+
+
+ 2907              	.LASF81:
+ 2908 0285 4C43445F 		.ascii	"LCD_PrintString\000"
+ 2908      5072696E 
+ 2908      74537472 
+ 2908      696E6700 
+ 2909              	.LASF6:
+ 2910 0295 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2910      20756E73 
+ 2910      69676E65 
+ 2910      6420696E 
+ 2910      7400
+ 2911              	.LASF17:
+ 2912 02a7 74696D65 		.ascii	"timerelative\000"
+ 2912      72656C61 
+ 2912      74697665 
+ 2912      00
+ 2913              	.LASF68:
+ 2914 02b4 595F456B 		.ascii	"Y_Ek\000"
+ 2914      00
+ 2915              	.LASF34:
+ 2916 02b9 58706F73 		.ascii	"Xpos\000"
+ 2916      00
+ 2917              	.LASF4:
+ 2918 02be 73686F72 		.ascii	"short unsigned int\000"
+ 2918      7420756E 
+ 2918      7369676E 
+ 2918      65642069 
+ 2918      6E7400
+ 2919              	.LASF13:
+ 2920 02d1 63686172 		.ascii	"char\000"
+ 2920      00
+ 2921              	.LASF93:
+ 2922 02d6 6D61696E 		.ascii	"main\000"
+ 2922      00
+ 2923              	.LASF11:
+ 2924 02db 696E7433 		.ascii	"int32_t\000"
+ 2924      325F7400 
+ 2925              	.LASF50:
+ 2926 02e3 595F4D41 		.ascii	"Y_MAX\000"
+ 2926      5800
+ 2927              	.LASF53:
+ 2928 02e9 5872656C 		.ascii	"Xrel\000"
+ 2928      00
+ 2929              	.LASF80:
+ 2930 02ee 4C43445F 		.ascii	"LCD_Position\000"
+ 2930      506F7369 
+ 2930      74696F6E 
+ 2930      00
+ 2931              	.LASF36:
+ 2932 02fb 58726571 		.ascii	"Xreq\000"
+ 2932      00
+ 2933              	.LASF32:
+ 2934 0300 585F696E 		.ascii	"X_interrupcion_Handler\000"
+ 2934      74657272 
+ 2934      75706369 
+ 2934      6F6E5F48 
+ 2934      616E646C 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 59
+
+
+ 2935              	.LASF77:
+ 2936 0317 546F7563 		.ascii	"Touch_ActivateX\000"
+ 2936      685F4163 
+ 2936      74697661 
+ 2936      74655800 
+ 2937              	.LASF59:
+ 2938 0327 785F666C 		.ascii	"x_float\000"
+ 2938      6F617400 
+ 2939              	.LASF91:
+ 2940 032f 6D61696E 		.ascii	"main.c\000"
+ 2940      2E6300
+ 2941              	.LASF83:
+ 2942 0336 50574D5F 		.ascii	"PWM_Y_Start\000"
+ 2942      595F5374 
+ 2942      61727400 
+ 2943              	.LASF85:
+ 2944 0342 50574D5F 		.ascii	"PWM_reset_Write\000"
+ 2944      72657365 
+ 2944      745F5772 
+ 2944      69746500 
+ 2945              	.LASF52:
+ 2946 0352 595F4D49 		.ascii	"Y_MIN\000"
+ 2946      4E00
+ 2947              	.LASF12:
+ 2948 0358 646F7562 		.ascii	"double\000"
+ 2948      6C6500
+ 2949              	.LASF71:
+ 2950 035f 585F7072 		.ascii	"X_prep\000"
+ 2950      657000
+ 2951              	.LASF42:
+ 2952 0366 49544D5F 		.ascii	"ITM_RxBuffer\000"
+ 2952      52784275 
+ 2952      66666572 
+ 2952      00
+ 2953              	.LASF45:
+ 2954 0373 50574D53 		.ascii	"PWMSERVO_X_CORRECTION\000"
+ 2954      4552564F 
+ 2954      5F585F43 
+ 2954      4F525245 
+ 2954      4354494F 
+ 2955              	.LASF30:
+ 2956 0389 53617475 		.ascii	"Saturador\000"
+ 2956      7261646F 
+ 2956      7200
+ 2957              	.LASF10:
+ 2958 0393 5F5F696E 		.ascii	"__int32_t\000"
+ 2958      7433325F 
+ 2958      7400
+ 2959              	.LASF21:
+ 2960 039d 6D617041 		.ascii	"mapANGtoTIME\000"
+ 2960      4E47746F 
+ 2960      54494D45 
+ 2960      00
+ 2961              	.LASF31:
+ 2962 03aa 595F696E 		.ascii	"Y_interrupcion_Handler\000"
+ 2962      74657272 
+ 2962      75706369 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 60
+
+
+ 2962      6F6E5F48 
+ 2962      616E646C 
+ 2963              	.LASF43:
+ 2964 03c1 50574D53 		.ascii	"PWMSERVO_MIN\000"
+ 2964      4552564F 
+ 2964      5F4D494E 
+ 2964      00
+ 2965              	.LASF35:
+ 2966 03ce 59706F73 		.ascii	"Ypos\000"
+ 2966      00
+ 2967              	.LASF18:
+ 2968 03d3 416E6775 		.ascii	"Angulo\000"
+ 2968      6C6F00
+ 2969              	.LASF75:
+ 2970 03da 546F7563 		.ascii	"Touch_Measure\000"
+ 2970      685F4D65 
+ 2970      61737572 
+ 2970      6500
+ 2971              	.LASF58:
+ 2972 03e8 795F696E 		.ascii	"y_int\000"
+ 2972      7400
+ 2973              	.LASF90:
+ 2974 03ee 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 2974      43313120 
+ 2974      352E342E 
+ 2974      31203230 
+ 2974      31363036 
+ 2975 0421 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 2975      20726576 
+ 2975      6973696F 
+ 2975      6E203233 
+ 2975      37373135 
+ 2976 0454 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2976      66756E63 
+ 2976      74696F6E 
+ 2976      2D736563 
+ 2976      74696F6E 
+ 2977              	.LASF54:
+ 2978 047c 5972656C 		.ascii	"Yrel\000"
+ 2978      00
+ 2979              	.LASF84:
+ 2980 0481 43794465 		.ascii	"CyDelay\000"
+ 2980      6C617900 
+ 2981              	.LASF55:
+ 2982 0489 56646476 		.ascii	"Vddval\000"
+ 2982      616C00
+ 2983              	.LASF37:
+ 2984 0490 59726571 		.ascii	"Yreq\000"
+ 2984      00
+ 2985              	.LASF19:
+ 2986 0495 53657453 		.ascii	"SetServoX\000"
+ 2986      6572766F 
+ 2986      5800
+ 2987              	.LASF20:
+ 2988 049f 53657453 		.ascii	"SetServoY\000"
+ 2988      6572766F 
+ 2988      5900
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cckEIm0N.s 			page 61
+
+
+ 2989              	.LASF16:
+ 2990 04a9 616E6772 		.ascii	"angrelativo\000"
+ 2990      656C6174 
+ 2990      69766F00 
+ 2991              	.LASF69:
+ 2992 04b5 585F456B 		.ascii	"X_Ekmenos1\000"
+ 2992      6D656E6F 
+ 2992      733100
+ 2993              	.LASF25:
+ 2994 04c0 506F7352 		.ascii	"PosRealX\000"
+ 2994      65616C58 
+ 2994      00
+ 2995              	.LASF28:
+ 2996 04c9 506F7352 		.ascii	"PosRealY\000"
+ 2996      65616C59 
+ 2996      00
+ 2997              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
