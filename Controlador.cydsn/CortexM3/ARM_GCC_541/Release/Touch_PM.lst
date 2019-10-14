@@ -1,0 +1,689 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Touch_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Touch_SaveConfig,"ax",%progbits
+  20              		.align	1
+  21              		.global	Touch_SaveConfig
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Touch_SaveConfig, %function
+  25              	Touch_SaveConfig:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\Touch_PM.c"
+   1:Generated_Source\PSoC5/Touch_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Touch_PM.c **** * File Name: Touch_PM.c
+   3:Generated_Source\PSoC5/Touch_PM.c **** * Version 2.0
+   4:Generated_Source\PSoC5/Touch_PM.c **** *
+   5:Generated_Source\PSoC5/Touch_PM.c **** * Description:
+   6:Generated_Source\PSoC5/Touch_PM.c **** *  This file contains the setup, control, and status commands to support 
+   7:Generated_Source\PSoC5/Touch_PM.c **** *  the component operation in the low power mode. 
+   8:Generated_Source\PSoC5/Touch_PM.c **** *
+   9:Generated_Source\PSoC5/Touch_PM.c **** * Note:
+  10:Generated_Source\PSoC5/Touch_PM.c **** *
+  11:Generated_Source\PSoC5/Touch_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/Touch_PM.c **** * Copyright 2012-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/Touch_PM.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/Touch_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/Touch_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/Touch_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/Touch_PM.c **** 
+  18:Generated_Source\PSoC5/Touch_PM.c **** #include "Touch.h"
+  19:Generated_Source\PSoC5/Touch_PM.c **** 
+  20:Generated_Source\PSoC5/Touch_PM.c **** 
+  21:Generated_Source\PSoC5/Touch_PM.c **** /*******************************************************************************
+  22:Generated_Source\PSoC5/Touch_PM.c **** * Function Name: Touch_SaveConfig
+  23:Generated_Source\PSoC5/Touch_PM.c **** ********************************************************************************
+  24:Generated_Source\PSoC5/Touch_PM.c **** *
+  25:Generated_Source\PSoC5/Touch_PM.c **** * Summary:
+  26:Generated_Source\PSoC5/Touch_PM.c **** *  Saves the ADC configuration.
+  27:Generated_Source\PSoC5/Touch_PM.c **** *
+  28:Generated_Source\PSoC5/Touch_PM.c **** * Parameters:
+  29:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  30:Generated_Source\PSoC5/Touch_PM.c **** *
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 2
+
+
+  31:Generated_Source\PSoC5/Touch_PM.c **** * Return:
+  32:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  33:Generated_Source\PSoC5/Touch_PM.c **** *
+  34:Generated_Source\PSoC5/Touch_PM.c **** *******************************************************************************/
+  35:Generated_Source\PSoC5/Touch_PM.c **** void Touch_SaveConfig(void) 
+  36:Generated_Source\PSoC5/Touch_PM.c **** {
+  28              		.loc 1 36 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              		@ link register save eliminated.
+  37:Generated_Source\PSoC5/Touch_PM.c ****     Touch_ADC_SaveConfig();   
+  33              		.loc 1 37 0
+  34 0000 FFF7FEBF 		b	Touch_ADC_SaveConfig
+  35              	.LVL0:
+  36              		.cfi_endproc
+  37              	.LFE0:
+  38              		.size	Touch_SaveConfig, .-Touch_SaveConfig
+  39              		.section	.text.Touch_RestoreConfig,"ax",%progbits
+  40              		.align	1
+  41              		.global	Touch_RestoreConfig
+  42              		.thumb
+  43              		.thumb_func
+  44              		.type	Touch_RestoreConfig, %function
+  45              	Touch_RestoreConfig:
+  46              	.LFB1:
+  38:Generated_Source\PSoC5/Touch_PM.c **** }
+  39:Generated_Source\PSoC5/Touch_PM.c **** 
+  40:Generated_Source\PSoC5/Touch_PM.c **** 
+  41:Generated_Source\PSoC5/Touch_PM.c **** /*******************************************************************************
+  42:Generated_Source\PSoC5/Touch_PM.c **** * Function Name: Touch_RestoreConfig
+  43:Generated_Source\PSoC5/Touch_PM.c **** ********************************************************************************
+  44:Generated_Source\PSoC5/Touch_PM.c **** *
+  45:Generated_Source\PSoC5/Touch_PM.c **** * Summary:
+  46:Generated_Source\PSoC5/Touch_PM.c **** *  Restores the ADC configuration.
+  47:Generated_Source\PSoC5/Touch_PM.c **** *
+  48:Generated_Source\PSoC5/Touch_PM.c **** * Parameters:
+  49:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  50:Generated_Source\PSoC5/Touch_PM.c **** *
+  51:Generated_Source\PSoC5/Touch_PM.c **** * Return:
+  52:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  53:Generated_Source\PSoC5/Touch_PM.c **** *
+  54:Generated_Source\PSoC5/Touch_PM.c **** *
+  55:Generated_Source\PSoC5/Touch_PM.c **** *******************************************************************************/
+  56:Generated_Source\PSoC5/Touch_PM.c **** void Touch_RestoreConfig(void) 
+  57:Generated_Source\PSoC5/Touch_PM.c **** {
+  47              		.loc 1 57 0
+  48              		.cfi_startproc
+  49              		@ args = 0, pretend = 0, frame = 0
+  50              		@ frame_needed = 0, uses_anonymous_args = 0
+  51              		@ link register save eliminated.
+  58:Generated_Source\PSoC5/Touch_PM.c ****     Touch_ADC_RestoreConfig();  
+  52              		.loc 1 58 0
+  53 0000 FFF7FEBF 		b	Touch_ADC_RestoreConfig
+  54              	.LVL1:
+  55              		.cfi_endproc
+  56              	.LFE1:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 3
+
+
+  57              		.size	Touch_RestoreConfig, .-Touch_RestoreConfig
+  58              		.section	.text.Touch_Sleep,"ax",%progbits
+  59              		.align	1
+  60              		.global	Touch_Sleep
+  61              		.thumb
+  62              		.thumb_func
+  63              		.type	Touch_Sleep, %function
+  64              	Touch_Sleep:
+  65              	.LFB2:
+  59:Generated_Source\PSoC5/Touch_PM.c **** }
+  60:Generated_Source\PSoC5/Touch_PM.c **** 
+  61:Generated_Source\PSoC5/Touch_PM.c **** 
+  62:Generated_Source\PSoC5/Touch_PM.c **** /*******************************************************************************
+  63:Generated_Source\PSoC5/Touch_PM.c **** * Function Name: Touch_Sleep
+  64:Generated_Source\PSoC5/Touch_PM.c **** ********************************************************************************
+  65:Generated_Source\PSoC5/Touch_PM.c **** *
+  66:Generated_Source\PSoC5/Touch_PM.c **** * Summary:
+  67:Generated_Source\PSoC5/Touch_PM.c **** *  Prepares the component for entering the low power mode.
+  68:Generated_Source\PSoC5/Touch_PM.c **** *
+  69:Generated_Source\PSoC5/Touch_PM.c **** * Parameters:
+  70:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  71:Generated_Source\PSoC5/Touch_PM.c **** *
+  72:Generated_Source\PSoC5/Touch_PM.c **** * Return:
+  73:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  74:Generated_Source\PSoC5/Touch_PM.c **** *
+  75:Generated_Source\PSoC5/Touch_PM.c **** *******************************************************************************/
+  76:Generated_Source\PSoC5/Touch_PM.c **** void Touch_Sleep(void) 
+  77:Generated_Source\PSoC5/Touch_PM.c **** {
+  66              		.loc 1 77 0
+  67              		.cfi_startproc
+  68              		@ args = 0, pretend = 0, frame = 0
+  69              		@ frame_needed = 0, uses_anonymous_args = 0
+  70 0000 08B5     		push	{r3, lr}
+  71              		.cfi_def_cfa_offset 8
+  72              		.cfi_offset 3, -8
+  73              		.cfi_offset 14, -4
+  78:Generated_Source\PSoC5/Touch_PM.c ****     Touch_ADC_Sleep();
+  74              		.loc 1 78 0
+  75 0002 FFF7FEFF 		bl	Touch_ADC_Sleep
+  76              	.LVL2:
+  79:Generated_Source\PSoC5/Touch_PM.c ****     Touch_AMux_Stop();
+  80:Generated_Source\PSoC5/Touch_PM.c **** }
+  77              		.loc 1 80 0
+  78 0006 BDE80840 		pop	{r3, lr}
+  79              		.cfi_restore 14
+  80              		.cfi_restore 3
+  81              		.cfi_def_cfa_offset 0
+  79:Generated_Source\PSoC5/Touch_PM.c ****     Touch_AMux_Stop();
+  82              		.loc 1 79 0
+  83 000a FFF7FEBF 		b	Touch_AMux_Stop
+  84              	.LVL3:
+  85              		.cfi_endproc
+  86              	.LFE2:
+  87              		.size	Touch_Sleep, .-Touch_Sleep
+  88              		.section	.text.Touch_Wakeup,"ax",%progbits
+  89              		.align	1
+  90              		.global	Touch_Wakeup
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 4
+
+
+  91              		.thumb
+  92              		.thumb_func
+  93              		.type	Touch_Wakeup, %function
+  94              	Touch_Wakeup:
+  95              	.LFB3:
+  81:Generated_Source\PSoC5/Touch_PM.c **** 
+  82:Generated_Source\PSoC5/Touch_PM.c **** 
+  83:Generated_Source\PSoC5/Touch_PM.c **** /*******************************************************************************
+  84:Generated_Source\PSoC5/Touch_PM.c **** * Function Name: Touch_Wakeup
+  85:Generated_Source\PSoC5/Touch_PM.c **** ********************************************************************************
+  86:Generated_Source\PSoC5/Touch_PM.c **** *
+  87:Generated_Source\PSoC5/Touch_PM.c **** * Summary:
+  88:Generated_Source\PSoC5/Touch_PM.c **** *  Restores the component after waking up from the low power mode.
+  89:Generated_Source\PSoC5/Touch_PM.c **** *
+  90:Generated_Source\PSoC5/Touch_PM.c **** * Parameters:
+  91:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  92:Generated_Source\PSoC5/Touch_PM.c **** *
+  93:Generated_Source\PSoC5/Touch_PM.c **** * Return:
+  94:Generated_Source\PSoC5/Touch_PM.c **** *  None
+  95:Generated_Source\PSoC5/Touch_PM.c **** *
+  96:Generated_Source\PSoC5/Touch_PM.c **** *******************************************************************************/
+  97:Generated_Source\PSoC5/Touch_PM.c **** void Touch_Wakeup(void)  
+  98:Generated_Source\PSoC5/Touch_PM.c **** {
+  96              		.loc 1 98 0
+  97              		.cfi_startproc
+  98              		@ args = 0, pretend = 0, frame = 0
+  99              		@ frame_needed = 0, uses_anonymous_args = 0
+ 100              		@ link register save eliminated.
+  99:Generated_Source\PSoC5/Touch_PM.c ****     Touch_ADC_Wakeup();
+ 101              		.loc 1 99 0
+ 102 0000 FFF7FEBF 		b	Touch_ADC_Wakeup
+ 103              	.LVL4:
+ 104              		.cfi_endproc
+ 105              	.LFE3:
+ 106              		.size	Touch_Wakeup, .-Touch_Wakeup
+ 107              		.text
+ 108              	.Letext0:
+ 109              		.file 2 "Generated_Source\\PSoC5\\Touch_ADC.h"
+ 110              		.file 3 "Generated_Source\\PSoC5\\Touch_AMux.h"
+ 111              		.section	.debug_info,"",%progbits
+ 112              	.Ldebug_info0:
+ 113 0000 47010000 		.4byte	0x147
+ 114 0004 0400     		.2byte	0x4
+ 115 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 116 000a 04       		.byte	0x4
+ 117 000b 01       		.uleb128 0x1
+ 118 000c 29010000 		.4byte	.LASF23
+ 119 0010 0C       		.byte	0xc
+ 120 0011 1B000000 		.4byte	.LASF24
+ 121 0015 CB000000 		.4byte	.LASF25
+ 122 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 123 001d 00000000 		.4byte	0
+ 124 0021 00000000 		.4byte	.Ldebug_line0
+ 125 0025 02       		.uleb128 0x2
+ 126 0026 01       		.byte	0x1
+ 127 0027 06       		.byte	0x6
+ 128 0028 E2010000 		.4byte	.LASF0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 5
+
+
+ 129 002c 02       		.uleb128 0x2
+ 130 002d 01       		.byte	0x1
+ 131 002e 08       		.byte	0x8
+ 132 002f AF000000 		.4byte	.LASF1
+ 133 0033 02       		.uleb128 0x2
+ 134 0034 02       		.byte	0x2
+ 135 0035 05       		.byte	0x5
+ 136 0036 13020000 		.4byte	.LASF2
+ 137 003a 02       		.uleb128 0x2
+ 138 003b 02       		.byte	0x2
+ 139 003c 07       		.byte	0x7
+ 140 003d CF010000 		.4byte	.LASF3
+ 141 0041 02       		.uleb128 0x2
+ 142 0042 04       		.byte	0x4
+ 143 0043 05       		.byte	0x5
+ 144 0044 C2000000 		.4byte	.LASF4
+ 145 0048 02       		.uleb128 0x2
+ 146 0049 04       		.byte	0x4
+ 147 004a 07       		.byte	0x7
+ 148 004b 62000000 		.4byte	.LASF5
+ 149 004f 02       		.uleb128 0x2
+ 150 0050 08       		.byte	0x8
+ 151 0051 05       		.byte	0x5
+ 152 0052 00000000 		.4byte	.LASF6
+ 153 0056 02       		.uleb128 0x2
+ 154 0057 08       		.byte	0x8
+ 155 0058 07       		.byte	0x7
+ 156 0059 81000000 		.4byte	.LASF7
+ 157 005d 03       		.uleb128 0x3
+ 158 005e 04       		.byte	0x4
+ 159 005f 05       		.byte	0x5
+ 160 0060 696E7400 		.ascii	"int\000"
+ 161 0064 02       		.uleb128 0x2
+ 162 0065 04       		.byte	0x4
+ 163 0066 07       		.byte	0x7
+ 164 0067 0E000000 		.4byte	.LASF8
+ 165 006b 02       		.uleb128 0x2
+ 166 006c 04       		.byte	0x4
+ 167 006d 04       		.byte	0x4
+ 168 006e A9000000 		.4byte	.LASF9
+ 169 0072 02       		.uleb128 0x2
+ 170 0073 08       		.byte	0x8
+ 171 0074 04       		.byte	0x4
+ 172 0075 22010000 		.4byte	.LASF10
+ 173 0079 02       		.uleb128 0x2
+ 174 007a 01       		.byte	0x1
+ 175 007b 08       		.byte	0x8
+ 176 007c BD000000 		.4byte	.LASF11
+ 177 0080 02       		.uleb128 0x2
+ 178 0081 08       		.byte	0x8
+ 179 0082 04       		.byte	0x4
+ 180 0083 EE010000 		.4byte	.LASF12
+ 181 0087 02       		.uleb128 0x2
+ 182 0088 04       		.byte	0x4
+ 183 0089 07       		.byte	0x7
+ 184 008a 0A020000 		.4byte	.LASF13
+ 185 008e 04       		.uleb128 0x4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 6
+
+
+ 186 008f 98000000 		.4byte	.LASF14
+ 187 0093 01       		.byte	0x1
+ 188 0094 23       		.byte	0x23
+ 189 0095 00000000 		.4byte	.LFB0
+ 190 0099 04000000 		.4byte	.LFE0-.LFB0
+ 191 009d 01       		.uleb128 0x1
+ 192 009e 9C       		.byte	0x9c
+ 193 009f AD000000 		.4byte	0xad
+ 194 00a3 05       		.uleb128 0x5
+ 195 00a4 04000000 		.4byte	.LVL0
+ 196 00a8 13010000 		.4byte	0x113
+ 197 00ac 00       		.byte	0
+ 198 00ad 04       		.uleb128 0x4
+ 199 00ae 3D000000 		.4byte	.LASF15
+ 200 00b2 01       		.byte	0x1
+ 201 00b3 38       		.byte	0x38
+ 202 00b4 00000000 		.4byte	.LFB1
+ 203 00b8 04000000 		.4byte	.LFE1-.LFB1
+ 204 00bc 01       		.uleb128 0x1
+ 205 00bd 9C       		.byte	0x9c
+ 206 00be CC000000 		.4byte	0xcc
+ 207 00c2 05       		.uleb128 0x5
+ 208 00c3 04000000 		.4byte	.LVL1
+ 209 00c7 1E010000 		.4byte	0x11e
+ 210 00cb 00       		.byte	0
+ 211 00cc 04       		.uleb128 0x4
+ 212 00cd 32020000 		.4byte	.LASF16
+ 213 00d1 01       		.byte	0x1
+ 214 00d2 4C       		.byte	0x4c
+ 215 00d3 00000000 		.4byte	.LFB2
+ 216 00d7 0E000000 		.4byte	.LFE2-.LFB2
+ 217 00db 01       		.uleb128 0x1
+ 218 00dc 9C       		.byte	0x9c
+ 219 00dd F4000000 		.4byte	0xf4
+ 220 00e1 06       		.uleb128 0x6
+ 221 00e2 06000000 		.4byte	.LVL2
+ 222 00e6 29010000 		.4byte	0x129
+ 223 00ea 05       		.uleb128 0x5
+ 224 00eb 0E000000 		.4byte	.LVL3
+ 225 00ef 34010000 		.4byte	0x134
+ 226 00f3 00       		.byte	0
+ 227 00f4 04       		.uleb128 0x4
+ 228 00f5 74000000 		.4byte	.LASF17
+ 229 00f9 01       		.byte	0x1
+ 230 00fa 61       		.byte	0x61
+ 231 00fb 00000000 		.4byte	.LFB3
+ 232 00ff 04000000 		.4byte	.LFE3-.LFB3
+ 233 0103 01       		.uleb128 0x1
+ 234 0104 9C       		.byte	0x9c
+ 235 0105 13010000 		.4byte	0x113
+ 236 0109 05       		.uleb128 0x5
+ 237 010a 04000000 		.4byte	.LVL4
+ 238 010e 3F010000 		.4byte	0x13f
+ 239 0112 00       		.byte	0
+ 240 0113 07       		.uleb128 0x7
+ 241 0114 1D020000 		.4byte	.LASF18
+ 242 0118 1D020000 		.4byte	.LASF18
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 7
+
+
+ 243 011c 02       		.byte	0x2
+ 244 011d 4E       		.byte	0x4e
+ 245 011e 07       		.uleb128 0x7
+ 246 011f B7010000 		.4byte	.LASF19
+ 247 0123 B7010000 		.4byte	.LASF19
+ 248 0127 02       		.byte	0x2
+ 249 0128 4F       		.byte	0x4f
+ 250 0129 07       		.uleb128 0x7
+ 251 012a 3E020000 		.4byte	.LASF20
+ 252 012e 3E020000 		.4byte	.LASF20
+ 253 0132 02       		.byte	0x2
+ 254 0133 4A       		.byte	0x4a
+ 255 0134 07       		.uleb128 0x7
+ 256 0135 FA010000 		.4byte	.LASF21
+ 257 0139 FA010000 		.4byte	.LASF21
+ 258 013d 03       		.byte	0x3
+ 259 013e 2F       		.byte	0x2f
+ 260 013f 07       		.uleb128 0x7
+ 261 0140 51000000 		.4byte	.LASF22
+ 262 0144 51000000 		.4byte	.LASF22
+ 263 0148 02       		.byte	0x2
+ 264 0149 4B       		.byte	0x4b
+ 265 014a 00       		.byte	0
+ 266              		.section	.debug_abbrev,"",%progbits
+ 267              	.Ldebug_abbrev0:
+ 268 0000 01       		.uleb128 0x1
+ 269 0001 11       		.uleb128 0x11
+ 270 0002 01       		.byte	0x1
+ 271 0003 25       		.uleb128 0x25
+ 272 0004 0E       		.uleb128 0xe
+ 273 0005 13       		.uleb128 0x13
+ 274 0006 0B       		.uleb128 0xb
+ 275 0007 03       		.uleb128 0x3
+ 276 0008 0E       		.uleb128 0xe
+ 277 0009 1B       		.uleb128 0x1b
+ 278 000a 0E       		.uleb128 0xe
+ 279 000b 55       		.uleb128 0x55
+ 280 000c 17       		.uleb128 0x17
+ 281 000d 11       		.uleb128 0x11
+ 282 000e 01       		.uleb128 0x1
+ 283 000f 10       		.uleb128 0x10
+ 284 0010 17       		.uleb128 0x17
+ 285 0011 00       		.byte	0
+ 286 0012 00       		.byte	0
+ 287 0013 02       		.uleb128 0x2
+ 288 0014 24       		.uleb128 0x24
+ 289 0015 00       		.byte	0
+ 290 0016 0B       		.uleb128 0xb
+ 291 0017 0B       		.uleb128 0xb
+ 292 0018 3E       		.uleb128 0x3e
+ 293 0019 0B       		.uleb128 0xb
+ 294 001a 03       		.uleb128 0x3
+ 295 001b 0E       		.uleb128 0xe
+ 296 001c 00       		.byte	0
+ 297 001d 00       		.byte	0
+ 298 001e 03       		.uleb128 0x3
+ 299 001f 24       		.uleb128 0x24
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 8
+
+
+ 300 0020 00       		.byte	0
+ 301 0021 0B       		.uleb128 0xb
+ 302 0022 0B       		.uleb128 0xb
+ 303 0023 3E       		.uleb128 0x3e
+ 304 0024 0B       		.uleb128 0xb
+ 305 0025 03       		.uleb128 0x3
+ 306 0026 08       		.uleb128 0x8
+ 307 0027 00       		.byte	0
+ 308 0028 00       		.byte	0
+ 309 0029 04       		.uleb128 0x4
+ 310 002a 2E       		.uleb128 0x2e
+ 311 002b 01       		.byte	0x1
+ 312 002c 3F       		.uleb128 0x3f
+ 313 002d 19       		.uleb128 0x19
+ 314 002e 03       		.uleb128 0x3
+ 315 002f 0E       		.uleb128 0xe
+ 316 0030 3A       		.uleb128 0x3a
+ 317 0031 0B       		.uleb128 0xb
+ 318 0032 3B       		.uleb128 0x3b
+ 319 0033 0B       		.uleb128 0xb
+ 320 0034 27       		.uleb128 0x27
+ 321 0035 19       		.uleb128 0x19
+ 322 0036 11       		.uleb128 0x11
+ 323 0037 01       		.uleb128 0x1
+ 324 0038 12       		.uleb128 0x12
+ 325 0039 06       		.uleb128 0x6
+ 326 003a 40       		.uleb128 0x40
+ 327 003b 18       		.uleb128 0x18
+ 328 003c 9742     		.uleb128 0x2117
+ 329 003e 19       		.uleb128 0x19
+ 330 003f 01       		.uleb128 0x1
+ 331 0040 13       		.uleb128 0x13
+ 332 0041 00       		.byte	0
+ 333 0042 00       		.byte	0
+ 334 0043 05       		.uleb128 0x5
+ 335 0044 898201   		.uleb128 0x4109
+ 336 0047 00       		.byte	0
+ 337 0048 11       		.uleb128 0x11
+ 338 0049 01       		.uleb128 0x1
+ 339 004a 9542     		.uleb128 0x2115
+ 340 004c 19       		.uleb128 0x19
+ 341 004d 31       		.uleb128 0x31
+ 342 004e 13       		.uleb128 0x13
+ 343 004f 00       		.byte	0
+ 344 0050 00       		.byte	0
+ 345 0051 06       		.uleb128 0x6
+ 346 0052 898201   		.uleb128 0x4109
+ 347 0055 00       		.byte	0
+ 348 0056 11       		.uleb128 0x11
+ 349 0057 01       		.uleb128 0x1
+ 350 0058 31       		.uleb128 0x31
+ 351 0059 13       		.uleb128 0x13
+ 352 005a 00       		.byte	0
+ 353 005b 00       		.byte	0
+ 354 005c 07       		.uleb128 0x7
+ 355 005d 2E       		.uleb128 0x2e
+ 356 005e 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 9
+
+
+ 357 005f 3F       		.uleb128 0x3f
+ 358 0060 19       		.uleb128 0x19
+ 359 0061 3C       		.uleb128 0x3c
+ 360 0062 19       		.uleb128 0x19
+ 361 0063 6E       		.uleb128 0x6e
+ 362 0064 0E       		.uleb128 0xe
+ 363 0065 03       		.uleb128 0x3
+ 364 0066 0E       		.uleb128 0xe
+ 365 0067 3A       		.uleb128 0x3a
+ 366 0068 0B       		.uleb128 0xb
+ 367 0069 3B       		.uleb128 0x3b
+ 368 006a 0B       		.uleb128 0xb
+ 369 006b 00       		.byte	0
+ 370 006c 00       		.byte	0
+ 371 006d 00       		.byte	0
+ 372              		.section	.debug_aranges,"",%progbits
+ 373 0000 34000000 		.4byte	0x34
+ 374 0004 0200     		.2byte	0x2
+ 375 0006 00000000 		.4byte	.Ldebug_info0
+ 376 000a 04       		.byte	0x4
+ 377 000b 00       		.byte	0
+ 378 000c 0000     		.2byte	0
+ 379 000e 0000     		.2byte	0
+ 380 0010 00000000 		.4byte	.LFB0
+ 381 0014 04000000 		.4byte	.LFE0-.LFB0
+ 382 0018 00000000 		.4byte	.LFB1
+ 383 001c 04000000 		.4byte	.LFE1-.LFB1
+ 384 0020 00000000 		.4byte	.LFB2
+ 385 0024 0E000000 		.4byte	.LFE2-.LFB2
+ 386 0028 00000000 		.4byte	.LFB3
+ 387 002c 04000000 		.4byte	.LFE3-.LFB3
+ 388 0030 00000000 		.4byte	0
+ 389 0034 00000000 		.4byte	0
+ 390              		.section	.debug_ranges,"",%progbits
+ 391              	.Ldebug_ranges0:
+ 392 0000 00000000 		.4byte	.LFB0
+ 393 0004 04000000 		.4byte	.LFE0
+ 394 0008 00000000 		.4byte	.LFB1
+ 395 000c 04000000 		.4byte	.LFE1
+ 396 0010 00000000 		.4byte	.LFB2
+ 397 0014 0E000000 		.4byte	.LFE2
+ 398 0018 00000000 		.4byte	.LFB3
+ 399 001c 04000000 		.4byte	.LFE3
+ 400 0020 00000000 		.4byte	0
+ 401 0024 00000000 		.4byte	0
+ 402              		.section	.debug_line,"",%progbits
+ 403              	.Ldebug_line0:
+ 404 0000 A1000000 		.section	.debug_str,"MS",%progbits,1
+ 404      02005700 
+ 404      00000201 
+ 404      FB0E0D00 
+ 404      01010101 
+ 405              	.LASF6:
+ 406 0000 6C6F6E67 		.ascii	"long long int\000"
+ 406      206C6F6E 
+ 406      6720696E 
+ 406      7400
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 10
+
+
+ 407              	.LASF8:
+ 408 000e 756E7369 		.ascii	"unsigned int\000"
+ 408      676E6564 
+ 408      20696E74 
+ 408      00
+ 409              	.LASF24:
+ 410 001b 47656E65 		.ascii	"Generated_Source\\PSoC5\\Touch_PM.c\000"
+ 410      72617465 
+ 410      645F536F 
+ 410      75726365 
+ 410      5C50536F 
+ 411              	.LASF15:
+ 412 003d 546F7563 		.ascii	"Touch_RestoreConfig\000"
+ 412      685F5265 
+ 412      73746F72 
+ 412      65436F6E 
+ 412      66696700 
+ 413              	.LASF22:
+ 414 0051 546F7563 		.ascii	"Touch_ADC_Wakeup\000"
+ 414      685F4144 
+ 414      435F5761 
+ 414      6B657570 
+ 414      00
+ 415              	.LASF5:
+ 416 0062 6C6F6E67 		.ascii	"long unsigned int\000"
+ 416      20756E73 
+ 416      69676E65 
+ 416      6420696E 
+ 416      7400
+ 417              	.LASF17:
+ 418 0074 546F7563 		.ascii	"Touch_Wakeup\000"
+ 418      685F5761 
+ 418      6B657570 
+ 418      00
+ 419              	.LASF7:
+ 420 0081 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 420      206C6F6E 
+ 420      6720756E 
+ 420      7369676E 
+ 420      65642069 
+ 421              	.LASF14:
+ 422 0098 546F7563 		.ascii	"Touch_SaveConfig\000"
+ 422      685F5361 
+ 422      7665436F 
+ 422      6E666967 
+ 422      00
+ 423              	.LASF9:
+ 424 00a9 666C6F61 		.ascii	"float\000"
+ 424      7400
+ 425              	.LASF1:
+ 426 00af 756E7369 		.ascii	"unsigned char\000"
+ 426      676E6564 
+ 426      20636861 
+ 426      7200
+ 427              	.LASF11:
+ 428 00bd 63686172 		.ascii	"char\000"
+ 428      00
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 11
+
+
+ 429              	.LASF4:
+ 430 00c2 6C6F6E67 		.ascii	"long int\000"
+ 430      20696E74 
+ 430      00
+ 431              	.LASF25:
+ 432 00cb 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 432      5C4C6162 
+ 432      20646520 
+ 432      436F6E74 
+ 432      726F6C5C 
+ 433 00fb 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 433      30315C50 
+ 433      49442043 
+ 433      6F6E7472 
+ 433      6F6C6572 
+ 434              	.LASF10:
+ 435 0122 646F7562 		.ascii	"double\000"
+ 435      6C6500
+ 436              	.LASF23:
+ 437 0129 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 437      43313120 
+ 437      352E342E 
+ 437      31203230 
+ 437      31363036 
+ 438 015c 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 438      20726576 
+ 438      6973696F 
+ 438      6E203233 
+ 438      37373135 
+ 439 018f 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 439      66756E63 
+ 439      74696F6E 
+ 439      2D736563 
+ 439      74696F6E 
+ 440              	.LASF19:
+ 441 01b7 546F7563 		.ascii	"Touch_ADC_RestoreConfig\000"
+ 441      685F4144 
+ 441      435F5265 
+ 441      73746F72 
+ 441      65436F6E 
+ 442              	.LASF3:
+ 443 01cf 73686F72 		.ascii	"short unsigned int\000"
+ 443      7420756E 
+ 443      7369676E 
+ 443      65642069 
+ 443      6E7400
+ 444              	.LASF0:
+ 445 01e2 7369676E 		.ascii	"signed char\000"
+ 445      65642063 
+ 445      68617200 
+ 446              	.LASF12:
+ 447 01ee 6C6F6E67 		.ascii	"long double\000"
+ 447      20646F75 
+ 447      626C6500 
+ 448              	.LASF21:
+ 449 01fa 546F7563 		.ascii	"Touch_AMux_Stop\000"
+ 449      685F414D 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\cc4qekec.s 			page 12
+
+
+ 449      75785F53 
+ 449      746F7000 
+ 450              	.LASF13:
+ 451 020a 73697A65 		.ascii	"sizetype\000"
+ 451      74797065 
+ 451      00
+ 452              	.LASF2:
+ 453 0213 73686F72 		.ascii	"short int\000"
+ 453      7420696E 
+ 453      7400
+ 454              	.LASF18:
+ 455 021d 546F7563 		.ascii	"Touch_ADC_SaveConfig\000"
+ 455      685F4144 
+ 455      435F5361 
+ 455      7665436F 
+ 455      6E666967 
+ 456              	.LASF16:
+ 457 0232 546F7563 		.ascii	"Touch_Sleep\000"
+ 457      685F536C 
+ 457      65657000 
+ 458              	.LASF20:
+ 459 023e 546F7563 		.ascii	"Touch_ADC_Sleep\000"
+ 459      685F4144 
+ 459      435F536C 
+ 459      65657000 
+ 460              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

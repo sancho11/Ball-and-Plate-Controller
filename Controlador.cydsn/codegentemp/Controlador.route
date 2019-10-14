@@ -414,7 +414,7 @@ net \PWM_X:PWMUDB:status_1\
 	switch "Stub-:udbswitch@[UDB=(0,3)][side=top]:v91==>:udb@[UDB=(1,3)]:statusicell.status_1"
 	term   ":udb@[UDB=(1,3)]:statusicell.status_1"
 end \PWM_X:PWMUDB:status_1\
-net Net_148
+net Net_655
 	term   ":clockblockcell.dclk_glb_1"
 	switch ":clockblockcell.dclk_glb_1==>:udb@[UDB=(1,3)]:clockreset:clk_sc_mux.in_1"
 	switch ":udb@[UDB=(1,3)]:clockreset:clk_sc_mux.sc_clk==>:udb@[UDB=(1,3)]:controlcell.clock"
@@ -470,7 +470,7 @@ net Net_148
 	term   ":udb@[UDB=(0,4)]:pld0:mc2.clock_0"
 	switch ":udb@[UDB=(0,4)]:clockreset:clk_pld0_mux.pld0_clk==>:udb@[UDB=(0,4)]:pld0:mc3.clock_0"
 	term   ":udb@[UDB=(0,4)]:pld0:mc3.clock_0"
-end Net_148
+end Net_655
 net ClockBlock_BUS_CLK
 	term   ":clockblockcell.clk_bus_glb"
 	switch ":clockblockcell.clk_bus_glb==>:udb@[UDB=(1,3)]:controlcell.busclk"

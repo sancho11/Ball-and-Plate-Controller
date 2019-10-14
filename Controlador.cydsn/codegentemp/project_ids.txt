@@ -1,6 +1,7 @@
-E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj|35b4eb2f-c079-4972-80e6-bff47e5010c7
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|6d6a65c3-c2e1-4bbe-b9b8-78cc853bb3bb
-C:\Users\emman\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|36226ab8-c95a-475a-8cb9-c297b0501f40
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|f96fd845-2d38-4d9f-9ffa-0cc34a997019
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|0029539a-0c76-4871-be7a-e7a2257aaf66
-C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|5e162d4f-abba-47fb-845b-d67f0fa4d3ca
+E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj|dc8a2f90-4a03-48d5-af5d-0540b4e44165
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|4594fd91-5d37-448b-a013-7ab9d7878297
+C:\Users\emman\Documents\PSoC Creator\4.2\Downloads ( 4.2).cylib\Downloads ( 4.2).cyprj|867c0235-1713-40fe-80df-814609f2d294
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|6683376c-af22-41e3-a790-1d10e00c7ae5
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|33e39a18-a705-456c-bdaf-22516dc381d8
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|399175a5-3e62-4a3e-88d0-e774d5072239
+C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc3\AnalogDevice\PSoC35AnalogDevice.cylib\PSoC35AnalogDevice.cyprj|cfd9c6b6-c1ae-4cf0-975f-0cb6fda654eb

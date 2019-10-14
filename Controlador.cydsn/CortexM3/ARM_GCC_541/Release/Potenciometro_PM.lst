@@ -1,0 +1,932 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Potenciometro_PM.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Potenciometro_Sleep,"ax",%progbits
+  20              		.align	1
+  21              		.global	Potenciometro_Sleep
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Potenciometro_Sleep, %function
+  25              	Potenciometro_Sleep:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\Potenciometro_PM.c"
+   1:Generated_Source\PSoC5/Potenciometro_PM.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Potenciometro_PM.c **** * File Name: Potenciometro_PM.c
+   3:Generated_Source\PSoC5/Potenciometro_PM.c **** * Version 2.10
+   4:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+   5:Generated_Source\PSoC5/Potenciometro_PM.c **** * Description:
+   6:Generated_Source\PSoC5/Potenciometro_PM.c **** *  This file contains the setup, control and status commands to support
+   7:Generated_Source\PSoC5/Potenciometro_PM.c **** *  component operations in low power mode.
+   8:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+   9:Generated_Source\PSoC5/Potenciometro_PM.c **** * Note:
+  10:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  11:Generated_Source\PSoC5/Potenciometro_PM.c **** ********************************************************************************
+  12:Generated_Source\PSoC5/Potenciometro_PM.c **** * Copyright 2012-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/Potenciometro_PM.c **** * You may use this file only in accordance with the license, terms, conditions,
+  14:Generated_Source\PSoC5/Potenciometro_PM.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  15:Generated_Source\PSoC5/Potenciometro_PM.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/Potenciometro_PM.c **** *******************************************************************************/
+  17:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  18:Generated_Source\PSoC5/Potenciometro_PM.c **** #include "Potenciometro.h"
+  19:Generated_Source\PSoC5/Potenciometro_PM.c **** #include "Potenciometro_SAR.h"
+  20:Generated_Source\PSoC5/Potenciometro_PM.c **** #if(Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL)
+  21:Generated_Source\PSoC5/Potenciometro_PM.c ****     #include "Potenciometro_IntClock.h"
+  22:Generated_Source\PSoC5/Potenciometro_PM.c **** #endif   /* Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL */
+  23:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  24:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  25:Generated_Source\PSoC5/Potenciometro_PM.c **** /*******************************************************************************
+  26:Generated_Source\PSoC5/Potenciometro_PM.c **** * Function Name: Potenciometro_Sleep
+  27:Generated_Source\PSoC5/Potenciometro_PM.c **** ********************************************************************************
+  28:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  29:Generated_Source\PSoC5/Potenciometro_PM.c **** * Summary:
+  30:Generated_Source\PSoC5/Potenciometro_PM.c **** *  Stops the ADC operation and saves the configuration registers and component
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 2
+
+
+  31:Generated_Source\PSoC5/Potenciometro_PM.c **** *  enable state. Should be called just prior to entering sleep
+  32:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  33:Generated_Source\PSoC5/Potenciometro_PM.c **** * Parameters:
+  34:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  35:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  36:Generated_Source\PSoC5/Potenciometro_PM.c **** * Return:
+  37:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  38:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  39:Generated_Source\PSoC5/Potenciometro_PM.c **** * Side Effects:
+  40:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  41:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  42:Generated_Source\PSoC5/Potenciometro_PM.c **** * Reentrant:
+  43:Generated_Source\PSoC5/Potenciometro_PM.c **** *  No.
+  44:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  45:Generated_Source\PSoC5/Potenciometro_PM.c **** *******************************************************************************/
+  46:Generated_Source\PSoC5/Potenciometro_PM.c **** void Potenciometro_Sleep(void)
+  47:Generated_Source\PSoC5/Potenciometro_PM.c **** {
+  28              		.loc 1 47 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  48:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_SAR_Stop();
+  36              		.loc 1 48 0
+  37 0002 FFF7FEFF 		bl	Potenciometro_SAR_Stop
+  38              	.LVL0:
+  49:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_SAR_Sleep();
+  39              		.loc 1 49 0
+  40 0006 FFF7FEFF 		bl	Potenciometro_SAR_Sleep
+  41              	.LVL1:
+  50:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_Disable();
+  42              		.loc 1 50 0
+  43 000a FFF7FEFF 		bl	Potenciometro_Disable
+  44              	.LVL2:
+  51:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  52:Generated_Source\PSoC5/Potenciometro_PM.c ****     #if(Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL)
+  53:Generated_Source\PSoC5/Potenciometro_PM.c ****         Potenciometro_IntClock_Stop();
+  54:Generated_Source\PSoC5/Potenciometro_PM.c ****     #endif   /* Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL */
+  55:Generated_Source\PSoC5/Potenciometro_PM.c **** }
+  45              		.loc 1 55 0
+  46 000e BDE80840 		pop	{r3, lr}
+  47              		.cfi_restore 14
+  48              		.cfi_restore 3
+  49              		.cfi_def_cfa_offset 0
+  53:Generated_Source\PSoC5/Potenciometro_PM.c ****     #endif   /* Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL */
+  50              		.loc 1 53 0
+  51 0012 FFF7FEBF 		b	Potenciometro_IntClock_Stop
+  52              	.LVL3:
+  53              		.cfi_endproc
+  54              	.LFE0:
+  55              		.size	Potenciometro_Sleep, .-Potenciometro_Sleep
+  56              		.section	.text.Potenciometro_Wakeup,"ax",%progbits
+  57              		.align	1
+  58              		.global	Potenciometro_Wakeup
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 3
+
+
+  59              		.thumb
+  60              		.thumb_func
+  61              		.type	Potenciometro_Wakeup, %function
+  62              	Potenciometro_Wakeup:
+  63              	.LFB1:
+  56:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  57:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  58:Generated_Source\PSoC5/Potenciometro_PM.c **** /*******************************************************************************
+  59:Generated_Source\PSoC5/Potenciometro_PM.c **** * Function Name: Potenciometro_Wakeup
+  60:Generated_Source\PSoC5/Potenciometro_PM.c **** ********************************************************************************
+  61:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  62:Generated_Source\PSoC5/Potenciometro_PM.c **** * Summary:
+  63:Generated_Source\PSoC5/Potenciometro_PM.c **** *  Restores the component enable state and configuration registers. This should
+  64:Generated_Source\PSoC5/Potenciometro_PM.c **** *  be called just after awaking from sleep mode
+  65:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  66:Generated_Source\PSoC5/Potenciometro_PM.c **** * Parameters:
+  67:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  68:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  69:Generated_Source\PSoC5/Potenciometro_PM.c **** * Return:
+  70:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  71:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  72:Generated_Source\PSoC5/Potenciometro_PM.c **** * Side Effects:
+  73:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+  74:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  75:Generated_Source\PSoC5/Potenciometro_PM.c **** * Reentrant:
+  76:Generated_Source\PSoC5/Potenciometro_PM.c **** *  No.
+  77:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+  78:Generated_Source\PSoC5/Potenciometro_PM.c **** *******************************************************************************/
+  79:Generated_Source\PSoC5/Potenciometro_PM.c **** void Potenciometro_Wakeup(void)
+  80:Generated_Source\PSoC5/Potenciometro_PM.c **** {
+  64              		.loc 1 80 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68 0000 08B5     		push	{r3, lr}
+  69              		.cfi_def_cfa_offset 8
+  70              		.cfi_offset 3, -8
+  71              		.cfi_offset 14, -4
+  81:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_SAR_Wakeup();
+  72              		.loc 1 81 0
+  73 0002 FFF7FEFF 		bl	Potenciometro_SAR_Wakeup
+  74              	.LVL4:
+  82:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_SAR_Enable();
+  75              		.loc 1 82 0
+  76 0006 FFF7FEFF 		bl	Potenciometro_SAR_Enable
+  77              	.LVL5:
+  83:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  84:Generated_Source\PSoC5/Potenciometro_PM.c ****     #if(Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL)
+  85:Generated_Source\PSoC5/Potenciometro_PM.c ****         Potenciometro_IntClock_Start();
+  78              		.loc 1 85 0
+  79 000a FFF7FEFF 		bl	Potenciometro_IntClock_Start
+  80              	.LVL6:
+  86:Generated_Source\PSoC5/Potenciometro_PM.c ****     #endif   /* Potenciometro_CLOCK_SOURCE == Potenciometro_CLOCK_INTERNAL */
+  87:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  88:Generated_Source\PSoC5/Potenciometro_PM.c ****     /* The block is ready to use 10 us after the SAR enable signal is set high. */
+  89:Generated_Source\PSoC5/Potenciometro_PM.c ****     CyDelayUs(10u);
+  81              		.loc 1 89 0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 4
+
+
+  82 000e 0A20     		movs	r0, #10
+  83 0010 FFF7FEFF 		bl	CyDelayUs
+  84              	.LVL7:
+  90:Generated_Source\PSoC5/Potenciometro_PM.c ****     
+  91:Generated_Source\PSoC5/Potenciometro_PM.c ****     Potenciometro_Enable();
+  85              		.loc 1 91 0
+  86 0014 FFF7FEFF 		bl	Potenciometro_Enable
+  87              	.LVL8:
+  92:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  93:Generated_Source\PSoC5/Potenciometro_PM.c ****     #if(Potenciometro_SAMPLE_MODE == Potenciometro_SAMPLE_MODE_FREE_RUNNING)
+  94:Generated_Source\PSoC5/Potenciometro_PM.c ****         Potenciometro_SAR_StartConvert();
+  88              		.loc 1 94 0
+  89 0018 FFF7FEFF 		bl	Potenciometro_SAR_StartConvert
+  90              	.LVL9:
+  95:Generated_Source\PSoC5/Potenciometro_PM.c ****     #endif /* (Potenciometro_SAMPLE_MODE == Potenciometro_SAMPLE_MODE_FREE_RUNNING) */
+  96:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+  97:Generated_Source\PSoC5/Potenciometro_PM.c ****     (void) CY_GET_REG8(Potenciometro_STATUS_PTR);
+  91              		.loc 1 97 0
+  92 001c 014B     		ldr	r3, .L3
+  93 001e 1B78     		ldrb	r3, [r3]	@ zero_extendqisi2
+  94 0020 08BD     		pop	{r3, pc}
+  95              	.L4:
+  96 0022 00BF     		.align	2
+  97              	.L3:
+  98 0024 63640040 		.word	1073767523
+  99              		.cfi_endproc
+ 100              	.LFE1:
+ 101              		.size	Potenciometro_Wakeup, .-Potenciometro_Wakeup
+ 102              		.section	.text.Potenciometro_SaveConfig,"ax",%progbits
+ 103              		.align	1
+ 104              		.global	Potenciometro_SaveConfig
+ 105              		.thumb
+ 106              		.thumb_func
+ 107              		.type	Potenciometro_SaveConfig, %function
+ 108              	Potenciometro_SaveConfig:
+ 109              	.LFB5:
+ 110              		.cfi_startproc
+ 111              		@ args = 0, pretend = 0, frame = 0
+ 112              		@ frame_needed = 0, uses_anonymous_args = 0
+ 113              		@ link register save eliminated.
+ 114 0000 7047     		bx	lr
+ 115              		.cfi_endproc
+ 116              	.LFE5:
+ 117              		.size	Potenciometro_SaveConfig, .-Potenciometro_SaveConfig
+ 118              		.section	.text.Potenciometro_RestoreConfig,"ax",%progbits
+ 119              		.align	1
+ 120              		.global	Potenciometro_RestoreConfig
+ 121              		.thumb
+ 122              		.thumb_func
+ 123              		.type	Potenciometro_RestoreConfig, %function
+ 124              	Potenciometro_RestoreConfig:
+ 125              	.LFB3:
+  98:Generated_Source\PSoC5/Potenciometro_PM.c **** }
+  99:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+ 100:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+ 101:Generated_Source\PSoC5/Potenciometro_PM.c **** /*******************************************************************************
+ 102:Generated_Source\PSoC5/Potenciometro_PM.c **** * Function Name: Potenciometro_SaveConfig
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 5
+
+
+ 103:Generated_Source\PSoC5/Potenciometro_PM.c **** ********************************************************************************
+ 104:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 105:Generated_Source\PSoC5/Potenciometro_PM.c **** * Summary:
+ 106:Generated_Source\PSoC5/Potenciometro_PM.c **** *  Save the current configuration of ADC non-retention registers
+ 107:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 108:Generated_Source\PSoC5/Potenciometro_PM.c **** * Parameters:
+ 109:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 110:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 111:Generated_Source\PSoC5/Potenciometro_PM.c **** * Return:
+ 112:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 113:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 114:Generated_Source\PSoC5/Potenciometro_PM.c **** * Side Effects:
+ 115:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 116:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 117:Generated_Source\PSoC5/Potenciometro_PM.c **** * Reentrant:
+ 118:Generated_Source\PSoC5/Potenciometro_PM.c **** *  No.
+ 119:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 120:Generated_Source\PSoC5/Potenciometro_PM.c **** *******************************************************************************/
+ 121:Generated_Source\PSoC5/Potenciometro_PM.c **** void Potenciometro_SaveConfig(void)
+ 122:Generated_Source\PSoC5/Potenciometro_PM.c **** {
+ 123:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+ 124:Generated_Source\PSoC5/Potenciometro_PM.c **** }
+ 125:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+ 126:Generated_Source\PSoC5/Potenciometro_PM.c **** 
+ 127:Generated_Source\PSoC5/Potenciometro_PM.c **** /*******************************************************************************
+ 128:Generated_Source\PSoC5/Potenciometro_PM.c **** * Function Name: Potenciometro_RestoreConfig
+ 129:Generated_Source\PSoC5/Potenciometro_PM.c **** ********************************************************************************
+ 130:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 131:Generated_Source\PSoC5/Potenciometro_PM.c **** * Summary:
+ 132:Generated_Source\PSoC5/Potenciometro_PM.c **** *  Restores the configuration of ADC non-retention registers
+ 133:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 134:Generated_Source\PSoC5/Potenciometro_PM.c **** * Parameters:
+ 135:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 136:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 137:Generated_Source\PSoC5/Potenciometro_PM.c **** * Return:
+ 138:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 139:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 140:Generated_Source\PSoC5/Potenciometro_PM.c **** * Side Effects:
+ 141:Generated_Source\PSoC5/Potenciometro_PM.c **** *  None.
+ 142:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 143:Generated_Source\PSoC5/Potenciometro_PM.c **** * Reentrant:
+ 144:Generated_Source\PSoC5/Potenciometro_PM.c **** *  No.
+ 145:Generated_Source\PSoC5/Potenciometro_PM.c **** *
+ 146:Generated_Source\PSoC5/Potenciometro_PM.c **** *******************************************************************************/
+ 147:Generated_Source\PSoC5/Potenciometro_PM.c **** void Potenciometro_RestoreConfig(void)
+ 148:Generated_Source\PSoC5/Potenciometro_PM.c **** {
+ 126              		.loc 1 148 0
+ 127              		.cfi_startproc
+ 128              		@ args = 0, pretend = 0, frame = 0
+ 129              		@ frame_needed = 0, uses_anonymous_args = 0
+ 130              		@ link register save eliminated.
+ 131 0000 7047     		bx	lr
+ 132              		.cfi_endproc
+ 133              	.LFE3:
+ 134              		.size	Potenciometro_RestoreConfig, .-Potenciometro_RestoreConfig
+ 135              		.text
+ 136              	.Letext0:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 6
+
+
+ 137              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 138              		.file 3 "Generated_Source\\PSoC5\\Potenciometro_SAR.h"
+ 139              		.file 4 "Generated_Source\\PSoC5\\Potenciometro.h"
+ 140              		.file 5 "Generated_Source\\PSoC5\\Potenciometro_IntClock.h"
+ 141              		.file 6 "Generated_Source\\PSoC5\\CyLib.h"
+ 142              		.section	.debug_info,"",%progbits
+ 143              	.Ldebug_info0:
+ 144 0000 BD010000 		.4byte	0x1bd
+ 145 0004 0400     		.2byte	0x4
+ 146 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 147 000a 04       		.byte	0x4
+ 148 000b 01       		.uleb128 0x1
+ 149 000c 98000000 		.4byte	.LASF28
+ 150 0010 0C       		.byte	0xc
+ 151 0011 26010000 		.4byte	.LASF29
+ 152 0015 2E000000 		.4byte	.LASF30
+ 153 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 154 001d 00000000 		.4byte	0
+ 155 0021 00000000 		.4byte	.Ldebug_line0
+ 156 0025 02       		.uleb128 0x2
+ 157 0026 01       		.byte	0x1
+ 158 0027 06       		.byte	0x6
+ 159 0028 A3020000 		.4byte	.LASF0
+ 160 002c 02       		.uleb128 0x2
+ 161 002d 01       		.byte	0x1
+ 162 002e 08       		.byte	0x8
+ 163 002f 85000000 		.4byte	.LASF1
+ 164 0033 02       		.uleb128 0x2
+ 165 0034 02       		.byte	0x2
+ 166 0035 05       		.byte	0x5
+ 167 0036 5D020000 		.4byte	.LASF2
+ 168 003a 02       		.uleb128 0x2
+ 169 003b 02       		.byte	0x2
+ 170 003c 07       		.byte	0x7
+ 171 003d 00000000 		.4byte	.LASF3
+ 172 0041 02       		.uleb128 0x2
+ 173 0042 04       		.byte	0x4
+ 174 0043 05       		.byte	0x5
+ 175 0044 84020000 		.4byte	.LASF4
+ 176 0048 02       		.uleb128 0x2
+ 177 0049 04       		.byte	0x4
+ 178 004a 07       		.byte	0x7
+ 179 004b 98010000 		.4byte	.LASF5
+ 180 004f 02       		.uleb128 0x2
+ 181 0050 08       		.byte	0x8
+ 182 0051 05       		.byte	0x5
+ 183 0052 2B020000 		.4byte	.LASF6
+ 184 0056 02       		.uleb128 0x2
+ 185 0057 08       		.byte	0x8
+ 186 0058 07       		.byte	0x7
+ 187 0059 B7010000 		.4byte	.LASF7
+ 188 005d 03       		.uleb128 0x3
+ 189 005e 04       		.byte	0x4
+ 190 005f 05       		.byte	0x5
+ 191 0060 696E7400 		.ascii	"int\000"
+ 192 0064 02       		.uleb128 0x2
+ 193 0065 04       		.byte	0x4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 7
+
+
+ 194 0066 07       		.byte	0x7
+ 195 0067 AA010000 		.4byte	.LASF8
+ 196 006b 04       		.uleb128 0x4
+ 197 006c 50010000 		.4byte	.LASF12
+ 198 0070 02       		.byte	0x2
+ 199 0071 E401     		.2byte	0x1e4
+ 200 0073 2C000000 		.4byte	0x2c
+ 201 0077 02       		.uleb128 0x2
+ 202 0078 04       		.byte	0x4
+ 203 0079 04       		.byte	0x4
+ 204 007a 28000000 		.4byte	.LASF9
+ 205 007e 02       		.uleb128 0x2
+ 206 007f 08       		.byte	0x8
+ 207 0080 04       		.byte	0x4
+ 208 0081 6F010000 		.4byte	.LASF10
+ 209 0085 02       		.uleb128 0x2
+ 210 0086 01       		.byte	0x1
+ 211 0087 08       		.byte	0x8
+ 212 0088 39020000 		.4byte	.LASF11
+ 213 008c 04       		.uleb128 0x4
+ 214 008d 93000000 		.4byte	.LASF13
+ 215 0091 02       		.byte	0x2
+ 216 0092 8E02     		.2byte	0x28e
+ 217 0094 98000000 		.4byte	0x98
+ 218 0098 05       		.uleb128 0x5
+ 219 0099 6B000000 		.4byte	0x6b
+ 220 009d 02       		.uleb128 0x2
+ 221 009e 08       		.byte	0x8
+ 222 009f 04       		.byte	0x4
+ 223 00a0 16020000 		.4byte	.LASF14
+ 224 00a4 02       		.uleb128 0x2
+ 225 00a5 04       		.byte	0x4
+ 226 00a6 07       		.byte	0x7
+ 227 00a7 22020000 		.4byte	.LASF15
+ 228 00ab 06       		.uleb128 0x6
+ 229 00ac E4020000 		.4byte	.LASF16
+ 230 00b0 01       		.byte	0x1
+ 231 00b1 2E       		.byte	0x2e
+ 232 00b2 00000000 		.4byte	.LFB0
+ 233 00b6 16000000 		.4byte	.LFE0-.LFB0
+ 234 00ba 01       		.uleb128 0x1
+ 235 00bb 9C       		.byte	0x9c
+ 236 00bc E5000000 		.4byte	0xe5
+ 237 00c0 07       		.uleb128 0x7
+ 238 00c1 06000000 		.4byte	.LVL0
+ 239 00c5 52010000 		.4byte	0x152
+ 240 00c9 07       		.uleb128 0x7
+ 241 00ca 0A000000 		.4byte	.LVL1
+ 242 00ce 5D010000 		.4byte	0x15d
+ 243 00d2 07       		.uleb128 0x7
+ 244 00d3 0E000000 		.4byte	.LVL2
+ 245 00d7 68010000 		.4byte	0x168
+ 246 00db 08       		.uleb128 0x8
+ 247 00dc 16000000 		.4byte	.LVL3
+ 248 00e0 73010000 		.4byte	0x173
+ 249 00e4 00       		.byte	0
+ 250 00e5 06       		.uleb128 0x6
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 8
+
+
+ 251 00e6 13000000 		.4byte	.LASF17
+ 252 00ea 01       		.byte	0x1
+ 253 00eb 4F       		.byte	0x4f
+ 254 00ec 00000000 		.4byte	.LFB1
+ 255 00f0 28000000 		.4byte	.LFE1-.LFB1
+ 256 00f4 01       		.uleb128 0x1
+ 257 00f5 9C       		.byte	0x9c
+ 258 00f6 3B010000 		.4byte	0x13b
+ 259 00fa 07       		.uleb128 0x7
+ 260 00fb 06000000 		.4byte	.LVL4
+ 261 00ff 7E010000 		.4byte	0x17e
+ 262 0103 07       		.uleb128 0x7
+ 263 0104 0A000000 		.4byte	.LVL5
+ 264 0108 89010000 		.4byte	0x189
+ 265 010c 07       		.uleb128 0x7
+ 266 010d 0E000000 		.4byte	.LVL6
+ 267 0111 94010000 		.4byte	0x194
+ 268 0115 09       		.uleb128 0x9
+ 269 0116 14000000 		.4byte	.LVL7
+ 270 011a 9F010000 		.4byte	0x19f
+ 271 011e 28010000 		.4byte	0x128
+ 272 0122 0A       		.uleb128 0xa
+ 273 0123 01       		.uleb128 0x1
+ 274 0124 50       		.byte	0x50
+ 275 0125 01       		.uleb128 0x1
+ 276 0126 3A       		.byte	0x3a
+ 277 0127 00       		.byte	0
+ 278 0128 07       		.uleb128 0x7
+ 279 0129 18000000 		.4byte	.LVL8
+ 280 012d AA010000 		.4byte	0x1aa
+ 281 0131 07       		.uleb128 0x7
+ 282 0132 1C000000 		.4byte	.LVL9
+ 283 0136 B5010000 		.4byte	0x1b5
+ 284 013a 00       		.byte	0
+ 285 013b 0B       		.uleb128 0xb
+ 286 013c AF020000 		.4byte	.LASF31
+ 287 0140 01       		.byte	0x1
+ 288 0141 93       		.byte	0x93
+ 289 0142 01       		.byte	0x1
+ 290 0143 0C       		.uleb128 0xc
+ 291 0144 3B010000 		.4byte	0x13b
+ 292 0148 00000000 		.4byte	.LFB3
+ 293 014c 02000000 		.4byte	.LFE3-.LFB3
+ 294 0150 01       		.uleb128 0x1
+ 295 0151 9C       		.byte	0x9c
+ 296 0152 0D       		.uleb128 0xd
+ 297 0153 FF010000 		.4byte	.LASF18
+ 298 0157 FF010000 		.4byte	.LASF18
+ 299 015b 03       		.byte	0x3
+ 300 015c 35       		.byte	0x35
+ 301 015d 0D       		.uleb128 0xd
+ 302 015e 76010000 		.4byte	.LASF19
+ 303 0162 76010000 		.4byte	.LASF19
+ 304 0166 03       		.byte	0x3
+ 305 0167 48       		.byte	0x48
+ 306 0168 0D       		.uleb128 0xd
+ 307 0169 8D020000 		.4byte	.LASF20
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 9
+
+
+ 308 016d 8D020000 		.4byte	.LASF20
+ 309 0171 04       		.byte	0x4
+ 310 0172 30       		.byte	0x30
+ 311 0173 0D       		.uleb128 0xd
+ 312 0174 CE010000 		.4byte	.LASF21
+ 313 0178 CE010000 		.4byte	.LASF21
+ 314 017c 05       		.byte	0x5
+ 315 017d 28       		.byte	0x28
+ 316 017e 0D       		.uleb128 0xd
+ 317 017f 56010000 		.4byte	.LASF22
+ 318 0183 56010000 		.4byte	.LASF22
+ 319 0187 03       		.byte	0x3
+ 320 0188 49       		.byte	0x49
+ 321 0189 0D       		.uleb128 0xd
+ 322 018a CB020000 		.4byte	.LASF23
+ 323 018e CB020000 		.4byte	.LASF23
+ 324 0192 03       		.byte	0x3
+ 325 0193 44       		.byte	0x44
+ 326 0194 0D       		.uleb128 0xd
+ 327 0195 67020000 		.4byte	.LASF24
+ 328 0199 67020000 		.4byte	.LASF24
+ 329 019d 05       		.byte	0x5
+ 330 019e 27       		.byte	0x27
+ 331 019f 0D       		.uleb128 0xd
+ 332 01a0 8E010000 		.4byte	.LASF25
+ 333 01a4 8E010000 		.4byte	.LASF25
+ 334 01a8 06       		.byte	0x6
+ 335 01a9 77       		.byte	0x77
+ 336 01aa 0D       		.uleb128 0xd
+ 337 01ab EA010000 		.4byte	.LASF26
+ 338 01af EA010000 		.4byte	.LASF26
+ 339 01b3 04       		.byte	0x4
+ 340 01b4 2F       		.byte	0x2f
+ 341 01b5 0D       		.uleb128 0xd
+ 342 01b6 3E020000 		.4byte	.LASF27
+ 343 01ba 3E020000 		.4byte	.LASF27
+ 344 01be 03       		.byte	0x3
+ 345 01bf D1       		.byte	0xd1
+ 346 01c0 00       		.byte	0
+ 347              		.section	.debug_abbrev,"",%progbits
+ 348              	.Ldebug_abbrev0:
+ 349 0000 01       		.uleb128 0x1
+ 350 0001 11       		.uleb128 0x11
+ 351 0002 01       		.byte	0x1
+ 352 0003 25       		.uleb128 0x25
+ 353 0004 0E       		.uleb128 0xe
+ 354 0005 13       		.uleb128 0x13
+ 355 0006 0B       		.uleb128 0xb
+ 356 0007 03       		.uleb128 0x3
+ 357 0008 0E       		.uleb128 0xe
+ 358 0009 1B       		.uleb128 0x1b
+ 359 000a 0E       		.uleb128 0xe
+ 360 000b 55       		.uleb128 0x55
+ 361 000c 17       		.uleb128 0x17
+ 362 000d 11       		.uleb128 0x11
+ 363 000e 01       		.uleb128 0x1
+ 364 000f 10       		.uleb128 0x10
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 10
+
+
+ 365 0010 17       		.uleb128 0x17
+ 366 0011 00       		.byte	0
+ 367 0012 00       		.byte	0
+ 368 0013 02       		.uleb128 0x2
+ 369 0014 24       		.uleb128 0x24
+ 370 0015 00       		.byte	0
+ 371 0016 0B       		.uleb128 0xb
+ 372 0017 0B       		.uleb128 0xb
+ 373 0018 3E       		.uleb128 0x3e
+ 374 0019 0B       		.uleb128 0xb
+ 375 001a 03       		.uleb128 0x3
+ 376 001b 0E       		.uleb128 0xe
+ 377 001c 00       		.byte	0
+ 378 001d 00       		.byte	0
+ 379 001e 03       		.uleb128 0x3
+ 380 001f 24       		.uleb128 0x24
+ 381 0020 00       		.byte	0
+ 382 0021 0B       		.uleb128 0xb
+ 383 0022 0B       		.uleb128 0xb
+ 384 0023 3E       		.uleb128 0x3e
+ 385 0024 0B       		.uleb128 0xb
+ 386 0025 03       		.uleb128 0x3
+ 387 0026 08       		.uleb128 0x8
+ 388 0027 00       		.byte	0
+ 389 0028 00       		.byte	0
+ 390 0029 04       		.uleb128 0x4
+ 391 002a 16       		.uleb128 0x16
+ 392 002b 00       		.byte	0
+ 393 002c 03       		.uleb128 0x3
+ 394 002d 0E       		.uleb128 0xe
+ 395 002e 3A       		.uleb128 0x3a
+ 396 002f 0B       		.uleb128 0xb
+ 397 0030 3B       		.uleb128 0x3b
+ 398 0031 05       		.uleb128 0x5
+ 399 0032 49       		.uleb128 0x49
+ 400 0033 13       		.uleb128 0x13
+ 401 0034 00       		.byte	0
+ 402 0035 00       		.byte	0
+ 403 0036 05       		.uleb128 0x5
+ 404 0037 35       		.uleb128 0x35
+ 405 0038 00       		.byte	0
+ 406 0039 49       		.uleb128 0x49
+ 407 003a 13       		.uleb128 0x13
+ 408 003b 00       		.byte	0
+ 409 003c 00       		.byte	0
+ 410 003d 06       		.uleb128 0x6
+ 411 003e 2E       		.uleb128 0x2e
+ 412 003f 01       		.byte	0x1
+ 413 0040 3F       		.uleb128 0x3f
+ 414 0041 19       		.uleb128 0x19
+ 415 0042 03       		.uleb128 0x3
+ 416 0043 0E       		.uleb128 0xe
+ 417 0044 3A       		.uleb128 0x3a
+ 418 0045 0B       		.uleb128 0xb
+ 419 0046 3B       		.uleb128 0x3b
+ 420 0047 0B       		.uleb128 0xb
+ 421 0048 27       		.uleb128 0x27
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 11
+
+
+ 422 0049 19       		.uleb128 0x19
+ 423 004a 11       		.uleb128 0x11
+ 424 004b 01       		.uleb128 0x1
+ 425 004c 12       		.uleb128 0x12
+ 426 004d 06       		.uleb128 0x6
+ 427 004e 40       		.uleb128 0x40
+ 428 004f 18       		.uleb128 0x18
+ 429 0050 9742     		.uleb128 0x2117
+ 430 0052 19       		.uleb128 0x19
+ 431 0053 01       		.uleb128 0x1
+ 432 0054 13       		.uleb128 0x13
+ 433 0055 00       		.byte	0
+ 434 0056 00       		.byte	0
+ 435 0057 07       		.uleb128 0x7
+ 436 0058 898201   		.uleb128 0x4109
+ 437 005b 00       		.byte	0
+ 438 005c 11       		.uleb128 0x11
+ 439 005d 01       		.uleb128 0x1
+ 440 005e 31       		.uleb128 0x31
+ 441 005f 13       		.uleb128 0x13
+ 442 0060 00       		.byte	0
+ 443 0061 00       		.byte	0
+ 444 0062 08       		.uleb128 0x8
+ 445 0063 898201   		.uleb128 0x4109
+ 446 0066 00       		.byte	0
+ 447 0067 11       		.uleb128 0x11
+ 448 0068 01       		.uleb128 0x1
+ 449 0069 9542     		.uleb128 0x2115
+ 450 006b 19       		.uleb128 0x19
+ 451 006c 31       		.uleb128 0x31
+ 452 006d 13       		.uleb128 0x13
+ 453 006e 00       		.byte	0
+ 454 006f 00       		.byte	0
+ 455 0070 09       		.uleb128 0x9
+ 456 0071 898201   		.uleb128 0x4109
+ 457 0074 01       		.byte	0x1
+ 458 0075 11       		.uleb128 0x11
+ 459 0076 01       		.uleb128 0x1
+ 460 0077 31       		.uleb128 0x31
+ 461 0078 13       		.uleb128 0x13
+ 462 0079 01       		.uleb128 0x1
+ 463 007a 13       		.uleb128 0x13
+ 464 007b 00       		.byte	0
+ 465 007c 00       		.byte	0
+ 466 007d 0A       		.uleb128 0xa
+ 467 007e 8A8201   		.uleb128 0x410a
+ 468 0081 00       		.byte	0
+ 469 0082 02       		.uleb128 0x2
+ 470 0083 18       		.uleb128 0x18
+ 471 0084 9142     		.uleb128 0x2111
+ 472 0086 18       		.uleb128 0x18
+ 473 0087 00       		.byte	0
+ 474 0088 00       		.byte	0
+ 475 0089 0B       		.uleb128 0xb
+ 476 008a 2E       		.uleb128 0x2e
+ 477 008b 00       		.byte	0
+ 478 008c 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 12
+
+
+ 479 008d 19       		.uleb128 0x19
+ 480 008e 03       		.uleb128 0x3
+ 481 008f 0E       		.uleb128 0xe
+ 482 0090 3A       		.uleb128 0x3a
+ 483 0091 0B       		.uleb128 0xb
+ 484 0092 3B       		.uleb128 0x3b
+ 485 0093 0B       		.uleb128 0xb
+ 486 0094 27       		.uleb128 0x27
+ 487 0095 19       		.uleb128 0x19
+ 488 0096 20       		.uleb128 0x20
+ 489 0097 0B       		.uleb128 0xb
+ 490 0098 00       		.byte	0
+ 491 0099 00       		.byte	0
+ 492 009a 0C       		.uleb128 0xc
+ 493 009b 2E       		.uleb128 0x2e
+ 494 009c 00       		.byte	0
+ 495 009d 31       		.uleb128 0x31
+ 496 009e 13       		.uleb128 0x13
+ 497 009f 11       		.uleb128 0x11
+ 498 00a0 01       		.uleb128 0x1
+ 499 00a1 12       		.uleb128 0x12
+ 500 00a2 06       		.uleb128 0x6
+ 501 00a3 40       		.uleb128 0x40
+ 502 00a4 18       		.uleb128 0x18
+ 503 00a5 9742     		.uleb128 0x2117
+ 504 00a7 19       		.uleb128 0x19
+ 505 00a8 00       		.byte	0
+ 506 00a9 00       		.byte	0
+ 507 00aa 0D       		.uleb128 0xd
+ 508 00ab 2E       		.uleb128 0x2e
+ 509 00ac 00       		.byte	0
+ 510 00ad 3F       		.uleb128 0x3f
+ 511 00ae 19       		.uleb128 0x19
+ 512 00af 3C       		.uleb128 0x3c
+ 513 00b0 19       		.uleb128 0x19
+ 514 00b1 6E       		.uleb128 0x6e
+ 515 00b2 0E       		.uleb128 0xe
+ 516 00b3 03       		.uleb128 0x3
+ 517 00b4 0E       		.uleb128 0xe
+ 518 00b5 3A       		.uleb128 0x3a
+ 519 00b6 0B       		.uleb128 0xb
+ 520 00b7 3B       		.uleb128 0x3b
+ 521 00b8 0B       		.uleb128 0xb
+ 522 00b9 00       		.byte	0
+ 523 00ba 00       		.byte	0
+ 524 00bb 00       		.byte	0
+ 525              		.section	.debug_aranges,"",%progbits
+ 526 0000 2C000000 		.4byte	0x2c
+ 527 0004 0200     		.2byte	0x2
+ 528 0006 00000000 		.4byte	.Ldebug_info0
+ 529 000a 04       		.byte	0x4
+ 530 000b 00       		.byte	0
+ 531 000c 0000     		.2byte	0
+ 532 000e 0000     		.2byte	0
+ 533 0010 00000000 		.4byte	.LFB0
+ 534 0014 16000000 		.4byte	.LFE0-.LFB0
+ 535 0018 00000000 		.4byte	.LFB1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 13
+
+
+ 536 001c 28000000 		.4byte	.LFE1-.LFB1
+ 537 0020 00000000 		.4byte	.LFB3
+ 538 0024 02000000 		.4byte	.LFE3-.LFB3
+ 539 0028 00000000 		.4byte	0
+ 540 002c 00000000 		.4byte	0
+ 541              		.section	.debug_ranges,"",%progbits
+ 542              	.Ldebug_ranges0:
+ 543 0000 00000000 		.4byte	.LFB0
+ 544 0004 16000000 		.4byte	.LFE0
+ 545 0008 00000000 		.4byte	.LFB1
+ 546 000c 28000000 		.4byte	.LFE1
+ 547 0010 00000000 		.4byte	.LFB3
+ 548 0014 02000000 		.4byte	.LFE3
+ 549 0018 00000000 		.4byte	0
+ 550 001c 00000000 		.4byte	0
+ 551              		.section	.debug_line,"",%progbits
+ 552              	.Ldebug_line0:
+ 553 0000 DF000000 		.section	.debug_str,"MS",%progbits,1
+ 553      02009E00 
+ 553      00000201 
+ 553      FB0E0D00 
+ 553      01010101 
+ 554              	.LASF3:
+ 555 0000 73686F72 		.ascii	"short unsigned int\000"
+ 555      7420756E 
+ 555      7369676E 
+ 555      65642069 
+ 555      6E7400
+ 556              	.LASF17:
+ 557 0013 506F7465 		.ascii	"Potenciometro_Wakeup\000"
+ 557      6E63696F 
+ 557      6D657472 
+ 557      6F5F5761 
+ 557      6B657570 
+ 558              	.LASF9:
+ 559 0028 666C6F61 		.ascii	"float\000"
+ 559      7400
+ 560              	.LASF30:
+ 561 002e 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 561      5C4C6162 
+ 561      20646520 
+ 561      436F6E74 
+ 561      726F6C5C 
+ 562 005e 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 562      30315C50 
+ 562      49442043 
+ 562      6F6E7472 
+ 562      6F6C6572 
+ 563              	.LASF1:
+ 564 0085 756E7369 		.ascii	"unsigned char\000"
+ 564      676E6564 
+ 564      20636861 
+ 564      7200
+ 565              	.LASF13:
+ 566 0093 72656738 		.ascii	"reg8\000"
+ 566      00
+ 567              	.LASF28:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 14
+
+
+ 568 0098 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 568      43313120 
+ 568      352E342E 
+ 568      31203230 
+ 568      31363036 
+ 569 00cb 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 569      20726576 
+ 569      6973696F 
+ 569      6E203233 
+ 569      37373135 
+ 570 00fe 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 570      66756E63 
+ 570      74696F6E 
+ 570      2D736563 
+ 570      74696F6E 
+ 571              	.LASF29:
+ 572 0126 47656E65 		.ascii	"Generated_Source\\PSoC5\\Potenciometro_PM.c\000"
+ 572      72617465 
+ 572      645F536F 
+ 572      75726365 
+ 572      5C50536F 
+ 573              	.LASF12:
+ 574 0150 75696E74 		.ascii	"uint8\000"
+ 574      3800
+ 575              	.LASF22:
+ 576 0156 506F7465 		.ascii	"Potenciometro_SAR_Wakeup\000"
+ 576      6E63696F 
+ 576      6D657472 
+ 576      6F5F5341 
+ 576      525F5761 
+ 577              	.LASF10:
+ 578 016f 646F7562 		.ascii	"double\000"
+ 578      6C6500
+ 579              	.LASF19:
+ 580 0176 506F7465 		.ascii	"Potenciometro_SAR_Sleep\000"
+ 580      6E63696F 
+ 580      6D657472 
+ 580      6F5F5341 
+ 580      525F536C 
+ 581              	.LASF25:
+ 582 018e 43794465 		.ascii	"CyDelayUs\000"
+ 582      6C617955 
+ 582      7300
+ 583              	.LASF5:
+ 584 0198 6C6F6E67 		.ascii	"long unsigned int\000"
+ 584      20756E73 
+ 584      69676E65 
+ 584      6420696E 
+ 584      7400
+ 585              	.LASF8:
+ 586 01aa 756E7369 		.ascii	"unsigned int\000"
+ 586      676E6564 
+ 586      20696E74 
+ 586      00
+ 587              	.LASF7:
+ 588 01b7 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 588      206C6F6E 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 15
+
+
+ 588      6720756E 
+ 588      7369676E 
+ 588      65642069 
+ 589              	.LASF21:
+ 590 01ce 506F7465 		.ascii	"Potenciometro_IntClock_Stop\000"
+ 590      6E63696F 
+ 590      6D657472 
+ 590      6F5F496E 
+ 590      74436C6F 
+ 591              	.LASF26:
+ 592 01ea 506F7465 		.ascii	"Potenciometro_Enable\000"
+ 592      6E63696F 
+ 592      6D657472 
+ 592      6F5F456E 
+ 592      61626C65 
+ 593              	.LASF18:
+ 594 01ff 506F7465 		.ascii	"Potenciometro_SAR_Stop\000"
+ 594      6E63696F 
+ 594      6D657472 
+ 594      6F5F5341 
+ 594      525F5374 
+ 595              	.LASF14:
+ 596 0216 6C6F6E67 		.ascii	"long double\000"
+ 596      20646F75 
+ 596      626C6500 
+ 597              	.LASF15:
+ 598 0222 73697A65 		.ascii	"sizetype\000"
+ 598      74797065 
+ 598      00
+ 599              	.LASF6:
+ 600 022b 6C6F6E67 		.ascii	"long long int\000"
+ 600      206C6F6E 
+ 600      6720696E 
+ 600      7400
+ 601              	.LASF11:
+ 602 0239 63686172 		.ascii	"char\000"
+ 602      00
+ 603              	.LASF27:
+ 604 023e 506F7465 		.ascii	"Potenciometro_SAR_StartConvert\000"
+ 604      6E63696F 
+ 604      6D657472 
+ 604      6F5F5341 
+ 604      525F5374 
+ 605              	.LASF2:
+ 606 025d 73686F72 		.ascii	"short int\000"
+ 606      7420696E 
+ 606      7400
+ 607              	.LASF24:
+ 608 0267 506F7465 		.ascii	"Potenciometro_IntClock_Start\000"
+ 608      6E63696F 
+ 608      6D657472 
+ 608      6F5F496E 
+ 608      74436C6F 
+ 609              	.LASF4:
+ 610 0284 6C6F6E67 		.ascii	"long int\000"
+ 610      20696E74 
+ 610      00
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccZF3e39.s 			page 16
+
+
+ 611              	.LASF20:
+ 612 028d 506F7465 		.ascii	"Potenciometro_Disable\000"
+ 612      6E63696F 
+ 612      6D657472 
+ 612      6F5F4469 
+ 612      7361626C 
+ 613              	.LASF0:
+ 614 02a3 7369676E 		.ascii	"signed char\000"
+ 614      65642063 
+ 614      68617200 
+ 615              	.LASF31:
+ 616 02af 506F7465 		.ascii	"Potenciometro_RestoreConfig\000"
+ 616      6E63696F 
+ 616      6D657472 
+ 616      6F5F5265 
+ 616      73746F72 
+ 617              	.LASF23:
+ 618 02cb 506F7465 		.ascii	"Potenciometro_SAR_Enable\000"
+ 618      6E63696F 
+ 618      6D657472 
+ 618      6F5F5341 
+ 618      525F456E 
+ 619              	.LASF16:
+ 620 02e4 506F7465 		.ascii	"Potenciometro_Sleep\000"
+ 620      6E63696F 
+ 620      6D657472 
+ 620      6F5F536C 
+ 620      65657000 
+ 621              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

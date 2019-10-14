@@ -1,0 +1,885 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Touch_ADC_AMux.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Touch_ADC_AMux_Start,"ax",%progbits
+  20              		.align	1
+  21              		.global	Touch_ADC_AMux_Start
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Touch_ADC_AMux_Start, %function
+  25              	Touch_ADC_AMux_Start:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\Touch_ADC_AMux.c"
+   1:Generated_Source\PSoC5/Touch_ADC_AMux.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * File Name: Touch_ADC_AMux.c
+   3:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Version 1.80
+   4:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+   5:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  Description:
+   6:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *    This file contains all functions required for the analog multiplexer
+   7:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *    AMux User Module.
+   8:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+   9:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *   Note:
+  10:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  11:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *******************************************************************************
+  12:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Copyright 2008-2010, Cypress Semiconductor Corporation.  All rights reserved.
+  13:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * You may use this file only in accordance with the license, terms, conditions, 
+  14:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * disclaimers, and limitations in the end user license agreement accompanying 
+  15:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * the software package with which this file was provided.
+  16:Generated_Source\PSoC5/Touch_ADC_AMux.c **** ********************************************************************************/
+  17:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  18:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #include "Touch_ADC_AMux.h"
+  19:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  20:Generated_Source\PSoC5/Touch_ADC_AMux.c **** static uint8 Touch_ADC_AMux_lastChannel = Touch_ADC_AMux_NULL_CHANNEL;
+  21:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  22:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  23:Generated_Source\PSoC5/Touch_ADC_AMux.c **** /*******************************************************************************
+  24:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Function Name: Touch_ADC_AMux_Start
+  25:Generated_Source\PSoC5/Touch_ADC_AMux.c **** ********************************************************************************
+  26:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Summary:
+  27:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  Disconnect all channels.
+  28:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  29:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Parameters:
+  30:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  void
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 2
+
+
+  31:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  32:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Return:
+  33:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  void
+  34:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  35:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *******************************************************************************/
+  36:Generated_Source\PSoC5/Touch_ADC_AMux.c **** void Touch_ADC_AMux_Start(void) 
+  37:Generated_Source\PSoC5/Touch_ADC_AMux.c **** {
+  28              		.loc 1 37 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32              	.LVL0:
+  33 0000 08B5     		push	{r3, lr}
+  34              		.cfi_def_cfa_offset 8
+  35              		.cfi_offset 3, -8
+  36              		.cfi_offset 14, -4
+  38:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     uint8 chan;
+  39:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  40:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     for(chan = 0u; chan < Touch_ADC_AMux_CHANNELS ; chan++)
+  41:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     {
+  42:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #if (Touch_ADC_AMux_MUXTYPE == Touch_ADC_AMux_MUX_SINGLE)
+  43:Generated_Source\PSoC5/Touch_ADC_AMux.c ****         Touch_ADC_AMux_Unset(chan);
+  37              		.loc 1 43 0
+  38 0002 0020     		movs	r0, #0
+  39 0004 FFF7FEFF 		bl	Touch_ADC_AMux_Unset
+  40              	.LVL1:
+  41 0008 0120     		movs	r0, #1
+  42 000a FFF7FEFF 		bl	Touch_ADC_AMux_Unset
+  43              	.LVL2:
+  44:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #else
+  45:Generated_Source\PSoC5/Touch_ADC_AMux.c ****         Touch_ADC_AMux_CYAMUXSIDE_A_Unset(chan);
+  46:Generated_Source\PSoC5/Touch_ADC_AMux.c ****         Touch_ADC_AMux_CYAMUXSIDE_B_Unset(chan);
+  47:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #endif
+  48:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     }
+  49:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  50:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_lastChannel = Touch_ADC_AMux_NULL_CHANNEL;
+  44              		.loc 1 50 0
+  45 000e 024B     		ldr	r3, .L2
+  46 0010 FF22     		movs	r2, #255
+  47 0012 1A70     		strb	r2, [r3]
+  48 0014 08BD     		pop	{r3, pc}
+  49              	.L3:
+  50 0016 00BF     		.align	2
+  51              	.L2:
+  52 0018 00000000 		.word	.LANCHOR0
+  53              		.cfi_endproc
+  54              	.LFE0:
+  55              		.size	Touch_ADC_AMux_Start, .-Touch_ADC_AMux_Start
+  56              		.section	.text.Touch_ADC_AMux_Select,"ax",%progbits
+  57              		.align	1
+  58              		.global	Touch_ADC_AMux_Select
+  59              		.thumb
+  60              		.thumb_func
+  61              		.type	Touch_ADC_AMux_Select, %function
+  62              	Touch_ADC_AMux_Select:
+  63              	.LFB1:
+  51:Generated_Source\PSoC5/Touch_ADC_AMux.c **** }
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 3
+
+
+  52:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  53:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  54:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #if (!Touch_ADC_AMux_ATMOSTONE)
+  55:Generated_Source\PSoC5/Touch_ADC_AMux.c **** /*******************************************************************************
+  56:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Function Name: Touch_ADC_AMux_Select
+  57:Generated_Source\PSoC5/Touch_ADC_AMux.c **** ********************************************************************************
+  58:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Summary:
+  59:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  This functions first disconnects all channels then connects the given
+  60:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  channel.
+  61:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  62:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Parameters:
+  63:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  channel:  The channel to connect to the common terminal.
+  64:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  65:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Return:
+  66:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  void
+  67:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  68:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *******************************************************************************/
+  69:Generated_Source\PSoC5/Touch_ADC_AMux.c **** void Touch_ADC_AMux_Select(uint8 channel) 
+  70:Generated_Source\PSoC5/Touch_ADC_AMux.c **** {
+  64              		.loc 1 70 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              	.LVL3:
+  69 0000 10B5     		push	{r4, lr}
+  70              		.cfi_def_cfa_offset 8
+  71              		.cfi_offset 4, -8
+  72              		.cfi_offset 14, -4
+  73              		.loc 1 70 0
+  74 0002 0446     		mov	r4, r0
+  71:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_DisconnectAll();        /* Disconnect all previous connections */
+  75              		.loc 1 71 0
+  76 0004 FFF7FEFF 		bl	Touch_ADC_AMux_Start
+  77              	.LVL4:
+  72:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_Connect(channel);       /* Make the given selection */
+  78              		.loc 1 72 0
+  79 0008 2046     		mov	r0, r4
+  80 000a FFF7FEFF 		bl	Touch_ADC_AMux_Set
+  81              	.LVL5:
+  73:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_lastChannel = channel;  /* Update last channel */
+  82              		.loc 1 73 0
+  83 000e 014B     		ldr	r3, .L5
+  84 0010 1C70     		strb	r4, [r3]
+  85 0012 10BD     		pop	{r4, pc}
+  86              	.L6:
+  87              		.align	2
+  88              	.L5:
+  89 0014 00000000 		.word	.LANCHOR0
+  90              		.cfi_endproc
+  91              	.LFE1:
+  92              		.size	Touch_ADC_AMux_Select, .-Touch_ADC_AMux_Select
+  93              		.section	.text.Touch_ADC_AMux_FastSelect,"ax",%progbits
+  94              		.align	1
+  95              		.global	Touch_ADC_AMux_FastSelect
+  96              		.thumb
+  97              		.thumb_func
+  98              		.type	Touch_ADC_AMux_FastSelect, %function
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 4
+
+
+  99              	Touch_ADC_AMux_FastSelect:
+ 100              	.LFB2:
+  74:Generated_Source\PSoC5/Touch_ADC_AMux.c **** }
+  75:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #endif
+  76:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  77:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+  78:Generated_Source\PSoC5/Touch_ADC_AMux.c **** /*******************************************************************************
+  79:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Function Name: Touch_ADC_AMux_FastSelect
+  80:Generated_Source\PSoC5/Touch_ADC_AMux.c **** ********************************************************************************
+  81:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Summary:
+  82:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  This function first disconnects the last connection made with FastSelect or
+  83:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  Select, then connects the given channel. The FastSelect function is similar
+  84:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  to the Select function, except it is faster since it only disconnects the
+  85:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  last channel selected rather than all channels.
+  86:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  87:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Parameters:
+  88:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  channel:  The channel to connect to the common terminal.
+  89:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  90:Generated_Source\PSoC5/Touch_ADC_AMux.c **** * Return:
+  91:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *  void
+  92:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *
+  93:Generated_Source\PSoC5/Touch_ADC_AMux.c **** *******************************************************************************/
+  94:Generated_Source\PSoC5/Touch_ADC_AMux.c **** void Touch_ADC_AMux_FastSelect(uint8 channel) 
+  95:Generated_Source\PSoC5/Touch_ADC_AMux.c **** {
+ 101              		.loc 1 95 0
+ 102              		.cfi_startproc
+ 103              		@ args = 0, pretend = 0, frame = 0
+ 104              		@ frame_needed = 0, uses_anonymous_args = 0
+ 105              	.LVL6:
+ 106 0000 38B5     		push	{r3, r4, r5, lr}
+ 107              		.cfi_def_cfa_offset 16
+ 108              		.cfi_offset 3, -16
+ 109              		.cfi_offset 4, -12
+ 110              		.cfi_offset 5, -8
+ 111              		.cfi_offset 14, -4
+  96:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     /* Disconnect the last valid channel */
+  97:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     if( Touch_ADC_AMux_lastChannel != Touch_ADC_AMux_NULL_CHANNEL)
+ 112              		.loc 1 97 0
+ 113 0002 064B     		ldr	r3, .L13
+  95:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     /* Disconnect the last valid channel */
+ 114              		.loc 1 95 0
+ 115 0004 0546     		mov	r5, r0
+ 116              		.loc 1 97 0
+ 117 0006 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 118              	.LVL7:
+ 119 0008 1C46     		mov	r4, r3
+ 120 000a FF28     		cmp	r0, #255
+ 121 000c 01D0     		beq	.L8
+  98:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     {
+  99:Generated_Source\PSoC5/Touch_ADC_AMux.c ****         Touch_ADC_AMux_Disconnect(Touch_ADC_AMux_lastChannel);
+ 122              		.loc 1 99 0
+ 123 000e FFF7FEFF 		bl	Touch_ADC_AMux_Unset
+ 124              	.LVL8:
+ 125              	.L8:
+ 100:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     }
+ 101:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+ 102:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     /* Make the new channel connection */
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 5
+
+
+ 103:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #if (Touch_ADC_AMux_MUXTYPE == Touch_ADC_AMux_MUX_SINGLE)
+ 104:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_Set(channel);
+ 126              		.loc 1 104 0
+ 127 0012 2846     		mov	r0, r5
+ 128 0014 FFF7FEFF 		bl	Touch_ADC_AMux_Set
+ 129              	.LVL9:
+ 105:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #else
+ 106:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_CYAMUXSIDE_A_Set(channel);
+ 107:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_CYAMUXSIDE_B_Set(channel);
+ 108:Generated_Source\PSoC5/Touch_ADC_AMux.c **** #endif
+ 109:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+ 110:Generated_Source\PSoC5/Touch_ADC_AMux.c **** 
+ 111:Generated_Source\PSoC5/Touch_ADC_AMux.c ****     Touch_ADC_AMux_lastChannel = channel;   /* Update last channel */
+ 130              		.loc 1 111 0
+ 131 0018 2570     		strb	r5, [r4]
+ 132 001a 38BD     		pop	{r3, r4, r5, pc}
+ 133              	.L14:
+ 134              		.align	2
+ 135              	.L13:
+ 136 001c 00000000 		.word	.LANCHOR0
+ 137              		.cfi_endproc
+ 138              	.LFE2:
+ 139              		.size	Touch_ADC_AMux_FastSelect, .-Touch_ADC_AMux_FastSelect
+ 140              		.data
+ 141              		.set	.LANCHOR0,. + 0
+ 142              		.type	Touch_ADC_AMux_lastChannel, %object
+ 143              		.size	Touch_ADC_AMux_lastChannel, 1
+ 144              	Touch_ADC_AMux_lastChannel:
+ 145 0000 FF       		.byte	-1
+ 146              		.text
+ 147              	.Letext0:
+ 148              		.file 2 "Generated_Source\\PSoC5\\cyfitter_cfg.h"
+ 149              		.file 3 "Generated_Source\\PSoC5\\cytypes.h"
+ 150              		.section	.debug_info,"",%progbits
+ 151              	.Ldebug_info0:
+ 152 0000 73010000 		.4byte	0x173
+ 153 0004 0400     		.2byte	0x4
+ 154 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 155 000a 04       		.byte	0x4
+ 156 000b 01       		.uleb128 0x1
+ 157 000c D7000000 		.4byte	.LASF20
+ 158 0010 0C       		.byte	0xc
+ 159 0011 A2000000 		.4byte	.LASF21
+ 160 0015 65010000 		.4byte	.LASF22
+ 161 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 162 001d 00000000 		.4byte	0
+ 163 0021 00000000 		.4byte	.Ldebug_line0
+ 164 0025 02       		.uleb128 0x2
+ 165 0026 01       		.byte	0x1
+ 166 0027 06       		.byte	0x6
+ 167 0028 02020000 		.4byte	.LASF0
+ 168 002c 02       		.uleb128 0x2
+ 169 002d 01       		.byte	0x1
+ 170 002e 08       		.byte	0x8
+ 171 002f 3F000000 		.4byte	.LASF1
+ 172 0033 02       		.uleb128 0x2
+ 173 0034 02       		.byte	0x2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 6
+
+
+ 174 0035 05       		.byte	0x5
+ 175 0036 D4010000 		.4byte	.LASF2
+ 176 003a 02       		.uleb128 0x2
+ 177 003b 02       		.byte	0x2
+ 178 003c 07       		.byte	0x7
+ 179 003d 75000000 		.4byte	.LASF3
+ 180 0041 02       		.uleb128 0x2
+ 181 0042 04       		.byte	0x4
+ 182 0043 05       		.byte	0x5
+ 183 0044 F9010000 		.4byte	.LASF4
+ 184 0048 02       		.uleb128 0x2
+ 185 0049 04       		.byte	0x4
+ 186 004a 07       		.byte	0x7
+ 187 004b 63000000 		.4byte	.LASF5
+ 188 004f 02       		.uleb128 0x2
+ 189 0050 08       		.byte	0x8
+ 190 0051 05       		.byte	0x5
+ 191 0052 BC010000 		.4byte	.LASF6
+ 192 0056 02       		.uleb128 0x2
+ 193 0057 08       		.byte	0x8
+ 194 0058 07       		.byte	0x7
+ 195 0059 28000000 		.4byte	.LASF7
+ 196 005d 03       		.uleb128 0x3
+ 197 005e 04       		.byte	0x4
+ 198 005f 05       		.byte	0x5
+ 199 0060 696E7400 		.ascii	"int\000"
+ 200 0064 02       		.uleb128 0x2
+ 201 0065 04       		.byte	0x4
+ 202 0066 07       		.byte	0x7
+ 203 0067 CA000000 		.4byte	.LASF8
+ 204 006b 04       		.uleb128 0x4
+ 205 006c DE010000 		.4byte	.LASF23
+ 206 0070 03       		.byte	0x3
+ 207 0071 E401     		.2byte	0x1e4
+ 208 0073 2C000000 		.4byte	0x2c
+ 209 0077 02       		.uleb128 0x2
+ 210 0078 04       		.byte	0x4
+ 211 0079 04       		.byte	0x4
+ 212 007a 22000000 		.4byte	.LASF9
+ 213 007e 02       		.uleb128 0x2
+ 214 007f 08       		.byte	0x8
+ 215 0080 04       		.byte	0x4
+ 216 0081 9B000000 		.4byte	.LASF10
+ 217 0085 02       		.uleb128 0x2
+ 218 0086 01       		.byte	0x1
+ 219 0087 08       		.byte	0x8
+ 220 0088 CA010000 		.4byte	.LASF11
+ 221 008c 05       		.uleb128 0x5
+ 222 008d E4010000 		.4byte	.LASF12
+ 223 0091 01       		.byte	0x1
+ 224 0092 24       		.byte	0x24
+ 225 0093 00000000 		.4byte	.LFB0
+ 226 0097 1C000000 		.4byte	.LFE0-.LFB0
+ 227 009b 01       		.uleb128 0x1
+ 228 009c 9C       		.byte	0x9c
+ 229 009d D3000000 		.4byte	0xd3
+ 230 00a1 06       		.uleb128 0x6
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 7
+
+
+ 231 00a2 CF010000 		.4byte	.LASF16
+ 232 00a6 01       		.byte	0x1
+ 233 00a7 26       		.byte	0x26
+ 234 00a8 6B000000 		.4byte	0x6b
+ 235 00ac 00000000 		.4byte	.LLST0
+ 236 00b0 07       		.uleb128 0x7
+ 237 00b1 08000000 		.4byte	.LVL1
+ 238 00b5 60010000 		.4byte	0x160
+ 239 00b9 C3000000 		.4byte	0xc3
+ 240 00bd 08       		.uleb128 0x8
+ 241 00be 01       		.uleb128 0x1
+ 242 00bf 50       		.byte	0x50
+ 243 00c0 01       		.uleb128 0x1
+ 244 00c1 30       		.byte	0x30
+ 245 00c2 00       		.byte	0
+ 246 00c3 09       		.uleb128 0x9
+ 247 00c4 0E000000 		.4byte	.LVL2
+ 248 00c8 60010000 		.4byte	0x160
+ 249 00cc 08       		.uleb128 0x8
+ 250 00cd 01       		.uleb128 0x1
+ 251 00ce 50       		.byte	0x50
+ 252 00cf 01       		.uleb128 0x1
+ 253 00d0 31       		.byte	0x31
+ 254 00d1 00       		.byte	0
+ 255 00d2 00       		.byte	0
+ 256 00d3 05       		.uleb128 0x5
+ 257 00d4 4D000000 		.4byte	.LASF13
+ 258 00d8 01       		.byte	0x1
+ 259 00d9 45       		.byte	0x45
+ 260 00da 00000000 		.4byte	.LFB1
+ 261 00de 18000000 		.4byte	.LFE1-.LFB1
+ 262 00e2 01       		.uleb128 0x1
+ 263 00e3 9C       		.byte	0x9c
+ 264 00e4 11010000 		.4byte	0x111
+ 265 00e8 0A       		.uleb128 0xa
+ 266 00e9 00000000 		.4byte	.LASF15
+ 267 00ed 01       		.byte	0x1
+ 268 00ee 45       		.byte	0x45
+ 269 00ef 6B000000 		.4byte	0x6b
+ 270 00f3 2C000000 		.4byte	.LLST1
+ 271 00f7 0B       		.uleb128 0xb
+ 272 00f8 08000000 		.4byte	.LVL4
+ 273 00fc 8C000000 		.4byte	0x8c
+ 274 0100 09       		.uleb128 0x9
+ 275 0101 0E000000 		.4byte	.LVL5
+ 276 0105 6B010000 		.4byte	0x16b
+ 277 0109 08       		.uleb128 0x8
+ 278 010a 01       		.uleb128 0x1
+ 279 010b 50       		.byte	0x50
+ 280 010c 02       		.uleb128 0x2
+ 281 010d 74       		.byte	0x74
+ 282 010e 00       		.sleb128 0
+ 283 010f 00       		.byte	0
+ 284 0110 00       		.byte	0
+ 285 0111 05       		.uleb128 0x5
+ 286 0112 08000000 		.4byte	.LASF14
+ 287 0116 01       		.byte	0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 8
+
+
+ 288 0117 5E       		.byte	0x5e
+ 289 0118 00000000 		.4byte	.LFB2
+ 290 011c 20000000 		.4byte	.LFE2-.LFB2
+ 291 0120 01       		.uleb128 0x1
+ 292 0121 9C       		.byte	0x9c
+ 293 0122 4F010000 		.4byte	0x14f
+ 294 0126 0A       		.uleb128 0xa
+ 295 0127 00000000 		.4byte	.LASF15
+ 296 012b 01       		.byte	0x1
+ 297 012c 5E       		.byte	0x5e
+ 298 012d 6B000000 		.4byte	0x6b
+ 299 0131 4D000000 		.4byte	.LLST2
+ 300 0135 0B       		.uleb128 0xb
+ 301 0136 12000000 		.4byte	.LVL8
+ 302 013a 60010000 		.4byte	0x160
+ 303 013e 09       		.uleb128 0x9
+ 304 013f 18000000 		.4byte	.LVL9
+ 305 0143 6B010000 		.4byte	0x16b
+ 306 0147 08       		.uleb128 0x8
+ 307 0148 01       		.uleb128 0x1
+ 308 0149 50       		.byte	0x50
+ 309 014a 02       		.uleb128 0x2
+ 310 014b 75       		.byte	0x75
+ 311 014c 00       		.sleb128 0
+ 312 014d 00       		.byte	0
+ 313 014e 00       		.byte	0
+ 314 014f 0C       		.uleb128 0xc
+ 315 0150 23020000 		.4byte	.LASF17
+ 316 0154 01       		.byte	0x1
+ 317 0155 14       		.byte	0x14
+ 318 0156 6B000000 		.4byte	0x6b
+ 319 015a 05       		.uleb128 0x5
+ 320 015b 03       		.byte	0x3
+ 321 015c 00000000 		.4byte	Touch_ADC_AMux_lastChannel
+ 322 0160 0D       		.uleb128 0xd
+ 323 0161 0E020000 		.4byte	.LASF18
+ 324 0165 0E020000 		.4byte	.LASF18
+ 325 0169 02       		.byte	0x2
+ 326 016a 1B       		.byte	0x1b
+ 327 016b 0D       		.uleb128 0xd
+ 328 016c 88000000 		.4byte	.LASF19
+ 329 0170 88000000 		.4byte	.LASF19
+ 330 0174 02       		.byte	0x2
+ 331 0175 1A       		.byte	0x1a
+ 332 0176 00       		.byte	0
+ 333              		.section	.debug_abbrev,"",%progbits
+ 334              	.Ldebug_abbrev0:
+ 335 0000 01       		.uleb128 0x1
+ 336 0001 11       		.uleb128 0x11
+ 337 0002 01       		.byte	0x1
+ 338 0003 25       		.uleb128 0x25
+ 339 0004 0E       		.uleb128 0xe
+ 340 0005 13       		.uleb128 0x13
+ 341 0006 0B       		.uleb128 0xb
+ 342 0007 03       		.uleb128 0x3
+ 343 0008 0E       		.uleb128 0xe
+ 344 0009 1B       		.uleb128 0x1b
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 9
+
+
+ 345 000a 0E       		.uleb128 0xe
+ 346 000b 55       		.uleb128 0x55
+ 347 000c 17       		.uleb128 0x17
+ 348 000d 11       		.uleb128 0x11
+ 349 000e 01       		.uleb128 0x1
+ 350 000f 10       		.uleb128 0x10
+ 351 0010 17       		.uleb128 0x17
+ 352 0011 00       		.byte	0
+ 353 0012 00       		.byte	0
+ 354 0013 02       		.uleb128 0x2
+ 355 0014 24       		.uleb128 0x24
+ 356 0015 00       		.byte	0
+ 357 0016 0B       		.uleb128 0xb
+ 358 0017 0B       		.uleb128 0xb
+ 359 0018 3E       		.uleb128 0x3e
+ 360 0019 0B       		.uleb128 0xb
+ 361 001a 03       		.uleb128 0x3
+ 362 001b 0E       		.uleb128 0xe
+ 363 001c 00       		.byte	0
+ 364 001d 00       		.byte	0
+ 365 001e 03       		.uleb128 0x3
+ 366 001f 24       		.uleb128 0x24
+ 367 0020 00       		.byte	0
+ 368 0021 0B       		.uleb128 0xb
+ 369 0022 0B       		.uleb128 0xb
+ 370 0023 3E       		.uleb128 0x3e
+ 371 0024 0B       		.uleb128 0xb
+ 372 0025 03       		.uleb128 0x3
+ 373 0026 08       		.uleb128 0x8
+ 374 0027 00       		.byte	0
+ 375 0028 00       		.byte	0
+ 376 0029 04       		.uleb128 0x4
+ 377 002a 16       		.uleb128 0x16
+ 378 002b 00       		.byte	0
+ 379 002c 03       		.uleb128 0x3
+ 380 002d 0E       		.uleb128 0xe
+ 381 002e 3A       		.uleb128 0x3a
+ 382 002f 0B       		.uleb128 0xb
+ 383 0030 3B       		.uleb128 0x3b
+ 384 0031 05       		.uleb128 0x5
+ 385 0032 49       		.uleb128 0x49
+ 386 0033 13       		.uleb128 0x13
+ 387 0034 00       		.byte	0
+ 388 0035 00       		.byte	0
+ 389 0036 05       		.uleb128 0x5
+ 390 0037 2E       		.uleb128 0x2e
+ 391 0038 01       		.byte	0x1
+ 392 0039 3F       		.uleb128 0x3f
+ 393 003a 19       		.uleb128 0x19
+ 394 003b 03       		.uleb128 0x3
+ 395 003c 0E       		.uleb128 0xe
+ 396 003d 3A       		.uleb128 0x3a
+ 397 003e 0B       		.uleb128 0xb
+ 398 003f 3B       		.uleb128 0x3b
+ 399 0040 0B       		.uleb128 0xb
+ 400 0041 27       		.uleb128 0x27
+ 401 0042 19       		.uleb128 0x19
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 10
+
+
+ 402 0043 11       		.uleb128 0x11
+ 403 0044 01       		.uleb128 0x1
+ 404 0045 12       		.uleb128 0x12
+ 405 0046 06       		.uleb128 0x6
+ 406 0047 40       		.uleb128 0x40
+ 407 0048 18       		.uleb128 0x18
+ 408 0049 9742     		.uleb128 0x2117
+ 409 004b 19       		.uleb128 0x19
+ 410 004c 01       		.uleb128 0x1
+ 411 004d 13       		.uleb128 0x13
+ 412 004e 00       		.byte	0
+ 413 004f 00       		.byte	0
+ 414 0050 06       		.uleb128 0x6
+ 415 0051 34       		.uleb128 0x34
+ 416 0052 00       		.byte	0
+ 417 0053 03       		.uleb128 0x3
+ 418 0054 0E       		.uleb128 0xe
+ 419 0055 3A       		.uleb128 0x3a
+ 420 0056 0B       		.uleb128 0xb
+ 421 0057 3B       		.uleb128 0x3b
+ 422 0058 0B       		.uleb128 0xb
+ 423 0059 49       		.uleb128 0x49
+ 424 005a 13       		.uleb128 0x13
+ 425 005b 02       		.uleb128 0x2
+ 426 005c 17       		.uleb128 0x17
+ 427 005d 00       		.byte	0
+ 428 005e 00       		.byte	0
+ 429 005f 07       		.uleb128 0x7
+ 430 0060 898201   		.uleb128 0x4109
+ 431 0063 01       		.byte	0x1
+ 432 0064 11       		.uleb128 0x11
+ 433 0065 01       		.uleb128 0x1
+ 434 0066 31       		.uleb128 0x31
+ 435 0067 13       		.uleb128 0x13
+ 436 0068 01       		.uleb128 0x1
+ 437 0069 13       		.uleb128 0x13
+ 438 006a 00       		.byte	0
+ 439 006b 00       		.byte	0
+ 440 006c 08       		.uleb128 0x8
+ 441 006d 8A8201   		.uleb128 0x410a
+ 442 0070 00       		.byte	0
+ 443 0071 02       		.uleb128 0x2
+ 444 0072 18       		.uleb128 0x18
+ 445 0073 9142     		.uleb128 0x2111
+ 446 0075 18       		.uleb128 0x18
+ 447 0076 00       		.byte	0
+ 448 0077 00       		.byte	0
+ 449 0078 09       		.uleb128 0x9
+ 450 0079 898201   		.uleb128 0x4109
+ 451 007c 01       		.byte	0x1
+ 452 007d 11       		.uleb128 0x11
+ 453 007e 01       		.uleb128 0x1
+ 454 007f 31       		.uleb128 0x31
+ 455 0080 13       		.uleb128 0x13
+ 456 0081 00       		.byte	0
+ 457 0082 00       		.byte	0
+ 458 0083 0A       		.uleb128 0xa
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 11
+
+
+ 459 0084 05       		.uleb128 0x5
+ 460 0085 00       		.byte	0
+ 461 0086 03       		.uleb128 0x3
+ 462 0087 0E       		.uleb128 0xe
+ 463 0088 3A       		.uleb128 0x3a
+ 464 0089 0B       		.uleb128 0xb
+ 465 008a 3B       		.uleb128 0x3b
+ 466 008b 0B       		.uleb128 0xb
+ 467 008c 49       		.uleb128 0x49
+ 468 008d 13       		.uleb128 0x13
+ 469 008e 02       		.uleb128 0x2
+ 470 008f 17       		.uleb128 0x17
+ 471 0090 00       		.byte	0
+ 472 0091 00       		.byte	0
+ 473 0092 0B       		.uleb128 0xb
+ 474 0093 898201   		.uleb128 0x4109
+ 475 0096 00       		.byte	0
+ 476 0097 11       		.uleb128 0x11
+ 477 0098 01       		.uleb128 0x1
+ 478 0099 31       		.uleb128 0x31
+ 479 009a 13       		.uleb128 0x13
+ 480 009b 00       		.byte	0
+ 481 009c 00       		.byte	0
+ 482 009d 0C       		.uleb128 0xc
+ 483 009e 34       		.uleb128 0x34
+ 484 009f 00       		.byte	0
+ 485 00a0 03       		.uleb128 0x3
+ 486 00a1 0E       		.uleb128 0xe
+ 487 00a2 3A       		.uleb128 0x3a
+ 488 00a3 0B       		.uleb128 0xb
+ 489 00a4 3B       		.uleb128 0x3b
+ 490 00a5 0B       		.uleb128 0xb
+ 491 00a6 49       		.uleb128 0x49
+ 492 00a7 13       		.uleb128 0x13
+ 493 00a8 02       		.uleb128 0x2
+ 494 00a9 18       		.uleb128 0x18
+ 495 00aa 00       		.byte	0
+ 496 00ab 00       		.byte	0
+ 497 00ac 0D       		.uleb128 0xd
+ 498 00ad 2E       		.uleb128 0x2e
+ 499 00ae 00       		.byte	0
+ 500 00af 3F       		.uleb128 0x3f
+ 501 00b0 19       		.uleb128 0x19
+ 502 00b1 3C       		.uleb128 0x3c
+ 503 00b2 19       		.uleb128 0x19
+ 504 00b3 6E       		.uleb128 0x6e
+ 505 00b4 0E       		.uleb128 0xe
+ 506 00b5 03       		.uleb128 0x3
+ 507 00b6 0E       		.uleb128 0xe
+ 508 00b7 3A       		.uleb128 0x3a
+ 509 00b8 0B       		.uleb128 0xb
+ 510 00b9 3B       		.uleb128 0x3b
+ 511 00ba 0B       		.uleb128 0xb
+ 512 00bb 00       		.byte	0
+ 513 00bc 00       		.byte	0
+ 514 00bd 00       		.byte	0
+ 515              		.section	.debug_loc,"",%progbits
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 12
+
+
+ 516              	.Ldebug_loc0:
+ 517              	.LLST0:
+ 518 0000 00000000 		.4byte	.LVL0
+ 519 0004 08000000 		.4byte	.LVL1
+ 520 0008 0200     		.2byte	0x2
+ 521 000a 30       		.byte	0x30
+ 522 000b 9F       		.byte	0x9f
+ 523 000c 08000000 		.4byte	.LVL1
+ 524 0010 0E000000 		.4byte	.LVL2
+ 525 0014 0200     		.2byte	0x2
+ 526 0016 31       		.byte	0x31
+ 527 0017 9F       		.byte	0x9f
+ 528 0018 0E000000 		.4byte	.LVL2
+ 529 001c 1C000000 		.4byte	.LFE0
+ 530 0020 0200     		.2byte	0x2
+ 531 0022 32       		.byte	0x32
+ 532 0023 9F       		.byte	0x9f
+ 533 0024 00000000 		.4byte	0
+ 534 0028 00000000 		.4byte	0
+ 535              	.LLST1:
+ 536 002c 00000000 		.4byte	.LVL3
+ 537 0030 07000000 		.4byte	.LVL4-1
+ 538 0034 0100     		.2byte	0x1
+ 539 0036 50       		.byte	0x50
+ 540 0037 07000000 		.4byte	.LVL4-1
+ 541 003b 18000000 		.4byte	.LFE1
+ 542 003f 0400     		.2byte	0x4
+ 543 0041 F3       		.byte	0xf3
+ 544 0042 01       		.uleb128 0x1
+ 545 0043 50       		.byte	0x50
+ 546 0044 9F       		.byte	0x9f
+ 547 0045 00000000 		.4byte	0
+ 548 0049 00000000 		.4byte	0
+ 549              	.LLST2:
+ 550 004d 00000000 		.4byte	.LVL6
+ 551 0051 08000000 		.4byte	.LVL7
+ 552 0055 0100     		.2byte	0x1
+ 553 0057 50       		.byte	0x50
+ 554 0058 08000000 		.4byte	.LVL7
+ 555 005c 20000000 		.4byte	.LFE2
+ 556 0060 0400     		.2byte	0x4
+ 557 0062 F3       		.byte	0xf3
+ 558 0063 01       		.uleb128 0x1
+ 559 0064 50       		.byte	0x50
+ 560 0065 9F       		.byte	0x9f
+ 561 0066 00000000 		.4byte	0
+ 562 006a 00000000 		.4byte	0
+ 563              		.section	.debug_aranges,"",%progbits
+ 564 0000 2C000000 		.4byte	0x2c
+ 565 0004 0200     		.2byte	0x2
+ 566 0006 00000000 		.4byte	.Ldebug_info0
+ 567 000a 04       		.byte	0x4
+ 568 000b 00       		.byte	0
+ 569 000c 0000     		.2byte	0
+ 570 000e 0000     		.2byte	0
+ 571 0010 00000000 		.4byte	.LFB0
+ 572 0014 1C000000 		.4byte	.LFE0-.LFB0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 13
+
+
+ 573 0018 00000000 		.4byte	.LFB1
+ 574 001c 18000000 		.4byte	.LFE1-.LFB1
+ 575 0020 00000000 		.4byte	.LFB2
+ 576 0024 20000000 		.4byte	.LFE2-.LFB2
+ 577 0028 00000000 		.4byte	0
+ 578 002c 00000000 		.4byte	0
+ 579              		.section	.debug_ranges,"",%progbits
+ 580              	.Ldebug_ranges0:
+ 581 0000 00000000 		.4byte	.LFB0
+ 582 0004 1C000000 		.4byte	.LFE0
+ 583 0008 00000000 		.4byte	.LFB1
+ 584 000c 18000000 		.4byte	.LFE1
+ 585 0010 00000000 		.4byte	.LFB2
+ 586 0014 20000000 		.4byte	.LFE2
+ 587 0018 00000000 		.4byte	0
+ 588 001c 00000000 		.4byte	0
+ 589              		.section	.debug_line,"",%progbits
+ 590              	.Ldebug_line0:
+ 591 0000 9E000000 		.section	.debug_str,"MS",%progbits,1
+ 591      02005D00 
+ 591      00000201 
+ 591      FB0E0D00 
+ 591      01010101 
+ 592              	.LASF15:
+ 593 0000 6368616E 		.ascii	"channel\000"
+ 593      6E656C00 
+ 594              	.LASF14:
+ 595 0008 546F7563 		.ascii	"Touch_ADC_AMux_FastSelect\000"
+ 595      685F4144 
+ 595      435F414D 
+ 595      75785F46 
+ 595      61737453 
+ 596              	.LASF9:
+ 597 0022 666C6F61 		.ascii	"float\000"
+ 597      7400
+ 598              	.LASF7:
+ 599 0028 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 599      206C6F6E 
+ 599      6720756E 
+ 599      7369676E 
+ 599      65642069 
+ 600              	.LASF1:
+ 601 003f 756E7369 		.ascii	"unsigned char\000"
+ 601      676E6564 
+ 601      20636861 
+ 601      7200
+ 602              	.LASF13:
+ 603 004d 546F7563 		.ascii	"Touch_ADC_AMux_Select\000"
+ 603      685F4144 
+ 603      435F414D 
+ 603      75785F53 
+ 603      656C6563 
+ 604              	.LASF5:
+ 605 0063 6C6F6E67 		.ascii	"long unsigned int\000"
+ 605      20756E73 
+ 605      69676E65 
+ 605      6420696E 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 14
+
+
+ 605      7400
+ 606              	.LASF3:
+ 607 0075 73686F72 		.ascii	"short unsigned int\000"
+ 607      7420756E 
+ 607      7369676E 
+ 607      65642069 
+ 607      6E7400
+ 608              	.LASF19:
+ 609 0088 546F7563 		.ascii	"Touch_ADC_AMux_Set\000"
+ 609      685F4144 
+ 609      435F414D 
+ 609      75785F53 
+ 609      657400
+ 610              	.LASF10:
+ 611 009b 646F7562 		.ascii	"double\000"
+ 611      6C6500
+ 612              	.LASF21:
+ 613 00a2 47656E65 		.ascii	"Generated_Source\\PSoC5\\Touch_ADC_AMux.c\000"
+ 613      72617465 
+ 613      645F536F 
+ 613      75726365 
+ 613      5C50536F 
+ 614              	.LASF8:
+ 615 00ca 756E7369 		.ascii	"unsigned int\000"
+ 615      676E6564 
+ 615      20696E74 
+ 615      00
+ 616              	.LASF20:
+ 617 00d7 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 617      43313120 
+ 617      352E342E 
+ 617      31203230 
+ 617      31363036 
+ 618 010a 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 618      20726576 
+ 618      6973696F 
+ 618      6E203233 
+ 618      37373135 
+ 619 013d 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 619      66756E63 
+ 619      74696F6E 
+ 619      2D736563 
+ 619      74696F6E 
+ 620              	.LASF22:
+ 621 0165 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 621      5C4C6162 
+ 621      20646520 
+ 621      436F6E74 
+ 621      726F6C5C 
+ 622 0195 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 622      30315C50 
+ 622      49442043 
+ 622      6F6E7472 
+ 622      6F6C6572 
+ 623              	.LASF6:
+ 624 01bc 6C6F6E67 		.ascii	"long long int\000"
+ 624      206C6F6E 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccUILZAu.s 			page 15
+
+
+ 624      6720696E 
+ 624      7400
+ 625              	.LASF11:
+ 626 01ca 63686172 		.ascii	"char\000"
+ 626      00
+ 627              	.LASF16:
+ 628 01cf 6368616E 		.ascii	"chan\000"
+ 628      00
+ 629              	.LASF2:
+ 630 01d4 73686F72 		.ascii	"short int\000"
+ 630      7420696E 
+ 630      7400
+ 631              	.LASF23:
+ 632 01de 75696E74 		.ascii	"uint8\000"
+ 632      3800
+ 633              	.LASF12:
+ 634 01e4 546F7563 		.ascii	"Touch_ADC_AMux_Start\000"
+ 634      685F4144 
+ 634      435F414D 
+ 634      75785F53 
+ 634      74617274 
+ 635              	.LASF4:
+ 636 01f9 6C6F6E67 		.ascii	"long int\000"
+ 636      20696E74 
+ 636      00
+ 637              	.LASF0:
+ 638 0202 7369676E 		.ascii	"signed char\000"
+ 638      65642063 
+ 638      68617200 
+ 639              	.LASF18:
+ 640 020e 546F7563 		.ascii	"Touch_ADC_AMux_Unset\000"
+ 640      685F4144 
+ 640      435F414D 
+ 640      75785F55 
+ 640      6E736574 
+ 641              	.LASF17:
+ 642 0223 546F7563 		.ascii	"Touch_ADC_AMux_lastChannel\000"
+ 642      685F4144 
+ 642      435F414D 
+ 642      75785F6C 
+ 642      61737443 
+ 643              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

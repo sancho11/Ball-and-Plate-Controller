@@ -228,7 +228,7 @@ void PWM_X_RestoreConfig(void) ;
 **************************************/
 #define PWM_X_INIT_PERIOD_VALUE          (19999u)
 #define PWM_X_INIT_COMPARE_VALUE1        (1472u)
-#define PWM_X_INIT_COMPARE_VALUE2        (18900u)
+#define PWM_X_INIT_COMPARE_VALUE2        (2800u)
 #define PWM_X_INIT_INTERRUPTS_MODE       (uint8)(((uint8)(0u <<   \
                                                     PWM_X_STATUS_TC_INT_EN_MASK_SHIFT)) | \
                                                     (uint8)((uint8)(0u <<  \

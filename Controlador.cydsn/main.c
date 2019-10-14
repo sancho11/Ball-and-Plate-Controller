@@ -35,8 +35,8 @@ int x_int = 0;
 int y_int = 0;
 float x_float = 0;
 float y_float = 0;
-int x_req = 2000;
-int y_req = 2000;
+int x_req = 2300;
+int y_req = 2100;
 float X_Ak=0;
 float Y_Ak=0;
 float X_Akmenos1=0;
@@ -82,15 +82,7 @@ void SetServoY(float Angulo){
     PWM_Y_WriteCompare1(mapANGtoTIME(Angulo));
     return;
 }
-/*void Volt_update(void){ //Actualiza el valor del voltaje minimo y maximo que puede leer para ajustarse a las dimenciones.
-    AxisSelector_Write(0xFF);   //Seleccionamos el eje X poniendo unos.
-    CyDelay(1);
-    Vddval = ADC_YAxis_CountsTo_Volts(ADC_YAxis_GetResult16());
-    AxisSelector_Write(0x00);   //Seleccionamos el eje Y poniendo ceros.
-    CyDelay(1);
-    Vssval = ADC_XAxis_CountsTo_Volts(ADC_XAxis_GetResult16());
-    return;
-}*/
+
 int ReadXAxis(void){
     int value_int = Touch_Measure();
     Touch_ActivateY();
@@ -125,7 +117,6 @@ float Saturador(float val, float min, float max){
             return val;
         }
     }
-    
 }
 
 void printScreen(int Xpos, int Ypos, int Xreq, int Yreq){
@@ -153,9 +144,8 @@ CY_ISR(Y_interrupcion_Handler)
 {
         y_int = ReadYAxis();
         Y_Ek = PosRealY(y_req-y_int);
-        y_int = y_req-y_int;
         Y_Ak=Y_prep+Y_Ek*(251.59);
-        Y_Ak=Saturador(Y_Ak,-30,30);
+        Y_Ak=Saturador(Y_Ak,-12,12);
         SetServoY(-Y_Ak);
         Y_Akmenos1=Y_Ak;
         Y_Ekmenos1=Y_Ek;
@@ -167,15 +157,15 @@ CY_ISR(X_interrupcion_Handler)
 {
         x_int = ReadXAxis();
         X_Ek = PosRealX(x_req-x_int);
-        x_int = x_req-x_int;
-        X_Ak=X_prep+X_Ek*(251.59);
-        X_Ak=Saturador(X_Ak,-30,30);
+        X_Ak=X_prep+X_Ek*(97);
+        X_Ak=Saturador(X_Ak,-12,12);
         SetServoX(X_Ak);
         X_Akmenos1=X_Ak;
         X_Ekmenos1=X_Ek;
         X_prep = X_Akmenos1*0.519211+X_Ekmenos1*(-94.13);
 
 }
+
 
 int main(void)
 {   
@@ -195,7 +185,8 @@ int main(void)
     CyDelay(10);
     PWM_reset_Write(0x0);
     Touch_Start();
-
+    
+    int potvalue=0;
     /* Place your initialization/startup code here (e.g. MyInst_Start()) */
     LCD_Start();
     Y_interrupcion_StartEx(Y_interrupcion_Handler);
@@ -203,7 +194,8 @@ int main(void)
     CyGlobalIntEnable; /* Enable global interrupts. */
     for(;;)
     {
-        printScreen(x_int, y_int, x_req, y_req);        
+ 
+        printScreen(x_int, y_int, x_req, y_req);      
         CyDelay(100);       
 
     }

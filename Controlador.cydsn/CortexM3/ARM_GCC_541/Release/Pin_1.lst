@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 1
 
 
    1              		.syntax unified
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
   28:Generated_Source\PSoC5/Pin_1.c **** *
   29:Generated_Source\PSoC5/Pin_1.c **** * \brief Writes the value to the physical port (data output register), masking
   30:Generated_Source\PSoC5/Pin_1.c **** *  and shifting the bits appropriately. 
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 2
 
 
   31:Generated_Source\PSoC5/Pin_1.c **** *
@@ -100,36 +100,37 @@ ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
   35 0000 044A     		ldr	r2, .L2
   60:Generated_Source\PSoC5/Pin_1.c ****     Pin_1_DR = staticBits | ((uint8)(value << Pin_1_SHIFT) & Pin_1_MASK);
   36              		.loc 1 60 0
-  37 0002 00F00100 		and	r0, r0, #1
+  37 0002 4001     		lsls	r0, r0, #5
   38              	.LVL1:
   59:Generated_Source\PSoC5/Pin_1.c ****     uint8 staticBits = (Pin_1_DR & (uint8)(~Pin_1_MASK));
   39              		.loc 1 59 0
-  40 0006 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  40 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
   41              	.LVL2:
   42              		.loc 1 60 0
-  43 0008 03F0FE03 		and	r3, r3, #254
-  44              	.LVL3:
-  45 000c 1843     		orrs	r0, r0, r3
-  46 000e 1070     		strb	r0, [r2]
-  47 0010 7047     		bx	lr
-  48              	.L3:
-  49 0012 00BF     		.align	2
-  50              	.L2:
-  51 0014 40510040 		.word	1073762624
-  52              		.cfi_endproc
-  53              	.LFE0:
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 3
+  43 0006 00F02000 		and	r0, r0, #32
+  44 000a 03F0DF03 		and	r3, r3, #223
+  45              	.LVL3:
+  46 000e 0343     		orrs	r3, r3, r0
+  47 0010 1370     		strb	r3, [r2]
+  48 0012 7047     		bx	lr
+  49              	.L3:
+  50              		.align	2
+  51              	.L2:
+  52 0014 F0510040 		.word	1073762800
+  53              		.cfi_endproc
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 3
 
 
-  54              		.size	Pin_1_Write, .-Pin_1_Write
-  55              		.section	.text.Pin_1_SetDriveMode,"ax",%progbits
-  56              		.align	1
-  57              		.global	Pin_1_SetDriveMode
-  58              		.thumb
-  59              		.thumb_func
-  60              		.type	Pin_1_SetDriveMode, %function
-  61              	Pin_1_SetDriveMode:
-  62              	.LFB1:
+  54              	.LFE0:
+  55              		.size	Pin_1_Write, .-Pin_1_Write
+  56              		.section	.text.Pin_1_SetDriveMode,"ax",%progbits
+  57              		.align	1
+  58              		.global	Pin_1_SetDriveMode
+  59              		.thumb
+  60              		.thumb_func
+  61              		.type	Pin_1_SetDriveMode, %function
+  62              	Pin_1_SetDriveMode:
+  63              	.LFB1:
   61:Generated_Source\PSoC5/Pin_1.c **** }
   62:Generated_Source\PSoC5/Pin_1.c **** 
   63:Generated_Source\PSoC5/Pin_1.c **** 
@@ -161,40 +162,40 @@ ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
   89:Generated_Source\PSoC5/Pin_1.c **** *******************************************************************************/
   90:Generated_Source\PSoC5/Pin_1.c **** void Pin_1_SetDriveMode(uint8 mode)
   91:Generated_Source\PSoC5/Pin_1.c **** {
-  63              		.loc 1 91 0
-  64              		.cfi_startproc
-  65              		@ args = 0, pretend = 0, frame = 0
-  66              		@ frame_needed = 0, uses_anonymous_args = 0
-  67              		@ link register save eliminated.
-  68              	.LVL4:
+  64              		.loc 1 91 0
+  65              		.cfi_startproc
+  66              		@ args = 0, pretend = 0, frame = 0
+  67              		@ frame_needed = 0, uses_anonymous_args = 0
+  68              		@ link register save eliminated.
+  69              	.LVL4:
   92:Generated_Source\PSoC5/Pin_1.c **** 	CyPins_SetPinDriveMode(Pin_1_0, mode);
-  69              		.loc 1 92 0
-  70 0000 044A     		ldr	r2, .L5
-  71 0002 00F00E00 		and	r0, r0, #14
-  72              	.LVL5:
-  73 0006 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
-  74 0008 03F0F103 		and	r3, r3, #241
-  75 000c 1843     		orrs	r0, r0, r3
-  76 000e 1070     		strb	r0, [r2]
-  77 0010 7047     		bx	lr
-  78              	.L6:
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 4
+  70              		.loc 1 92 0
+  71 0000 044A     		ldr	r2, .L5
+  72 0002 00F00E00 		and	r0, r0, #14
+  73              	.LVL5:
+  74 0006 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+  75 0008 03F0F103 		and	r3, r3, #241
+  76 000c 1843     		orrs	r0, r0, r3
+  77 000e 1070     		strb	r0, [r2]
+  78 0010 7047     		bx	lr
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 4
 
 
-  79 0012 00BF     		.align	2
-  80              	.L5:
-  81 0014 20500040 		.word	1073762336
-  82              		.cfi_endproc
-  83              	.LFE1:
-  84              		.size	Pin_1_SetDriveMode, .-Pin_1_SetDriveMode
-  85              		.section	.text.Pin_1_Read,"ax",%progbits
-  86              		.align	1
-  87              		.global	Pin_1_Read
-  88              		.thumb
-  89              		.thumb_func
-  90              		.type	Pin_1_Read, %function
-  91              	Pin_1_Read:
-  92              	.LFB2:
+  79              	.L6:
+  80 0012 00BF     		.align	2
+  81              	.L5:
+  82 0014 7D500040 		.word	1073762429
+  83              		.cfi_endproc
+  84              	.LFE1:
+  85              		.size	Pin_1_SetDriveMode, .-Pin_1_SetDriveMode
+  86              		.section	.text.Pin_1_Read,"ax",%progbits
+  87              		.align	1
+  88              		.global	Pin_1_Read
+  89              		.thumb
+  90              		.thumb_func
+  91              		.type	Pin_1_Read, %function
+  92              	Pin_1_Read:
+  93              	.LFB2:
   93:Generated_Source\PSoC5/Pin_1.c **** }
   94:Generated_Source\PSoC5/Pin_1.c **** 
   95:Generated_Source\PSoC5/Pin_1.c **** 
@@ -217,37 +218,37 @@ ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
  112:Generated_Source\PSoC5/Pin_1.c **** *******************************************************************************/
  113:Generated_Source\PSoC5/Pin_1.c **** uint8 Pin_1_Read(void)
  114:Generated_Source\PSoC5/Pin_1.c **** {
-  93              		.loc 1 114 0
-  94              		.cfi_startproc
-  95              		@ args = 0, pretend = 0, frame = 0
-  96              		@ frame_needed = 0, uses_anonymous_args = 0
-  97              		@ link register save eliminated.
+  94              		.loc 1 114 0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98              		@ link register save eliminated.
  115:Generated_Source\PSoC5/Pin_1.c ****     return (Pin_1_PS & Pin_1_MASK) >> Pin_1_SHIFT;
-  98              		.loc 1 115 0
-  99 0000 024B     		ldr	r3, .L8
- 100 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+  99              		.loc 1 115 0
+ 100 0000 024B     		ldr	r3, .L8
+ 101 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  116:Generated_Source\PSoC5/Pin_1.c **** }
- 101              		.loc 1 116 0
- 102 0004 00F00100 		and	r0, r0, #1
- 103 0008 7047     		bx	lr
- 104              	.L9:
- 105 000a 00BF     		.align	2
- 106              	.L8:
- 107 000c 41510040 		.word	1073762625
- 108              		.cfi_endproc
- 109              	.LFE2:
- 110              		.size	Pin_1_Read, .-Pin_1_Read
- 111              		.section	.text.Pin_1_ReadDataReg,"ax",%progbits
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 5
+ 102              		.loc 1 116 0
+ 103 0004 C0F34010 		ubfx	r0, r0, #5, #1
+ 104 0008 7047     		bx	lr
+ 105              	.L9:
+ 106 000a 00BF     		.align	2
+ 107              	.L8:
+ 108 000c F1510040 		.word	1073762801
+ 109              		.cfi_endproc
+ 110              	.LFE2:
+ 111              		.size	Pin_1_Read, .-Pin_1_Read
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 5
 
 
- 112              		.align	1
- 113              		.global	Pin_1_ReadDataReg
- 114              		.thumb
- 115              		.thumb_func
- 116              		.type	Pin_1_ReadDataReg, %function
- 117              	Pin_1_ReadDataReg:
- 118              	.LFB3:
+ 112              		.section	.text.Pin_1_ReadDataReg,"ax",%progbits
+ 113              		.align	1
+ 114              		.global	Pin_1_ReadDataReg
+ 115              		.thumb
+ 116              		.thumb_func
+ 117              		.type	Pin_1_ReadDataReg, %function
+ 118              	Pin_1_ReadDataReg:
+ 119              	.LFB3:
  117:Generated_Source\PSoC5/Pin_1.c **** 
  118:Generated_Source\PSoC5/Pin_1.c **** 
  119:Generated_Source\PSoC5/Pin_1.c **** /*******************************************************************************
@@ -274,534 +275,535 @@ ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 1
  140:Generated_Source\PSoC5/Pin_1.c **** *******************************************************************************/
  141:Generated_Source\PSoC5/Pin_1.c **** uint8 Pin_1_ReadDataReg(void)
  142:Generated_Source\PSoC5/Pin_1.c **** {
- 119              		.loc 1 142 0
- 120              		.cfi_startproc
- 121              		@ args = 0, pretend = 0, frame = 0
- 122              		@ frame_needed = 0, uses_anonymous_args = 0
- 123              		@ link register save eliminated.
+ 120              		.loc 1 142 0
+ 121              		.cfi_startproc
+ 122              		@ args = 0, pretend = 0, frame = 0
+ 123              		@ frame_needed = 0, uses_anonymous_args = 0
+ 124              		@ link register save eliminated.
  143:Generated_Source\PSoC5/Pin_1.c ****     return (Pin_1_DR & Pin_1_MASK) >> Pin_1_SHIFT;
- 124              		.loc 1 143 0
- 125 0000 024B     		ldr	r3, .L11
- 126 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
+ 125              		.loc 1 143 0
+ 126 0000 024B     		ldr	r3, .L11
+ 127 0002 1878     		ldrb	r0, [r3]	@ zero_extendqisi2
  144:Generated_Source\PSoC5/Pin_1.c **** }
- 127              		.loc 1 144 0
- 128 0004 00F00100 		and	r0, r0, #1
- 129 0008 7047     		bx	lr
- 130              	.L12:
- 131 000a 00BF     		.align	2
- 132              	.L11:
- 133 000c 40510040 		.word	1073762624
- 134              		.cfi_endproc
- 135              	.LFE3:
- 136              		.size	Pin_1_ReadDataReg, .-Pin_1_ReadDataReg
- 137              		.text
- 138              	.Letext0:
- 139              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
- 140              		.section	.debug_info,"",%progbits
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 6
+ 128              		.loc 1 144 0
+ 129 0004 C0F34010 		ubfx	r0, r0, #5, #1
+ 130 0008 7047     		bx	lr
+ 131              	.L12:
+ 132 000a 00BF     		.align	2
+ 133              	.L11:
+ 134 000c F0510040 		.word	1073762800
+ 135              		.cfi_endproc
+ 136              	.LFE3:
+ 137              		.size	Pin_1_ReadDataReg, .-Pin_1_ReadDataReg
+ 138              		.text
+ 139              	.Letext0:
+ 140              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 6
 
 
- 141              	.Ldebug_info0:
- 142 0000 1D010000 		.4byte	0x11d
- 143 0004 0400     		.2byte	0x4
- 144 0006 00000000 		.4byte	.Ldebug_abbrev0
- 145 000a 04       		.byte	0x4
- 146 000b 01       		.uleb128 0x1
- 147 000c AC000000 		.4byte	.LASF20
- 148 0010 0C       		.byte	0xc
- 149 0011 17000000 		.4byte	.LASF21
- 150 0015 A0010000 		.4byte	.LASF22
- 151 0019 00000000 		.4byte	.Ldebug_ranges0+0
- 152 001d 00000000 		.4byte	0
- 153 0021 00000000 		.4byte	.Ldebug_line0
- 154 0025 02       		.uleb128 0x2
- 155 0026 01       		.byte	0x1
- 156 0027 06       		.byte	0x6
- 157 0028 88010000 		.4byte	.LASF0
- 158 002c 02       		.uleb128 0x2
- 159 002d 01       		.byte	0x1
- 160 002e 08       		.byte	0x8
- 161 002f 4D000000 		.4byte	.LASF1
- 162 0033 02       		.uleb128 0x2
- 163 0034 02       		.byte	0x2
- 164 0035 05       		.byte	0x5
- 165 0036 5D010000 		.4byte	.LASF2
- 166 003a 02       		.uleb128 0x2
- 167 003b 02       		.byte	0x2
- 168 003c 07       		.byte	0x7
- 169 003d 72000000 		.4byte	.LASF3
- 170 0041 02       		.uleb128 0x2
- 171 0042 04       		.byte	0x4
- 172 0043 05       		.byte	0x5
- 173 0044 7F010000 		.4byte	.LASF4
- 174 0048 02       		.uleb128 0x2
- 175 0049 04       		.byte	0x4
- 176 004a 07       		.byte	0x7
- 177 004b 60000000 		.4byte	.LASF5
- 178 004f 02       		.uleb128 0x2
- 179 0050 08       		.byte	0x8
- 180 0051 05       		.byte	0x5
- 181 0052 4A010000 		.4byte	.LASF6
- 182 0056 02       		.uleb128 0x2
- 183 0057 08       		.byte	0x8
- 184 0058 07       		.byte	0x7
- 185 0059 36000000 		.4byte	.LASF7
- 186 005d 03       		.uleb128 0x3
- 187 005e 04       		.byte	0x4
- 188 005f 05       		.byte	0x5
- 189 0060 696E7400 		.ascii	"int\000"
- 190 0064 02       		.uleb128 0x2
- 191 0065 04       		.byte	0x4
- 192 0066 07       		.byte	0x7
- 193 0067 9F000000 		.4byte	.LASF8
- 194 006b 04       		.uleb128 0x4
- 195 006c 67010000 		.4byte	.LASF12
- 196 0070 02       		.byte	0x2
- 197 0071 E401     		.2byte	0x1e4
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 7
+ 141              		.section	.debug_info,"",%progbits
+ 142              	.Ldebug_info0:
+ 143 0000 1D010000 		.4byte	0x11d
+ 144 0004 0400     		.2byte	0x4
+ 145 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 146 000a 04       		.byte	0x4
+ 147 000b 01       		.uleb128 0x1
+ 148 000c AC000000 		.4byte	.LASF20
+ 149 0010 0C       		.byte	0xc
+ 150 0011 17000000 		.4byte	.LASF21
+ 151 0015 3F010000 		.4byte	.LASF22
+ 152 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 153 001d 00000000 		.4byte	0
+ 154 0021 00000000 		.4byte	.Ldebug_line0
+ 155 0025 02       		.uleb128 0x2
+ 156 0026 01       		.byte	0x1
+ 157 0027 06       		.byte	0x6
+ 158 0028 DF010000 		.4byte	.LASF0
+ 159 002c 02       		.uleb128 0x2
+ 160 002d 01       		.byte	0x1
+ 161 002e 08       		.byte	0x8
+ 162 002f 4D000000 		.4byte	.LASF1
+ 163 0033 02       		.uleb128 0x2
+ 164 0034 02       		.byte	0x2
+ 165 0035 05       		.byte	0x5
+ 166 0036 B4010000 		.4byte	.LASF2
+ 167 003a 02       		.uleb128 0x2
+ 168 003b 02       		.byte	0x2
+ 169 003c 07       		.byte	0x7
+ 170 003d 72000000 		.4byte	.LASF3
+ 171 0041 02       		.uleb128 0x2
+ 172 0042 04       		.byte	0x4
+ 173 0043 05       		.byte	0x5
+ 174 0044 D6010000 		.4byte	.LASF4
+ 175 0048 02       		.uleb128 0x2
+ 176 0049 04       		.byte	0x4
+ 177 004a 07       		.byte	0x7
+ 178 004b 60000000 		.4byte	.LASF5
+ 179 004f 02       		.uleb128 0x2
+ 180 0050 08       		.byte	0x8
+ 181 0051 05       		.byte	0x5
+ 182 0052 A1010000 		.4byte	.LASF6
+ 183 0056 02       		.uleb128 0x2
+ 184 0057 08       		.byte	0x8
+ 185 0058 07       		.byte	0x7
+ 186 0059 36000000 		.4byte	.LASF7
+ 187 005d 03       		.uleb128 0x3
+ 188 005e 04       		.byte	0x4
+ 189 005f 05       		.byte	0x5
+ 190 0060 696E7400 		.ascii	"int\000"
+ 191 0064 02       		.uleb128 0x2
+ 192 0065 04       		.byte	0x4
+ 193 0066 07       		.byte	0x7
+ 194 0067 9F000000 		.4byte	.LASF8
+ 195 006b 04       		.uleb128 0x4
+ 196 006c BE010000 		.4byte	.LASF12
+ 197 0070 02       		.byte	0x2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 7
 
 
- 198 0073 2C000000 		.4byte	0x2c
- 199 0077 02       		.uleb128 0x2
- 200 0078 04       		.byte	0x4
- 201 0079 04       		.byte	0x4
- 202 007a 11000000 		.4byte	.LASF9
- 203 007e 02       		.uleb128 0x2
- 204 007f 08       		.byte	0x8
- 205 0080 04       		.byte	0x4
- 206 0081 85000000 		.4byte	.LASF10
- 207 0085 02       		.uleb128 0x2
- 208 0086 01       		.byte	0x1
- 209 0087 08       		.byte	0x8
- 210 0088 58010000 		.4byte	.LASF11
- 211 008c 04       		.uleb128 0x4
- 212 008d 5B000000 		.4byte	.LASF13
- 213 0091 02       		.byte	0x2
- 214 0092 8E02     		.2byte	0x28e
- 215 0094 98000000 		.4byte	0x98
- 216 0098 05       		.uleb128 0x5
- 217 0099 6B000000 		.4byte	0x6b
- 218 009d 06       		.uleb128 0x6
- 219 009e 94010000 		.4byte	.LASF14
- 220 00a2 01       		.byte	0x1
- 221 00a3 39       		.byte	0x39
- 222 00a4 00000000 		.4byte	.LFB0
- 223 00a8 18000000 		.4byte	.LFE0-.LFB0
- 224 00ac 01       		.uleb128 0x1
- 225 00ad 9C       		.byte	0x9c
- 226 00ae D1000000 		.4byte	0xd1
- 227 00b2 07       		.uleb128 0x7
- 228 00b3 00000000 		.4byte	.LASF16
- 229 00b7 01       		.byte	0x1
- 230 00b8 39       		.byte	0x39
- 231 00b9 6B000000 		.4byte	0x6b
- 232 00bd 00000000 		.4byte	.LLST0
- 233 00c1 08       		.uleb128 0x8
- 234 00c2 06000000 		.4byte	.LASF23
- 235 00c6 01       		.byte	0x1
- 236 00c7 3B       		.byte	0x3b
- 237 00c8 6B000000 		.4byte	0x6b
- 238 00cc 21000000 		.4byte	.LLST1
- 239 00d0 00       		.byte	0
- 240 00d1 06       		.uleb128 0x6
- 241 00d2 8C000000 		.4byte	.LASF15
- 242 00d6 01       		.byte	0x1
- 243 00d7 5A       		.byte	0x5a
- 244 00d8 00000000 		.4byte	.LFB1
- 245 00dc 18000000 		.4byte	.LFE1-.LFB1
- 246 00e0 01       		.uleb128 0x1
- 247 00e1 9C       		.byte	0x9c
- 248 00e2 F6000000 		.4byte	0xf6
- 249 00e6 07       		.uleb128 0x7
- 250 00e7 3A010000 		.4byte	.LASF17
- 251 00eb 01       		.byte	0x1
- 252 00ec 5A       		.byte	0x5a
- 253 00ed 6B000000 		.4byte	0x6b
- 254 00f1 39000000 		.4byte	.LLST2
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 8
+ 198 0071 E401     		.2byte	0x1e4
+ 199 0073 2C000000 		.4byte	0x2c
+ 200 0077 02       		.uleb128 0x2
+ 201 0078 04       		.byte	0x4
+ 202 0079 04       		.byte	0x4
+ 203 007a 11000000 		.4byte	.LASF9
+ 204 007e 02       		.uleb128 0x2
+ 205 007f 08       		.byte	0x8
+ 206 0080 04       		.byte	0x4
+ 207 0081 85000000 		.4byte	.LASF10
+ 208 0085 02       		.uleb128 0x2
+ 209 0086 01       		.byte	0x1
+ 210 0087 08       		.byte	0x8
+ 211 0088 AF010000 		.4byte	.LASF11
+ 212 008c 04       		.uleb128 0x4
+ 213 008d 5B000000 		.4byte	.LASF13
+ 214 0091 02       		.byte	0x2
+ 215 0092 8E02     		.2byte	0x28e
+ 216 0094 98000000 		.4byte	0x98
+ 217 0098 05       		.uleb128 0x5
+ 218 0099 6B000000 		.4byte	0x6b
+ 219 009d 06       		.uleb128 0x6
+ 220 009e EB010000 		.4byte	.LASF14
+ 221 00a2 01       		.byte	0x1
+ 222 00a3 39       		.byte	0x39
+ 223 00a4 00000000 		.4byte	.LFB0
+ 224 00a8 18000000 		.4byte	.LFE0-.LFB0
+ 225 00ac 01       		.uleb128 0x1
+ 226 00ad 9C       		.byte	0x9c
+ 227 00ae D1000000 		.4byte	0xd1
+ 228 00b2 07       		.uleb128 0x7
+ 229 00b3 00000000 		.4byte	.LASF16
+ 230 00b7 01       		.byte	0x1
+ 231 00b8 39       		.byte	0x39
+ 232 00b9 6B000000 		.4byte	0x6b
+ 233 00bd 00000000 		.4byte	.LLST0
+ 234 00c1 08       		.uleb128 0x8
+ 235 00c2 06000000 		.4byte	.LASF23
+ 236 00c6 01       		.byte	0x1
+ 237 00c7 3B       		.byte	0x3b
+ 238 00c8 6B000000 		.4byte	0x6b
+ 239 00cc 21000000 		.4byte	.LLST1
+ 240 00d0 00       		.byte	0
+ 241 00d1 06       		.uleb128 0x6
+ 242 00d2 8C000000 		.4byte	.LASF15
+ 243 00d6 01       		.byte	0x1
+ 244 00d7 5A       		.byte	0x5a
+ 245 00d8 00000000 		.4byte	.LFB1
+ 246 00dc 18000000 		.4byte	.LFE1-.LFB1
+ 247 00e0 01       		.uleb128 0x1
+ 248 00e1 9C       		.byte	0x9c
+ 249 00e2 F6000000 		.4byte	0xf6
+ 250 00e6 07       		.uleb128 0x7
+ 251 00e7 3A010000 		.4byte	.LASF17
+ 252 00eb 01       		.byte	0x1
+ 253 00ec 5A       		.byte	0x5a
+ 254 00ed 6B000000 		.4byte	0x6b
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 8
 
 
- 255 00f5 00       		.byte	0
- 256 00f6 09       		.uleb128 0x9
- 257 00f7 3F010000 		.4byte	.LASF18
- 258 00fb 01       		.byte	0x1
- 259 00fc 71       		.byte	0x71
- 260 00fd 6B000000 		.4byte	0x6b
- 261 0101 00000000 		.4byte	.LFB2
- 262 0105 10000000 		.4byte	.LFE2-.LFB2
- 263 0109 01       		.uleb128 0x1
- 264 010a 9C       		.byte	0x9c
- 265 010b 09       		.uleb128 0x9
- 266 010c 6D010000 		.4byte	.LASF19
- 267 0110 01       		.byte	0x1
- 268 0111 8D       		.byte	0x8d
- 269 0112 6B000000 		.4byte	0x6b
- 270 0116 00000000 		.4byte	.LFB3
- 271 011a 10000000 		.4byte	.LFE3-.LFB3
- 272 011e 01       		.uleb128 0x1
- 273 011f 9C       		.byte	0x9c
- 274 0120 00       		.byte	0
- 275              		.section	.debug_abbrev,"",%progbits
- 276              	.Ldebug_abbrev0:
- 277 0000 01       		.uleb128 0x1
- 278 0001 11       		.uleb128 0x11
- 279 0002 01       		.byte	0x1
- 280 0003 25       		.uleb128 0x25
- 281 0004 0E       		.uleb128 0xe
- 282 0005 13       		.uleb128 0x13
- 283 0006 0B       		.uleb128 0xb
- 284 0007 03       		.uleb128 0x3
- 285 0008 0E       		.uleb128 0xe
- 286 0009 1B       		.uleb128 0x1b
- 287 000a 0E       		.uleb128 0xe
- 288 000b 55       		.uleb128 0x55
- 289 000c 17       		.uleb128 0x17
- 290 000d 11       		.uleb128 0x11
- 291 000e 01       		.uleb128 0x1
- 292 000f 10       		.uleb128 0x10
- 293 0010 17       		.uleb128 0x17
- 294 0011 00       		.byte	0
- 295 0012 00       		.byte	0
- 296 0013 02       		.uleb128 0x2
- 297 0014 24       		.uleb128 0x24
- 298 0015 00       		.byte	0
- 299 0016 0B       		.uleb128 0xb
- 300 0017 0B       		.uleb128 0xb
- 301 0018 3E       		.uleb128 0x3e
- 302 0019 0B       		.uleb128 0xb
- 303 001a 03       		.uleb128 0x3
- 304 001b 0E       		.uleb128 0xe
- 305 001c 00       		.byte	0
- 306 001d 00       		.byte	0
- 307 001e 03       		.uleb128 0x3
- 308 001f 24       		.uleb128 0x24
- 309 0020 00       		.byte	0
- 310 0021 0B       		.uleb128 0xb
- 311 0022 0B       		.uleb128 0xb
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 9
+ 255 00f1 39000000 		.4byte	.LLST2
+ 256 00f5 00       		.byte	0
+ 257 00f6 09       		.uleb128 0x9
+ 258 00f7 96010000 		.4byte	.LASF18
+ 259 00fb 01       		.byte	0x1
+ 260 00fc 71       		.byte	0x71
+ 261 00fd 6B000000 		.4byte	0x6b
+ 262 0101 00000000 		.4byte	.LFB2
+ 263 0105 10000000 		.4byte	.LFE2-.LFB2
+ 264 0109 01       		.uleb128 0x1
+ 265 010a 9C       		.byte	0x9c
+ 266 010b 09       		.uleb128 0x9
+ 267 010c C4010000 		.4byte	.LASF19
+ 268 0110 01       		.byte	0x1
+ 269 0111 8D       		.byte	0x8d
+ 270 0112 6B000000 		.4byte	0x6b
+ 271 0116 00000000 		.4byte	.LFB3
+ 272 011a 10000000 		.4byte	.LFE3-.LFB3
+ 273 011e 01       		.uleb128 0x1
+ 274 011f 9C       		.byte	0x9c
+ 275 0120 00       		.byte	0
+ 276              		.section	.debug_abbrev,"",%progbits
+ 277              	.Ldebug_abbrev0:
+ 278 0000 01       		.uleb128 0x1
+ 279 0001 11       		.uleb128 0x11
+ 280 0002 01       		.byte	0x1
+ 281 0003 25       		.uleb128 0x25
+ 282 0004 0E       		.uleb128 0xe
+ 283 0005 13       		.uleb128 0x13
+ 284 0006 0B       		.uleb128 0xb
+ 285 0007 03       		.uleb128 0x3
+ 286 0008 0E       		.uleb128 0xe
+ 287 0009 1B       		.uleb128 0x1b
+ 288 000a 0E       		.uleb128 0xe
+ 289 000b 55       		.uleb128 0x55
+ 290 000c 17       		.uleb128 0x17
+ 291 000d 11       		.uleb128 0x11
+ 292 000e 01       		.uleb128 0x1
+ 293 000f 10       		.uleb128 0x10
+ 294 0010 17       		.uleb128 0x17
+ 295 0011 00       		.byte	0
+ 296 0012 00       		.byte	0
+ 297 0013 02       		.uleb128 0x2
+ 298 0014 24       		.uleb128 0x24
+ 299 0015 00       		.byte	0
+ 300 0016 0B       		.uleb128 0xb
+ 301 0017 0B       		.uleb128 0xb
+ 302 0018 3E       		.uleb128 0x3e
+ 303 0019 0B       		.uleb128 0xb
+ 304 001a 03       		.uleb128 0x3
+ 305 001b 0E       		.uleb128 0xe
+ 306 001c 00       		.byte	0
+ 307 001d 00       		.byte	0
+ 308 001e 03       		.uleb128 0x3
+ 309 001f 24       		.uleb128 0x24
+ 310 0020 00       		.byte	0
+ 311 0021 0B       		.uleb128 0xb
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 9
 
 
- 312 0023 3E       		.uleb128 0x3e
- 313 0024 0B       		.uleb128 0xb
- 314 0025 03       		.uleb128 0x3
- 315 0026 08       		.uleb128 0x8
- 316 0027 00       		.byte	0
- 317 0028 00       		.byte	0
- 318 0029 04       		.uleb128 0x4
- 319 002a 16       		.uleb128 0x16
- 320 002b 00       		.byte	0
- 321 002c 03       		.uleb128 0x3
- 322 002d 0E       		.uleb128 0xe
- 323 002e 3A       		.uleb128 0x3a
- 324 002f 0B       		.uleb128 0xb
- 325 0030 3B       		.uleb128 0x3b
- 326 0031 05       		.uleb128 0x5
- 327 0032 49       		.uleb128 0x49
- 328 0033 13       		.uleb128 0x13
- 329 0034 00       		.byte	0
- 330 0035 00       		.byte	0
- 331 0036 05       		.uleb128 0x5
- 332 0037 35       		.uleb128 0x35
- 333 0038 00       		.byte	0
- 334 0039 49       		.uleb128 0x49
- 335 003a 13       		.uleb128 0x13
- 336 003b 00       		.byte	0
- 337 003c 00       		.byte	0
- 338 003d 06       		.uleb128 0x6
- 339 003e 2E       		.uleb128 0x2e
- 340 003f 01       		.byte	0x1
- 341 0040 3F       		.uleb128 0x3f
- 342 0041 19       		.uleb128 0x19
- 343 0042 03       		.uleb128 0x3
- 344 0043 0E       		.uleb128 0xe
- 345 0044 3A       		.uleb128 0x3a
- 346 0045 0B       		.uleb128 0xb
- 347 0046 3B       		.uleb128 0x3b
- 348 0047 0B       		.uleb128 0xb
- 349 0048 27       		.uleb128 0x27
- 350 0049 19       		.uleb128 0x19
- 351 004a 11       		.uleb128 0x11
- 352 004b 01       		.uleb128 0x1
- 353 004c 12       		.uleb128 0x12
- 354 004d 06       		.uleb128 0x6
- 355 004e 40       		.uleb128 0x40
- 356 004f 18       		.uleb128 0x18
- 357 0050 9742     		.uleb128 0x2117
- 358 0052 19       		.uleb128 0x19
- 359 0053 01       		.uleb128 0x1
- 360 0054 13       		.uleb128 0x13
- 361 0055 00       		.byte	0
- 362 0056 00       		.byte	0
- 363 0057 07       		.uleb128 0x7
- 364 0058 05       		.uleb128 0x5
- 365 0059 00       		.byte	0
- 366 005a 03       		.uleb128 0x3
- 367 005b 0E       		.uleb128 0xe
- 368 005c 3A       		.uleb128 0x3a
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 10
+ 312 0022 0B       		.uleb128 0xb
+ 313 0023 3E       		.uleb128 0x3e
+ 314 0024 0B       		.uleb128 0xb
+ 315 0025 03       		.uleb128 0x3
+ 316 0026 08       		.uleb128 0x8
+ 317 0027 00       		.byte	0
+ 318 0028 00       		.byte	0
+ 319 0029 04       		.uleb128 0x4
+ 320 002a 16       		.uleb128 0x16
+ 321 002b 00       		.byte	0
+ 322 002c 03       		.uleb128 0x3
+ 323 002d 0E       		.uleb128 0xe
+ 324 002e 3A       		.uleb128 0x3a
+ 325 002f 0B       		.uleb128 0xb
+ 326 0030 3B       		.uleb128 0x3b
+ 327 0031 05       		.uleb128 0x5
+ 328 0032 49       		.uleb128 0x49
+ 329 0033 13       		.uleb128 0x13
+ 330 0034 00       		.byte	0
+ 331 0035 00       		.byte	0
+ 332 0036 05       		.uleb128 0x5
+ 333 0037 35       		.uleb128 0x35
+ 334 0038 00       		.byte	0
+ 335 0039 49       		.uleb128 0x49
+ 336 003a 13       		.uleb128 0x13
+ 337 003b 00       		.byte	0
+ 338 003c 00       		.byte	0
+ 339 003d 06       		.uleb128 0x6
+ 340 003e 2E       		.uleb128 0x2e
+ 341 003f 01       		.byte	0x1
+ 342 0040 3F       		.uleb128 0x3f
+ 343 0041 19       		.uleb128 0x19
+ 344 0042 03       		.uleb128 0x3
+ 345 0043 0E       		.uleb128 0xe
+ 346 0044 3A       		.uleb128 0x3a
+ 347 0045 0B       		.uleb128 0xb
+ 348 0046 3B       		.uleb128 0x3b
+ 349 0047 0B       		.uleb128 0xb
+ 350 0048 27       		.uleb128 0x27
+ 351 0049 19       		.uleb128 0x19
+ 352 004a 11       		.uleb128 0x11
+ 353 004b 01       		.uleb128 0x1
+ 354 004c 12       		.uleb128 0x12
+ 355 004d 06       		.uleb128 0x6
+ 356 004e 40       		.uleb128 0x40
+ 357 004f 18       		.uleb128 0x18
+ 358 0050 9742     		.uleb128 0x2117
+ 359 0052 19       		.uleb128 0x19
+ 360 0053 01       		.uleb128 0x1
+ 361 0054 13       		.uleb128 0x13
+ 362 0055 00       		.byte	0
+ 363 0056 00       		.byte	0
+ 364 0057 07       		.uleb128 0x7
+ 365 0058 05       		.uleb128 0x5
+ 366 0059 00       		.byte	0
+ 367 005a 03       		.uleb128 0x3
+ 368 005b 0E       		.uleb128 0xe
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 10
 
 
- 369 005d 0B       		.uleb128 0xb
- 370 005e 3B       		.uleb128 0x3b
- 371 005f 0B       		.uleb128 0xb
- 372 0060 49       		.uleb128 0x49
- 373 0061 13       		.uleb128 0x13
- 374 0062 02       		.uleb128 0x2
- 375 0063 17       		.uleb128 0x17
- 376 0064 00       		.byte	0
- 377 0065 00       		.byte	0
- 378 0066 08       		.uleb128 0x8
- 379 0067 34       		.uleb128 0x34
- 380 0068 00       		.byte	0
- 381 0069 03       		.uleb128 0x3
- 382 006a 0E       		.uleb128 0xe
- 383 006b 3A       		.uleb128 0x3a
- 384 006c 0B       		.uleb128 0xb
- 385 006d 3B       		.uleb128 0x3b
- 386 006e 0B       		.uleb128 0xb
- 387 006f 49       		.uleb128 0x49
- 388 0070 13       		.uleb128 0x13
- 389 0071 02       		.uleb128 0x2
- 390 0072 17       		.uleb128 0x17
- 391 0073 00       		.byte	0
- 392 0074 00       		.byte	0
- 393 0075 09       		.uleb128 0x9
- 394 0076 2E       		.uleb128 0x2e
- 395 0077 00       		.byte	0
- 396 0078 3F       		.uleb128 0x3f
- 397 0079 19       		.uleb128 0x19
- 398 007a 03       		.uleb128 0x3
- 399 007b 0E       		.uleb128 0xe
- 400 007c 3A       		.uleb128 0x3a
- 401 007d 0B       		.uleb128 0xb
- 402 007e 3B       		.uleb128 0x3b
- 403 007f 0B       		.uleb128 0xb
- 404 0080 27       		.uleb128 0x27
- 405 0081 19       		.uleb128 0x19
- 406 0082 49       		.uleb128 0x49
- 407 0083 13       		.uleb128 0x13
- 408 0084 11       		.uleb128 0x11
- 409 0085 01       		.uleb128 0x1
- 410 0086 12       		.uleb128 0x12
- 411 0087 06       		.uleb128 0x6
- 412 0088 40       		.uleb128 0x40
- 413 0089 18       		.uleb128 0x18
- 414 008a 9742     		.uleb128 0x2117
- 415 008c 19       		.uleb128 0x19
- 416 008d 00       		.byte	0
- 417 008e 00       		.byte	0
- 418 008f 00       		.byte	0
- 419              		.section	.debug_loc,"",%progbits
- 420              	.Ldebug_loc0:
- 421              	.LLST0:
- 422 0000 00000000 		.4byte	.LVL0
- 423 0004 06000000 		.4byte	.LVL1
- 424 0008 0100     		.2byte	0x1
- 425 000a 50       		.byte	0x50
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 11
+ 369 005c 3A       		.uleb128 0x3a
+ 370 005d 0B       		.uleb128 0xb
+ 371 005e 3B       		.uleb128 0x3b
+ 372 005f 0B       		.uleb128 0xb
+ 373 0060 49       		.uleb128 0x49
+ 374 0061 13       		.uleb128 0x13
+ 375 0062 02       		.uleb128 0x2
+ 376 0063 17       		.uleb128 0x17
+ 377 0064 00       		.byte	0
+ 378 0065 00       		.byte	0
+ 379 0066 08       		.uleb128 0x8
+ 380 0067 34       		.uleb128 0x34
+ 381 0068 00       		.byte	0
+ 382 0069 03       		.uleb128 0x3
+ 383 006a 0E       		.uleb128 0xe
+ 384 006b 3A       		.uleb128 0x3a
+ 385 006c 0B       		.uleb128 0xb
+ 386 006d 3B       		.uleb128 0x3b
+ 387 006e 0B       		.uleb128 0xb
+ 388 006f 49       		.uleb128 0x49
+ 389 0070 13       		.uleb128 0x13
+ 390 0071 02       		.uleb128 0x2
+ 391 0072 17       		.uleb128 0x17
+ 392 0073 00       		.byte	0
+ 393 0074 00       		.byte	0
+ 394 0075 09       		.uleb128 0x9
+ 395 0076 2E       		.uleb128 0x2e
+ 396 0077 00       		.byte	0
+ 397 0078 3F       		.uleb128 0x3f
+ 398 0079 19       		.uleb128 0x19
+ 399 007a 03       		.uleb128 0x3
+ 400 007b 0E       		.uleb128 0xe
+ 401 007c 3A       		.uleb128 0x3a
+ 402 007d 0B       		.uleb128 0xb
+ 403 007e 3B       		.uleb128 0x3b
+ 404 007f 0B       		.uleb128 0xb
+ 405 0080 27       		.uleb128 0x27
+ 406 0081 19       		.uleb128 0x19
+ 407 0082 49       		.uleb128 0x49
+ 408 0083 13       		.uleb128 0x13
+ 409 0084 11       		.uleb128 0x11
+ 410 0085 01       		.uleb128 0x1
+ 411 0086 12       		.uleb128 0x12
+ 412 0087 06       		.uleb128 0x6
+ 413 0088 40       		.uleb128 0x40
+ 414 0089 18       		.uleb128 0x18
+ 415 008a 9742     		.uleb128 0x2117
+ 416 008c 19       		.uleb128 0x19
+ 417 008d 00       		.byte	0
+ 418 008e 00       		.byte	0
+ 419 008f 00       		.byte	0
+ 420              		.section	.debug_loc,"",%progbits
+ 421              	.Ldebug_loc0:
+ 422              	.LLST0:
+ 423 0000 00000000 		.4byte	.LVL0
+ 424 0004 04000000 		.4byte	.LVL1
+ 425 0008 0100     		.2byte	0x1
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 11
 
 
- 426 000b 06000000 		.4byte	.LVL1
- 427 000f 18000000 		.4byte	.LFE0
- 428 0013 0400     		.2byte	0x4
- 429 0015 F3       		.byte	0xf3
- 430 0016 01       		.uleb128 0x1
- 431 0017 50       		.byte	0x50
- 432 0018 9F       		.byte	0x9f
- 433 0019 00000000 		.4byte	0
- 434 001d 00000000 		.4byte	0
- 435              	.LLST1:
- 436 0021 08000000 		.4byte	.LVL2
- 437 0025 0C000000 		.4byte	.LVL3
- 438 0029 0600     		.2byte	0x6
- 439 002b 73       		.byte	0x73
- 440 002c 00       		.sleb128 0
- 441 002d 09       		.byte	0x9
- 442 002e FE       		.byte	0xfe
- 443 002f 1A       		.byte	0x1a
- 444 0030 9F       		.byte	0x9f
- 445 0031 00000000 		.4byte	0
- 446 0035 00000000 		.4byte	0
- 447              	.LLST2:
- 448 0039 00000000 		.4byte	.LVL4
- 449 003d 06000000 		.4byte	.LVL5
- 450 0041 0100     		.2byte	0x1
- 451 0043 50       		.byte	0x50
- 452 0044 06000000 		.4byte	.LVL5
- 453 0048 18000000 		.4byte	.LFE1
- 454 004c 0400     		.2byte	0x4
- 455 004e F3       		.byte	0xf3
- 456 004f 01       		.uleb128 0x1
- 457 0050 50       		.byte	0x50
- 458 0051 9F       		.byte	0x9f
- 459 0052 00000000 		.4byte	0
- 460 0056 00000000 		.4byte	0
- 461              		.section	.debug_aranges,"",%progbits
- 462 0000 34000000 		.4byte	0x34
- 463 0004 0200     		.2byte	0x2
- 464 0006 00000000 		.4byte	.Ldebug_info0
- 465 000a 04       		.byte	0x4
- 466 000b 00       		.byte	0
- 467 000c 0000     		.2byte	0
- 468 000e 0000     		.2byte	0
- 469 0010 00000000 		.4byte	.LFB0
- 470 0014 18000000 		.4byte	.LFE0-.LFB0
- 471 0018 00000000 		.4byte	.LFB1
- 472 001c 18000000 		.4byte	.LFE1-.LFB1
- 473 0020 00000000 		.4byte	.LFB2
- 474 0024 10000000 		.4byte	.LFE2-.LFB2
- 475 0028 00000000 		.4byte	.LFB3
- 476 002c 10000000 		.4byte	.LFE3-.LFB3
- 477 0030 00000000 		.4byte	0
- 478 0034 00000000 		.4byte	0
- 479              		.section	.debug_ranges,"",%progbits
- 480              	.Ldebug_ranges0:
- 481 0000 00000000 		.4byte	.LFB0
- 482 0004 18000000 		.4byte	.LFE0
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 12
+ 426 000a 50       		.byte	0x50
+ 427 000b 04000000 		.4byte	.LVL1
+ 428 000f 18000000 		.4byte	.LFE0
+ 429 0013 0400     		.2byte	0x4
+ 430 0015 F3       		.byte	0xf3
+ 431 0016 01       		.uleb128 0x1
+ 432 0017 50       		.byte	0x50
+ 433 0018 9F       		.byte	0x9f
+ 434 0019 00000000 		.4byte	0
+ 435 001d 00000000 		.4byte	0
+ 436              	.LLST1:
+ 437 0021 06000000 		.4byte	.LVL2
+ 438 0025 0E000000 		.4byte	.LVL3
+ 439 0029 0600     		.2byte	0x6
+ 440 002b 73       		.byte	0x73
+ 441 002c 00       		.sleb128 0
+ 442 002d 09       		.byte	0x9
+ 443 002e DF       		.byte	0xdf
+ 444 002f 1A       		.byte	0x1a
+ 445 0030 9F       		.byte	0x9f
+ 446 0031 00000000 		.4byte	0
+ 447 0035 00000000 		.4byte	0
+ 448              	.LLST2:
+ 449 0039 00000000 		.4byte	.LVL4
+ 450 003d 06000000 		.4byte	.LVL5
+ 451 0041 0100     		.2byte	0x1
+ 452 0043 50       		.byte	0x50
+ 453 0044 06000000 		.4byte	.LVL5
+ 454 0048 18000000 		.4byte	.LFE1
+ 455 004c 0400     		.2byte	0x4
+ 456 004e F3       		.byte	0xf3
+ 457 004f 01       		.uleb128 0x1
+ 458 0050 50       		.byte	0x50
+ 459 0051 9F       		.byte	0x9f
+ 460 0052 00000000 		.4byte	0
+ 461 0056 00000000 		.4byte	0
+ 462              		.section	.debug_aranges,"",%progbits
+ 463 0000 34000000 		.4byte	0x34
+ 464 0004 0200     		.2byte	0x2
+ 465 0006 00000000 		.4byte	.Ldebug_info0
+ 466 000a 04       		.byte	0x4
+ 467 000b 00       		.byte	0
+ 468 000c 0000     		.2byte	0
+ 469 000e 0000     		.2byte	0
+ 470 0010 00000000 		.4byte	.LFB0
+ 471 0014 18000000 		.4byte	.LFE0-.LFB0
+ 472 0018 00000000 		.4byte	.LFB1
+ 473 001c 18000000 		.4byte	.LFE1-.LFB1
+ 474 0020 00000000 		.4byte	.LFB2
+ 475 0024 10000000 		.4byte	.LFE2-.LFB2
+ 476 0028 00000000 		.4byte	.LFB3
+ 477 002c 10000000 		.4byte	.LFE3-.LFB3
+ 478 0030 00000000 		.4byte	0
+ 479 0034 00000000 		.4byte	0
+ 480              		.section	.debug_ranges,"",%progbits
+ 481              	.Ldebug_ranges0:
+ 482 0000 00000000 		.4byte	.LFB0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 12
 
 
- 483 0008 00000000 		.4byte	.LFB1
- 484 000c 18000000 		.4byte	.LFE1
- 485 0010 00000000 		.4byte	.LFB2
- 486 0014 10000000 		.4byte	.LFE2
- 487 0018 00000000 		.4byte	.LFB3
- 488 001c 10000000 		.4byte	.LFE3
- 489 0020 00000000 		.4byte	0
- 490 0024 00000000 		.4byte	0
- 491              		.section	.debug_line,"",%progbits
- 492              	.Ldebug_line0:
- 493 0000 90000000 		.section	.debug_str,"MS",%progbits,1
- 493      02004200 
- 493      00000201 
- 493      FB0E0D00 
- 493      01010101 
- 494              	.LASF16:
- 495 0000 76616C75 		.ascii	"value\000"
- 495      6500
- 496              	.LASF23:
- 497 0006 73746174 		.ascii	"staticBits\000"
- 497      69634269 
- 497      747300
- 498              	.LASF9:
- 499 0011 666C6F61 		.ascii	"float\000"
- 499      7400
- 500              	.LASF21:
- 501 0017 47656E65 		.ascii	"Generated_Source\\PSoC5\\Pin_1.c\000"
- 501      72617465 
- 501      645F536F 
- 501      75726365 
- 501      5C50536F 
- 502              	.LASF7:
- 503 0036 6C6F6E67 		.ascii	"long long unsigned int\000"
- 503      206C6F6E 
- 503      6720756E 
- 503      7369676E 
- 503      65642069 
- 504              	.LASF1:
- 505 004d 756E7369 		.ascii	"unsigned char\000"
- 505      676E6564 
- 505      20636861 
- 505      7200
- 506              	.LASF13:
- 507 005b 72656738 		.ascii	"reg8\000"
- 507      00
- 508              	.LASF5:
- 509 0060 6C6F6E67 		.ascii	"long unsigned int\000"
- 509      20756E73 
- 509      69676E65 
- 509      6420696E 
- 509      7400
- 510              	.LASF3:
- 511 0072 73686F72 		.ascii	"short unsigned int\000"
- 511      7420756E 
- 511      7369676E 
- 511      65642069 
- 511      6E7400
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 13
+ 483 0004 18000000 		.4byte	.LFE0
+ 484 0008 00000000 		.4byte	.LFB1
+ 485 000c 18000000 		.4byte	.LFE1
+ 486 0010 00000000 		.4byte	.LFB2
+ 487 0014 10000000 		.4byte	.LFE2
+ 488 0018 00000000 		.4byte	.LFB3
+ 489 001c 10000000 		.4byte	.LFE3
+ 490 0020 00000000 		.4byte	0
+ 491 0024 00000000 		.4byte	0
+ 492              		.section	.debug_line,"",%progbits
+ 493              	.Ldebug_line0:
+ 494 0000 90000000 		.section	.debug_str,"MS",%progbits,1
+ 494      02004200 
+ 494      00000201 
+ 494      FB0E0D00 
+ 494      01010101 
+ 495              	.LASF16:
+ 496 0000 76616C75 		.ascii	"value\000"
+ 496      6500
+ 497              	.LASF23:
+ 498 0006 73746174 		.ascii	"staticBits\000"
+ 498      69634269 
+ 498      747300
+ 499              	.LASF9:
+ 500 0011 666C6F61 		.ascii	"float\000"
+ 500      7400
+ 501              	.LASF21:
+ 502 0017 47656E65 		.ascii	"Generated_Source\\PSoC5\\Pin_1.c\000"
+ 502      72617465 
+ 502      645F536F 
+ 502      75726365 
+ 502      5C50536F 
+ 503              	.LASF7:
+ 504 0036 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 504      206C6F6E 
+ 504      6720756E 
+ 504      7369676E 
+ 504      65642069 
+ 505              	.LASF1:
+ 506 004d 756E7369 		.ascii	"unsigned char\000"
+ 506      676E6564 
+ 506      20636861 
+ 506      7200
+ 507              	.LASF13:
+ 508 005b 72656738 		.ascii	"reg8\000"
+ 508      00
+ 509              	.LASF5:
+ 510 0060 6C6F6E67 		.ascii	"long unsigned int\000"
+ 510      20756E73 
+ 510      69676E65 
+ 510      6420696E 
+ 510      7400
+ 511              	.LASF3:
+ 512 0072 73686F72 		.ascii	"short unsigned int\000"
+ 512      7420756E 
+ 512      7369676E 
+ 512      65642069 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 13
 
 
- 512              	.LASF10:
- 513 0085 646F7562 		.ascii	"double\000"
- 513      6C6500
- 514              	.LASF15:
- 515 008c 50696E5F 		.ascii	"Pin_1_SetDriveMode\000"
- 515      315F5365 
- 515      74447269 
- 515      76654D6F 
- 515      646500
- 516              	.LASF8:
- 517 009f 756E7369 		.ascii	"unsigned int\000"
- 517      676E6564 
- 517      20696E74 
- 517      00
- 518              	.LASF20:
- 519 00ac 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
- 519      43313120 
- 519      352E342E 
- 519      31203230 
- 519      31363036 
- 520 00df 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
- 520      20726576 
- 520      6973696F 
- 520      6E203233 
- 520      37373135 
- 521 0112 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
- 521      66756E63 
- 521      74696F6E 
- 521      2D736563 
- 521      74696F6E 
- 522              	.LASF17:
- 523 013a 6D6F6465 		.ascii	"mode\000"
- 523      00
- 524              	.LASF18:
- 525 013f 50696E5F 		.ascii	"Pin_1_Read\000"
- 525      315F5265 
- 525      616400
- 526              	.LASF6:
- 527 014a 6C6F6E67 		.ascii	"long long int\000"
- 527      206C6F6E 
- 527      6720696E 
- 527      7400
- 528              	.LASF11:
- 529 0158 63686172 		.ascii	"char\000"
- 529      00
- 530              	.LASF2:
- 531 015d 73686F72 		.ascii	"short int\000"
- 531      7420696E 
+ 512      6E7400
+ 513              	.LASF10:
+ 514 0085 646F7562 		.ascii	"double\000"
+ 514      6C6500
+ 515              	.LASF15:
+ 516 008c 50696E5F 		.ascii	"Pin_1_SetDriveMode\000"
+ 516      315F5365 
+ 516      74447269 
+ 516      76654D6F 
+ 516      646500
+ 517              	.LASF8:
+ 518 009f 756E7369 		.ascii	"unsigned int\000"
+ 518      676E6564 
+ 518      20696E74 
+ 518      00
+ 519              	.LASF20:
+ 520 00ac 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 520      43313120 
+ 520      352E342E 
+ 520      31203230 
+ 520      31363036 
+ 521 00df 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 521      20726576 
+ 521      6973696F 
+ 521      6E203233 
+ 521      37373135 
+ 522 0112 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 522      66756E63 
+ 522      74696F6E 
+ 522      2D736563 
+ 522      74696F6E 
+ 523              	.LASF17:
+ 524 013a 6D6F6465 		.ascii	"mode\000"
+ 524      00
+ 525              	.LASF22:
+ 526 013f 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 526      5C4C6162 
+ 526      20646520 
+ 526      436F6E74 
+ 526      726F6C5C 
+ 527 016f 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 527      30315C50 
+ 527      49442043 
+ 527      6F6E7472 
+ 527      6F6C6572 
+ 528              	.LASF18:
+ 529 0196 50696E5F 		.ascii	"Pin_1_Read\000"
+ 529      315F5265 
+ 529      616400
+ 530              	.LASF6:
+ 531 01a1 6C6F6E67 		.ascii	"long long int\000"
+ 531      206C6F6E 
+ 531      6720696E 
  531      7400
- 532              	.LASF12:
- 533 0167 75696E74 		.ascii	"uint8\000"
- 533      3800
- 534              	.LASF19:
- 535 016d 50696E5F 		.ascii	"Pin_1_ReadDataReg\000"
- 535      315F5265 
- 535      61644461 
- 535      74615265 
-ARM GAS  C:\Users\esancho\AppData\Local\Temp\cc53paka.s 			page 14
+ 532              	.LASF11:
+ 533 01af 63686172 		.ascii	"char\000"
+ 533      00
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccNV1tf8.s 			page 14
 
 
- 535      6700
- 536              	.LASF4:
- 537 017f 6C6F6E67 		.ascii	"long int\000"
- 537      20696E74 
- 537      00
- 538              	.LASF0:
- 539 0188 7369676E 		.ascii	"signed char\000"
- 539      65642063 
- 539      68617200 
- 540              	.LASF14:
- 541 0194 50696E5F 		.ascii	"Pin_1_Write\000"
- 541      315F5772 
- 541      69746500 
- 542              	.LASF22:
- 543 01a0 433A5C55 		.ascii	"C:\\Users\\esancho\\Downloads\\PID Controler\\Contr"
- 543      73657273 
- 543      5C657361 
- 543      6E63686F 
- 543      5C446F77 
- 544 01ce 6F6C6164 		.ascii	"olador.cydsn\000"
- 544      6F722E63 
- 544      7964736E 
- 544      00
- 545              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
+ 534              	.LASF2:
+ 535 01b4 73686F72 		.ascii	"short int\000"
+ 535      7420696E 
+ 535      7400
+ 536              	.LASF12:
+ 537 01be 75696E74 		.ascii	"uint8\000"
+ 537      3800
+ 538              	.LASF19:
+ 539 01c4 50696E5F 		.ascii	"Pin_1_ReadDataReg\000"
+ 539      315F5265 
+ 539      61644461 
+ 539      74615265 
+ 539      6700
+ 540              	.LASF4:
+ 541 01d6 6C6F6E67 		.ascii	"long int\000"
+ 541      20696E74 
+ 541      00
+ 542              	.LASF0:
+ 543 01df 7369676E 		.ascii	"signed char\000"
+ 543      65642063 
+ 543      68617200 
+ 544              	.LASF14:
+ 545 01eb 50696E5F 		.ascii	"Pin_1_Write\000"
+ 545      315F5772 
+ 545      69746500 
+ 546              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran

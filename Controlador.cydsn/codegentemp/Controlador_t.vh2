@@ -1,5 +1,5 @@
 -- Project:   E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj
--- Generated: 10/10/2019 22:48:43
+-- Generated: 10/11/2019 03:55:42
 -- PSoC Creator  4.2
 
 ENTITY Controlador IS
@@ -42,16 +42,16 @@ ARCHITECTURE __DEFAULT__ OF Controlador IS
     ATTRIBUTE placement_force OF Net_133 : SIGNAL IS "U(0,4,A)2";
     SIGNAL Net_139 : bit;
     ATTRIBUTE placement_force OF Net_139 : SIGNAL IS "U(1,3,A)0";
-    SIGNAL Net_148 : bit;
-    ATTRIBUTE udbclken_assigned OF Net_148 : SIGNAL IS "True";
-    ATTRIBUTE global_signal OF Net_148 : SIGNAL IS true;
-    SIGNAL Net_148_local : bit;
     SIGNAL Net_155 : bit;
     SIGNAL Net_490 : bit;
     SIGNAL Net_511 : bit;
     ATTRIBUTE placement_force OF Net_511 : SIGNAL IS "U(1,3,A)3";
     SIGNAL Net_520 : bit;
     ATTRIBUTE placement_force OF Net_520 : SIGNAL IS "U(0,4,A)3";
+    SIGNAL Net_655 : bit;
+    ATTRIBUTE udbclken_assigned OF Net_655 : SIGNAL IS "True";
+    ATTRIBUTE global_signal OF Net_655 : SIGNAL IS true;
+    SIGNAL Net_655_local : bit;
     SIGNAL PinServoX(0)__PA : bit;
     SIGNAL PinServoY(0)__PA : bit;
     SIGNAL \\\LCD:LCDPort(0)\\__PA\ : bit;
@@ -601,8 +601,8 @@ BEGIN
             aclk_0 => \Touch:ADC:Net_488_local\,
             clk_a_dig_glb_0 => \Touch:ADC:Net_488_adig\,
             clk_a_dig_0 => \Touch:ADC:Net_488_adig_local\,
-            dclk_glb_1 => Net_148,
-            dclk_1 => Net_148_local,
+            dclk_glb_1 => Net_655,
+            dclk_1 => Net_655_local,
             aclk_glb_ff_0 => \ClockBlock.aclk_glb_ff_0__sig\);
 
     PinServoX:logicalport
@@ -1389,7 +1389,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             control_7 => \PWM_X:PWMUDB:control_7\,
             control_6 => \PWM_X:PWMUDB:control_6\,
             control_5 => \PWM_X:PWMUDB:control_5\,
@@ -1410,7 +1410,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             reset => Net_490,
-            clock => Net_148,
+            clock => Net_655,
             status_6 => open,
             status_5 => open,
             status_4 => open,
@@ -1447,7 +1447,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             cs_addr_2 => \PWM_X:PWMUDB:tc_i\,
             cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\,
             cs_addr_0 => Net_490,
@@ -1494,7 +1494,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             cs_addr_2 => \PWM_X:PWMUDB:tc_i\,
             cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\,
             cs_addr_0 => Net_490,
@@ -1527,7 +1527,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             control_7 => \PWM_Y:PWMUDB:control_7\,
             control_6 => \PWM_Y:PWMUDB:control_6\,
             control_5 => \PWM_Y:PWMUDB:control_5\,
@@ -1548,7 +1548,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             reset => Net_155,
-            clock => Net_148,
+            clock => Net_655,
             status_6 => open,
             status_5 => open,
             status_4 => open,
@@ -1585,7 +1585,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             cs_addr_2 => \PWM_Y:PWMUDB:tc_i\,
             cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\,
             cs_addr_0 => Net_155,
@@ -1632,7 +1632,7 @@ BEGIN
             clk_inv => '0',
             clken_mode => 1)
         PORT MAP(
-            clock => Net_148,
+            clock => Net_655,
             cs_addr_2 => \PWM_Y:PWMUDB:tc_i\,
             cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\,
             cs_addr_0 => Net_155,
@@ -1744,7 +1744,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_X:PWMUDB:runmode_enable\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_490,
             main_0 => \PWM_X:PWMUDB:control_7\);
 
@@ -1756,7 +1756,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \PWM_X:PWMUDB:prevCompare1\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_X:PWMUDB:cmp1_less\);
 
     \PWM_X:PWMUDB:prevCompare2\:macrocell
@@ -1767,7 +1767,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \PWM_X:PWMUDB:prevCompare2\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_X:PWMUDB:cmp2_eq\);
 
     \PWM_X:PWMUDB:status_0\:macrocell
@@ -1779,7 +1779,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_X:PWMUDB:status_0\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_490,
             main_0 => \PWM_X:PWMUDB:prevCompare1\,
             main_1 => \PWM_X:PWMUDB:cmp1_less\);
@@ -1793,7 +1793,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_X:PWMUDB:status_1\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_490,
             main_0 => \PWM_X:PWMUDB:prevCompare2\,
             main_1 => \PWM_X:PWMUDB:cmp2_eq\);
@@ -1806,7 +1806,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_139,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_X:PWMUDB:runmode_enable\,
             main_1 => \PWM_X:PWMUDB:cmp1_less\);
 
@@ -1818,7 +1818,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_511,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_X:PWMUDB:runmode_enable\,
             main_1 => \PWM_X:PWMUDB:cmp2_eq\);
 
@@ -1831,7 +1831,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_Y:PWMUDB:runmode_enable\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_155,
             main_0 => \PWM_Y:PWMUDB:control_7\);
 
@@ -1843,7 +1843,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \PWM_Y:PWMUDB:prevCompare1\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_Y:PWMUDB:cmp1_less\);
 
     \PWM_Y:PWMUDB:prevCompare2\:macrocell
@@ -1854,7 +1854,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => \PWM_Y:PWMUDB:prevCompare2\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_Y:PWMUDB:cmp2_eq\);
 
     \PWM_Y:PWMUDB:status_0\:macrocell
@@ -1866,7 +1866,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_Y:PWMUDB:status_0\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_155,
             main_0 => \PWM_Y:PWMUDB:prevCompare1\,
             main_1 => \PWM_Y:PWMUDB:cmp1_less\);
@@ -1880,7 +1880,7 @@ BEGIN
             reset_inv => '0')
         PORT MAP(
             q => \PWM_Y:PWMUDB:status_1\,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             ar_0 => Net_155,
             main_0 => \PWM_Y:PWMUDB:prevCompare2\,
             main_1 => \PWM_Y:PWMUDB:cmp2_eq\);
@@ -1893,7 +1893,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_133,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_Y:PWMUDB:runmode_enable\,
             main_1 => \PWM_Y:PWMUDB:cmp1_less\);
 
@@ -1905,7 +1905,7 @@ BEGIN
             clken_mode => 1)
         PORT MAP(
             q => Net_520,
-            clock_0 => Net_148,
+            clock_0 => Net_655,
             main_0 => \PWM_Y:PWMUDB:runmode_enable\,
             main_1 => \PWM_Y:PWMUDB:cmp2_eq\);
 

@@ -1,13 +1,13 @@
-Loading plugins phase: Elapsed time ==> 0s.172ms
+Loading plugins phase: Elapsed time ==> 0s.150ms
 <CYPRESSTAG name="CyDsfit arguments...">
 cydsfit arguments: -.fdsnotice -.fdswarpdepfile=warp_dependencies.txt -.fdselabdepfile=elab_dependencies.txt -.fdsbldfile=generated_files.txt -.fdsreffile=referenced_files.txt -p E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj -d CY8C5868AXI-LP035 -s E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Generated_Source\PSoC5 -- -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE
 </CYPRESSTAG>
 <CYPRESSTAG name="Design elaboration results...">
 </CYPRESSTAG>
-Elaboration phase: Elapsed time ==> 1s.731ms
+Elaboration phase: Elapsed time ==> 1s.697ms
 <CYPRESSTAG name="HDL generation results...">
 </CYPRESSTAG>
-HDL generation phase: Elapsed time ==> 0s.079ms
+HDL generation phase: Elapsed time ==> 0s.075ms
 <CYPRESSTAG name="Synthesis results...">
 
      | | | | | | |
@@ -41,7 +41,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\U\Lab de Co
 ======================================================================
 
 vlogfe V6.3 IR 41:  Verilog parser
-Thu Oct 10 22:48:39 2019
+Fri Oct 11 03:55:37 2019
 
 
 ======================================================================
@@ -51,7 +51,7 @@ Options  :    -yv2 -q10 Controlador.v
 ======================================================================
 
 vpp V6.3 IR 41:  Verilog Pre-Processor
-Thu Oct 10 22:48:39 2019
+Fri Oct 11 03:55:37 2019
 
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\psoc\content\CyComponentLibrary\CyComponentLibrary.cylib\B_PWM_v3_30\B_PWM_v3_30.v'
 Flattening file 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.v'
@@ -99,7 +99,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\U\Lab de Co
 ======================================================================
 
 tovif V6.3 IR 41:  High-level synthesis
-Thu Oct 10 22:48:39 2019
+Fri Oct 11 03:55:37 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -138,7 +138,7 @@ Options  :    -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\U\Lab de Co
 ======================================================================
 
 topld V6.3 IR 41:  Synthesis and optimization
-Thu Oct 10 22:48:39 2019
+Fri Oct 11 03:55:38 2019
 
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\std.vhd'.
 Linking 'C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\lib\common\cypress.vhd'.
@@ -1073,14 +1073,14 @@ CYPRESS_DIR    : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\wa
 Warp Program   : C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\warp\bin\warp.exe
 Warp Arguments : -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya "-.fftprj=E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj" -dcpsoc3 Controlador.v -verilog
 </CYPRESSTAG>
-Warp synthesis phase: Elapsed time ==> 1s.131ms
+Warp synthesis phase: Elapsed time ==> 1s.187ms
 <CYPRESSTAG name="Fitter results...">
 <CYPRESSTAG name="Fitter startup details...">
-cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Thursday, 10 October 2019 22:48:40
+cyp3fit: V4.2.0.641, Family: PSoC3, Started at: Friday, 11 October 2019 03:55:38
 Options: -yv2 -q10 -ygs -o2 -v3 -.fftcfgtype=LE -ya -.fftprj=E:\U\Lab de Control\PID Controler-20191011T021919Z-001\PID Controler\Controlador.cydsn\Controlador.cyprj -d CY8C5868AXI-LP035 Controlador.v -verilog
 </CYPRESSTAG>
 <CYPRESSTAG name="Design parsing">
-Design parsing phase: Elapsed time ==> 0s.017ms
+Design parsing phase: Elapsed time ==> 0s.018ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Tech Mapping">
 <CYPRESSTAG name="Initial Mapping" icon="FILE_RPT_TECHM">
@@ -1101,7 +1101,7 @@ Design parsing phase: Elapsed time ==> 0s.017ms
 <CYPRESSTAG name="Global Clock Selection" icon="FILE_RPT_TECHM">
     Digital Clock 0: Automatic-assigning  clock 'Touch_ADC_Ext_CP_Clk'. Fanout=1, Signal=\Touch:ADC:Net_93\
     Analog  Clock 0: Automatic-assigning  clock 'Touch_ADC_theACLK'. Fanout=1, Signal=\Touch:ADC:Net_488\
-    Digital Clock 1: Automatic-assigning  clock 'ClockServoControl'. Fanout=2, Signal=Net_148
+    Digital Clock 1: Automatic-assigning  clock 'ClockServoControl'. Fanout=2, Signal=Net_655
 </CYPRESSTAG>
 
 Removing unused cells resulting from optimization
@@ -1689,7 +1689,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1702,7 +1702,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1714,7 +1714,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1726,7 +1726,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1739,7 +1739,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1752,7 +1752,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1764,7 +1764,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1776,7 +1776,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1789,7 +1789,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1801,7 +1801,7 @@ Design Equations
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1813,7 +1813,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1826,7 +1826,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -1839,7 +1839,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1851,7 +1851,7 @@ Design Equations
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -1867,7 +1867,7 @@ Design Equations
 
     datapathcell: Name =\PWM_X:PWMUDB:sP16:pwmdp:u0\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             cs_addr_2 => \PWM_X:PWMUDB:tc_i\ ,
             cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\ ,
             cs_addr_0 => Net_490 ,
@@ -1902,7 +1902,7 @@ Design Equations
 
     datapathcell: Name =\PWM_X:PWMUDB:sP16:pwmdp:u1\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             cs_addr_2 => \PWM_X:PWMUDB:tc_i\ ,
             cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\ ,
             cs_addr_0 => Net_490 ,
@@ -1941,7 +1941,7 @@ Design Equations
 
     datapathcell: Name =\PWM_Y:PWMUDB:sP16:pwmdp:u0\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             cs_addr_2 => \PWM_Y:PWMUDB:tc_i\ ,
             cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\ ,
             cs_addr_0 => Net_155 ,
@@ -1976,7 +1976,7 @@ Design Equations
 
     datapathcell: Name =\PWM_Y:PWMUDB:sP16:pwmdp:u1\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             cs_addr_2 => \PWM_Y:PWMUDB:tc_i\ ,
             cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\ ,
             cs_addr_0 => Net_155 ,
@@ -2024,7 +2024,7 @@ Design Equations
     statusicell: Name =\PWM_X:PWMUDB:genblk8:stsreg\
         PORT MAP (
             reset => Net_490 ,
-            clock => Net_148 ,
+            clock => Net_655 ,
             status_3 => \PWM_X:PWMUDB:status_3\ ,
             status_2 => \PWM_X:PWMUDB:status_2\ ,
             status_1 => \PWM_X:PWMUDB:status_1\ ,
@@ -2041,7 +2041,7 @@ Design Equations
     statusicell: Name =\PWM_Y:PWMUDB:genblk8:stsreg\
         PORT MAP (
             reset => Net_155 ,
-            clock => Net_148 ,
+            clock => Net_655 ,
             status_3 => \PWM_Y:PWMUDB:status_3\ ,
             status_2 => \PWM_Y:PWMUDB:status_2\ ,
             status_1 => \PWM_Y:PWMUDB:status_1\ ,
@@ -2065,7 +2065,7 @@ Design Equations
 
     controlcell: Name =\PWM_X:PWMUDB:genblk1:ctrlreg\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             control_7 => \PWM_X:PWMUDB:control_7\ ,
             control_6 => \PWM_X:PWMUDB:control_6\ ,
             control_5 => \PWM_X:PWMUDB:control_5\ ,
@@ -2087,7 +2087,7 @@ Design Equations
 
     controlcell: Name =\PWM_Y:PWMUDB:genblk1:ctrlreg\
         PORT MAP (
-            clock => Net_148 ,
+            clock => Net_655 ,
             control_7 => \PWM_Y:PWMUDB:control_7\ ,
             control_6 => \PWM_Y:PWMUDB:control_6\ ,
             control_5 => \PWM_Y:PWMUDB:control_5\ ,
@@ -2203,8 +2203,8 @@ Analog (SC/CT) Blocks         :    0 :    4 :    4 :  0.00 %
 DAC                           :      :      :      :        
   VIDAC                       :    0 :    4 :    4 :  0.00 %
 </CYPRESSTAG>
-Technology Mapping: Elapsed time ==> 0s.099ms
-Tech Mapping phase: Elapsed time ==> 0s.174ms
+Technology Mapping: Elapsed time ==> 0s.088ms
+Tech Mapping phase: Elapsed time ==> 0s.175ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Placement">
 Info: apr.M0002: Analog signal "\Touch:ADC:Net_35\" is connected to one terminal only. (App=cydsfit)
@@ -2245,7 +2245,7 @@ IO_3@[IOP=(4)][IoId=(3)] : \Touch:yp(0)\ (fixed)
 DSM[0]@[FFB(DSM,0)] : \Touch:ADC:DSM\
 Vref[6]@[FFB(Vref,6)] : \Touch:ADC:vRef_2\
 
-Analog Placement phase: Elapsed time ==> 0s.045ms
+Analog Placement phase: Elapsed time ==> 0s.033ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Analog Routing">
 Analog Routing phase: Elapsed time ==> 0s.002ms
@@ -2374,7 +2374,7 @@ Dump of CyP35AnalogRoutingResultsDB
 IsVddaHalfUsedForComp = False
 IsVddaHalfUsedForSar0 = False
 IsVddaHalfUsedForSar1 = False
-Analog Code Generation phase: Elapsed time ==> 0s.278ms
+Analog Code Generation phase: Elapsed time ==> 0s.286ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Placement">
 <CYPRESSTAG name="Detailed placement messages">
@@ -2452,7 +2452,7 @@ UDB [UDB=(0,2)] is empty.
 UDB [UDB=(0,3)] contents:
 datapathcell: Name =\PWM_X:PWMUDB:sP16:pwmdp:u0\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         cs_addr_2 => \PWM_X:PWMUDB:tc_i\ ,
         cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\ ,
         cs_addr_0 => Net_490 ,
@@ -2492,7 +2492,7 @@ LAB@[UDB=(0,4)][LB=0] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2521,7 +2521,7 @@ LAB@[UDB=(0,4)][LB=0] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2536,7 +2536,7 @@ LAB@[UDB=(0,4)][LB=0] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2554,7 +2554,7 @@ LAB@[UDB=(0,4)][LB=1] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2569,7 +2569,7 @@ LAB@[UDB=(0,4)][LB=1] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2585,7 +2585,7 @@ LAB@[UDB=(0,4)][LB=1] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2600,7 +2600,7 @@ LAB@[UDB=(0,4)][LB=1] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_155)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2615,7 +2615,7 @@ LAB@[UDB=(0,4)][LB=1] #macrocells=4, #inputs=4, #pterms=4
 
 datapathcell: Name =\PWM_Y:PWMUDB:sP16:pwmdp:u1\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         cs_addr_2 => \PWM_Y:PWMUDB:tc_i\ ,
         cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\ ,
         cs_addr_0 => Net_155 ,
@@ -2655,7 +2655,7 @@ datapathcell: Name =\PWM_Y:PWMUDB:sP16:pwmdp:u1\
 statusicell: Name =\PWM_Y:PWMUDB:genblk8:stsreg\
     PORT MAP (
         reset => Net_155 ,
-        clock => Net_148 ,
+        clock => Net_655 ,
         status_3 => \PWM_Y:PWMUDB:status_3\ ,
         status_2 => \PWM_Y:PWMUDB:status_2\ ,
         status_1 => \PWM_Y:PWMUDB:status_1\ ,
@@ -2671,7 +2671,7 @@ statusicell: Name =\PWM_Y:PWMUDB:genblk8:stsreg\
 
 controlcell: Name =\PWM_Y:PWMUDB:genblk1:ctrlreg\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         control_7 => \PWM_Y:PWMUDB:control_7\ ,
         control_6 => \PWM_Y:PWMUDB:control_6\ ,
         control_5 => \PWM_Y:PWMUDB:control_5\ ,
@@ -2702,7 +2702,7 @@ LAB@[UDB=(1,3)][LB=0] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2717,7 +2717,7 @@ LAB@[UDB=(1,3)][LB=0] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2732,7 +2732,7 @@ LAB@[UDB=(1,3)][LB=0] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2748,7 +2748,7 @@ LAB@[UDB=(1,3)][LB=0] #macrocells=4, #inputs=4, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2766,7 +2766,7 @@ LAB@[UDB=(1,3)][LB=1] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Clock Enable: True
         Main Equation            : 1 pterm
         (
@@ -2781,7 +2781,7 @@ LAB@[UDB=(1,3)][LB=1] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 2
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2810,7 +2810,7 @@ LAB@[UDB=(1,3)][LB=1] #macrocells=4, #inputs=5, #pterms=4
         Total # of inputs        : 1
         Total # of product terms : 1
         List of special equations: 
-            Clock  = (Net_148) => Global
+            Clock  = (Net_655) => Global
             Reset  = (Net_490)
             Clock Enable: True
         Main Equation            : 1 pterm
@@ -2825,7 +2825,7 @@ LAB@[UDB=(1,3)][LB=1] #macrocells=4, #inputs=5, #pterms=4
 
 datapathcell: Name =\PWM_X:PWMUDB:sP16:pwmdp:u1\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         cs_addr_2 => \PWM_X:PWMUDB:tc_i\ ,
         cs_addr_1 => \PWM_X:PWMUDB:runmode_enable\ ,
         cs_addr_0 => Net_490 ,
@@ -2865,7 +2865,7 @@ datapathcell: Name =\PWM_X:PWMUDB:sP16:pwmdp:u1\
 statusicell: Name =\PWM_X:PWMUDB:genblk8:stsreg\
     PORT MAP (
         reset => Net_490 ,
-        clock => Net_148 ,
+        clock => Net_655 ,
         status_3 => \PWM_X:PWMUDB:status_3\ ,
         status_2 => \PWM_X:PWMUDB:status_2\ ,
         status_1 => \PWM_X:PWMUDB:status_1\ ,
@@ -2881,7 +2881,7 @@ statusicell: Name =\PWM_X:PWMUDB:genblk8:stsreg\
 
 controlcell: Name =\PWM_X:PWMUDB:genblk1:ctrlreg\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         control_7 => \PWM_X:PWMUDB:control_7\ ,
         control_6 => \PWM_X:PWMUDB:control_6\ ,
         control_5 => \PWM_X:PWMUDB:control_5\ ,
@@ -2904,7 +2904,7 @@ controlcell: Name =\PWM_X:PWMUDB:genblk1:ctrlreg\
 UDB [UDB=(1,4)] contents:
 datapathcell: Name =\PWM_Y:PWMUDB:sP16:pwmdp:u0\
     PORT MAP (
-        clock => Net_148 ,
+        clock => Net_655 ,
         cs_addr_2 => \PWM_Y:PWMUDB:tc_i\ ,
         cs_addr_1 => \PWM_Y:PWMUDB:runmode_enable\ ,
         cs_addr_0 => Net_155 ,
@@ -3557,8 +3557,8 @@ Clock group 0:
             aclk_0 => \Touch:ADC:Net_488_local\ ,
             clk_a_dig_glb_0 => \Touch:ADC:Net_488_adig\ ,
             clk_a_dig_0 => \Touch:ADC:Net_488_adig_local\ ,
-            dclk_glb_1 => Net_148 ,
-            dclk_1 => Net_148_local );
+            dclk_glb_1 => Net_655 ,
+            dclk_1 => Net_655_local );
         Properties:
         {
         }
@@ -3702,33 +3702,33 @@ Port | Pin | Fixed |      Type |       Drive Mode |             Name | Connectio
 </CYPRESSTAG>
 </CYPRESSTAG>
 </CYPRESSTAG>
-Digital component placer commit/Report: Elapsed time ==> 0s.043ms
-Digital Placement phase: Elapsed time ==> 1s.061ms
+Digital component placer commit/Report: Elapsed time ==> 0s.050ms
+Digital Placement phase: Elapsed time ==> 1s.057ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Digital Routing">
 "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\bin/sjrouter.exe" --xml-path "C:\Program Files (x86)\Cypress\PSoC Creator\4.2\PSoC Creator\dev\psoc5/psoc5lp/route_arch-rrg.cydata" --vh2-path "Controlador_r.vh2" --pcf-path "Controlador.pco" --des-name "Controlador" --dsf-path "Controlador.dsf" --sdc-path "Controlador.sdc" --lib-path "Controlador_r.lib"
 Routing successful.
-Digital Routing phase: Elapsed time ==> 1s.372ms
+Digital Routing phase: Elapsed time ==> 1s.384ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Generation">
-Bitstream Generation phase: Elapsed time ==> 0s.230ms
+Bitstream Generation phase: Elapsed time ==> 0s.216ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Bitstream Verification">
-Bitstream Verification phase: Elapsed time ==> 0s.031ms
+Bitstream Verification phase: Elapsed time ==> 0s.038ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Static timing analysis">
 Timing report is in Controlador_timing.html.
-Static timing analysis phase: Elapsed time ==> 0s.321ms
+Static timing analysis phase: Elapsed time ==> 0s.316ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Data reporting">
 Data reporting phase: Elapsed time ==> 0s.000ms
 </CYPRESSTAG>
 <CYPRESSTAG name="Database update...">
-Design database save phase: Elapsed time ==> 0s.215ms
+Design database save phase: Elapsed time ==> 0s.214ms
 </CYPRESSTAG>
-cydsfit: Elapsed time ==> 3s.794ms
+cydsfit: Elapsed time ==> 3s.787ms
 </CYPRESSTAG>
-Fitter phase: Elapsed time ==> 3s.796ms
-API generation phase: Elapsed time ==> 1s.595ms
-Dependency generation phase: Elapsed time ==> 0s.021ms
-Cleanup phase: Elapsed time ==> 0s.000ms
+Fitter phase: Elapsed time ==> 3s.788ms
+API generation phase: Elapsed time ==> 1s.478ms
+Dependency generation phase: Elapsed time ==> 0s.026ms
+Cleanup phase: Elapsed time ==> 0s.001ms

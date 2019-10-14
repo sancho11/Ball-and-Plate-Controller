@@ -2,7 +2,7 @@
 --	Conversion of Controlador.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Thu Oct 10 22:48:40 2019
+--	Fri Oct 11 03:55:38 2019
 --
 
 USE cypress.cypress.all;
@@ -28,7 +28,7 @@ TERMINAL tmpSIOVREF__PinServoY_net_0 : bit;
 SIGNAL tmpINTERRUPT_0__PinServoY_net_0 : bit;
 SIGNAL \PWM_X:PWMUDB:km_run\ : bit;
 SIGNAL \PWM_X:PWMUDB:min_kill_reg\ : bit;
-SIGNAL Net_148 : bit;
+SIGNAL Net_655 : bit;
 SIGNAL \PWM_X:PWMUDB:ClockOutFromEnBlock\ : bit;
 SIGNAL \PWM_X:PWMUDB:control_7\ : bit;
 SIGNAL \PWM_X:PWMUDB:control_6\ : bit;
@@ -1201,7 +1201,7 @@ PinServoY:cy_psoc3_pins_v1_10
 		interrupt=>tmpINTERRUPT_0__PinServoY_net_0);
 \PWM_X:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_148,
+	PORT MAP(clock_in=>Net_655,
 		enable=>tmpOE__PinServoX_net_0,
 		clock_out=>\PWM_X:PWMUDB:ClockOutFromEnBlock\);
 \PWM_X:PWMUDB:genblk1:ctrlreg\:cy_psoc3_control
@@ -1406,7 +1406,7 @@ PinServoY:cy_psoc3_pins_v1_10
 		y=>\PWM_X:PWMUDB:MODULE_1:g2:a0:g1:z1:s0:g1:u0:c_8\);
 \PWM_Y:PWMUDB:clock_enable_block\:cy_psoc3_udb_clock_enable_v1_0
 	GENERIC MAP(sync_mode=>'1')
-	PORT MAP(clock_in=>Net_148,
+	PORT MAP(clock_in=>Net_655,
 		enable=>tmpOE__PinServoX_net_0,
 		clock_out=>\PWM_Y:PWMUDB:ClockOutFromEnBlock\);
 \PWM_Y:PWMUDB:genblk1:ctrlreg\:cy_psoc3_control
@@ -1617,7 +1617,7 @@ ClockServoControl:cy_clock_v1_0
 		period=>"1000000000",
 		is_direct=>'0',
 		is_digital=>'1')
-	PORT MAP(clock_out=>Net_148,
+	PORT MAP(clock_out=>Net_655,
 		dig_domain_out=>open);
 Y_interrupcion:cy_isr_v1_0
 	GENERIC MAP(int_type=>"00",

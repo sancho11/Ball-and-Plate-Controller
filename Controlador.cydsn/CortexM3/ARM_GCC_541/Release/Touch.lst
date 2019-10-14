@@ -1,0 +1,1707 @@
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 1
+
+
+   1              		.syntax unified
+   2              		.cpu cortex-m3
+   3              		.fpu softvfp
+   4              		.eabi_attribute 20, 1
+   5              		.eabi_attribute 21, 1
+   6              		.eabi_attribute 23, 3
+   7              		.eabi_attribute 24, 1
+   8              		.eabi_attribute 25, 1
+   9              		.eabi_attribute 26, 1
+  10              		.eabi_attribute 30, 4
+  11              		.eabi_attribute 34, 1
+  12              		.eabi_attribute 18, 4
+  13              		.thumb
+  14              		.syntax unified
+  15              		.file	"Touch.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.section	.text.Touch_Init,"ax",%progbits
+  20              		.align	1
+  21              		.global	Touch_Init
+  22              		.thumb
+  23              		.thumb_func
+  24              		.type	Touch_Init, %function
+  25              	Touch_Init:
+  26              	.LFB0:
+  27              		.file 1 "Generated_Source\\PSoC5\\Touch.c"
+   1:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+   2:Generated_Source\PSoC5/Touch.c **** * File Name: Touch.c
+   3:Generated_Source\PSoC5/Touch.c **** * Version 2.0
+   4:Generated_Source\PSoC5/Touch.c **** *
+   5:Generated_Source\PSoC5/Touch.c **** * Description:
+   6:Generated_Source\PSoC5/Touch.c **** *  This file provides the API source code for the Resistive Touch component.
+   7:Generated_Source\PSoC5/Touch.c **** *
+   8:Generated_Source\PSoC5/Touch.c **** * Note:
+   9:Generated_Source\PSoC5/Touch.c **** *
+  10:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+  11:Generated_Source\PSoC5/Touch.c **** * Copyright 2012-2015, Cypress Semiconductor Corporation.  All rights reserved.
+  12:Generated_Source\PSoC5/Touch.c **** * You may use this file only in accordance with the license, terms, conditions,
+  13:Generated_Source\PSoC5/Touch.c **** * disclaimers, and limitations in the end user license agreement accompanying
+  14:Generated_Source\PSoC5/Touch.c **** * the software package with which this file was provided.
+  15:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+  16:Generated_Source\PSoC5/Touch.c **** 
+  17:Generated_Source\PSoC5/Touch.c **** #include "CyLib.h"
+  18:Generated_Source\PSoC5/Touch.c **** #include "Touch.h"
+  19:Generated_Source\PSoC5/Touch.c **** #include "Touch_xm.h"
+  20:Generated_Source\PSoC5/Touch.c **** #include "Touch_xp.h"
+  21:Generated_Source\PSoC5/Touch.c **** #include "Touch_ym.h"
+  22:Generated_Source\PSoC5/Touch.c **** #include "Touch_yp.h"
+  23:Generated_Source\PSoC5/Touch.c **** 
+  24:Generated_Source\PSoC5/Touch.c **** uint8 Touch_initVar = 0u;
+  25:Generated_Source\PSoC5/Touch.c **** static uint8 Touch_measurementFlag = 0u;
+  26:Generated_Source\PSoC5/Touch.c **** 
+  27:Generated_Source\PSoC5/Touch.c **** 
+  28:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+  29:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_Init
+  30:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 2
+
+
+  31:Generated_Source\PSoC5/Touch.c **** *
+  32:Generated_Source\PSoC5/Touch.c **** * Summary:
+  33:Generated_Source\PSoC5/Touch.c **** *  Calls the Init() function of the ADC and AMux components.
+  34:Generated_Source\PSoC5/Touch.c **** *
+  35:Generated_Source\PSoC5/Touch.c **** * Parameters:
+  36:Generated_Source\PSoC5/Touch.c **** *  None
+  37:Generated_Source\PSoC5/Touch.c **** *
+  38:Generated_Source\PSoC5/Touch.c **** * Return:
+  39:Generated_Source\PSoC5/Touch.c **** *  None
+  40:Generated_Source\PSoC5/Touch.c **** *
+  41:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+  42:Generated_Source\PSoC5/Touch.c **** void Touch_Init(void) 
+  43:Generated_Source\PSoC5/Touch.c **** {
+  28              		.loc 1 43 0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+  32 0000 08B5     		push	{r3, lr}
+  33              		.cfi_def_cfa_offset 8
+  34              		.cfi_offset 3, -8
+  35              		.cfi_offset 14, -4
+  44:Generated_Source\PSoC5/Touch.c ****     Touch_AMux_Init();
+  36              		.loc 1 44 0
+  37 0002 FFF7FEFF 		bl	Touch_AMux_Init
+  38              	.LVL0:
+  45:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Init();
+  46:Generated_Source\PSoC5/Touch.c **** }
+  39              		.loc 1 46 0
+  40 0006 BDE80840 		pop	{r3, lr}
+  41              		.cfi_restore 14
+  42              		.cfi_restore 3
+  43              		.cfi_def_cfa_offset 0
+  45:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Init();
+  44              		.loc 1 45 0
+  45 000a FFF7FEBF 		b	Touch_ADC_Init
+  46              	.LVL1:
+  47              		.cfi_endproc
+  48              	.LFE0:
+  49              		.size	Touch_Init, .-Touch_Init
+  50              		.section	.text.Touch_Start,"ax",%progbits
+  51              		.align	1
+  52              		.global	Touch_Start
+  53              		.thumb
+  54              		.thumb_func
+  55              		.type	Touch_Start, %function
+  56              	Touch_Start:
+  57              	.LFB1:
+  47:Generated_Source\PSoC5/Touch.c **** 
+  48:Generated_Source\PSoC5/Touch.c **** 
+  49:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+  50:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_Start
+  51:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+  52:Generated_Source\PSoC5/Touch.c **** *
+  53:Generated_Source\PSoC5/Touch.c **** * Summary:
+  54:Generated_Source\PSoC5/Touch.c **** *  Calls Init() if the component has not been initialized before. Calls Enable()
+  55:Generated_Source\PSoC5/Touch.c **** *  to begin the component operation.
+  56:Generated_Source\PSoC5/Touch.c **** *
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 3
+
+
+  57:Generated_Source\PSoC5/Touch.c **** * Parameters:
+  58:Generated_Source\PSoC5/Touch.c **** *  None
+  59:Generated_Source\PSoC5/Touch.c **** *
+  60:Generated_Source\PSoC5/Touch.c **** * Return:
+  61:Generated_Source\PSoC5/Touch.c **** *  None
+  62:Generated_Source\PSoC5/Touch.c **** * 
+  63:Generated_Source\PSoC5/Touch.c **** * Global variables:
+  64:Generated_Source\PSoC5/Touch.c **** *  Touch_initVar - Indicates whether the component has been
+  65:Generated_Source\PSoC5/Touch.c **** *                             initialized.
+  66:Generated_Source\PSoC5/Touch.c **** *
+  67:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+  68:Generated_Source\PSoC5/Touch.c **** void Touch_Start(void)  
+  69:Generated_Source\PSoC5/Touch.c **** {
+  58              		.loc 1 69 0
+  59              		.cfi_startproc
+  60              		@ args = 0, pretend = 0, frame = 0
+  61              		@ frame_needed = 0, uses_anonymous_args = 0
+  62 0000 10B5     		push	{r4, lr}
+  63              		.cfi_def_cfa_offset 8
+  64              		.cfi_offset 4, -8
+  65              		.cfi_offset 14, -4
+  70:Generated_Source\PSoC5/Touch.c ****     if(Touch_initVar == 0u)
+  66              		.loc 1 70 0
+  67 0002 054C     		ldr	r4, .L5
+  68 0004 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+  69 0006 1BB9     		cbnz	r3, .L3
+  71:Generated_Source\PSoC5/Touch.c ****     {    
+  72:Generated_Source\PSoC5/Touch.c ****         Touch_Init();
+  70              		.loc 1 72 0
+  71 0008 FFF7FEFF 		bl	Touch_Init
+  72              	.LVL2:
+  73:Generated_Source\PSoC5/Touch.c ****         Touch_initVar = 1u;
+  73              		.loc 1 73 0
+  74 000c 0123     		movs	r3, #1
+  75 000e 2370     		strb	r3, [r4]
+  76              	.L3:
+  74:Generated_Source\PSoC5/Touch.c ****     }
+  75:Generated_Source\PSoC5/Touch.c ****     Touch_Enable();
+  76:Generated_Source\PSoC5/Touch.c **** }
+  77              		.loc 1 76 0
+  78 0010 BDE81040 		pop	{r4, lr}
+  79              		.cfi_restore 14
+  80              		.cfi_restore 4
+  81              		.cfi_def_cfa_offset 0
+  82              	.LBB4:
+  83              	.LBB5:
+  77:Generated_Source\PSoC5/Touch.c **** 
+  78:Generated_Source\PSoC5/Touch.c **** 
+  79:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+  80:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_Stop
+  81:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+  82:Generated_Source\PSoC5/Touch.c **** *
+  83:Generated_Source\PSoC5/Touch.c **** * Summary:
+  84:Generated_Source\PSoC5/Touch.c **** *  Stops the ADC and AMux components.
+  85:Generated_Source\PSoC5/Touch.c **** *
+  86:Generated_Source\PSoC5/Touch.c **** * Parameters:
+  87:Generated_Source\PSoC5/Touch.c **** *  None
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 4
+
+
+  88:Generated_Source\PSoC5/Touch.c **** *
+  89:Generated_Source\PSoC5/Touch.c **** * Return:
+  90:Generated_Source\PSoC5/Touch.c **** *  None
+  91:Generated_Source\PSoC5/Touch.c **** *
+  92:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+  93:Generated_Source\PSoC5/Touch.c **** void Touch_Stop(void)  
+  94:Generated_Source\PSoC5/Touch.c **** {
+  95:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Stop();
+  96:Generated_Source\PSoC5/Touch.c ****     Touch_AMux_Stop();
+  97:Generated_Source\PSoC5/Touch.c **** }
+  98:Generated_Source\PSoC5/Touch.c **** 
+  99:Generated_Source\PSoC5/Touch.c **** 
+ 100:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+ 101:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_Enable
+ 102:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ 103:Generated_Source\PSoC5/Touch.c **** *
+ 104:Generated_Source\PSoC5/Touch.c **** * Summary:
+ 105:Generated_Source\PSoC5/Touch.c **** *  Enables the ADC component.
+ 106:Generated_Source\PSoC5/Touch.c **** *
+ 107:Generated_Source\PSoC5/Touch.c **** * Parameters:
+ 108:Generated_Source\PSoC5/Touch.c **** *  None
+ 109:Generated_Source\PSoC5/Touch.c **** *
+ 110:Generated_Source\PSoC5/Touch.c **** * Return:
+ 111:Generated_Source\PSoC5/Touch.c **** *  None
+ 112:Generated_Source\PSoC5/Touch.c **** *
+ 113:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+ 114:Generated_Source\PSoC5/Touch.c **** void Touch_Enable(void)  
+ 115:Generated_Source\PSoC5/Touch.c **** {
+ 116:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Enable();
+  84              		.loc 1 116 0
+  85 0014 FFF7FEBF 		b	Touch_ADC_Enable
+  86              	.LVL3:
+  87              	.L6:
+  88              		.align	2
+  89              	.L5:
+  90 0018 00000000 		.word	.LANCHOR0
+  91              	.LBE5:
+  92              	.LBE4:
+  93              		.cfi_endproc
+  94              	.LFE1:
+  95              		.size	Touch_Start, .-Touch_Start
+  96              		.section	.text.Touch_Stop,"ax",%progbits
+  97              		.align	1
+  98              		.global	Touch_Stop
+  99              		.thumb
+ 100              		.thumb_func
+ 101              		.type	Touch_Stop, %function
+ 102              	Touch_Stop:
+ 103              	.LFB2:
+  94:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Stop();
+ 104              		.loc 1 94 0
+ 105              		.cfi_startproc
+ 106              		@ args = 0, pretend = 0, frame = 0
+ 107              		@ frame_needed = 0, uses_anonymous_args = 0
+ 108 0000 08B5     		push	{r3, lr}
+ 109              		.cfi_def_cfa_offset 8
+ 110              		.cfi_offset 3, -8
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 5
+
+
+ 111              		.cfi_offset 14, -4
+  95:Generated_Source\PSoC5/Touch.c ****     Touch_AMux_Stop();
+ 112              		.loc 1 95 0
+ 113 0002 FFF7FEFF 		bl	Touch_ADC_Stop
+ 114              	.LVL4:
+  97:Generated_Source\PSoC5/Touch.c **** 
+ 115              		.loc 1 97 0
+ 116 0006 BDE80840 		pop	{r3, lr}
+ 117              		.cfi_restore 14
+ 118              		.cfi_restore 3
+ 119              		.cfi_def_cfa_offset 0
+  96:Generated_Source\PSoC5/Touch.c **** }
+ 120              		.loc 1 96 0
+ 121 000a FFF7FEBF 		b	Touch_AMux_Stop
+ 122              	.LVL5:
+ 123              		.cfi_endproc
+ 124              	.LFE2:
+ 125              		.size	Touch_Stop, .-Touch_Stop
+ 126              		.section	.text.Touch_Enable,"ax",%progbits
+ 127              		.align	1
+ 128              		.global	Touch_Enable
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.type	Touch_Enable, %function
+ 132              	Touch_Enable:
+ 133              	.LFB3:
+ 115:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_Enable();
+ 134              		.loc 1 115 0
+ 135              		.cfi_startproc
+ 136              		@ args = 0, pretend = 0, frame = 0
+ 137              		@ frame_needed = 0, uses_anonymous_args = 0
+ 138              		@ link register save eliminated.
+ 139              		.loc 1 116 0
+ 140 0000 FFF7FEBF 		b	Touch_ADC_Enable
+ 141              	.LVL6:
+ 142              		.cfi_endproc
+ 143              	.LFE3:
+ 144              		.size	Touch_Enable, .-Touch_Enable
+ 145              		.section	.text.Touch_ActivateX,"ax",%progbits
+ 146              		.align	1
+ 147              		.global	Touch_ActivateX
+ 148              		.thumb
+ 149              		.thumb_func
+ 150              		.type	Touch_ActivateX, %function
+ 151              	Touch_ActivateX:
+ 152              	.LFB4:
+ 117:Generated_Source\PSoC5/Touch.c **** }
+ 118:Generated_Source\PSoC5/Touch.c **** 
+ 119:Generated_Source\PSoC5/Touch.c **** 
+ 120:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+ 121:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_ActivateX
+ 122:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ 123:Generated_Source\PSoC5/Touch.c **** *
+ 124:Generated_Source\PSoC5/Touch.c **** * Summary: 
+ 125:Generated_Source\PSoC5/Touch.c **** *  Configures the pins to measure the Y-axis.
+ 126:Generated_Source\PSoC5/Touch.c **** *
+ 127:Generated_Source\PSoC5/Touch.c **** * Parameters:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 6
+
+
+ 128:Generated_Source\PSoC5/Touch.c **** *  None
+ 129:Generated_Source\PSoC5/Touch.c **** *
+ 130:Generated_Source\PSoC5/Touch.c **** * Return:
+ 131:Generated_Source\PSoC5/Touch.c **** *  None
+ 132:Generated_Source\PSoC5/Touch.c **** *
+ 133:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+ 134:Generated_Source\PSoC5/Touch.c **** void Touch_ActivateX(void) 
+ 135:Generated_Source\PSoC5/Touch.c **** {
+ 153              		.loc 1 135 0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157 0000 08B5     		push	{r3, lr}
+ 158              		.cfi_def_cfa_offset 8
+ 159              		.cfi_offset 3, -8
+ 160              		.cfi_offset 14, -4
+ 136:Generated_Source\PSoC5/Touch.c ****     /* Pins configuration to measure Y. */
+ 137:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_ym_0, PIN_DM_STRONG);
+ 161              		.loc 1 137 0
+ 162 0002 0F4A     		ldr	r2, .L11
+ 163 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 164 0006 03F0F103 		and	r3, r3, #241
+ 165 000a 43F00C03 		orr	r3, r3, #12
+ 166 000e 1370     		strb	r3, [r2]
+ 138:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_yp_0, PIN_DM_STRONG);
+ 167              		.loc 1 138 0
+ 168 0010 9378     		ldrb	r3, [r2, #2]	@ zero_extendqisi2
+ 169 0012 03F0F103 		and	r3, r3, #241
+ 170 0016 43F00C03 		orr	r3, r3, #12
+ 171 001a 9370     		strb	r3, [r2, #2]
+ 139:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xp_0, PIN_DM_ALG_HIZ);
+ 172              		.loc 1 139 0
+ 173 001c 12F8013C 		ldrb	r3, [r2, #-1]	@ zero_extendqisi2
+ 174 0020 03F0F103 		and	r3, r3, #241
+ 175 0024 02F8013C 		strb	r3, [r2, #-1]
+ 140:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xm_0, PIN_DM_ALG_HIZ);
+ 176              		.loc 1 140 0
+ 177 0028 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 178 002a 03F0F103 		and	r3, r3, #241
+ 179 002e 5370     		strb	r3, [r2, #1]
+ 141:Generated_Source\PSoC5/Touch.c ****     
+ 142:Generated_Source\PSoC5/Touch.c ****     /* Switch AMux if channel 0 is not selected. */
+ 143:Generated_Source\PSoC5/Touch.c ****     if(Touch_AMux_GetChannel() != Touch_AMUX_XP_CHAN)
+ 180              		.loc 1 143 0
+ 181 0030 FFF7FEFF 		bl	Touch_AMux_GetChannel
+ 182              	.LVL7:
+ 183 0034 18B1     		cbz	r0, .L9
+ 144:Generated_Source\PSoC5/Touch.c ****     {
+ 145:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 146:Generated_Source\PSoC5/Touch.c ****     }
+ 147:Generated_Source\PSoC5/Touch.c **** }
+ 184              		.loc 1 147 0
+ 185 0036 BDE80840 		pop	{r3, lr}
+ 186              		.cfi_remember_state
+ 187              		.cfi_restore 14
+ 188              		.cfi_restore 3
+ 189              		.cfi_def_cfa_offset 0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 7
+
+
+ 145:Generated_Source\PSoC5/Touch.c ****     }
+ 190              		.loc 1 145 0
+ 191 003a FFF7FEBF 		b	Touch_AMux_Next
+ 192              	.LVL8:
+ 193              	.L9:
+ 194              		.cfi_restore_state
+ 195 003e 08BD     		pop	{r3, pc}
+ 196              	.L12:
+ 197              		.align	2
+ 198              	.L11:
+ 199 0040 21500040 		.word	1073762337
+ 200              		.cfi_endproc
+ 201              	.LFE4:
+ 202              		.size	Touch_ActivateX, .-Touch_ActivateX
+ 203              		.section	.text.Touch_ActivateY,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	Touch_ActivateY
+ 206              		.thumb
+ 207              		.thumb_func
+ 208              		.type	Touch_ActivateY, %function
+ 209              	Touch_ActivateY:
+ 210              	.LFB5:
+ 148:Generated_Source\PSoC5/Touch.c **** 
+ 149:Generated_Source\PSoC5/Touch.c **** 
+ 150:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+ 151:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_ActivateY
+ 152:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ 153:Generated_Source\PSoC5/Touch.c **** *
+ 154:Generated_Source\PSoC5/Touch.c **** * Summary: 
+ 155:Generated_Source\PSoC5/Touch.c **** *  Configures the pins to measure X-axis.
+ 156:Generated_Source\PSoC5/Touch.c **** *
+ 157:Generated_Source\PSoC5/Touch.c **** * Parameters:
+ 158:Generated_Source\PSoC5/Touch.c **** *  None
+ 159:Generated_Source\PSoC5/Touch.c **** *
+ 160:Generated_Source\PSoC5/Touch.c **** * Return:
+ 161:Generated_Source\PSoC5/Touch.c **** *  None
+ 162:Generated_Source\PSoC5/Touch.c **** *
+ 163:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+ 164:Generated_Source\PSoC5/Touch.c **** void Touch_ActivateY(void) 
+ 165:Generated_Source\PSoC5/Touch.c **** {
+ 211              		.loc 1 165 0
+ 212              		.cfi_startproc
+ 213              		@ args = 0, pretend = 0, frame = 0
+ 214              		@ frame_needed = 0, uses_anonymous_args = 0
+ 215 0000 08B5     		push	{r3, lr}
+ 216              		.cfi_def_cfa_offset 8
+ 217              		.cfi_offset 3, -8
+ 218              		.cfi_offset 14, -4
+ 166:Generated_Source\PSoC5/Touch.c ****     /* Pins configuration to measure X. */
+ 167:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xm_0, PIN_DM_STRONG);
+ 219              		.loc 1 167 0
+ 220 0002 134A     		ldr	r2, .L17
+ 221 0004 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 222 0006 03F0F103 		and	r3, r3, #241
+ 223 000a 43F00C03 		orr	r3, r3, #12
+ 224 000e 1370     		strb	r3, [r2]
+ 168:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xp_0, PIN_DM_STRONG);
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 8
+
+
+ 225              		.loc 1 168 0
+ 226 0010 12F8023C 		ldrb	r3, [r2, #-2]	@ zero_extendqisi2
+ 227 0014 03F0F103 		and	r3, r3, #241
+ 228 0018 43F00C03 		orr	r3, r3, #12
+ 229 001c 02F8023C 		strb	r3, [r2, #-2]
+ 169:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_yp_0, PIN_DM_ALG_HIZ);
+ 230              		.loc 1 169 0
+ 231 0020 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 232 0022 03F0F103 		and	r3, r3, #241
+ 233 0026 5370     		strb	r3, [r2, #1]
+ 170:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_ym_0, PIN_DM_ALG_HIZ);
+ 234              		.loc 1 170 0
+ 235 0028 12F8013C 		ldrb	r3, [r2, #-1]	@ zero_extendqisi2
+ 236 002c 03F0F103 		and	r3, r3, #241
+ 237 0030 02F8013C 		strb	r3, [r2, #-1]
+ 171:Generated_Source\PSoC5/Touch.c ****     
+ 172:Generated_Source\PSoC5/Touch.c ****     /* Switch AMux if channel 1 is not selected. */
+ 173:Generated_Source\PSoC5/Touch.c ****     if(Touch_AMux_GetChannel() == Touch_AMUX_XP_CHAN)
+ 238              		.loc 1 173 0
+ 239 0034 FFF7FEFF 		bl	Touch_AMux_GetChannel
+ 240              	.LVL9:
+ 241 0038 28B1     		cbz	r0, .L16
+ 174:Generated_Source\PSoC5/Touch.c ****     {
+ 175:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 176:Generated_Source\PSoC5/Touch.c ****     }
+ 177:Generated_Source\PSoC5/Touch.c ****     /* Switch AMux to channel 1 if AMux is disconnected. */
+ 178:Generated_Source\PSoC5/Touch.c ****     else if(Touch_AMux_GetChannel() == Touch_AMUX_NO_CHAN)
+ 242              		.loc 1 178 0
+ 243 003a FFF7FEFF 		bl	Touch_AMux_GetChannel
+ 244              	.LVL10:
+ 245 003e 0130     		adds	r0, r0, #1
+ 246 0040 05D1     		bne	.L13
+ 179:Generated_Source\PSoC5/Touch.c ****     {
+ 180:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 247              		.loc 1 180 0
+ 248 0042 FFF7FEFF 		bl	Touch_AMux_Next
+ 249              	.LVL11:
+ 250              	.L16:
+ 181:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 182:Generated_Source\PSoC5/Touch.c ****     }
+ 183:Generated_Source\PSoC5/Touch.c ****     else
+ 184:Generated_Source\PSoC5/Touch.c ****     {
+ 185:Generated_Source\PSoC5/Touch.c ****         /* Channel 1 is already selected. */
+ 186:Generated_Source\PSoC5/Touch.c ****     }
+ 187:Generated_Source\PSoC5/Touch.c **** }
+ 251              		.loc 1 187 0
+ 252 0046 BDE80840 		pop	{r3, lr}
+ 253              		.cfi_remember_state
+ 254              		.cfi_restore 14
+ 255              		.cfi_restore 3
+ 256              		.cfi_def_cfa_offset 0
+ 181:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 257              		.loc 1 181 0
+ 258 004a FFF7FEBF 		b	Touch_AMux_Next
+ 259              	.LVL12:
+ 260              	.L13:
+ 261              		.cfi_restore_state
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 9
+
+
+ 262 004e 08BD     		pop	{r3, pc}
+ 263              	.L18:
+ 264              		.align	2
+ 265              	.L17:
+ 266 0050 22500040 		.word	1073762338
+ 267              		.cfi_endproc
+ 268              	.LFE5:
+ 269              		.size	Touch_ActivateY, .-Touch_ActivateY
+ 270              		.section	.text.Touch_Measure,"ax",%progbits
+ 271              		.align	1
+ 272              		.global	Touch_Measure
+ 273              		.thumb
+ 274              		.thumb_func
+ 275              		.type	Touch_Measure, %function
+ 276              	Touch_Measure:
+ 277              	.LFB7:
+ 188:Generated_Source\PSoC5/Touch.c **** 
+ 189:Generated_Source\PSoC5/Touch.c **** 
+ 190:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+ 191:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_TouchDetect
+ 192:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ 193:Generated_Source\PSoC5/Touch.c **** *
+ 194:Generated_Source\PSoC5/Touch.c **** * Summary:
+ 195:Generated_Source\PSoC5/Touch.c **** *  Determines if the screen is touched.
+ 196:Generated_Source\PSoC5/Touch.c **** *
+ 197:Generated_Source\PSoC5/Touch.c **** * Parameters:
+ 198:Generated_Source\PSoC5/Touch.c **** *  None
+ 199:Generated_Source\PSoC5/Touch.c **** *
+ 200:Generated_Source\PSoC5/Touch.c **** * Return:
+ 201:Generated_Source\PSoC5/Touch.c **** *  uint8: The touch state.
+ 202:Generated_Source\PSoC5/Touch.c **** *  0 - untouched
+ 203:Generated_Source\PSoC5/Touch.c **** *  1 - touched
+ 204:Generated_Source\PSoC5/Touch.c **** *
+ 205:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+ 206:Generated_Source\PSoC5/Touch.c **** uint8 Touch_TouchDetect(void) 
+ 207:Generated_Source\PSoC5/Touch.c **** {
+ 208:Generated_Source\PSoC5/Touch.c ****     /* Configure x+ pin to detect touch. */
+ 209:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xp_0, PIN_DM_STRONG);
+ 210:Generated_Source\PSoC5/Touch.c **** 
+ 211:Generated_Source\PSoC5/Touch.c ****     /* Add delay for signal to stabilize. */
+ 212:Generated_Source\PSoC5/Touch.c ****     CyDelayUs(5u);
+ 213:Generated_Source\PSoC5/Touch.c **** 
+ 214:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xp_0, PIN_DM_RES_UP);
+ 215:Generated_Source\PSoC5/Touch.c ****     
+ 216:Generated_Source\PSoC5/Touch.c ****     /* Switch AMux if channel 0 is not selected. */
+ 217:Generated_Source\PSoC5/Touch.c ****     if(Touch_AMux_GetChannel() != Touch_AMUX_XP_CHAN)
+ 218:Generated_Source\PSoC5/Touch.c ****     {
+ 219:Generated_Source\PSoC5/Touch.c ****         Touch_AMux_Next();
+ 220:Generated_Source\PSoC5/Touch.c ****     }
+ 221:Generated_Source\PSoC5/Touch.c **** 
+ 222:Generated_Source\PSoC5/Touch.c ****     /* Configure x-, y+ and y- to detect touch. */
+ 223:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_xm_0, PIN_DM_ALG_HIZ);
+ 224:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_yp_0, PIN_DM_ALG_HIZ);
+ 225:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_ym_0, PIN_DM_STRONG);
+ 226:Generated_Source\PSoC5/Touch.c **** 
+ 227:Generated_Source\PSoC5/Touch.c ****     /* Add delay for signal to stabilize. The delay is dependant on whether
+ 228:Generated_Source\PSoC5/Touch.c ****     * the measurement has been done before touch detect or not.
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 10
+
+
+ 229:Generated_Source\PSoC5/Touch.c ****     */
+ 230:Generated_Source\PSoC5/Touch.c ****     if (Touch_measurementFlag == 0u)
+ 231:Generated_Source\PSoC5/Touch.c ****     {
+ 232:Generated_Source\PSoC5/Touch.c ****         CyDelayUs(20u);
+ 233:Generated_Source\PSoC5/Touch.c ****     }
+ 234:Generated_Source\PSoC5/Touch.c ****     else
+ 235:Generated_Source\PSoC5/Touch.c ****     {
+ 236:Generated_Source\PSoC5/Touch.c ****         Touch_measurementFlag = 0u;
+ 237:Generated_Source\PSoC5/Touch.c ****         CyDelayUs(8u);        
+ 238:Generated_Source\PSoC5/Touch.c ****     }
+ 239:Generated_Source\PSoC5/Touch.c ****     /* The screen is touched if the measured value is lower than the specified
+ 240:Generated_Source\PSoC5/Touch.c ****     * threshold.
+ 241:Generated_Source\PSoC5/Touch.c ****     */
+ 242:Generated_Source\PSoC5/Touch.c ****     return ((Touch_Measure() < Touch_TOUCH_THRESHOLD) ? 1u : 0u);
+ 243:Generated_Source\PSoC5/Touch.c **** }
+ 244:Generated_Source\PSoC5/Touch.c **** 
+ 245:Generated_Source\PSoC5/Touch.c **** 
+ 246:Generated_Source\PSoC5/Touch.c **** /*******************************************************************************
+ 247:Generated_Source\PSoC5/Touch.c **** * Function Name: Touch_Measure
+ 248:Generated_Source\PSoC5/Touch.c **** ********************************************************************************
+ 249:Generated_Source\PSoC5/Touch.c **** *
+ 250:Generated_Source\PSoC5/Touch.c **** * Summary:
+ 251:Generated_Source\PSoC5/Touch.c **** *  Returns the result of the ADC conversion. Does not return until ADC
+ 252:Generated_Source\PSoC5/Touch.c **** *  conversion is complete.
+ 253:Generated_Source\PSoC5/Touch.c **** *
+ 254:Generated_Source\PSoC5/Touch.c **** * Parameters:
+ 255:Generated_Source\PSoC5/Touch.c **** *  None
+ 256:Generated_Source\PSoC5/Touch.c **** *
+ 257:Generated_Source\PSoC5/Touch.c **** * Return:
+ 258:Generated_Source\PSoC5/Touch.c **** *  int16: the result of the ADC conversion.
+ 259:Generated_Source\PSoC5/Touch.c **** *
+ 260:Generated_Source\PSoC5/Touch.c **** *******************************************************************************/
+ 261:Generated_Source\PSoC5/Touch.c **** int16 Touch_Measure(void) 
+ 262:Generated_Source\PSoC5/Touch.c **** {       
+ 278              		.loc 1 262 0
+ 279              		.cfi_startproc
+ 280              		@ args = 0, pretend = 0, frame = 0
+ 281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 282 0000 08B5     		push	{r3, lr}
+ 283              		.cfi_def_cfa_offset 8
+ 284              		.cfi_offset 3, -8
+ 285              		.cfi_offset 14, -4
+ 263:Generated_Source\PSoC5/Touch.c ****     int16 result;
+ 264:Generated_Source\PSoC5/Touch.c **** 
+ 265:Generated_Source\PSoC5/Touch.c ****     /* Trigger the ADC conversion and wait for results (blocking). */
+ 266:Generated_Source\PSoC5/Touch.c ****     Touch_ADC_StartConvert();
+ 286              		.loc 1 266 0
+ 287 0002 FFF7FEFF 		bl	Touch_ADC_StartConvert
+ 288              	.LVL13:
+ 267:Generated_Source\PSoC5/Touch.c ****     (void)Touch_ADC_IsEndConversion(Touch_ADC_WAIT_FOR_RESULT);
+ 289              		.loc 1 267 0
+ 290 0006 0020     		movs	r0, #0
+ 291 0008 FFF7FEFF 		bl	Touch_ADC_IsEndConversion
+ 292              	.LVL14:
+ 268:Generated_Source\PSoC5/Touch.c ****     result = Touch_ADC_GetResult16();
+ 293              		.loc 1 268 0
+ 294 000c FFF7FEFF 		bl	Touch_ADC_GetResult16
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 11
+
+
+ 295              	.LVL15:
+ 269:Generated_Source\PSoC5/Touch.c **** 
+ 270:Generated_Source\PSoC5/Touch.c ****     /* Assert a flag indicating that the measurement has been done. */
+ 271:Generated_Source\PSoC5/Touch.c ****     Touch_measurementFlag = 1u;
+ 296              		.loc 1 271 0
+ 297 0010 014B     		ldr	r3, .L20
+ 298 0012 0122     		movs	r2, #1
+ 299 0014 5A70     		strb	r2, [r3, #1]
+ 272:Generated_Source\PSoC5/Touch.c ****     return (result);
+ 273:Generated_Source\PSoC5/Touch.c **** }
+ 300              		.loc 1 273 0
+ 301 0016 08BD     		pop	{r3, pc}
+ 302              	.L21:
+ 303              		.align	2
+ 304              	.L20:
+ 305 0018 00000000 		.word	.LANCHOR0
+ 306              		.cfi_endproc
+ 307              	.LFE7:
+ 308              		.size	Touch_Measure, .-Touch_Measure
+ 309              		.section	.text.Touch_TouchDetect,"ax",%progbits
+ 310              		.align	1
+ 311              		.global	Touch_TouchDetect
+ 312              		.thumb
+ 313              		.thumb_func
+ 314              		.type	Touch_TouchDetect, %function
+ 315              	Touch_TouchDetect:
+ 316              	.LFB6:
+ 207:Generated_Source\PSoC5/Touch.c ****     /* Configure x+ pin to detect touch. */
+ 317              		.loc 1 207 0
+ 318              		.cfi_startproc
+ 319              		@ args = 0, pretend = 0, frame = 0
+ 320              		@ frame_needed = 0, uses_anonymous_args = 0
+ 321 0000 10B5     		push	{r4, lr}
+ 322              		.cfi_def_cfa_offset 8
+ 323              		.cfi_offset 4, -8
+ 324              		.cfi_offset 14, -4
+ 209:Generated_Source\PSoC5/Touch.c **** 
+ 325              		.loc 1 209 0
+ 326 0002 1C4C     		ldr	r4, .L30
+ 212:Generated_Source\PSoC5/Touch.c **** 
+ 327              		.loc 1 212 0
+ 328 0004 0520     		movs	r0, #5
+ 209:Generated_Source\PSoC5/Touch.c **** 
+ 329              		.loc 1 209 0
+ 330 0006 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 331 0008 03F0F103 		and	r3, r3, #241
+ 332 000c 43F00C03 		orr	r3, r3, #12
+ 333 0010 2370     		strb	r3, [r4]
+ 212:Generated_Source\PSoC5/Touch.c **** 
+ 334              		.loc 1 212 0
+ 335 0012 FFF7FEFF 		bl	CyDelayUs
+ 336              	.LVL16:
+ 214:Generated_Source\PSoC5/Touch.c ****     
+ 337              		.loc 1 214 0
+ 338 0016 2378     		ldrb	r3, [r4]	@ zero_extendqisi2
+ 339 0018 03F0F103 		and	r3, r3, #241
+ 340 001c 43F00403 		orr	r3, r3, #4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 12
+
+
+ 341 0020 2370     		strb	r3, [r4]
+ 217:Generated_Source\PSoC5/Touch.c ****     {
+ 342              		.loc 1 217 0
+ 343 0022 FFF7FEFF 		bl	Touch_AMux_GetChannel
+ 344              	.LVL17:
+ 345 0026 08B1     		cbz	r0, .L23
+ 219:Generated_Source\PSoC5/Touch.c ****     }
+ 346              		.loc 1 219 0
+ 347 0028 FFF7FEFF 		bl	Touch_AMux_Next
+ 348              	.LVL18:
+ 349              	.L23:
+ 223:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_yp_0, PIN_DM_ALG_HIZ);
+ 350              		.loc 1 223 0
+ 351 002c 124A     		ldr	r2, .L30+4
+ 352 002e 1378     		ldrb	r3, [r2]	@ zero_extendqisi2
+ 353 0030 03F0F103 		and	r3, r3, #241
+ 354 0034 1370     		strb	r3, [r2]
+ 224:Generated_Source\PSoC5/Touch.c ****     CyPins_SetPinDriveMode(Touch_ym_0, PIN_DM_STRONG);
+ 355              		.loc 1 224 0
+ 356 0036 5378     		ldrb	r3, [r2, #1]	@ zero_extendqisi2
+ 357 0038 03F0F103 		and	r3, r3, #241
+ 358 003c 5370     		strb	r3, [r2, #1]
+ 225:Generated_Source\PSoC5/Touch.c **** 
+ 359              		.loc 1 225 0
+ 360 003e 12F8013C 		ldrb	r3, [r2, #-1]	@ zero_extendqisi2
+ 361 0042 03F0F103 		and	r3, r3, #241
+ 362 0046 43F00C03 		orr	r3, r3, #12
+ 363 004a 02F8013C 		strb	r3, [r2, #-1]
+ 230:Generated_Source\PSoC5/Touch.c ****     {
+ 364              		.loc 1 230 0
+ 365 004e 0B4B     		ldr	r3, .L30+8
+ 366 0050 5A78     		ldrb	r2, [r3, #1]	@ zero_extendqisi2
+ 367 0052 0AB9     		cbnz	r2, .L24
+ 232:Generated_Source\PSoC5/Touch.c ****     }
+ 368              		.loc 1 232 0
+ 369 0054 1420     		movs	r0, #20
+ 370 0056 02E0     		b	.L29
+ 371              	.L24:
+ 236:Generated_Source\PSoC5/Touch.c ****         CyDelayUs(8u);        
+ 372              		.loc 1 236 0
+ 373 0058 0022     		movs	r2, #0
+ 374 005a 5A70     		strb	r2, [r3, #1]
+ 237:Generated_Source\PSoC5/Touch.c ****     }
+ 375              		.loc 1 237 0
+ 376 005c 0820     		movs	r0, #8
+ 377              	.L29:
+ 378 005e FFF7FEFF 		bl	CyDelayUs
+ 379              	.LVL19:
+ 242:Generated_Source\PSoC5/Touch.c **** }
+ 380              		.loc 1 242 0
+ 381 0062 FFF7FEFF 		bl	Touch_Measure
+ 382              	.LVL20:
+ 243:Generated_Source\PSoC5/Touch.c **** 
+ 383              		.loc 1 243 0
+ 384 0066 B0F5EF6F 		cmp	r0, #1912
+ 385 006a ACBF     		ite	ge
+ 386 006c 0020     		movge	r0, #0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 13
+
+
+ 387 006e 0120     		movlt	r0, #1
+ 388 0070 10BD     		pop	{r4, pc}
+ 389              	.L31:
+ 390 0072 00BF     		.align	2
+ 391              	.L30:
+ 392 0074 20500040 		.word	1073762336
+ 393 0078 22500040 		.word	1073762338
+ 394 007c 00000000 		.word	.LANCHOR0
+ 395              		.cfi_endproc
+ 396              	.LFE6:
+ 397              		.size	Touch_TouchDetect, .-Touch_TouchDetect
+ 398              		.global	Touch_initVar
+ 399              		.bss
+ 400              		.set	.LANCHOR0,. + 0
+ 401              		.type	Touch_initVar, %object
+ 402              		.size	Touch_initVar, 1
+ 403              	Touch_initVar:
+ 404 0000 00       		.space	1
+ 405              		.type	Touch_measurementFlag, %object
+ 406              		.size	Touch_measurementFlag, 1
+ 407              	Touch_measurementFlag:
+ 408 0001 00       		.space	1
+ 409              		.text
+ 410              	.Letext0:
+ 411              		.file 2 "Generated_Source\\PSoC5\\cytypes.h"
+ 412              		.file 3 "Generated_Source\\PSoC5\\Touch_AMux.h"
+ 413              		.file 4 "Generated_Source\\PSoC5\\Touch_ADC.h"
+ 414              		.file 5 "Generated_Source\\PSoC5\\cyfitter_cfg.h"
+ 415              		.file 6 "Generated_Source\\PSoC5\\CyLib.h"
+ 416              		.section	.debug_info,"",%progbits
+ 417              	.Ldebug_info0:
+ 418 0000 01030000 		.4byte	0x301
+ 419 0004 0400     		.2byte	0x4
+ 420 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 421 000a 04       		.byte	0x4
+ 422 000b 01       		.uleb128 0x1
+ 423 000c AC000000 		.4byte	.LASF37
+ 424 0010 0C       		.byte	0xc
+ 425 0011 25000000 		.4byte	.LASF38
+ 426 0015 E7010000 		.4byte	.LASF39
+ 427 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 428 001d 00000000 		.4byte	0
+ 429 0021 00000000 		.4byte	.Ldebug_line0
+ 430 0025 02       		.uleb128 0x2
+ 431 0026 04       		.byte	0x4
+ 432 0027 05       		.byte	0x5
+ 433 0028 696E7400 		.ascii	"int\000"
+ 434 002c 03       		.uleb128 0x3
+ 435 002d 04       		.byte	0x4
+ 436 002e 07       		.byte	0x7
+ 437 002f BC010000 		.4byte	.LASF0
+ 438 0033 03       		.uleb128 0x3
+ 439 0034 08       		.byte	0x8
+ 440 0035 05       		.byte	0x5
+ 441 0036 6A020000 		.4byte	.LASF1
+ 442 003a 03       		.uleb128 0x3
+ 443 003b 08       		.byte	0x8
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 14
+
+
+ 444 003c 04       		.byte	0x4
+ 445 003d EE020000 		.4byte	.LASF2
+ 446 0041 03       		.uleb128 0x3
+ 447 0042 01       		.byte	0x1
+ 448 0043 06       		.byte	0x6
+ 449 0044 FA020000 		.4byte	.LASF3
+ 450 0048 03       		.uleb128 0x3
+ 451 0049 01       		.byte	0x1
+ 452 004a 08       		.byte	0x8
+ 453 004b 88000000 		.4byte	.LASF4
+ 454 004f 03       		.uleb128 0x3
+ 455 0050 02       		.byte	0x2
+ 456 0051 05       		.byte	0x5
+ 457 0052 93020000 		.4byte	.LASF5
+ 458 0056 03       		.uleb128 0x3
+ 459 0057 02       		.byte	0x2
+ 460 0058 07       		.byte	0x7
+ 461 0059 57020000 		.4byte	.LASF6
+ 462 005d 03       		.uleb128 0x3
+ 463 005e 04       		.byte	0x4
+ 464 005f 05       		.byte	0x5
+ 465 0060 D4020000 		.4byte	.LASF7
+ 466 0064 03       		.uleb128 0x3
+ 467 0065 04       		.byte	0x4
+ 468 0066 07       		.byte	0x7
+ 469 0067 AA010000 		.4byte	.LASF8
+ 470 006b 03       		.uleb128 0x3
+ 471 006c 08       		.byte	0x8
+ 472 006d 07       		.byte	0x7
+ 473 006e C9010000 		.4byte	.LASF9
+ 474 0072 03       		.uleb128 0x3
+ 475 0073 04       		.byte	0x4
+ 476 0074 07       		.byte	0x7
+ 477 0075 3E020000 		.4byte	.LASF10
+ 478 0079 03       		.uleb128 0x3
+ 479 007a 01       		.byte	0x1
+ 480 007b 08       		.byte	0x8
+ 481 007c 8E020000 		.4byte	.LASF11
+ 482 0080 04       		.uleb128 0x4
+ 483 0081 4A010000 		.4byte	.LASF12
+ 484 0085 02       		.byte	0x2
+ 485 0086 E401     		.2byte	0x1e4
+ 486 0088 48000000 		.4byte	0x48
+ 487 008c 04       		.uleb128 0x4
+ 488 008d A6000000 		.4byte	.LASF13
+ 489 0091 02       		.byte	0x2
+ 490 0092 E801     		.2byte	0x1e8
+ 491 0094 4F000000 		.4byte	0x4f
+ 492 0098 03       		.uleb128 0x3
+ 493 0099 04       		.byte	0x4
+ 494 009a 04       		.byte	0x4
+ 495 009b 77000000 		.4byte	.LASF14
+ 496 009f 03       		.uleb128 0x3
+ 497 00a0 08       		.byte	0x8
+ 498 00a1 04       		.byte	0x4
+ 499 00a2 7F010000 		.4byte	.LASF15
+ 500 00a6 04       		.uleb128 0x4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 15
+
+
+ 501 00a7 A1000000 		.4byte	.LASF16
+ 502 00ab 02       		.byte	0x2
+ 503 00ac 8E02     		.2byte	0x28e
+ 504 00ae B2000000 		.4byte	0xb2
+ 505 00b2 05       		.uleb128 0x5
+ 506 00b3 80000000 		.4byte	0x80
+ 507 00b7 06       		.uleb128 0x6
+ 508 00b8 44000000 		.4byte	.LASF40
+ 509 00bc 01       		.byte	0x1
+ 510 00bd 72       		.byte	0x72
+ 511 00be 01       		.byte	0x1
+ 512 00bf 07       		.uleb128 0x7
+ 513 00c0 7D000000 		.4byte	.LASF17
+ 514 00c4 01       		.byte	0x1
+ 515 00c5 2A       		.byte	0x2a
+ 516 00c6 00000000 		.4byte	.LFB0
+ 517 00ca 0E000000 		.4byte	.LFE0-.LFB0
+ 518 00ce 01       		.uleb128 0x1
+ 519 00cf 9C       		.byte	0x9c
+ 520 00d0 E7000000 		.4byte	0xe7
+ 521 00d4 08       		.uleb128 0x8
+ 522 00d5 06000000 		.4byte	.LVL0
+ 523 00d9 8B020000 		.4byte	0x28b
+ 524 00dd 09       		.uleb128 0x9
+ 525 00de 0E000000 		.4byte	.LVL1
+ 526 00e2 96020000 		.4byte	0x296
+ 527 00e6 00       		.byte	0
+ 528 00e7 07       		.uleb128 0x7
+ 529 00e8 9E010000 		.4byte	.LASF18
+ 530 00ec 01       		.byte	0x1
+ 531 00ed 44       		.byte	0x44
+ 532 00ee 00000000 		.4byte	.LFB1
+ 533 00f2 1C000000 		.4byte	.LFE1-.LFB1
+ 534 00f6 01       		.uleb128 0x1
+ 535 00f7 9C       		.byte	0x9c
+ 536 00f8 23010000 		.4byte	0x123
+ 537 00fc 0A       		.uleb128 0xa
+ 538 00fd B7000000 		.4byte	0xb7
+ 539 0101 14000000 		.4byte	.LBB4
+ 540 0105 08000000 		.4byte	.LBE4-.LBB4
+ 541 0109 01       		.byte	0x1
+ 542 010a 4B       		.byte	0x4b
+ 543 010b 19010000 		.4byte	0x119
+ 544 010f 09       		.uleb128 0x9
+ 545 0110 18000000 		.4byte	.LVL3
+ 546 0114 A1020000 		.4byte	0x2a1
+ 547 0118 00       		.byte	0
+ 548 0119 08       		.uleb128 0x8
+ 549 011a 0C000000 		.4byte	.LVL2
+ 550 011e BF000000 		.4byte	0xbf
+ 551 0122 00       		.byte	0
+ 552 0123 07       		.uleb128 0x7
+ 553 0124 96000000 		.4byte	.LASF19
+ 554 0128 01       		.byte	0x1
+ 555 0129 5D       		.byte	0x5d
+ 556 012a 00000000 		.4byte	.LFB2
+ 557 012e 0E000000 		.4byte	.LFE2-.LFB2
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 16
+
+
+ 558 0132 01       		.uleb128 0x1
+ 559 0133 9C       		.byte	0x9c
+ 560 0134 4B010000 		.4byte	0x14b
+ 561 0138 08       		.uleb128 0x8
+ 562 0139 06000000 		.4byte	.LVL4
+ 563 013d AC020000 		.4byte	0x2ac
+ 564 0141 09       		.uleb128 0x9
+ 565 0142 0E000000 		.4byte	.LVL5
+ 566 0146 B7020000 		.4byte	0x2b7
+ 567 014a 00       		.byte	0
+ 568 014b 0B       		.uleb128 0xb
+ 569 014c B7000000 		.4byte	0xb7
+ 570 0150 00000000 		.4byte	.LFB3
+ 571 0154 04000000 		.4byte	.LFE3-.LFB3
+ 572 0158 01       		.uleb128 0x1
+ 573 0159 9C       		.byte	0x9c
+ 574 015a 68010000 		.4byte	0x168
+ 575 015e 09       		.uleb128 0x9
+ 576 015f 04000000 		.4byte	.LVL6
+ 577 0163 A1020000 		.4byte	0x2a1
+ 578 0167 00       		.byte	0
+ 579 0168 07       		.uleb128 0x7
+ 580 0169 B4020000 		.4byte	.LASF20
+ 581 016d 01       		.byte	0x1
+ 582 016e 86       		.byte	0x86
+ 583 016f 00000000 		.4byte	.LFB4
+ 584 0173 44000000 		.4byte	.LFE4-.LFB4
+ 585 0177 01       		.uleb128 0x1
+ 586 0178 9C       		.byte	0x9c
+ 587 0179 90010000 		.4byte	0x190
+ 588 017d 08       		.uleb128 0x8
+ 589 017e 34000000 		.4byte	.LVL7
+ 590 0182 C2020000 		.4byte	0x2c2
+ 591 0186 09       		.uleb128 0x9
+ 592 0187 3E000000 		.4byte	.LVL8
+ 593 018b CD020000 		.4byte	0x2cd
+ 594 018f 00       		.byte	0
+ 595 0190 07       		.uleb128 0x7
+ 596 0191 C4020000 		.4byte	.LASF21
+ 597 0195 01       		.byte	0x1
+ 598 0196 A4       		.byte	0xa4
+ 599 0197 00000000 		.4byte	.LFB5
+ 600 019b 54000000 		.4byte	.LFE5-.LFB5
+ 601 019f 01       		.uleb128 0x1
+ 602 01a0 9C       		.byte	0x9c
+ 603 01a1 CA010000 		.4byte	0x1ca
+ 604 01a5 08       		.uleb128 0x8
+ 605 01a6 38000000 		.4byte	.LVL9
+ 606 01aa C2020000 		.4byte	0x2c2
+ 607 01ae 08       		.uleb128 0x8
+ 608 01af 3E000000 		.4byte	.LVL10
+ 609 01b3 C2020000 		.4byte	0x2c2
+ 610 01b7 08       		.uleb128 0x8
+ 611 01b8 46000000 		.4byte	.LVL11
+ 612 01bc CD020000 		.4byte	0x2cd
+ 613 01c0 09       		.uleb128 0x9
+ 614 01c1 4E000000 		.4byte	.LVL12
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 17
+
+
+ 615 01c5 CD020000 		.4byte	0x2cd
+ 616 01c9 00       		.byte	0
+ 617 01ca 0C       		.uleb128 0xc
+ 618 01cb 90010000 		.4byte	.LASF22
+ 619 01cf 01       		.byte	0x1
+ 620 01d0 0501     		.2byte	0x105
+ 621 01d2 8C000000 		.4byte	0x8c
+ 622 01d6 00000000 		.4byte	.LFB7
+ 623 01da 1C000000 		.4byte	.LFE7-.LFB7
+ 624 01de 01       		.uleb128 0x1
+ 625 01df 9C       		.byte	0x9c
+ 626 01e0 18020000 		.4byte	0x218
+ 627 01e4 0D       		.uleb128 0xd
+ 628 01e5 E0010000 		.4byte	.LASF24
+ 629 01e9 01       		.byte	0x1
+ 630 01ea 0701     		.2byte	0x107
+ 631 01ec 8C000000 		.4byte	0x8c
+ 632 01f0 01       		.uleb128 0x1
+ 633 01f1 50       		.byte	0x50
+ 634 01f2 08       		.uleb128 0x8
+ 635 01f3 06000000 		.4byte	.LVL13
+ 636 01f7 D8020000 		.4byte	0x2d8
+ 637 01fb 0E       		.uleb128 0xe
+ 638 01fc 0C000000 		.4byte	.LVL14
+ 639 0200 E3020000 		.4byte	0x2e3
+ 640 0204 0E020000 		.4byte	0x20e
+ 641 0208 0F       		.uleb128 0xf
+ 642 0209 01       		.uleb128 0x1
+ 643 020a 50       		.byte	0x50
+ 644 020b 01       		.uleb128 0x1
+ 645 020c 30       		.byte	0x30
+ 646 020d 00       		.byte	0
+ 647 020e 08       		.uleb128 0x8
+ 648 020f 10000000 		.4byte	.LVL15
+ 649 0213 EE020000 		.4byte	0x2ee
+ 650 0217 00       		.byte	0
+ 651 0218 10       		.uleb128 0x10
+ 652 0219 6D010000 		.4byte	.LASF23
+ 653 021d 01       		.byte	0x1
+ 654 021e CE       		.byte	0xce
+ 655 021f 80000000 		.4byte	0x80
+ 656 0223 00000000 		.4byte	.LFB6
+ 657 0227 80000000 		.4byte	.LFE6-.LFB6
+ 658 022b 01       		.uleb128 0x1
+ 659 022c 9C       		.byte	0x9c
+ 660 022d 69020000 		.4byte	0x269
+ 661 0231 0E       		.uleb128 0xe
+ 662 0232 16000000 		.4byte	.LVL16
+ 663 0236 F9020000 		.4byte	0x2f9
+ 664 023a 44020000 		.4byte	0x244
+ 665 023e 0F       		.uleb128 0xf
+ 666 023f 01       		.uleb128 0x1
+ 667 0240 50       		.byte	0x50
+ 668 0241 01       		.uleb128 0x1
+ 669 0242 35       		.byte	0x35
+ 670 0243 00       		.byte	0
+ 671 0244 08       		.uleb128 0x8
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 18
+
+
+ 672 0245 26000000 		.4byte	.LVL17
+ 673 0249 C2020000 		.4byte	0x2c2
+ 674 024d 08       		.uleb128 0x8
+ 675 024e 2C000000 		.4byte	.LVL18
+ 676 0252 CD020000 		.4byte	0x2cd
+ 677 0256 08       		.uleb128 0x8
+ 678 0257 62000000 		.4byte	.LVL19
+ 679 025b F9020000 		.4byte	0x2f9
+ 680 025f 08       		.uleb128 0x8
+ 681 0260 66000000 		.4byte	.LVL20
+ 682 0264 CA010000 		.4byte	0x1ca
+ 683 0268 00       		.byte	0
+ 684 0269 11       		.uleb128 0x11
+ 685 026a 0F000000 		.4byte	.LASF25
+ 686 026e 01       		.byte	0x1
+ 687 026f 19       		.byte	0x19
+ 688 0270 80000000 		.4byte	0x80
+ 689 0274 05       		.uleb128 0x5
+ 690 0275 03       		.byte	0x3
+ 691 0276 01000000 		.4byte	Touch_measurementFlag
+ 692 027a 12       		.uleb128 0x12
+ 693 027b 5F010000 		.4byte	.LASF41
+ 694 027f 01       		.byte	0x1
+ 695 0280 18       		.byte	0x18
+ 696 0281 80000000 		.4byte	0x80
+ 697 0285 05       		.uleb128 0x5
+ 698 0286 03       		.byte	0x3
+ 699 0287 00000000 		.4byte	Touch_initVar
+ 700 028b 13       		.uleb128 0x13
+ 701 028c 3A010000 		.4byte	.LASF26
+ 702 0290 3A010000 		.4byte	.LASF26
+ 703 0294 03       		.byte	0x3
+ 704 0295 2E       		.byte	0x2e
+ 705 0296 13       		.uleb128 0x13
+ 706 0297 00000000 		.4byte	.LASF27
+ 707 029b 00000000 		.4byte	.LASF27
+ 708 029f 04       		.byte	0x4
+ 709 02a0 4C       		.byte	0x4c
+ 710 02a1 13       		.uleb128 0x13
+ 711 02a2 DD020000 		.4byte	.LASF28
+ 712 02a6 DD020000 		.4byte	.LASF28
+ 713 02aa 04       		.byte	0x4
+ 714 02ab 4D       		.byte	0x4d
+ 715 02ac 13       		.uleb128 0x13
+ 716 02ad 50010000 		.4byte	.LASF29
+ 717 02b1 50010000 		.4byte	.LASF29
+ 718 02b5 04       		.byte	0x4
+ 719 02b6 3B       		.byte	0x3b
+ 720 02b7 13       		.uleb128 0x13
+ 721 02b8 47020000 		.4byte	.LASF30
+ 722 02bc 47020000 		.4byte	.LASF30
+ 723 02c0 03       		.byte	0x3
+ 724 02c1 2F       		.byte	0x2f
+ 725 02c2 13       		.uleb128 0x13
+ 726 02c3 51000000 		.4byte	.LASF31
+ 727 02c7 51000000 		.4byte	.LASF31
+ 728 02cb 03       		.byte	0x3
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 19
+
+
+ 729 02cc 38       		.byte	0x38
+ 730 02cd 13       		.uleb128 0x13
+ 731 02ce 67000000 		.4byte	.LASF32
+ 732 02d2 67000000 		.4byte	.LASF32
+ 733 02d6 05       		.byte	0x5
+ 734 02d7 25       		.byte	0x25
+ 735 02d8 13       		.uleb128 0x13
+ 736 02d9 9D020000 		.4byte	.LASF33
+ 737 02dd 9D020000 		.4byte	.LASF33
+ 738 02e1 04       		.byte	0x4
+ 739 02e2 3D       		.byte	0x3d
+ 740 02e3 13       		.uleb128 0x13
+ 741 02e4 06030000 		.4byte	.LASF34
+ 742 02e8 06030000 		.4byte	.LASF34
+ 743 02ec 04       		.byte	0x4
+ 744 02ed 3F       		.byte	0x3f
+ 745 02ee 13       		.uleb128 0x13
+ 746 02ef 78020000 		.4byte	.LASF35
+ 747 02f3 78020000 		.4byte	.LASF35
+ 748 02f7 04       		.byte	0x4
+ 749 02f8 41       		.byte	0x41
+ 750 02f9 13       		.uleb128 0x13
+ 751 02fa 86010000 		.4byte	.LASF36
+ 752 02fe 86010000 		.4byte	.LASF36
+ 753 0302 06       		.byte	0x6
+ 754 0303 77       		.byte	0x77
+ 755 0304 00       		.byte	0
+ 756              		.section	.debug_abbrev,"",%progbits
+ 757              	.Ldebug_abbrev0:
+ 758 0000 01       		.uleb128 0x1
+ 759 0001 11       		.uleb128 0x11
+ 760 0002 01       		.byte	0x1
+ 761 0003 25       		.uleb128 0x25
+ 762 0004 0E       		.uleb128 0xe
+ 763 0005 13       		.uleb128 0x13
+ 764 0006 0B       		.uleb128 0xb
+ 765 0007 03       		.uleb128 0x3
+ 766 0008 0E       		.uleb128 0xe
+ 767 0009 1B       		.uleb128 0x1b
+ 768 000a 0E       		.uleb128 0xe
+ 769 000b 55       		.uleb128 0x55
+ 770 000c 17       		.uleb128 0x17
+ 771 000d 11       		.uleb128 0x11
+ 772 000e 01       		.uleb128 0x1
+ 773 000f 10       		.uleb128 0x10
+ 774 0010 17       		.uleb128 0x17
+ 775 0011 00       		.byte	0
+ 776 0012 00       		.byte	0
+ 777 0013 02       		.uleb128 0x2
+ 778 0014 24       		.uleb128 0x24
+ 779 0015 00       		.byte	0
+ 780 0016 0B       		.uleb128 0xb
+ 781 0017 0B       		.uleb128 0xb
+ 782 0018 3E       		.uleb128 0x3e
+ 783 0019 0B       		.uleb128 0xb
+ 784 001a 03       		.uleb128 0x3
+ 785 001b 08       		.uleb128 0x8
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 20
+
+
+ 786 001c 00       		.byte	0
+ 787 001d 00       		.byte	0
+ 788 001e 03       		.uleb128 0x3
+ 789 001f 24       		.uleb128 0x24
+ 790 0020 00       		.byte	0
+ 791 0021 0B       		.uleb128 0xb
+ 792 0022 0B       		.uleb128 0xb
+ 793 0023 3E       		.uleb128 0x3e
+ 794 0024 0B       		.uleb128 0xb
+ 795 0025 03       		.uleb128 0x3
+ 796 0026 0E       		.uleb128 0xe
+ 797 0027 00       		.byte	0
+ 798 0028 00       		.byte	0
+ 799 0029 04       		.uleb128 0x4
+ 800 002a 16       		.uleb128 0x16
+ 801 002b 00       		.byte	0
+ 802 002c 03       		.uleb128 0x3
+ 803 002d 0E       		.uleb128 0xe
+ 804 002e 3A       		.uleb128 0x3a
+ 805 002f 0B       		.uleb128 0xb
+ 806 0030 3B       		.uleb128 0x3b
+ 807 0031 05       		.uleb128 0x5
+ 808 0032 49       		.uleb128 0x49
+ 809 0033 13       		.uleb128 0x13
+ 810 0034 00       		.byte	0
+ 811 0035 00       		.byte	0
+ 812 0036 05       		.uleb128 0x5
+ 813 0037 35       		.uleb128 0x35
+ 814 0038 00       		.byte	0
+ 815 0039 49       		.uleb128 0x49
+ 816 003a 13       		.uleb128 0x13
+ 817 003b 00       		.byte	0
+ 818 003c 00       		.byte	0
+ 819 003d 06       		.uleb128 0x6
+ 820 003e 2E       		.uleb128 0x2e
+ 821 003f 00       		.byte	0
+ 822 0040 3F       		.uleb128 0x3f
+ 823 0041 19       		.uleb128 0x19
+ 824 0042 03       		.uleb128 0x3
+ 825 0043 0E       		.uleb128 0xe
+ 826 0044 3A       		.uleb128 0x3a
+ 827 0045 0B       		.uleb128 0xb
+ 828 0046 3B       		.uleb128 0x3b
+ 829 0047 0B       		.uleb128 0xb
+ 830 0048 27       		.uleb128 0x27
+ 831 0049 19       		.uleb128 0x19
+ 832 004a 20       		.uleb128 0x20
+ 833 004b 0B       		.uleb128 0xb
+ 834 004c 00       		.byte	0
+ 835 004d 00       		.byte	0
+ 836 004e 07       		.uleb128 0x7
+ 837 004f 2E       		.uleb128 0x2e
+ 838 0050 01       		.byte	0x1
+ 839 0051 3F       		.uleb128 0x3f
+ 840 0052 19       		.uleb128 0x19
+ 841 0053 03       		.uleb128 0x3
+ 842 0054 0E       		.uleb128 0xe
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 21
+
+
+ 843 0055 3A       		.uleb128 0x3a
+ 844 0056 0B       		.uleb128 0xb
+ 845 0057 3B       		.uleb128 0x3b
+ 846 0058 0B       		.uleb128 0xb
+ 847 0059 27       		.uleb128 0x27
+ 848 005a 19       		.uleb128 0x19
+ 849 005b 11       		.uleb128 0x11
+ 850 005c 01       		.uleb128 0x1
+ 851 005d 12       		.uleb128 0x12
+ 852 005e 06       		.uleb128 0x6
+ 853 005f 40       		.uleb128 0x40
+ 854 0060 18       		.uleb128 0x18
+ 855 0061 9742     		.uleb128 0x2117
+ 856 0063 19       		.uleb128 0x19
+ 857 0064 01       		.uleb128 0x1
+ 858 0065 13       		.uleb128 0x13
+ 859 0066 00       		.byte	0
+ 860 0067 00       		.byte	0
+ 861 0068 08       		.uleb128 0x8
+ 862 0069 898201   		.uleb128 0x4109
+ 863 006c 00       		.byte	0
+ 864 006d 11       		.uleb128 0x11
+ 865 006e 01       		.uleb128 0x1
+ 866 006f 31       		.uleb128 0x31
+ 867 0070 13       		.uleb128 0x13
+ 868 0071 00       		.byte	0
+ 869 0072 00       		.byte	0
+ 870 0073 09       		.uleb128 0x9
+ 871 0074 898201   		.uleb128 0x4109
+ 872 0077 00       		.byte	0
+ 873 0078 11       		.uleb128 0x11
+ 874 0079 01       		.uleb128 0x1
+ 875 007a 9542     		.uleb128 0x2115
+ 876 007c 19       		.uleb128 0x19
+ 877 007d 31       		.uleb128 0x31
+ 878 007e 13       		.uleb128 0x13
+ 879 007f 00       		.byte	0
+ 880 0080 00       		.byte	0
+ 881 0081 0A       		.uleb128 0xa
+ 882 0082 1D       		.uleb128 0x1d
+ 883 0083 01       		.byte	0x1
+ 884 0084 31       		.uleb128 0x31
+ 885 0085 13       		.uleb128 0x13
+ 886 0086 11       		.uleb128 0x11
+ 887 0087 01       		.uleb128 0x1
+ 888 0088 12       		.uleb128 0x12
+ 889 0089 06       		.uleb128 0x6
+ 890 008a 58       		.uleb128 0x58
+ 891 008b 0B       		.uleb128 0xb
+ 892 008c 59       		.uleb128 0x59
+ 893 008d 0B       		.uleb128 0xb
+ 894 008e 01       		.uleb128 0x1
+ 895 008f 13       		.uleb128 0x13
+ 896 0090 00       		.byte	0
+ 897 0091 00       		.byte	0
+ 898 0092 0B       		.uleb128 0xb
+ 899 0093 2E       		.uleb128 0x2e
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 22
+
+
+ 900 0094 01       		.byte	0x1
+ 901 0095 31       		.uleb128 0x31
+ 902 0096 13       		.uleb128 0x13
+ 903 0097 11       		.uleb128 0x11
+ 904 0098 01       		.uleb128 0x1
+ 905 0099 12       		.uleb128 0x12
+ 906 009a 06       		.uleb128 0x6
+ 907 009b 40       		.uleb128 0x40
+ 908 009c 18       		.uleb128 0x18
+ 909 009d 9742     		.uleb128 0x2117
+ 910 009f 19       		.uleb128 0x19
+ 911 00a0 01       		.uleb128 0x1
+ 912 00a1 13       		.uleb128 0x13
+ 913 00a2 00       		.byte	0
+ 914 00a3 00       		.byte	0
+ 915 00a4 0C       		.uleb128 0xc
+ 916 00a5 2E       		.uleb128 0x2e
+ 917 00a6 01       		.byte	0x1
+ 918 00a7 3F       		.uleb128 0x3f
+ 919 00a8 19       		.uleb128 0x19
+ 920 00a9 03       		.uleb128 0x3
+ 921 00aa 0E       		.uleb128 0xe
+ 922 00ab 3A       		.uleb128 0x3a
+ 923 00ac 0B       		.uleb128 0xb
+ 924 00ad 3B       		.uleb128 0x3b
+ 925 00ae 05       		.uleb128 0x5
+ 926 00af 27       		.uleb128 0x27
+ 927 00b0 19       		.uleb128 0x19
+ 928 00b1 49       		.uleb128 0x49
+ 929 00b2 13       		.uleb128 0x13
+ 930 00b3 11       		.uleb128 0x11
+ 931 00b4 01       		.uleb128 0x1
+ 932 00b5 12       		.uleb128 0x12
+ 933 00b6 06       		.uleb128 0x6
+ 934 00b7 40       		.uleb128 0x40
+ 935 00b8 18       		.uleb128 0x18
+ 936 00b9 9742     		.uleb128 0x2117
+ 937 00bb 19       		.uleb128 0x19
+ 938 00bc 01       		.uleb128 0x1
+ 939 00bd 13       		.uleb128 0x13
+ 940 00be 00       		.byte	0
+ 941 00bf 00       		.byte	0
+ 942 00c0 0D       		.uleb128 0xd
+ 943 00c1 34       		.uleb128 0x34
+ 944 00c2 00       		.byte	0
+ 945 00c3 03       		.uleb128 0x3
+ 946 00c4 0E       		.uleb128 0xe
+ 947 00c5 3A       		.uleb128 0x3a
+ 948 00c6 0B       		.uleb128 0xb
+ 949 00c7 3B       		.uleb128 0x3b
+ 950 00c8 05       		.uleb128 0x5
+ 951 00c9 49       		.uleb128 0x49
+ 952 00ca 13       		.uleb128 0x13
+ 953 00cb 02       		.uleb128 0x2
+ 954 00cc 18       		.uleb128 0x18
+ 955 00cd 00       		.byte	0
+ 956 00ce 00       		.byte	0
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 23
+
+
+ 957 00cf 0E       		.uleb128 0xe
+ 958 00d0 898201   		.uleb128 0x4109
+ 959 00d3 01       		.byte	0x1
+ 960 00d4 11       		.uleb128 0x11
+ 961 00d5 01       		.uleb128 0x1
+ 962 00d6 31       		.uleb128 0x31
+ 963 00d7 13       		.uleb128 0x13
+ 964 00d8 01       		.uleb128 0x1
+ 965 00d9 13       		.uleb128 0x13
+ 966 00da 00       		.byte	0
+ 967 00db 00       		.byte	0
+ 968 00dc 0F       		.uleb128 0xf
+ 969 00dd 8A8201   		.uleb128 0x410a
+ 970 00e0 00       		.byte	0
+ 971 00e1 02       		.uleb128 0x2
+ 972 00e2 18       		.uleb128 0x18
+ 973 00e3 9142     		.uleb128 0x2111
+ 974 00e5 18       		.uleb128 0x18
+ 975 00e6 00       		.byte	0
+ 976 00e7 00       		.byte	0
+ 977 00e8 10       		.uleb128 0x10
+ 978 00e9 2E       		.uleb128 0x2e
+ 979 00ea 01       		.byte	0x1
+ 980 00eb 3F       		.uleb128 0x3f
+ 981 00ec 19       		.uleb128 0x19
+ 982 00ed 03       		.uleb128 0x3
+ 983 00ee 0E       		.uleb128 0xe
+ 984 00ef 3A       		.uleb128 0x3a
+ 985 00f0 0B       		.uleb128 0xb
+ 986 00f1 3B       		.uleb128 0x3b
+ 987 00f2 0B       		.uleb128 0xb
+ 988 00f3 27       		.uleb128 0x27
+ 989 00f4 19       		.uleb128 0x19
+ 990 00f5 49       		.uleb128 0x49
+ 991 00f6 13       		.uleb128 0x13
+ 992 00f7 11       		.uleb128 0x11
+ 993 00f8 01       		.uleb128 0x1
+ 994 00f9 12       		.uleb128 0x12
+ 995 00fa 06       		.uleb128 0x6
+ 996 00fb 40       		.uleb128 0x40
+ 997 00fc 18       		.uleb128 0x18
+ 998 00fd 9742     		.uleb128 0x2117
+ 999 00ff 19       		.uleb128 0x19
+ 1000 0100 01       		.uleb128 0x1
+ 1001 0101 13       		.uleb128 0x13
+ 1002 0102 00       		.byte	0
+ 1003 0103 00       		.byte	0
+ 1004 0104 11       		.uleb128 0x11
+ 1005 0105 34       		.uleb128 0x34
+ 1006 0106 00       		.byte	0
+ 1007 0107 03       		.uleb128 0x3
+ 1008 0108 0E       		.uleb128 0xe
+ 1009 0109 3A       		.uleb128 0x3a
+ 1010 010a 0B       		.uleb128 0xb
+ 1011 010b 3B       		.uleb128 0x3b
+ 1012 010c 0B       		.uleb128 0xb
+ 1013 010d 49       		.uleb128 0x49
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 24
+
+
+ 1014 010e 13       		.uleb128 0x13
+ 1015 010f 02       		.uleb128 0x2
+ 1016 0110 18       		.uleb128 0x18
+ 1017 0111 00       		.byte	0
+ 1018 0112 00       		.byte	0
+ 1019 0113 12       		.uleb128 0x12
+ 1020 0114 34       		.uleb128 0x34
+ 1021 0115 00       		.byte	0
+ 1022 0116 03       		.uleb128 0x3
+ 1023 0117 0E       		.uleb128 0xe
+ 1024 0118 3A       		.uleb128 0x3a
+ 1025 0119 0B       		.uleb128 0xb
+ 1026 011a 3B       		.uleb128 0x3b
+ 1027 011b 0B       		.uleb128 0xb
+ 1028 011c 49       		.uleb128 0x49
+ 1029 011d 13       		.uleb128 0x13
+ 1030 011e 3F       		.uleb128 0x3f
+ 1031 011f 19       		.uleb128 0x19
+ 1032 0120 02       		.uleb128 0x2
+ 1033 0121 18       		.uleb128 0x18
+ 1034 0122 00       		.byte	0
+ 1035 0123 00       		.byte	0
+ 1036 0124 13       		.uleb128 0x13
+ 1037 0125 2E       		.uleb128 0x2e
+ 1038 0126 00       		.byte	0
+ 1039 0127 3F       		.uleb128 0x3f
+ 1040 0128 19       		.uleb128 0x19
+ 1041 0129 3C       		.uleb128 0x3c
+ 1042 012a 19       		.uleb128 0x19
+ 1043 012b 6E       		.uleb128 0x6e
+ 1044 012c 0E       		.uleb128 0xe
+ 1045 012d 03       		.uleb128 0x3
+ 1046 012e 0E       		.uleb128 0xe
+ 1047 012f 3A       		.uleb128 0x3a
+ 1048 0130 0B       		.uleb128 0xb
+ 1049 0131 3B       		.uleb128 0x3b
+ 1050 0132 0B       		.uleb128 0xb
+ 1051 0133 00       		.byte	0
+ 1052 0134 00       		.byte	0
+ 1053 0135 00       		.byte	0
+ 1054              		.section	.debug_aranges,"",%progbits
+ 1055 0000 54000000 		.4byte	0x54
+ 1056 0004 0200     		.2byte	0x2
+ 1057 0006 00000000 		.4byte	.Ldebug_info0
+ 1058 000a 04       		.byte	0x4
+ 1059 000b 00       		.byte	0
+ 1060 000c 0000     		.2byte	0
+ 1061 000e 0000     		.2byte	0
+ 1062 0010 00000000 		.4byte	.LFB0
+ 1063 0014 0E000000 		.4byte	.LFE0-.LFB0
+ 1064 0018 00000000 		.4byte	.LFB1
+ 1065 001c 1C000000 		.4byte	.LFE1-.LFB1
+ 1066 0020 00000000 		.4byte	.LFB2
+ 1067 0024 0E000000 		.4byte	.LFE2-.LFB2
+ 1068 0028 00000000 		.4byte	.LFB3
+ 1069 002c 04000000 		.4byte	.LFE3-.LFB3
+ 1070 0030 00000000 		.4byte	.LFB4
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 25
+
+
+ 1071 0034 44000000 		.4byte	.LFE4-.LFB4
+ 1072 0038 00000000 		.4byte	.LFB5
+ 1073 003c 54000000 		.4byte	.LFE5-.LFB5
+ 1074 0040 00000000 		.4byte	.LFB7
+ 1075 0044 1C000000 		.4byte	.LFE7-.LFB7
+ 1076 0048 00000000 		.4byte	.LFB6
+ 1077 004c 80000000 		.4byte	.LFE6-.LFB6
+ 1078 0050 00000000 		.4byte	0
+ 1079 0054 00000000 		.4byte	0
+ 1080              		.section	.debug_ranges,"",%progbits
+ 1081              	.Ldebug_ranges0:
+ 1082 0000 00000000 		.4byte	.LFB0
+ 1083 0004 0E000000 		.4byte	.LFE0
+ 1084 0008 00000000 		.4byte	.LFB1
+ 1085 000c 1C000000 		.4byte	.LFE1
+ 1086 0010 00000000 		.4byte	.LFB2
+ 1087 0014 0E000000 		.4byte	.LFE2
+ 1088 0018 00000000 		.4byte	.LFB3
+ 1089 001c 04000000 		.4byte	.LFE3
+ 1090 0020 00000000 		.4byte	.LFB4
+ 1091 0024 44000000 		.4byte	.LFE4
+ 1092 0028 00000000 		.4byte	.LFB5
+ 1093 002c 54000000 		.4byte	.LFE5
+ 1094 0030 00000000 		.4byte	.LFB7
+ 1095 0034 1C000000 		.4byte	.LFE7
+ 1096 0038 00000000 		.4byte	.LFB6
+ 1097 003c 80000000 		.4byte	.LFE6
+ 1098 0040 00000000 		.4byte	0
+ 1099 0044 00000000 		.4byte	0
+ 1100              		.section	.debug_line,"",%progbits
+ 1101              	.Ldebug_line0:
+ 1102 0000 38010000 		.section	.debug_str,"MS",%progbits,1
+ 1102      02007E00 
+ 1102      00000201 
+ 1102      FB0E0D00 
+ 1102      01010101 
+ 1103              	.LASF27:
+ 1104 0000 546F7563 		.ascii	"Touch_ADC_Init\000"
+ 1104      685F4144 
+ 1104      435F496E 
+ 1104      697400
+ 1105              	.LASF25:
+ 1106 000f 546F7563 		.ascii	"Touch_measurementFlag\000"
+ 1106      685F6D65 
+ 1106      61737572 
+ 1106      656D656E 
+ 1106      74466C61 
+ 1107              	.LASF38:
+ 1108 0025 47656E65 		.ascii	"Generated_Source\\PSoC5\\Touch.c\000"
+ 1108      72617465 
+ 1108      645F536F 
+ 1108      75726365 
+ 1108      5C50536F 
+ 1109              	.LASF40:
+ 1110 0044 546F7563 		.ascii	"Touch_Enable\000"
+ 1110      685F456E 
+ 1110      61626C65 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 26
+
+
+ 1110      00
+ 1111              	.LASF31:
+ 1112 0051 546F7563 		.ascii	"Touch_AMux_GetChannel\000"
+ 1112      685F414D 
+ 1112      75785F47 
+ 1112      65744368 
+ 1112      616E6E65 
+ 1113              	.LASF32:
+ 1114 0067 546F7563 		.ascii	"Touch_AMux_Next\000"
+ 1114      685F414D 
+ 1114      75785F4E 
+ 1114      65787400 
+ 1115              	.LASF14:
+ 1116 0077 666C6F61 		.ascii	"float\000"
+ 1116      7400
+ 1117              	.LASF17:
+ 1118 007d 546F7563 		.ascii	"Touch_Init\000"
+ 1118      685F496E 
+ 1118      697400
+ 1119              	.LASF4:
+ 1120 0088 756E7369 		.ascii	"unsigned char\000"
+ 1120      676E6564 
+ 1120      20636861 
+ 1120      7200
+ 1121              	.LASF19:
+ 1122 0096 546F7563 		.ascii	"Touch_Stop\000"
+ 1122      685F5374 
+ 1122      6F7000
+ 1123              	.LASF16:
+ 1124 00a1 72656738 		.ascii	"reg8\000"
+ 1124      00
+ 1125              	.LASF13:
+ 1126 00a6 696E7431 		.ascii	"int16\000"
+ 1126      3600
+ 1127              	.LASF37:
+ 1128 00ac 474E5520 		.ascii	"GNU C11 5.4.1 20160609 (release) [ARM/embedded-5-br"
+ 1128      43313120 
+ 1128      352E342E 
+ 1128      31203230 
+ 1128      31363036 
+ 1129 00df 616E6368 		.ascii	"anch revision 237715] -mcpu=cortex-m3 -mthumb -g -O"
+ 1129      20726576 
+ 1129      6973696F 
+ 1129      6E203233 
+ 1129      37373135 
+ 1130 0112 73202D66 		.ascii	"s -ffunction-sections -ffat-lto-objects\000"
+ 1130      66756E63 
+ 1130      74696F6E 
+ 1130      2D736563 
+ 1130      74696F6E 
+ 1131              	.LASF26:
+ 1132 013a 546F7563 		.ascii	"Touch_AMux_Init\000"
+ 1132      685F414D 
+ 1132      75785F49 
+ 1132      6E697400 
+ 1133              	.LASF12:
+ 1134 014a 75696E74 		.ascii	"uint8\000"
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 27
+
+
+ 1134      3800
+ 1135              	.LASF29:
+ 1136 0150 546F7563 		.ascii	"Touch_ADC_Stop\000"
+ 1136      685F4144 
+ 1136      435F5374 
+ 1136      6F7000
+ 1137              	.LASF41:
+ 1138 015f 546F7563 		.ascii	"Touch_initVar\000"
+ 1138      685F696E 
+ 1138      69745661 
+ 1138      7200
+ 1139              	.LASF23:
+ 1140 016d 546F7563 		.ascii	"Touch_TouchDetect\000"
+ 1140      685F546F 
+ 1140      75636844 
+ 1140      65746563 
+ 1140      7400
+ 1141              	.LASF15:
+ 1142 017f 646F7562 		.ascii	"double\000"
+ 1142      6C6500
+ 1143              	.LASF36:
+ 1144 0186 43794465 		.ascii	"CyDelayUs\000"
+ 1144      6C617955 
+ 1144      7300
+ 1145              	.LASF22:
+ 1146 0190 546F7563 		.ascii	"Touch_Measure\000"
+ 1146      685F4D65 
+ 1146      61737572 
+ 1146      6500
+ 1147              	.LASF18:
+ 1148 019e 546F7563 		.ascii	"Touch_Start\000"
+ 1148      685F5374 
+ 1148      61727400 
+ 1149              	.LASF8:
+ 1150 01aa 6C6F6E67 		.ascii	"long unsigned int\000"
+ 1150      20756E73 
+ 1150      69676E65 
+ 1150      6420696E 
+ 1150      7400
+ 1151              	.LASF0:
+ 1152 01bc 756E7369 		.ascii	"unsigned int\000"
+ 1152      676E6564 
+ 1152      20696E74 
+ 1152      00
+ 1153              	.LASF9:
+ 1154 01c9 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 1154      206C6F6E 
+ 1154      6720756E 
+ 1154      7369676E 
+ 1154      65642069 
+ 1155              	.LASF24:
+ 1156 01e0 72657375 		.ascii	"result\000"
+ 1156      6C7400
+ 1157              	.LASF39:
+ 1158 01e7 453A5C55 		.ascii	"E:\\U\\Lab de Control\\PID Controler-20191011T02191"
+ 1158      5C4C6162 
+ 1158      20646520 
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 28
+
+
+ 1158      436F6E74 
+ 1158      726F6C5C 
+ 1159 0217 395A2D30 		.ascii	"9Z-001\\PID Controler\\Controlador.cydsn\000"
+ 1159      30315C50 
+ 1159      49442043 
+ 1159      6F6E7472 
+ 1159      6F6C6572 
+ 1160              	.LASF10:
+ 1161 023e 73697A65 		.ascii	"sizetype\000"
+ 1161      74797065 
+ 1161      00
+ 1162              	.LASF30:
+ 1163 0247 546F7563 		.ascii	"Touch_AMux_Stop\000"
+ 1163      685F414D 
+ 1163      75785F53 
+ 1163      746F7000 
+ 1164              	.LASF6:
+ 1165 0257 73686F72 		.ascii	"short unsigned int\000"
+ 1165      7420756E 
+ 1165      7369676E 
+ 1165      65642069 
+ 1165      6E7400
+ 1166              	.LASF1:
+ 1167 026a 6C6F6E67 		.ascii	"long long int\000"
+ 1167      206C6F6E 
+ 1167      6720696E 
+ 1167      7400
+ 1168              	.LASF35:
+ 1169 0278 546F7563 		.ascii	"Touch_ADC_GetResult16\000"
+ 1169      685F4144 
+ 1169      435F4765 
+ 1169      74526573 
+ 1169      756C7431 
+ 1170              	.LASF11:
+ 1171 028e 63686172 		.ascii	"char\000"
+ 1171      00
+ 1172              	.LASF5:
+ 1173 0293 73686F72 		.ascii	"short int\000"
+ 1173      7420696E 
+ 1173      7400
+ 1174              	.LASF33:
+ 1175 029d 546F7563 		.ascii	"Touch_ADC_StartConvert\000"
+ 1175      685F4144 
+ 1175      435F5374 
+ 1175      61727443 
+ 1175      6F6E7665 
+ 1176              	.LASF20:
+ 1177 02b4 546F7563 		.ascii	"Touch_ActivateX\000"
+ 1177      685F4163 
+ 1177      74697661 
+ 1177      74655800 
+ 1178              	.LASF21:
+ 1179 02c4 546F7563 		.ascii	"Touch_ActivateY\000"
+ 1179      685F4163 
+ 1179      74697661 
+ 1179      74655900 
+ 1180              	.LASF7:
+ARM GAS  C:\Users\emman\AppData\Local\Temp\ccsHmHw2.s 			page 29
+
+
+ 1181 02d4 6C6F6E67 		.ascii	"long int\000"
+ 1181      20696E74 
+ 1181      00
+ 1182              	.LASF28:
+ 1183 02dd 546F7563 		.ascii	"Touch_ADC_Enable\000"
+ 1183      685F4144 
+ 1183      435F456E 
+ 1183      61626C65 
+ 1183      00
+ 1184              	.LASF2:
+ 1185 02ee 6C6F6E67 		.ascii	"long double\000"
+ 1185      20646F75 
+ 1185      626C6500 
+ 1186              	.LASF3:
+ 1187 02fa 7369676E 		.ascii	"signed char\000"
+ 1187      65642063 
+ 1187      68617200 
+ 1188              	.LASF34:
+ 1189 0306 546F7563 		.ascii	"Touch_ADC_IsEndConversion\000"
+ 1189      685F4144 
+ 1189      435F4973 
+ 1189      456E6443 
+ 1189      6F6E7665 
+ 1190              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 5.4.1 20160609 (release) [ARM/embedded-5-bran
